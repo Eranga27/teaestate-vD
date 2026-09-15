@@ -1225,8 +1225,8 @@ document.getElementById('waitlist-form').addEventListener('submit', async functi
         if (alreadySeen || isReducedMotion) {
           if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
         } else {
-          const minDisplayMs = 1200;
-          const maxDisplayMs = 4000;
+          const minDisplayMs = 3200;
+          const maxDisplayMs = 4500;
           const startTime = Date.now();
           let dismissed = false;
           function dismissPreloader() {

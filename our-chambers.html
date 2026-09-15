@@ -1978,8 +1978,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (alreadySeen || isReducedMotion) {
         if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
       } else {
-        const minDisplayMs = 1200; // 1.2s floor so it never flashes jarringly
-        const maxDisplayMs = 4000; // 4.0s hard ceiling
+        const minDisplayMs = 3200; // 3.2s floor so the luxury crest & typography can be savored (3-4s total duration)
+        const maxDisplayMs = 4500; // 4.5s hard ceiling
         const startTime = Date.now();
         let dismissed = false;
 
