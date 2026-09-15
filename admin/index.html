@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estate CMS · The Tea Bungalow</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tea Bungalow CMS Branded Login Shell ── */
+    :root {
+      --green: #1E4D2B;
+      --gold: #C7A85E;
+      --cream: #F5F1E9;
+      --ink: #1a1510;
+    }
+
+    /* Override Decap CMS login page with estate identity */
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    /* Inject estate header above CMS chrome */
+    #cms-brand-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 52px;
+      background: #0a190f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      z-index: 99999;
+      border-bottom: 1px solid rgba(199, 168, 94, 0.25);
+    }
+
+    #cms-brand-header svg {
+      flex-shrink: 0;
+    }
+
+    #cms-brand-header .cms-brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    #cms-brand-header .cms-brand-sep {
+      width: 1px;
+      height: 14px;
+      background: rgba(199, 168, 94, 0.3);
+    }
+
+    #cms-brand-header .cms-brand-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: rgba(199, 168, 94, 0.6);
+      text-transform: uppercase;
+    }
+
+    /* Push CMS content below brand bar */
+    body > div:not(#cms-brand-header) {
+      padding-top: 52px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Estate brand header injected above CMS UI -->
+  <div id="cms-brand-header">
+    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <circle cx="24" cy="24" r="22" stroke="#C7A85E" stroke-opacity="0.5" stroke-width="1"/>
+      <path d="M24 9C24 9 20.5 16.5 17.5 19.5C14.5 22.5 11.5 24.5 11.5 28.5C11.5 34.5 16.5 37.5 24 37.5C31.5 37.5 36.5 34.5 36.5 28.5C36.5 24.5 33.5 22.5 30.5 19.5C27.5 16.5 24 9 24 9Z" stroke="#C7A85E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M24 13V33.5M24 21.5L19 24.5M24 25.5L29 28.5" stroke="#C7A85E" stroke-width="1" stroke-opacity="0.75" stroke-linecap="round"/>
+    </svg>
+    <div class="cms-brand-title">The Tea Bungalow</div>
+    <div class="cms-brand-sep"></div>
+    <div class="cms-brand-sub">Estate Content Manager</div>
+  </div>
+
+  <!-- Decap CMS App -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+﻿<!DOCTYPE html> 
 
 <html lang="en"> 
 
@@ -1943,8 +1943,9 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
   }
   @media (max-width: 600px) {
     #tb-consent-banner {
-      bottom: 16px;
+      bottom: 14px;
       padding: 16px;
+      width: calc(100vw - 28px);
     }
     .tb-consent-actions {
       flex-direction: column;
@@ -1954,11 +1955,21 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
     .tb-btn-consent-accept, .tb-btn-consent-decline {
       text-align: center;
       width: 100%;
+      min-height: 44px; /* Touch target Apple HIG >= 44px */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
     .tb-consent-link {
       margin-left: 0;
       text-align: center;
       margin-top: 4px;
+    }
+
+    /* Prevent mobile WhatsApp float from colliding with active consent banner */
+    body.tb-has-active-consent .whatsapp-float {
+      bottom: 105px !important;
+      transition: bottom 0.35s ease;
     }
   }
 
@@ -1970,7 +1981,7 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 16px;
     background: rgba(4, 12, 9, 0.78);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -1988,6 +1999,10 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
     border: 1px solid rgba(199, 168, 94, 0.35);
     border-radius: 12px;
     width: min(94vw, 540px);
+    max-height: calc(100dvh - 32px);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 32px 28px;
     position: relative;
     box-shadow: 0 24px 60px rgba(0,0,0,0.6);
@@ -1997,6 +2012,23 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
   }
   #tb-reserve-modal.tb-modal-open .tb-reserve-dialog {
     transform: scale(1) translateY(0);
+  }
+  @media (max-width: 480px) {
+    .tb-reserve-dialog {
+      padding: 24px 18px;
+      width: calc(100vw - 24px);
+    }
+    .tb-reserve-title {
+      font-size: 18px !important;
+    }
+    .tb-reserve-desc {
+      font-size: 14px !important;
+      margin-bottom: 18px !important;
+    }
+    .tb-reserve-option {
+      padding: 12px 14px !important;
+      min-height: 48px;
+    }
   }
   .tb-reserve-close {
     position: absolute;
@@ -2330,6 +2362,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
 
       function dismissConsent() {
+        document.body.classList.remove('tb-has-active-consent');
         consentBanner.classList.remove('tb-consent-show');
         setTimeout(function() {
           if (consentBanner && consentBanner.parentNode) {
@@ -2341,6 +2374,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (!consentStatus) {
         // Show banner smoothly ~1s after DOM load / preloader lifecycle
         setTimeout(function() {
+          document.body.classList.add('tb-has-active-consent');
           consentBanner.classList.add('tb-consent-show');
         }, 1400);
 
@@ -2361,6 +2395,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
       } else {
         // Preference already recorded in a previous session
+        document.body.classList.remove('tb-has-active-consent');
         if (consentBanner.parentNode) {
           consentBanner.parentNode.removeChild(consentBanner);
         }
@@ -2375,15 +2410,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const reserveClose = document.getElementById('tbReserveClose');
 
     if (reserveModal) {
-      function openReserveModal(source) {
+      function openReserveModal(source, roomName) {
         reserveModal.classList.add('tb-modal-open');
         reserveModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
 
+        const titleEl = document.getElementById('tbReserveTitle');
+        const tagEl = document.querySelector('.tb-reserve-tag');
+        const waLink = document.getElementById('tbReserveWaOption');
+        const formLink = document.getElementById('tbReserveFormOption');
+
+        if (roomName) {
+          if (tagEl) tagEl.textContent = 'Galaha Estate · ' + roomName;
+          if (titleEl) titleEl.textContent = 'Reserve ' + roomName;
+          if (waLink) {
+            waLink.href = 'https://wa.me/94777874555?text=' + encodeURIComponent('Hi, I’m interested in reserving ' + roomName + ' at The Tea Bungalow. Could you check availability for my dates?');
+          }
+          if (formLink) {
+            formLink.href = '/vD/contact.php?chamber=' + encodeURIComponent(roomName) + '#enquiry-form';
+          }
+        } else {
+          if (tagEl) tagEl.textContent = 'Galaha Estate · Old Ceylon';
+          if (titleEl) titleEl.textContent = 'Reserve Your Stay';
+          if (waLink) {
+            waLink.href = 'https://wa.me/94777874555?text=' + encodeURIComponent('Hi, I’m planning a stay at The Tea Bungalow. Could you check availability for my dates?');
+          }
+          if (formLink) {
+            formLink.href = '/vD/contact.php#enquiry-form';
+          }
+        }
+
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'booking_widget_opened',
-          trigger_source: source || 'navbar'
+          trigger_source: source || 'navbar',
+          selected_chamber: roomName || 'general'
         });
       }
 
@@ -2393,10 +2454,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         document.body.style.overflow = '';
       }
 
-      document.querySelectorAll('.tb-reserve-trigger, #navReserveBtn, [data-reserve-trigger]').forEach(function(btn) {
+      document.querySelectorAll('.tb-reserve-trigger, #navReserveBtn, [data-reserve-trigger], .btn-enquire, .filter-cta').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
           e.preventDefault();
-          openReserveModal(btn.getAttribute('data-source') || 'cta_button');
+          const room = btn.getAttribute('data-room') || btn.getAttribute('data-package') || '';
+          openReserveModal(btn.getAttribute('data-source') || (room ? 'chamber_cta' : 'cta_button'), room);
         });
       });
 
@@ -2578,7 +2640,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         </div> 
 
-        <a href="/contact#enquiry-form" class="phd-cta">Enquire About This Package</a> 
+        <a href="#" class="phd-cta tb-reserve-trigger" data-package="Pekoe Trail Experience" data-source="package_cta">Enquire About This Package</a> 
 
       </div> 
 
@@ -2622,7 +2684,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Stage 1 Finisher" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -2666,7 +2728,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="The Galaha Grand Slam" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -2708,7 +2770,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Full Pekoe Concierge" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -2748,7 +2810,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="The Planter's Tiffin Lunch" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -2788,7 +2850,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Hiking Group Buyout" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -2860,7 +2922,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Tea Country Escape" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -2902,7 +2964,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="The Planter's Night" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -2946,7 +3008,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="The Slow Week" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -2988,7 +3050,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Family Retreat" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -3030,7 +3092,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Private Celebration" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -3072,7 +3134,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="pkg-cta">Enquire</a> 
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Estate Wellness Retreat" data-source="package_cta">Enquire</a> 
 
     </div> 
 
@@ -3180,7 +3242,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div> 
 
-      <a href="/contact#enquiry-form" class="bc-cta">Enquire About a Week</a> 
+      <a href="#" class="bc-cta tb-reserve-trigger" data-package="Estate Buyout Week" data-source="package_cta">Enquire About a Week</a> 
 
     </div> 
 
