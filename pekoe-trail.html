@@ -2786,6 +2786,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     }
 
+    // 3. Analytics Baseline: Track WhatsApp concierge conversions
+    document.querySelectorAll('a[href*="wa.me"], .whatsapp-float, #tbReserveWaOption').forEach(function(el) {
+      el.addEventListener('click', function() {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'whatsapp_concierge_click',
+          link_url: el.href || ''
+        });
+      });
+    });
+
     // 4. PDPA / GDPR Privacy Consent Engine
     const consentBanner = document.getElementById('tb-consent-banner');
     const btnAccept = document.getElementById('tbConsentAccept');
