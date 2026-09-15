@@ -2657,12 +2657,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         document.body.style.overflow = '';
       }
 
-      document.querySelectorAll('.tb-reserve-trigger, #navReserveBtn, [data-reserve-trigger], .btn-enquire, .filter-cta').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          const room = btn.getAttribute('data-room') || btn.getAttribute('data-package') || '';
-          openReserveModal(btn.getAttribute('data-source') || (room ? 'chamber_cta' : 'cta_button'), room);
-        });
+      // Event delegation — catches .tb-reserve-trigger buttons anywhere on the page,
+      // even those rendered below the navbar in the DOM (chamber cards, package CTAs, etc.)
+      document.addEventListener('click', function(e) {
+        var btn = e.target.closest('.tb-reserve-trigger, [data-reserve-trigger], #navReserveBtn');
+        if (!btn) return;
+        e.preventDefault();
+        var room = btn.getAttribute('data-room') || btn.getAttribute('data-package') || '';
+        openReserveModal(
+          btn.getAttribute('data-source') || (room ? 'chamber_cta' : 'cta_button'),
+          room
+        );
       });
 
       if (reserveClose) {

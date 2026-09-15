@@ -9,81 +9,298 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
-    /* ── Tea Bungalow CMS Branded Login Shell ── */
     :root {
       --green: #1E4D2B;
       --gold: #C7A85E;
       --cream: #F5F1E9;
-      --ink: #1a1510;
     }
+    body { font-family: 'EB Garamond', Georgia, serif; margin: 0; }
 
-    /* Override Decap CMS login page with estate identity */
-    body {
-      font-family: 'EB Garamond', Georgia, serif;
-    }
-
-    /* Inject estate header above CMS chrome */
-    #cms-brand-header {
+    /* ── Estate brand bar injected above CMS chrome ── */
+    #cms-brand-bar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 52px;
-      background: #0a190f;
+      top: 0; left: 0; right: 0;
+      height: 50px;
+      background: #07130E;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      z-index: 99999;
-      border-bottom: 1px solid rgba(199, 168, 94, 0.25);
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100000;
+      border-bottom: 1px solid rgba(199,168,94,0.3);
+      box-sizing: border-box;
     }
-
-    #cms-brand-header svg {
-      flex-shrink: 0;
+    #cms-brand-bar .brand-left {
+      display: flex; align-items: center; gap: 10px;
     }
-
-    #cms-brand-header .cms-brand-title {
+    #cms-brand-bar .brand-title {
       font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      color: var(--gold);
-      text-transform: uppercase;
+      font-size: 10.5px; letter-spacing: 0.22em;
+      color: var(--gold); text-transform: uppercase;
     }
-
-    #cms-brand-header .cms-brand-sep {
-      width: 1px;
-      height: 14px;
-      background: rgba(199, 168, 94, 0.3);
+    #cms-brand-bar .brand-sep {
+      width: 1px; height: 14px;
+      background: rgba(199,168,94,0.3);
     }
-
-    #cms-brand-header .cms-brand-sub {
+    #cms-brand-bar .brand-sub {
       font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      color: rgba(199, 168, 94, 0.6);
-      text-transform: uppercase;
+      font-size: 8.5px; letter-spacing: 0.18em;
+      color: rgba(199,168,94,0.55); text-transform: uppercase;
+    }
+    #cms-brand-bar .brand-notice {
+      font-family: 'EB Garamond', serif;
+      font-size: 12px; color: rgba(199,168,94,0.7);
+      font-style: italic;
     }
 
-    /* Push CMS content below brand bar */
-    body > div:not(#cms-brand-header) {
-      padding-top: 52px;
-    }
+    /* Push the entire CMS body down below our brand bar */
+    body > div:not(#cms-brand-bar),
+    #nc-root { padding-top: 50px !important; }
   </style>
 </head>
 <body>
-  <!-- Estate brand header injected above CMS UI -->
-  <div id="cms-brand-header">
-    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-      <circle cx="24" cy="24" r="22" stroke="#C7A85E" stroke-opacity="0.5" stroke-width="1"/>
-      <path d="M24 9C24 9 20.5 16.5 17.5 19.5C14.5 22.5 11.5 24.5 11.5 28.5C11.5 34.5 16.5 37.5 24 37.5C31.5 37.5 36.5 34.5 36.5 28.5C36.5 24.5 33.5 22.5 30.5 19.5C27.5 16.5 24 9 24 9Z" stroke="#C7A85E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M24 13V33.5M24 21.5L19 24.5M24 25.5L29 28.5" stroke="#C7A85E" stroke-width="1" stroke-opacity="0.75" stroke-linecap="round"/>
-    </svg>
-    <div class="cms-brand-title">The Tea Bungalow</div>
-    <div class="cms-brand-sep"></div>
-    <div class="cms-brand-sub">Estate Content Manager</div>
+
+  <!-- Estate brand bar -->
+  <div id="cms-brand-bar">
+    <div class="brand-left">
+      <svg width="20" height="20" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" stroke="#C7A85E" stroke-opacity="0.5" stroke-width="1"/>
+        <path d="M24 9C24 9 20.5 16.5 17.5 19.5C14.5 22.5 11.5 24.5 11.5 28.5C11.5 34.5 16.5 37.5 24 37.5C31.5 37.5 36.5 34.5 36.5 28.5C36.5 24.5 33.5 22.5 30.5 19.5C27.5 16.5 24 9 24 9Z" stroke="#C7A85E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 13V33.5M24 21.5L19 24.5M24 25.5L29 28.5" stroke="#C7A85E" stroke-width="1" stroke-opacity="0.75" stroke-linecap="round"/>
+      </svg>
+      <div class="brand-title">The Tea Bungalow</div>
+      <div class="brand-sep"></div>
+      <div class="brand-sub">Estate Content Manager</div>
+    </div>
+    <div class="brand-notice">Preview mode — changes visible on screen only</div>
   </div>
 
-  <!-- Decap CMS App -->
+  <!--
+    Decap CMS Manual Init — config is fully inline so no config.yml network fetch is needed.
+    Backend: test-repo (no authentication required — opens CMS immediately).
+    To enable live GitHub saves, change backend.name to 'github' and add repo + branch.
+  -->
+  <script>
+    // Signal to Decap that we'll call CMS.init() manually
+    var CMS_MANUAL_INIT = true;
+  </script>
+
+  <!-- Load Decap CMS from CDN -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    CMS.init({
+      config: {
+        // ── Backend ──────────────────────────────────────────────────────
+        // Using test-repo for immediate access (no credentials needed).
+        // Changes are displayed in the UI but not saved to GitHub.
+        // To enable real saving: change name to 'github', add repo + branch.
+        backend: {
+          name: 'test-repo'
+        },
+
+        // ── Media ────────────────────────────────────────────────────────
+        media_folder: 'images/cms',
+        public_folder: '/images/cms',
+
+        // ── Site Settings ────────────────────────────────────────────────
+        site_url: 'https://www.theteabungalow.com',
+        display_url: 'https://www.theteabungalow.com',
+        logo_url: '/images/favicon.png',
+
+        // ── Collections ──────────────────────────────────────────────────
+        collections: [
+
+          // 01. EXPERIENCES
+          {
+            name: 'experiences',
+            label: 'Experiences',
+            label_singular: 'Experience',
+            folder: 'data/experiences',
+            create: true,
+            delete: true,
+            slug: '{{slug}}',
+            extension: 'json',
+            format: 'json',
+            summary: '{{title}} — {{category}}',
+            fields: [
+              { label: 'Experience Title', name: 'title', widget: 'string',
+                hint: 'e.g. Guided Pekoe Trail Walk' },
+              { label: 'Category', name: 'category', widget: 'select',
+                options: [
+                  { label: 'Pekoe Trail', value: 'pekoe-trail' },
+                  { label: 'Tea Estate', value: 'tea-estate' },
+                  { label: 'Nature & Wildlife', value: 'nature-wildlife' },
+                  { label: 'Colonial Heritage', value: 'colonial-heritage' },
+                  { label: 'Dining', value: 'dining' },
+                  { label: 'Wellness', value: 'wellness' }
+                ]
+              },
+              { label: 'Short Description', name: 'description', widget: 'text',
+                hint: '2–3 sentences shown on the card. Keep under 160 characters.' },
+              { label: 'Duration', name: 'duration', widget: 'string',
+                hint: 'e.g. 4–6 hours, Half-day, Full-day' },
+              { label: 'Availability', name: 'availability', widget: 'select',
+                options: [
+                  { label: 'Year-round', value: 'year-round' },
+                  { label: 'Seasonal (Oct–Apr)', value: 'seasonal-oct-apr' },
+                  { label: 'On Request', value: 'on-request' }
+                ]
+              },
+              { label: 'Featured on Homepage?', name: 'featured', widget: 'boolean', default: false },
+              { label: 'Icon (Emoji)', name: 'icon', widget: 'string',
+                required: false, hint: 'Single emoji used in the card header, e.g. 🍃' },
+              { label: 'Card Image', name: 'image', widget: 'image',
+                required: false, hint: 'Landscape, min 1200×700px, WebP preferred' }
+            ]
+          },
+
+          // 02. PACKAGES & OFFERS
+          {
+            name: 'packages',
+            label: 'Packages & Offers',
+            label_singular: 'Package',
+            folder: 'data/packages',
+            create: true,
+            delete: true,
+            slug: '{{slug}}',
+            extension: 'json',
+            format: 'json',
+            summary: '{{name}} — {{nights}} Night(s)',
+            fields: [
+              { label: 'Package Name', name: 'name', widget: 'string' },
+              { label: 'Tagline', name: 'tagline', widget: 'string',
+                hint: 'One-line hook shown under the package name' },
+              { label: 'Number of Nights', name: 'nights', widget: 'number',
+                value_type: 'int', min: 1, max: 14 },
+              { label: 'Category', name: 'category', widget: 'select',
+                options: [
+                  { label: 'Pekoe Trail / Hiking', value: 'pekoe-trail' },
+                  { label: 'Romantic / Couples', value: 'romantic' },
+                  { label: 'Family', value: 'family' },
+                  { label: 'Wellness', value: 'wellness' },
+                  { label: 'Group / Buyout', value: 'group' },
+                  { label: 'Dining / Day Experience', value: 'dining' }
+                ]
+              },
+              { label: 'Featured / Gold Card?', name: 'featured', widget: 'boolean', default: false,
+                hint: 'Enables the gold-top highlight card style' },
+              { label: 'Popular Badge Label', name: 'badge', widget: 'string', required: false,
+                hint: 'e.g. ★ Most Booked — leave blank for none' },
+              { label: 'Rate Display', name: 'rate', widget: 'string',
+                hint: 'e.g. From $185 per couple / Price on request' },
+              { label: 'Rate Period', name: 'rate_period', widget: 'string', required: false,
+                hint: 'e.g. / couple, / night, / group' },
+              { label: 'Package Inclusions', name: 'inclusions', widget: 'list',
+                label_singular: 'Inclusion',
+                hint: 'Each line will appear as a bullet in the includes list',
+                field: { label: 'Inclusion', name: 'inclusion', widget: 'string' }
+              },
+              { label: 'Active / Visible?', name: 'active', widget: 'boolean', default: true,
+                hint: 'Uncheck to hide this package without deleting it' }
+            ]
+          },
+
+          // 03. ESTATE ANNOUNCEMENTS
+          {
+            name: 'estate_announcements',
+            label: 'Estate Announcements',
+            label_singular: 'Announcement',
+            folder: 'data/announcements',
+            create: true,
+            delete: true,
+            slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+            extension: 'json',
+            format: 'json',
+            summary: '{{title}} [{{type}}]',
+            fields: [
+              { label: 'Announcement Title', name: 'title', widget: 'string',
+                hint: 'e.g. Mist Trail Open · November–March Season' },
+              { label: 'Type', name: 'type', widget: 'select',
+                options: [
+                  { label: 'Trail Condition', value: 'trail' },
+                  { label: 'Seasonal Weather', value: 'weather' },
+                  { label: 'Dining Highlight', value: 'dining' },
+                  { label: 'Estate Notice', value: 'notice' },
+                  { label: 'Special Offer', value: 'offer' }
+                ]
+              },
+              { label: 'Body', name: 'body', widget: 'text',
+                hint: '1–3 sentences shown to guests. Plain text only.' },
+              { label: 'Date', name: 'date', widget: 'datetime',
+                format: 'YYYY-MM-DD', date_format: 'DD MMM YYYY', time_format: false },
+              { label: 'Active / Pinned?', name: 'active', widget: 'boolean', default: true },
+              { label: 'Expiry Date (optional)', name: 'expiry', widget: 'datetime',
+                format: 'YYYY-MM-DD', date_format: 'DD MMM YYYY', time_format: false,
+                required: false }
+            ]
+          },
+
+          // 04. CHAMBERS — rate notes & seasonal policies
+          {
+            name: 'chambers',
+            label: 'Chambers',
+            label_singular: 'Chamber',
+            folder: 'data/chambers',
+            create: false,
+            delete: false,
+            extension: 'json',
+            format: 'json',
+            summary: '{{name}} — {{rate_display}}',
+            fields: [
+              { label: 'Chamber Name', name: 'name', widget: 'string' },
+              { label: 'Rate Display', name: 'rate_display', widget: 'string',
+                hint: 'Shown on the card, e.g. From $185/night · Price on request' },
+              { label: 'Minimum Stay (nights)', name: 'min_stay', widget: 'number',
+                value_type: 'int', min: 1, max: 7, default: 1 },
+              { label: 'Seasonal Note', name: 'seasonal_note', widget: 'text', required: false,
+                hint: 'e.g. 3-night minimum during peak season (Dec–Jan)' },
+              { label: 'Availability Note', name: 'availability_note', widget: 'string',
+                required: false, hint: 'e.g. Closed for renovation until April 2027' },
+              { label: 'Visible on Chambers Page?', name: 'active', widget: 'boolean', default: true }
+            ]
+          },
+
+          // 05. GALLERY CAPTIONS
+          {
+            name: 'gallery',
+            label: 'Gallery Captions',
+            label_singular: 'Gallery Image',
+            folder: 'data/gallery',
+            create: true,
+            delete: true,
+            slug: '{{slug}}',
+            extension: 'json',
+            format: 'json',
+            summary: '{{caption}} ({{category}})',
+            fields: [
+              { label: 'Image File', name: 'image', widget: 'image',
+                hint: 'Upload image — WebP or JPG, min 1200px wide' },
+              { label: 'Caption', name: 'caption', widget: 'string',
+                hint: 'Descriptive caption displayed below image in gallery' },
+              { label: 'Alt Text', name: 'alt', widget: 'string',
+                hint: 'Screen-reader description for accessibility and SEO' },
+              { label: 'Category', name: 'category', widget: 'select',
+                options: [
+                  { label: 'Estate & Grounds', value: 'estate' },
+                  { label: 'Chambers & Interiors', value: 'chambers' },
+                  { label: 'Pekoe Trail', value: 'pekoe-trail' },
+                  { label: 'Experiences', value: 'experiences' },
+                  { label: 'Dining', value: 'dining' },
+                  { label: 'Views & Landscape', value: 'landscape' }
+                ]
+              },
+              { label: 'Featured in Slideshow?', name: 'featured', widget: 'boolean', default: false },
+              { label: 'Sort Order', name: 'sort_order', widget: 'number',
+                value_type: 'int', min: 1, required: false,
+                hint: 'Lower numbers appear first. Leave blank for auto.' }
+            ]
+          }
+
+        ] // end collections
+      } // end config
+    }); // end CMS.init
+  </script>
+
 </body>
 </html>
