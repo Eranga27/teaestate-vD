@@ -1442,6 +1442,23 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
 
 </style> 
 
+
+  <!-- Preloader Immediate Anti-Flash Script -->
+  <script>
+    try {
+      if (sessionStorage.getItem('tb_preloader_seen') === '1') {
+        document.documentElement.classList.add('tb-preloader-skip');
+      }
+    } catch (e) {}
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+dl:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TEABUNGALOW');</script>
+  <!-- End Google Tag Manager -->
 </head> 
 
 <body> 
@@ -1696,7 +1713,137 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
       max-width: calc(100% - 50px);
     }
   }
+
+  /* ═══════════════════════════════════════════════════════════════
+     PRELOADER — Minimal Once-Per-Session Luxury Intro
+  ═══════════════════════════════════════════════════════════════ */
+  html.tb-preloader-skip #tb-preloader {
+    display: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #tb-preloader {
+      display: none !important;
+    }
+  }
+
+  #tb-preloader {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #0e2b15 0%, #081a0d 65%, #040c06 100%);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.65s ease;
+    pointer-events: all;
+    user-select: none;
+  }
+
+  #tb-preloader.tb-preloader-fade {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .tb-preloader-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px;
+    max-width: 90vw;
+  }
+
+  .tb-preloader-crest {
+    margin-bottom: 14px;
+    animation: tbCrestGlow 2.2s ease-in-out infinite alternate;
+  }
+
+  .tb-preloader-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(16px, 2.2vw, 22px);
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    color: #F5F1E9;
+    text-transform: uppercase;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: tbFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  }
+
+  .tb-preloader-rule {
+    height: 1px;
+    width: 0;
+    background: linear-gradient(90deg, transparent, #C7A85E 40%, #dfc080 50%, #C7A85E 60%, transparent);
+    margin: 14px 0 12px;
+    opacity: 0;
+    animation: tbRuleDraw 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  }
+
+  .tb-preloader-sub {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(8px, 0.95vw, 10px);
+    letter-spacing: 0.32em;
+    color: rgba(199, 168, 94, 0.85);
+    text-transform: uppercase;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(5px);
+    animation: tbFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+  }
+
+  @keyframes tbFadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes tbRuleDraw {
+    to {
+      width: 130px;
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes tbCrestGlow {
+    0% {
+      transform: scale(0.97);
+      filter: drop-shadow(0 0 6px rgba(199, 168, 94, 0.25));
+    }
+    100% {
+      transform: scale(1.02);
+      filter: drop-shadow(0 0 16px rgba(199, 168, 94, 0.5));
+    }
+  }
 </style>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TEABUNGALOW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Preloader Overlay -->
+<div id="tb-preloader" aria-hidden="true" role="status" aria-label="Loading The Tea Bungalow">
+  <div class="tb-preloader-inner">
+    <div class="tb-preloader-crest">
+      <svg width="42" height="42" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" stroke="#C7A85E" stroke-opacity="0.35" stroke-width="1"/>
+        <path d="M24 9C24 9 20.5 16.5 17.5 19.5C14.5 22.5 11.5 24.5 11.5 28.5C11.5 34.5 16.5 37.5 24 37.5C31.5 37.5 36.5 34.5 36.5 28.5C36.5 24.5 33.5 22.5 30.5 19.5C27.5 16.5 24 9 24 9Z" stroke="#C7A85E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 13V33.5M24 21.5L19 24.5M24 25.5L29 28.5" stroke="#C7A85E" stroke-width="1" stroke-opacity="0.75" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="tb-preloader-title">The Tea Bungalow</div>
+    <div class="tb-preloader-rule"></div>
+    <div class="tb-preloader-sub">Galaha · Ceylon · Est. 1890</div>
+  </div>
+</div>
 
 <nav id="nav">
   <a href="/" class="nav-logo">THE TEA BUNGALOW</a>
@@ -1753,6 +1900,7 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
 
 <script>
   (function() {
+    // 1. Mobile Navigation Drawer logic
     const burger = document.getElementById('navHamburger');
     const overlay = document.getElementById('mobileNavOverlay');
     const closeBtn = document.getElementById('mobileNavClose');
@@ -1777,6 +1925,72 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
         a.addEventListener('click', closeMenu);
       });
     }
+
+    // 2. Preloader Lifecycle Engine (Minimal, once-per-session, 1.2s–4.0s)
+    const preloader = document.getElementById('tb-preloader');
+    if (preloader) {
+      let isReducedMotion = false;
+      try {
+        isReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      } catch (e) {}
+
+      let alreadySeen = false;
+      try {
+        alreadySeen = sessionStorage.getItem('tb_preloader_seen') === '1';
+      } catch (e) {}
+
+      if (alreadySeen || isReducedMotion) {
+        if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      } else {
+        const minDisplayMs = 1200; // 1.2s floor so it never flashes jarringly
+        const maxDisplayMs = 4000; // 4.0s hard ceiling
+        const startTime = Date.now();
+        let dismissed = false;
+
+        function dismissPreloader() {
+          if (dismissed) return;
+          dismissed = true;
+
+          const elapsed = Date.now() - startTime;
+          const remaining = Math.max(0, minDisplayMs - elapsed);
+
+          setTimeout(function() {
+            preloader.classList.add('tb-preloader-fade');
+            try {
+              sessionStorage.setItem('tb_preloader_seen', '1');
+            } catch (e) {}
+
+            // Fire GTM / GA4 event
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'preloader_complete' });
+
+            setTimeout(function() {
+              if (preloader && preloader.parentNode) {
+                preloader.parentNode.removeChild(preloader);
+              }
+            }, 680);
+          }, remaining);
+        }
+
+        if (document.readyState === 'complete') {
+          dismissPreloader();
+        } else {
+          window.addEventListener('load', dismissPreloader);
+        }
+        setTimeout(dismissPreloader, maxDisplayMs);
+      }
+    }
+
+    // 3. Analytics Baseline: Track WhatsApp concierge conversions
+    document.querySelectorAll('a[href*="wa.me"], .whatsapp-float').forEach(function(el) {
+      el.addEventListener('click', function() {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'whatsapp_concierge_click',
+          link_url: el.href || ''
+        });
+      });
+    });
   })();
 </script>
  
