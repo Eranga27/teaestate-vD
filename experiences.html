@@ -2630,7 +2630,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             waLink.href = 'https://wa.me/94777874555?text=' + encodeURIComponent('Hi, I’m interested in reserving ' + roomName + ' at The Tea Bungalow. Could you check availability for my dates?');
           }
           if (formLink) {
-            formLink.href = '/vD/contact.php?chamber=' + encodeURIComponent(roomName) + '#enquiry-form';
+            formLink.href = '/contact?chamber=' + encodeURIComponent(roomName) + '#enquiry-form';
           }
         } else {
           if (tagEl) tagEl.textContent = 'Galaha Estate · Old Ceylon';
@@ -2639,7 +2639,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             waLink.href = 'https://wa.me/94777874555?text=' + encodeURIComponent('Hi, I’m planning a stay at The Tea Bungalow. Could you check availability for my dates?');
           }
           if (formLink) {
-            formLink.href = '/vD/contact.php#enquiry-form';
+            formLink.href = '/contact#enquiry-form';
           }
         }
 
