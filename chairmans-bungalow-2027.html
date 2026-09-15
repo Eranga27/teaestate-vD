@@ -438,6 +438,19 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
     } catch (e) {}
   </script>
 
+  <!-- Google Consent Mode v2 Default (PDPA / GDPR Compliant) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var tbInitialConsent = null;
+    try { tbInitialConsent = localStorage.getItem('tb_cookie_consent'); } catch (e) {}
+    gtag('consent', 'default', {
+      'analytics_storage': tbInitialConsent === 'granted' ? 'granted' : 'denied',
+      'ad_storage': tbInitialConsent === 'granted' ? 'granted' : 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -465,6 +478,32 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
     @keyframes tbFadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes tbRuleDraw { to { width: 130px; opacity: 0.9; } }
     @keyframes tbCrestGlow { 0% { transform: scale(0.97); filter: drop-shadow(0 0 6px rgba(199, 168, 94, 0.25)); } 100% { transform: scale(1.02); filter: drop-shadow(0 0 16px rgba(199, 168, 94, 0.5)); } }
+
+    #tb-consent-banner {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%);
+      width: min(92vw, 680px); background: rgba(7, 19, 14, 0.94); backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(199, 168, 94, 0.35);
+      border-radius: 12px; padding: 20px 24px; z-index: 99990; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      color: #F5F1E9; opacity: 0; visibility: hidden;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, visibility 0.6s;
+    }
+    #tb-consent-banner.tb-consent-show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+    .tb-consent-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .tb-consent-crest { width: 14px; height: 14px; stroke: #C7A85E; flex-shrink: 0; }
+    .tb-consent-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.18em; color: #C7A85E; text-transform: uppercase; font-weight: 600; }
+    .tb-consent-text { font-family: 'EB Garamond', Georgia, serif; font-size: 14.5px; line-height: 1.5; color: rgba(245, 241, 233, 0.88); margin-bottom: 16px; }
+    .tb-consent-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .tb-btn-consent-accept { background: #C7A85E; color: #07130E; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; padding: 9px 18px; border-radius: 6px; border: 1px solid #C7A85E; cursor: pointer; transition: background 0.25s, transform 0.2s; }
+    .tb-btn-consent-accept:hover { background: #dfc080; transform: translateY(-1px); }
+    .tb-btn-consent-decline { background: transparent; color: #F5F1E9; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 9px 16px; border-radius: 6px; border: 1px solid rgba(199, 168, 94, 0.4); cursor: pointer; transition: all 0.25s; }
+    .tb-btn-consent-decline:hover { background: rgba(199, 168, 94, 0.1); border-color: #C7A85E; }
+    .tb-consent-link { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; color: #dfc080; text-decoration: underline; text-underline-offset: 3px; margin-left: auto; }
+    @media (max-width: 600px) {
+      #tb-consent-banner { bottom: 16px; padding: 16px; }
+      .tb-consent-actions { flex-direction: column; align-items: stretch; gap: 8px; }
+      .tb-btn-consent-accept, .tb-btn-consent-decline { text-align: center; width: 100%; }
+      .tb-consent-link { margin-left: 0; text-align: center; margin-top: 4px; }
+    }
   </style>
 </head> 
 
@@ -488,6 +527,24 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
       <div class="tb-preloader-title">The Tea Bungalow</div>
       <div class="tb-preloader-rule"></div>
       <div class="tb-preloader-sub">Galaha · Ceylon · Est. 1890</div>
+    </div>
+  </div>
+
+  <!-- Privacy & Cookie Consent Banner -->
+  <div id="tb-consent-banner" role="dialog" aria-labelledby="tbConsentTitle" aria-describedby="tbConsentDesc" aria-modal="false">
+    <div class="tb-consent-header">
+      <svg class="tb-consent-crest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
+      </svg>
+      <div class="tb-consent-title" id="tbConsentTitle">Guest Privacy &amp; Consent</div>
+    </div>
+    <p class="tb-consent-text" id="tbConsentDesc">
+      We respect your privacy. The Tea Bungalow uses essential cookies to ensure seamless estate navigation, and optional analytics to understand guest journeys in accordance with Sri Lanka's Personal Data Protection Act.
+    </p>
+    <div class="tb-consent-actions">
+      <button type="button" class="tb-btn-consent-accept" id="tbConsentAccept">Accept All</button>
+      <button type="button" class="tb-btn-consent-decline" id="tbConsentDecline">Essential Only</button>
+      <a href="/privacy" class="tb-consent-link">Privacy &amp; Data Policy</a>
     </div>
   </div> 
 
@@ -1247,6 +1304,34 @@ document.getElementById('waitlist-form').addEventListener('submit', async functi
           if (document.readyState === 'complete') dismissPreloader();
           else window.addEventListener('load', dismissPreloader);
           setTimeout(dismissPreloader, maxDisplayMs);
+        }
+      }
+
+      // Consent Engine for Chairmans Bungalow
+      const consentBanner = document.getElementById('tb-consent-banner');
+      const btnAccept = document.getElementById('tbConsentAccept');
+      const btnDecline = document.getElementById('tbConsentDecline');
+      if (consentBanner) {
+        let consentStatus = null;
+        try { consentStatus = localStorage.getItem('tb_cookie_consent'); } catch (e) {}
+        function updateGtmConsent(granted) {
+          if (typeof gtag === 'function') {
+            gtag('consent', 'update', { 'analytics_storage': granted ? 'granted' : 'denied', 'ad_storage': granted ? 'granted' : 'denied' });
+          }
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'consent_update', consent_level: granted ? 'all' : 'essential' });
+        }
+        function dismissConsent() {
+          consentBanner.classList.remove('tb-consent-show');
+          setTimeout(function() { if (consentBanner && consentBanner.parentNode) consentBanner.parentNode.removeChild(consentBanner); }, 600);
+        }
+        if (!consentStatus) {
+          setTimeout(function() { consentBanner.classList.add('tb-consent-show'); }, 1400);
+          if (btnAccept) btnAccept.addEventListener('click', function() { try { localStorage.setItem('tb_cookie_consent', 'granted'); } catch (e) {} updateGtmConsent(true); dismissConsent(); });
+          if (btnDecline) btnDecline.addEventListener('click', function() { try { localStorage.setItem('tb_cookie_consent', 'denied'); } catch (e) {} updateGtmConsent(false); dismissConsent(); });
+        } else {
+          if (consentBanner.parentNode) consentBanner.parentNode.removeChild(consentBanner);
+          if (consentStatus === 'granted') updateGtmConsent(true);
         }
       }
     })();

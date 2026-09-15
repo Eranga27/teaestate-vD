@@ -693,6 +693,19 @@ footer { background:#0d0a07; padding:72px 10vw 40px; }
     } catch (e) {}
   </script>
 
+  <!-- Google Consent Mode v2 Default (PDPA / GDPR Compliant) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var tbInitialConsent = null;
+    try { tbInitialConsent = localStorage.getItem('tb_cookie_consent'); } catch (e) {}
+    gtag('consent', 'default', {
+      'analytics_storage': tbInitialConsent === 'granted' ? 'granted' : 'denied',
+      'ad_storage': tbInitialConsent === 'granted' ? 'granted' : 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -1063,6 +1076,252 @@ footer { background:#0d0a07; padding:72px 10vw 40px; }
       filter: drop-shadow(0 0 16px rgba(199, 168, 94, 0.5));
     }
   }
+
+  /* Privacy & Consent Banner (PDPA / GDPR Compliant) */
+  #tb-consent-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    width: min(92vw, 680px);
+    background: rgba(7, 19, 14, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(199, 168, 94, 0.35);
+    border-radius: 12px;
+    padding: 20px 24px;
+    z-index: 99990;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    color: #F5F1E9;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, visibility 0.6s;
+  }
+  #tb-consent-banner.tb-consent-show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  .tb-consent-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .tb-consent-crest {
+    width: 14px;
+    height: 14px;
+    stroke: #C7A85E;
+    flex-shrink: 0;
+  }
+  .tb-consent-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: #C7A85E;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .tb-consent-text {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: rgba(245, 241, 233, 0.88);
+    margin-bottom: 16px;
+  }
+  .tb-consent-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tb-btn-consent-accept {
+    background: #C7A85E;
+    color: #07130E;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 6px;
+    border: 1px solid #C7A85E;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .tb-btn-consent-accept:hover {
+    background: #dfc080;
+    transform: translateY(-1px);
+  }
+  .tb-btn-consent-decline {
+    background: transparent;
+    color: #F5F1E9;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(199, 168, 94, 0.4);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .tb-btn-consent-decline:hover {
+    background: rgba(199, 168, 94, 0.1);
+    border-color: #C7A85E;
+  }
+  .tb-consent-link {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14px;
+    color: #dfc080;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin-left: auto;
+    transition: color 0.2s;
+  }
+  .tb-consent-link:hover {
+    color: #ffffff;
+  }
+  @media (max-width: 600px) {
+    #tb-consent-banner {
+      bottom: 16px;
+      padding: 16px;
+    }
+    .tb-consent-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+    .tb-btn-consent-accept, .tb-btn-consent-decline {
+      text-align: center;
+      width: 100%;
+    }
+    .tb-consent-link {
+      margin-left: 0;
+      text-align: center;
+      margin-top: 4px;
+    }
+  }
+
+  /* Reserve / Concierge Modal (§04 Booking Engine Preparation) */
+  #tb-reserve-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99995;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(4, 12, 9, 0.78);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+  }
+  #tb-reserve-modal.tb-modal-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .tb-reserve-dialog {
+    background: #0D2619;
+    background: linear-gradient(170deg, #0f2e1c 0%, #081a10 100%);
+    border: 1px solid rgba(199, 168, 94, 0.35);
+    border-radius: 12px;
+    width: min(94vw, 540px);
+    padding: 32px 28px;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    color: #F5F1E9;
+    transform: scale(0.96) translateY(12px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #tb-reserve-modal.tb-modal-open .tb-reserve-dialog {
+    transform: scale(1) translateY(0);
+  }
+  .tb-reserve-close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    background: transparent;
+    border: none;
+    color: rgba(245, 241, 233, 0.7);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .tb-reserve-close:hover {
+    color: #C7A85E;
+  }
+  .tb-reserve-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: #C7A85E;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .tb-reserve-title {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    letter-spacing: 0.12em;
+    color: #F5F1E9;
+    margin-bottom: 10px;
+  }
+  .tb-reserve-desc {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(245, 241, 233, 0.85);
+    margin-bottom: 22px;
+  }
+  .tb-reserve-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(199, 168, 94, 0.22);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: #F5F1E9;
+    transition: all 0.25s;
+  }
+  .tb-reserve-option:hover {
+    background: rgba(199, 168, 94, 0.12);
+    border-color: #C7A85E;
+    transform: translateY(-1px);
+  }
+  .tb-reserve-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .tb-reserve-opt-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: #F5F1E9;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .tb-reserve-opt-sub {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 13.5px;
+    color: rgba(199, 168, 94, 0.9);
+  }
+  .tb-pms-slot {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(199, 168, 94, 0.15);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 12.5px;
+    color: rgba(245, 241, 233, 0.6);
+    line-height: 1.4;
+    text-align: center;
+  }
 </style>
 
 <!-- Google Tag Manager (noscript) -->
@@ -1086,6 +1345,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+<!-- Privacy & Cookie Consent Banner (Sri Lanka PDPA / GDPR) -->
+<div id="tb-consent-banner" role="dialog" aria-labelledby="tbConsentTitle" aria-describedby="tbConsentDesc" aria-modal="false">
+  <div class="tb-consent-header">
+    <svg class="tb-consent-crest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
+    </svg>
+    <div class="tb-consent-title" id="tbConsentTitle">Guest Privacy &amp; Consent</div>
+  </div>
+  <p class="tb-consent-text" id="tbConsentDesc">
+    We respect your privacy. The Tea Bungalow uses essential cookies to ensure seamless estate navigation, and optional analytics to understand guest journeys in accordance with Sri Lanka's Personal Data Protection Act.
+  </p>
+  <div class="tb-consent-actions">
+    <button type="button" class="tb-btn-consent-accept" id="tbConsentAccept">Accept All</button>
+    <button type="button" class="tb-btn-consent-decline" id="tbConsentDecline">Essential Only</button>
+    <a href="/privacy" class="tb-consent-link">Privacy &amp; Data Policy</a>
+  </div>
+</div>
+
+<!-- Reservation & Concierge Drawer Modal (§04 Booking Engine Readiness) -->
+<div id="tb-reserve-modal" role="dialog" aria-modal="true" aria-labelledby="tbReserveTitle" aria-hidden="true">
+  <div class="tb-reserve-dialog">
+    <button type="button" class="tb-reserve-close" id="tbReserveClose" aria-label="Close reservation dialog">&times;</button>
+    <div class="tb-reserve-tag">Galaha Estate · Old Ceylon</div>
+    <h2 class="tb-reserve-title" id="tbReserveTitle">Reserve Your Stay</h2>
+    <p class="tb-reserve-desc">
+      Experience bespoke heritage hospitality amidst the mist of Galaha. Select your preferred channel for immediate concierge assistance and direct booking privileges.
+    </p>
+
+    <a href="https://wa.me/94777874555?text=Hi%2C%20I%E2%80%99m%20planning%20a%20stay%20at%20The%20Tea%20Bungalow.%20Could%20you%20check%20availability%20for%20my%20dates%3F"
+       target="_blank" rel="noopener noreferrer" class="tb-reserve-option" id="tbReserveWaOption">
+      <span class="tb-reserve-icon">💬</span>
+      <div>
+        <div class="tb-reserve-opt-title">WhatsApp Estate Concierge</div>
+        <div class="tb-reserve-opt-sub">Instant personal assistance · +94 (0)777 874 555</div>
+      </div>
+    </a>
+
+    <a href="/contact#enquiry-form" class="tb-reserve-option" id="tbReserveFormOption">
+      <span class="tb-reserve-icon">✉️</span>
+      <div>
+        <div class="tb-reserve-opt-title">Direct Reservation Enquiry</div>
+        <div class="tb-reserve-opt-sub">Formal chamber booking request &amp; Pekoe Trail arrangements</div>
+      </div>
+    </a>
+
+    <!-- PMS Booking Engine Embed Container (§04 Vendor Hook) -->
+    <div id="tb-pms-widget-container" class="tb-pms-slot">
+      Direct online booking engine integration active soon. Contact our concierge directly for immediate confirmations.
+    </div>
+  </div>
+</div>
+
 <nav id="nav">
   <a href="/" class="nav-logo">THE TEA BUNGALOW</a>
 
@@ -1100,7 +1411,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/chairmans-bungalow-2027" class="">Chairman's Bungalow</a></li>
   </ul>
 
-  <a href="/contact#enquiry-form" class="nav-cta">Enquire Now</a>
+  <a href="/contact#enquiry-form" class="nav-cta tb-reserve-trigger" id="navReserveBtn" data-source="header_cta">Enquire Now</a>
 
   <button class="nav-hamburger" id="navHamburger" aria-label="Open mobile menu" aria-expanded="false">
     <span></span>
@@ -1126,12 +1437,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/packages" class="">Packages</a></li>
     <li><a href="/gallery" class="active">Gallery</a></li>
     <li><a href="/about" class="">About Us</a></li>
+    <li><a href="/privacy" class="">Privacy &amp; Data Policy</a></li>
     <li><a href="/contact" class="">Contact &amp; Location</a></li>
     <li><a href="/chairmans-bungalow-2027" class="">Chairman's Bungalow</a></li>
   </ul>
 
   <div class="mobile-nav-footer">
-    <a href="/contact#enquiry-form" class="mobile-nav-cta">Enquire Now</a>
+    <a href="/contact#enquiry-form" class="mobile-nav-cta tb-reserve-trigger" data-source="mobile_drawer">Enquire Now</a>
     <div class="mobile-nav-contact">
       <div>📞 <a href="tel:+94777874555">+94 (0)777 874 555</a></div>
       <div style="margin-top: 4px;">✉️ <a href="mailto:stay@theteabungalow.com">stay@theteabungalow.com</a></div>
@@ -1222,16 +1534,118 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     }
 
-    // 3. Analytics Baseline: Track WhatsApp concierge conversions
-    document.querySelectorAll('a[href*="wa.me"], .whatsapp-float').forEach(function(el) {
-      el.addEventListener('click', function() {
+    // 4. PDPA / GDPR Privacy Consent Engine
+    const consentBanner = document.getElementById('tb-consent-banner');
+    const btnAccept = document.getElementById('tbConsentAccept');
+    const btnDecline = document.getElementById('tbConsentDecline');
+
+    if (consentBanner) {
+      let consentStatus = null;
+      try {
+        consentStatus = localStorage.getItem('tb_cookie_consent');
+      } catch (e) {}
+
+      function updateGtmConsent(granted) {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': granted ? 'granted' : 'denied',
+            'ad_storage': granted ? 'granted' : 'denied'
+          });
+        }
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
-          event: 'whatsapp_concierge_click',
-          link_url: el.href || ''
+          event: 'consent_update',
+          consent_level: granted ? 'all' : 'essential'
+        });
+      }
+
+      function dismissConsent() {
+        consentBanner.classList.remove('tb-consent-show');
+        setTimeout(function() {
+          if (consentBanner && consentBanner.parentNode) {
+            consentBanner.parentNode.removeChild(consentBanner);
+          }
+        }, 600);
+      }
+
+      if (!consentStatus) {
+        // Show banner smoothly ~1s after DOM load / preloader lifecycle
+        setTimeout(function() {
+          consentBanner.classList.add('tb-consent-show');
+        }, 1400);
+
+        if (btnAccept) {
+          btnAccept.addEventListener('click', function() {
+            try { localStorage.setItem('tb_cookie_consent', 'granted'); } catch (e) {}
+            updateGtmConsent(true);
+            dismissConsent();
+          });
+        }
+
+        if (btnDecline) {
+          btnDecline.addEventListener('click', function() {
+            try { localStorage.setItem('tb_cookie_consent', 'denied'); } catch (e) {}
+            updateGtmConsent(false);
+            dismissConsent();
+          });
+        }
+      } else {
+        // Preference already recorded in a previous session
+        if (consentBanner.parentNode) {
+          consentBanner.parentNode.removeChild(consentBanner);
+        }
+        if (consentStatus === 'granted') {
+          updateGtmConsent(true);
+        }
+      }
+    }
+
+    // 5. Reservation & Concierge Drawer Engine (§04 Booking Engine Readiness)
+    const reserveModal = document.getElementById('tb-reserve-modal');
+    const reserveClose = document.getElementById('tbReserveClose');
+
+    if (reserveModal) {
+      function openReserveModal(source) {
+        reserveModal.classList.add('tb-modal-open');
+        reserveModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'booking_widget_opened',
+          trigger_source: source || 'navbar'
+        });
+      }
+
+      function closeReserveModal() {
+        reserveModal.classList.remove('tb-modal-open');
+        reserveModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.tb-reserve-trigger, #navReserveBtn, [data-reserve-trigger]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          openReserveModal(btn.getAttribute('data-source') || 'cta_button');
         });
       });
-    });
+
+      if (reserveClose) {
+        reserveClose.addEventListener('click', closeReserveModal);
+      }
+
+      reserveModal.addEventListener('click', function(e) {
+        if (e.target === reserveModal) {
+          closeReserveModal();
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && reserveModal.classList.contains('tb-modal-open')) {
+          closeReserveModal();
+        }
+      });
+    }
   })();
 </script>
  
@@ -1775,13 +2189,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><a href="/contact#location">Transfers</a></li>
         <li><a href="/contact#enquiry-form">Contact &amp; Enquire</a></li>
         <li><a href="/about">About Us</a></li>
+        <li><a href="/privacy">Privacy &amp; Data Policy</a></li>
         <li><a href="/chairmans-bungalow-2027">Chairman's Bungalow 2027</a></li>
       </ul>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 The Tea Bungalow · theteabungalow.com</div>
+    <div class="footer-copy">© 2026 The Tea Bungalow · theteabungalow.com · <a href="/privacy" style="color: rgba(245,241,233,0.7); text-decoration: underline; text-underline-offset: 3px;">Privacy &amp; Data Policy</a></div>
     <div class="footer-collection">Old Ceylon Heritage Collection</div>
   </div>
 </footer>
