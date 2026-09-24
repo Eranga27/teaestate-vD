@@ -1740,6 +1740,13 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
     }
   }
 
+  /* CSS hard failsafe: if JS never fires, preloader force-hides after 5.5s */
+  @keyframes tbPreloaderForceHide {
+    0%, 94% { opacity: 1; visibility: visible; pointer-events: all; }
+    95% { opacity: 0; visibility: hidden; pointer-events: none; }
+    100% { opacity: 0; visibility: hidden; pointer-events: none; display: none; }
+  }
+
   #tb-preloader {
     position: fixed;
     inset: 0;
@@ -1755,12 +1762,14 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
     transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.75s ease;
     pointer-events: all;
     user-select: none;
+    animation: tbPreloaderForceHide 5.5s linear forwards;
   }
 
   #tb-preloader.tb-preloader-fade {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
+    animation: none !important;
   }
 
   .tb-preloader-inner {
@@ -2075,7 +2084,9 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
     }
   }
 
-  /* Reserve / Concierge Modal (§04 Booking Engine Preparation) */
+  /* ═══════════════════════════════════════════════════════════════
+     PHASE 2: LIVE BOOKING ENGINE & CONCIERGE DRAWER
+  ═══════════════════════════════════════════════════════════════ */
   #tb-reserve-modal {
     position: fixed;
     inset: 0;
@@ -2084,9 +2095,9 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
     align-items: center;
     justify-content: center;
     padding: 16px;
-    background: rgba(4, 12, 9, 0.78);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(4, 12, 9, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s;
@@ -2097,17 +2108,17 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
   }
   .tb-reserve-dialog {
     background: #0D2619;
-    background: linear-gradient(170deg, #0f2e1c 0%, #081a10 100%);
+    background: linear-gradient(170deg, #0e2b17 0%, #081a0e 100%);
     border: 1px solid rgba(199, 168, 94, 0.35);
-    border-radius: 12px;
-    width: min(94vw, 540px);
+    border-radius: 14px;
+    width: min(95vw, 660px);
     max-height: calc(100dvh - 32px);
     max-height: calc(100vh - 32px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 32px 28px;
+    padding: 28px 28px 32px;
     position: relative;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 40px rgba(199, 168, 94, 0.08);
     color: #F5F1E9;
     transform: scale(0.96) translateY(12px);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2115,37 +2126,21 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
   #tb-reserve-modal.tb-modal-open .tb-reserve-dialog {
     transform: scale(1) translateY(0);
   }
-  @media (max-width: 480px) {
-    .tb-reserve-dialog {
-      padding: 24px 18px;
-      width: calc(100vw - 24px);
-    }
-    .tb-reserve-title {
-      font-size: 18px !important;
-    }
-    .tb-reserve-desc {
-      font-size: 14px !important;
-      margin-bottom: 18px !important;
-    }
-    .tb-reserve-option {
-      padding: 12px 14px !important;
-      min-height: 48px;
-    }
-  }
   .tb-reserve-close {
     position: absolute;
-    top: 16px;
-    right: 18px;
+    top: 18px;
+    right: 20px;
     background: transparent;
     border: none;
     color: rgba(245, 241, 233, 0.7);
     font-size: 28px;
     line-height: 1;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.2s;
   }
   .tb-reserve-close:hover {
     color: #C7A85E;
+    transform: rotate(90deg);
   }
   .tb-reserve-tag {
     font-family: 'Cinzel', serif;
@@ -2153,22 +2148,175 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
     letter-spacing: 0.22em;
     color: #C7A85E;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .tb-reserve-title {
     font-family: 'Cinzel', serif;
-    font-size: 20px;
-    letter-spacing: 0.12em;
+    font-size: 22px;
+    letter-spacing: 0.08em;
     color: #F5F1E9;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
   .tb-reserve-desc {
     font-family: 'EB Garamond', Georgia, serif;
-    font-size: 15px;
-    line-height: 1.5;
-    color: rgba(245, 241, 233, 0.85);
-    margin-bottom: 22px;
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: rgba(245, 241, 233, 0.82);
+    margin-bottom: 18px;
   }
+
+  /* Booking Tabs */
+  .tb-booking-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(199, 168, 94, 0.25);
+    margin-bottom: 20px;
+    gap: 8px;
+  }
+  .tb-booking-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: rgba(245, 241, 233, 0.65);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .tb-booking-tab:hover {
+    color: #F5F1E9;
+  }
+  .tb-booking-tab.active {
+    color: #C7A85E;
+    border-bottom-color: #C7A85E;
+    font-weight: 600;
+  }
+
+  /* Form Fields */
+  .tb-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .tb-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+  .tb-form-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #C7A85E;
+  }
+  .tb-form-input, .tb-form-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(199, 168, 94, 0.3);
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: #F5F1E9;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .tb-form-input:focus, .tb-form-select:focus {
+    border-color: #C7A85E;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .tb-form-select option {
+    background: #0d2619;
+    color: #F5F1E9;
+  }
+
+  /* Summary Card */
+  .tb-stay-summary {
+    background: rgba(199, 168, 94, 0.06);
+    border: 1px solid rgba(199, 168, 94, 0.22);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0 20px;
+  }
+  .tb-summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14px;
+    color: rgba(245, 241, 233, 0.85);
+    margin-bottom: 6px;
+  }
+  .tb-summary-total {
+    border-top: 1px solid rgba(199, 168, 94, 0.2);
+    padding-top: 8px;
+    margin-top: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #C7A85E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Action Buttons */
+  .tb-btn-primary-reserve {
+    background: #C7A85E;
+    color: #07130E;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 13px 20px;
+    border-radius: 6px;
+    border: 1px solid #C7A85E;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  .tb-btn-primary-reserve:hover {
+    background: #dfc080;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(199, 168, 94, 0.3);
+  }
+  .tb-btn-secondary-reserve {
+    background: transparent;
+    color: #F5F1E9;
+    font-family: 'Cinzel', serif;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 11px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(199, 168, 94, 0.35);
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+  .tb-btn-secondary-reserve:hover {
+    background: rgba(199, 168, 94, 0.1);
+    border-color: #C7A85E;
+  }
+
+  /* Options list for concierge */
   .tb-reserve-option {
     display: flex;
     align-items: center;
@@ -2214,6 +2362,157 @@ footer { background: #0d0a07; padding: 72px 10vw 40px; }
     color: rgba(245, 241, 233, 0.6);
     line-height: 1.4;
     text-align: center;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     GLOBAL SCROLL REVEAL ANIMATION SYSTEM
+     Usage: add data-reveal="fade-up|fade-left|fade-right|zoom|clip|stagger"
+     Optionally add data-reveal-delay="100" (ms)
+  ═══════════════════════════════════════════════════════════════ */
+  [data-reveal] {
+    opacity: 0;
+    transition-property: opacity, transform, clip-path;
+    transition-duration: 0.8s;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  [data-reveal="fade-up"]    { transform: translateY(40px); }
+  [data-reveal="fade-left"]  { transform: translateX(-44px); }
+  [data-reveal="fade-right"] { transform: translateX(44px); }
+  [data-reveal="zoom"]       { transform: scale(0.92); }
+  [data-reveal="clip"]       { clip-path: inset(0 0 100% 0); transform: translateY(16px); }
+  [data-reveal="stagger"]    { opacity: 1; } /* parent only — children get staggered */
+  [data-reveal="stagger"] > * {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-reveal="stagger"].revealed > * {
+    opacity: 1;
+    transform: none;
+  }
+  /* Generate stagger delays for up to 12 children */
+  [data-reveal="stagger"].revealed > *:nth-child(1)  { transition-delay: 0ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(2)  { transition-delay: 90ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(3)  { transition-delay: 180ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(4)  { transition-delay: 270ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(5)  { transition-delay: 360ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(6)  { transition-delay: 450ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(7)  { transition-delay: 540ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(8)  { transition-delay: 620ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(9)  { transition-delay: 700ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(10) { transition-delay: 780ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(11) { transition-delay: 850ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(12) { transition-delay: 920ms; }
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal], [data-reveal="stagger"] > * {
+      transform: none !important;
+      clip-path: none !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Floating Booking Bar (Scroll-Based) */
+  #tb-floating-bar {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* properly hidden — can't be clicked when invisible */
+    z-index: 9990;
+    background: rgba(8, 24, 14, 0.96);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border: 1px solid rgba(199, 168, 94, 0.45);
+    border-radius: 40px;
+    padding: 8px 10px 8px 22px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(199, 168, 94, 0.08), inset 0 1px 0 rgba(255,255,255,0.04);
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, visibility 0s linear 0.45s;
+    color: #F5F1E9;
+  }
+  #tb-floating-bar.tb-bar-visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, visibility 0s linear 0s;
+  }
+  .tb-float-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .tb-float-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #C7A85E;
+    font-weight: 600;
+  }
+  .tb-float-sub {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 13.5px;
+    color: rgba(245, 241, 233, 0.85);
+  }
+  .tb-float-btn {
+    background: #C7A85E;
+    color: #07130E;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #C7A85E;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tb-float-btn:hover {
+    background: #dfc080;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(199, 168, 94, 0.3);
+  }
+  @media (max-width: 680px) {
+    #tb-floating-bar {
+      width: calc(100vw - 32px);
+      justify-content: space-between;
+      border-radius: 12px;
+      padding: 10px 14px;
+      gap: 10px;
+      bottom: 14px;
+    }
+    .tb-float-sub {
+      display: none;
+    }
+    .tb-form-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .tb-reserve-dialog {
+      padding: 22px 18px 24px;
+      width: calc(100vw - 20px);
+    }
+    .tb-reserve-title {
+      font-size: 19px !important;
+    }
   }
 </style>
 
@@ -2296,39 +2595,145 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<!-- Reservation & Concierge Drawer Modal (§04 Booking Engine Readiness) -->
+<!-- Floating Luxury Booking Bar (Scroll-Based Docking) -->
+<div id="tb-floating-bar" aria-hidden="true" role="region" aria-label="Quick Reservation Bar">
+  <div class="tb-float-info">
+    <div class="tb-float-title">The Tea Bungalow · Galaha</div>
+    <div class="tb-float-sub">7 Heritage Chambers &amp; Private Cottage · From $310/night</div>
+  </div>
+  <button type="button" class="tb-float-btn tb-reserve-trigger" data-source="floating_bar">
+    <span>Check Availability</span>
+    <span>→</span>
+  </button>
+</div>
+
+<!-- Concierge Enquiry Drawer (Phase 2) -->
 <div id="tb-reserve-modal" role="dialog" aria-modal="true" aria-labelledby="tbReserveTitle" aria-hidden="true">
   <div class="tb-reserve-dialog">
     <button type="button" class="tb-reserve-close" id="tbReserveClose" aria-label="Close reservation dialog">&times;</button>
-    <div class="tb-reserve-tag">Galaha Estate · Old Ceylon</div>
-    <h2 class="tb-reserve-title" id="tbReserveTitle">Reserve Your Stay</h2>
-    <p class="tb-reserve-desc">
-      Experience bespoke heritage hospitality amidst the mist of Galaha. Select your preferred channel for immediate concierge assistance and direct booking privileges.
+    <div class="tb-reserve-tag" id="tbReserveTag">Galaha Estate · Old Ceylon</div>
+    <h2 class="tb-reserve-title" id="tbReserveTitle">Plan Your Stay</h2>
+    <p class="tb-reserve-desc" id="tbReserveDesc">
+      Select your dates and chamber to receive an estimated quote. We'll confirm availability and send your personalised itinerary via WhatsApp within 2 hours.
     </p>
 
-    <a href="https://wa.me/94777874555?text=Hi%2C%20I%E2%80%99m%20planning%20a%20stay%20at%20The%20Tea%20Bungalow.%20Could%20you%20check%20availability%20for%20my%20dates%3F"
-       target="_blank" rel="noopener noreferrer" class="tb-reserve-option" id="tbReserveWaOption">
-      <span class="tb-reserve-icon">💬</span>
-      <div>
-        <div class="tb-reserve-opt-title">WhatsApp Estate Concierge</div>
-        <div class="tb-reserve-opt-sub">Instant personal assistance · +94 (0)777 874 555</div>
+    <!-- Step 1: Date & Room selector -->
+    <div class="tb-form-row">
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbCheckIn">Arrival</label>
+        <input type="date" id="tbCheckIn" class="tb-form-input" required>
       </div>
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbCheckOut">Departure</label>
+        <input type="date" id="tbCheckOut" class="tb-form-input" required>
+      </div>
+    </div>
+
+    <div class="tb-form-row">
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbRoomSelect">Chamber</label>
+        <select id="tbRoomSelect" class="tb-form-select">
+          <option value="The Founder's Suite" data-rate="450">01 · Founder's Suite — King · From $450/nt</option>
+          <option value="The Highlands Suite" data-rate="390">02 · Highlands Suite — King · From $390/nt</option>
+          <option value="The Pekoe Room" data-rate="320">03 · Pekoe Room — Queen · From $320/nt</option>
+          <option value="The Verandah Chamber" data-rate="340">04 · Verandah Chamber — King · From $340/nt</option>
+          <option value="The Camellia Room" data-rate="310">05 · Camellia Room — Queen · From $310/nt</option>
+          <option value="The Galaha Room" data-rate="310">06 · Galaha Room — Twin/King · From $310/nt</option>
+          <option value="The Carriage House Cottage" data-rate="580">07 · Carriage House Cottage — 4 Guests · From $580/nt</option>
+          <option value="The Entire Estate" data-rate="2600">Entire Estate Buyout — 14 Guests · From $2,600/nt</option>
+        </select>
+      </div>
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbGuestsCount">Guests</label>
+        <select id="tbGuestsCount" class="tb-form-select">
+          <option value="1">1 Guest</option>
+          <option value="2" selected>2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4">4 Guests</option>
+          <option value="6">6 Guests</option>
+          <option value="8">8 Guests (Cottage)</option>
+          <option value="14">14 Guests (Full Buyout)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Add-ons -->
+    <div class="tb-form-group" style="margin-bottom: 10px;">
+      <label class="tb-form-label">Estate Experiences</label>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px;">
+        <label style="display: flex; align-items: center; gap: 8px; font-family: 'EB Garamond', Georgia, serif; font-size: 14px; color: rgba(245,241,233,0.85); cursor: pointer;">
+          <input type="checkbox" id="tbAddonPekoe" value="Pekoe Trail Guided Trek"
+            style="accent-color: #C7A85E; width: 14px; height: 14px;">
+          <span>Pekoe Trail Guided Trek (Stages 1 &amp; 2) · +$60</span>
+        </label>
+        <label style="display: flex; align-items: center; gap: 8px; font-family: 'EB Garamond', Georgia, serif; font-size: 14px; color: rgba(245,241,233,0.85); cursor: pointer;">
+          <input type="checkbox" id="tbAddonDining" value="Estate Dinner"
+            style="accent-color: #C7A85E; width: 14px; height: 14px;">
+          <span>Private Chef 4-Course Dinner on Verandah · +$45/guest</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Live Quote Card -->
+    <div class="tb-stay-summary">
+      <div class="tb-summary-row">
+        <span id="tbSummaryNightsLabel">Chamber Rate (2 nights)</span>
+        <span id="tbSummaryRateVal">$780</span>
+      </div>
+      <div class="tb-summary-row">
+        <span>Heritage Service Levy (10%)</span>
+        <span id="tbSummaryTaxVal">$78</span>
+      </div>
+      <div class="tb-summary-row" id="tbSummaryAddonsRow" style="display:none;">
+        <span>Curated Experiences</span>
+        <span id="tbSummaryAddonsVal">$0</span>
+      </div>
+      <div class="tb-summary-total">
+        <span>Estimated Quote</span>
+        <span id="tbSummaryTotalVal">$858 <small style="font-size:11px;opacity:0.7;font-family:'EB Garamond';">≈ LKR 265,000</small></span>
+      </div>
+    </div>
+
+    <!-- Guest Details -->
+    <div class="tb-form-row" style="margin-top:6px;">
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbGuestName">Your Name</label>
+        <input type="text" id="tbGuestName" class="tb-form-input" placeholder="e.g. Eleanor Vance">
+      </div>
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbGuestPhone">WhatsApp / Mobile</label>
+        <input type="tel" id="tbGuestPhone" class="tb-form-input" placeholder="+94 7X XXX XXXX">
+      </div>
+    </div>
+
+    <!-- Primary CTA: WhatsApp-prefilled enquiry -->
+    <button type="button" class="tb-btn-primary-reserve" id="tbBtnSubmitBooking" style="margin-top:8px;">
+      <span>💬 Send Enquiry via WhatsApp</span>
+    </button>
+
+    <!-- Secondary: email -->
+    <a href="mailto:stay@theteabungalow.com" class="tb-btn-secondary-reserve" id="tbBtnEmailFallback" style="margin-top:8px; text-align:center; display:flex; align-items:center; justify-content:center; gap:8px;">
+      <span>✉️ Email us instead</span>
     </a>
 
-    <a href="/contact#enquiry-form" class="tb-reserve-option" id="tbReserveFormOption">
-      <span class="tb-reserve-icon">✉️</span>
-      <div>
-        <div class="tb-reserve-opt-title">Direct Reservation Enquiry</div>
-        <div class="tb-reserve-opt-sub">Formal chamber booking request &amp; Pekoe Trail arrangements</div>
-      </div>
-    </a>
+    <!-- Concierge footnote -->
+    <div class="tb-pms-slot" style="margin-top:16px;">
+      Our concierge is on duty daily 06:30 – 22:00 SLST (UTC+5:30). Direct payment &amp; instant booking coming soon.
+    </div>
 
-    <!-- PMS Booking Engine Embed Container (§04 Vendor Hook) -->
-    <div id="tb-pms-widget-container" class="tb-pms-slot">
-      Direct online booking engine integration active soon. Contact our concierge directly for immediate confirmations.
+    <!-- Success state -->
+    <div id="tbBookingSuccess" style="display:none; padding:20px; background:rgba(30,77,43,0.3); border:1px solid #C7A85E; border-radius:8px; text-align:center; margin-top:14px;">
+      <div style="font-size:24px; color:#C7A85E; margin-bottom:6px;">✓</div>
+      <div style="font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.14em; color:#C7A85E; margin-bottom:6px;">Enquiry Sent</div>
+      <p id="tbBookingSuccessMsg" style="font-family:'EB Garamond',Georgia,serif; font-size:14.5px; line-height:1.4; color:rgba(245,241,233,0.9); margin-bottom:12px;">
+        Your enquiry has been prepared. Please complete it in WhatsApp — our estate manager will reply within 2 hours.
+      </p>
+      <button type="button" class="tb-btn-secondary-reserve" id="tbBtnCloseSuccess" style="width:auto; margin:0 auto;">Back to Estate</button>
     </div>
   </div>
 </div>
+
+
 
 <nav id="nav">
   <a href="/" class="nav-logo">THE TEA BUNGALOW</a>
@@ -2344,7 +2749,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/chairmans-bungalow-2027" class="">Chairman's Bungalow</a></li>
   </ul>
 
-  <a href="/contact#enquiry-form" class="nav-cta tb-reserve-trigger" id="navReserveBtn" data-source="header_cta">Enquire Now</a>
+  <button type="button" class="nav-cta tb-reserve-trigger" id="navReserveBtn" data-source="header_cta" style="border:none; cursor:pointer; background:transparent;">Enquire Now</button>
 
   <button class="nav-hamburger" id="navHamburger" aria-label="Open mobile menu" aria-expanded="false">
     <span></span>
@@ -2376,7 +2781,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </ul>
 
   <div class="mobile-nav-footer">
-    <a href="/contact#enquiry-form" class="mobile-nav-cta tb-reserve-trigger" data-source="mobile_drawer">Enquire Now</a>
+    <button type="button" class="mobile-nav-cta tb-reserve-trigger" data-source="mobile_drawer" style="border:none; cursor:pointer; background:transparent; font-size:inherit; font-family:inherit; padding:inherit;">Enquire Now</button>
     <div class="mobile-nav-contact">
       <div>📞 <a href="tel:+94777874555">+94 (0)777 874 555</a></div>
       <div style="margin-top: 4px;">✉️ <a href="mailto:stay@theteabungalow.com">stay@theteabungalow.com</a></div>
@@ -2483,19 +2888,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           pageReady = true;
 
           // Ensure critical web fonts are rendered before reveal
+          // Guard with 1500ms timeout so a slow/blocked Google Fonts request
+          // never hangs the preloader past the min display floor.
           if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(checkReadinessAndDismiss).catch(checkReadinessAndDismiss);
+            var fontsTimer = setTimeout(checkReadinessAndDismiss, 1500);
+            document.fonts.ready.then(function() {
+              clearTimeout(fontsTimer);
+              checkReadinessAndDismiss();
+            }).catch(function() {
+              clearTimeout(fontsTimer);
+              checkReadinessAndDismiss();
+            });
           } else {
             checkReadinessAndDismiss();
           }
         }
 
+        // Primary trigger: fire as soon as window.load fires
         if (document.readyState === 'complete') {
           onPageReady();
         } else {
           window.addEventListener('load', onPageReady);
         }
-        setTimeout(executeDismiss, maxDisplayMs);
+
+        // Secondary trigger: DOMContentLoaded fallback in case
+        // external resources (fonts, images) block window.load
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(onPageReady, 200);
+          });
+        }
+
+        // Absolute hard JS failsafe at 4.5s regardless of any pending promises
+        setTimeout(executeDismiss, 4500);
       }
     }
 
@@ -2579,46 +3004,135 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     }
 
-    // 5. Reservation & Concierge Drawer Engine (§04 Booking Engine Readiness)
+    // 5. Phase 2: Live Booking Engine, Stay Calculator & Scroll-Docking Bar
     const reserveModal = document.getElementById('tb-reserve-modal');
     const reserveClose = document.getElementById('tbReserveClose');
+    const floatingBar = document.getElementById('tb-floating-bar');
 
+    // Date defaults: tomorrow to 2 days later
+    const checkInInput = document.getElementById('tbCheckIn');
+    const checkOutInput = document.getElementById('tbCheckOut');
+    const roomSelect = document.getElementById('tbRoomSelect');
+    const guestsSelect = document.getElementById('tbGuestsCount');
+    const addonPekoe = document.getElementById('tbAddonPekoe');
+    const addonDining = document.getElementById('tbAddonDining');
+    const bookingForm = document.getElementById('tbBookingForm');
+    const bookingSuccess = document.getElementById('tbBookingSuccess');
+
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const dayAfter = new Date(today);
+    dayAfter.setDate(dayAfter.getDate() + 3);
+
+    function formatDateForInput(d) {
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return year + '-' + month + '-' + day;
+    }
+
+    if (checkInInput && checkOutInput) {
+      checkInInput.min = formatDateForInput(tomorrow);
+      checkInInput.value = formatDateForInput(tomorrow);
+      checkOutInput.min = formatDateForInput(dayAfter);
+      checkOutInput.value = formatDateForInput(dayAfter);
+    }
+
+    // Dynamic Live Stay Price Calculator
+    function updateStayQuote() {
+      if (!checkInInput || !checkOutInput || !roomSelect) return;
+
+      const d1 = new Date(checkInInput.value);
+      const d2 = new Date(checkOutInput.value);
+      let nights = 1;
+      if (d2 > d1) {
+        nights = Math.max(1, Math.round((d2 - d1) / (1000 * 60 * 60 * 24)));
+      }
+
+      const selectedOpt = roomSelect.options[roomSelect.selectedIndex];
+      const ratePerNight = selectedOpt ? parseInt(selectedOpt.getAttribute('data-rate'), 10) || 350 : 350;
+      const guests = guestsSelect ? parseInt(guestsSelect.value, 10) || 2 : 2;
+
+      const subtotal = nights * ratePerNight;
+      const tax = Math.round(subtotal * 0.10);
+
+      let addons = 0;
+      if (addonPekoe && addonPekoe.checked) addons += 60;
+      if (addonDining && addonDining.checked) addons += (45 * guests);
+
+      const totalUSD = subtotal + tax + addons;
+      const approxLKR = Math.round(totalUSD * 308).toLocaleString();
+
+      const nightsLabel = document.getElementById('tbSummaryNightsLabel');
+      const rateVal = document.getElementById('tbSummaryRateVal');
+      const taxVal = document.getElementById('tbSummaryTaxVal');
+      const addonsRow = document.getElementById('tbSummaryAddonsRow');
+      const addonsVal = document.getElementById('tbSummaryAddonsVal');
+      const totalVal = document.getElementById('tbSummaryTotalVal');
+
+      if (nightsLabel) nightsLabel.textContent = 'Chamber Rate (' + nights + ' ' + (nights === 1 ? 'Night' : 'Nights') + ')';
+      if (rateVal) rateVal.textContent = '$' + subtotal + ' USD';
+      if (taxVal) taxVal.textContent = '$' + tax + ' USD';
+
+      if (addonsRow && addonsVal) {
+        if (addons > 0) {
+          addonsRow.style.display = 'flex';
+          addonsVal.textContent = '$' + addons + ' USD';
+        } else {
+          addonsRow.style.display = 'none';
+        }
+      }
+
+      if (totalVal) {
+        totalVal.innerHTML = '$' + totalUSD + ' USD <small style="font-size: 11px; opacity: 0.75; font-family: \'EB Garamond\';">(approx. LKR ' + approxLKR + ')</small>';
+      }
+    }
+
+    [checkInInput, checkOutInput, roomSelect, guestsSelect, addonPekoe, addonDining].forEach(function(el) {
+      if (el) {
+        el.addEventListener('change', updateStayQuote);
+        el.addEventListener('input', updateStayQuote);
+      }
+    });
+    updateStayQuote();
+
+
+    // Modal Opening & Pre-selection
     if (reserveModal) {
-      function openReserveModal(source, roomName) {
+      function openReserveModal(source, targetItem) {
         reserveModal.classList.add('tb-modal-open');
         reserveModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
 
         const titleEl = document.getElementById('tbReserveTitle');
-        const tagEl = document.querySelector('.tb-reserve-tag');
-        const waLink = document.getElementById('tbReserveWaOption');
-        const formLink = document.getElementById('tbReserveFormOption');
+        const tagEl = document.getElementById('tbReserveTag');
 
-        if (roomName) {
-          if (tagEl) tagEl.textContent = 'Galaha Estate · ' + roomName;
-          if (titleEl) titleEl.textContent = 'Reserve ' + roomName;
-          if (waLink) {
-            waLink.href = 'https://wa.me/94777874555?text=' + encodeURIComponent('Hi, I’m interested in reserving ' + roomName + ' at The Tea Bungalow. Could you check availability for my dates?');
+        // Check if targetItem matches a chamber
+        if (targetItem && roomSelect) {
+          let matched = false;
+          for (let i = 0; i < roomSelect.options.length; i++) {
+            if (roomSelect.options[i].value.toLowerCase().includes(targetItem.toLowerCase()) ||
+                targetItem.toLowerCase().includes(roomSelect.options[i].value.toLowerCase())) {
+              roomSelect.selectedIndex = i;
+              matched = true;
+              break;
+            }
           }
-          if (formLink) {
-            formLink.href = '/contact?chamber=' + encodeURIComponent(roomName) + '#enquiry-form';
-          }
+          if (tagEl) tagEl.textContent = 'Galaha Estate · ' + targetItem;
+          if (titleEl) titleEl.textContent = 'Reserve ' + targetItem;
         } else {
           if (tagEl) tagEl.textContent = 'Galaha Estate · Old Ceylon';
-          if (titleEl) titleEl.textContent = 'Reserve Your Stay';
-          if (waLink) {
-            waLink.href = 'https://wa.me/94777874555?text=' + encodeURIComponent('Hi, I’m planning a stay at The Tea Bungalow. Could you check availability for my dates?');
-          }
-          if (formLink) {
-            formLink.href = '/contact#enquiry-form';
-          }
+          if (titleEl) titleEl.textContent = 'Reserve Your Sanctuary';
         }
+
+        updateStayQuote();
 
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'booking_widget_opened',
           trigger_source: source || 'navbar',
-          selected_chamber: roomName || 'general'
+          selected_item: targetItem || 'general'
         });
       }
 
@@ -2628,34 +3142,142 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         document.body.style.overflow = '';
       }
 
-      // Event delegation — catches .tb-reserve-trigger buttons anywhere on the page,
-      // even those rendered below the navbar in the DOM (chamber cards, package CTAs, etc.)
+      // Event Delegation
       document.addEventListener('click', function(e) {
         var btn = e.target.closest('.tb-reserve-trigger, [data-reserve-trigger], #navReserveBtn');
         if (!btn) return;
         e.preventDefault();
-        var room = btn.getAttribute('data-room') || btn.getAttribute('data-package') || '';
+        var item = btn.getAttribute('data-room') || btn.getAttribute('data-package') || '';
         openReserveModal(
-          btn.getAttribute('data-source') || (room ? 'chamber_cta' : 'cta_button'),
-          room
+          btn.getAttribute('data-source') || (item ? 'item_cta' : 'cta_button'),
+          item
         );
       });
 
-      if (reserveClose) {
-        reserveClose.addEventListener('click', closeReserveModal);
-      }
-
+      if (reserveClose) reserveClose.addEventListener('click', closeReserveModal);
       reserveModal.addEventListener('click', function(e) {
-        if (e.target === reserveModal) {
-          closeReserveModal();
-        }
+        if (e.target === reserveModal) closeReserveModal();
       });
-
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && reserveModal.classList.contains('tb-modal-open')) {
           closeReserveModal();
         }
       });
+
+      // WhatsApp Enquiry CTA — builds pre-filled message from form state
+      const btnSubmit = document.getElementById('tbBtnSubmitBooking');
+      const btnCloseSuccess = document.getElementById('tbBtnCloseSuccess');
+      if (btnSubmit) {
+        btnSubmit.addEventListener('click', function() {
+          var name = (document.getElementById('tbGuestName') || {}).value || '';
+          var phone = (document.getElementById('tbGuestPhone') || {}).value || '';
+          var room = roomSelect ? roomSelect.options[roomSelect.selectedIndex].text : '';
+          var checkIn = checkInInput ? checkInInput.value : '';
+          var checkOut = checkOutInput ? checkOutInput.value : '';
+          var guests = guestsSelect ? guestsSelect.value : '2';
+          var nights = 2;
+          if (checkIn && checkOut) {
+            var d1 = new Date(checkIn), d2 = new Date(checkOut);
+            if (!isNaN(d1) && !isNaN(d2)) nights = Math.max(1, Math.round((d2 - d1) / 86400000));
+          }
+          var totalEl = document.getElementById('tbSummaryTotalVal');
+          var totalText = totalEl ? totalEl.textContent.split('\n')[0].trim() : '';
+          var addons = [];
+          if (document.getElementById('tbAddonPekoe') && document.getElementById('tbAddonPekoe').checked) addons.push('Pekoe Trail Guided Trek');
+          if (document.getElementById('tbAddonDining') && document.getElementById('tbAddonDining').checked) addons.push('Private Chef Estate Dinner');
+
+          var msg = 'Hi, I\u2019d like to enquire about a stay at The Tea Bungalow.\n\n';
+          if (name) msg += '\u2022 Guest: ' + name + '\n';
+          msg += '\u2022 Chamber: ' + (room || 'To be confirmed') + '\n';
+          msg += '\u2022 Arrival: ' + (checkIn || 'TBC') + '\n';
+          msg += '\u2022 Departure: ' + (checkOut || 'TBC') + ' (' + nights + ' night' + (nights !== 1 ? 's' : '') + ')\n';
+          msg += '\u2022 Guests: ' + guests + '\n';
+          if (addons.length) msg += '\u2022 Experiences: ' + addons.join(', ') + '\n';
+          if (totalText) msg += '\u2022 Estimated Quote: ' + totalText + '\n';
+          if (phone) msg += '\u2022 Contact: ' + phone + '\n';
+          msg += '\nPlease confirm availability and share the deposit details. Thank you.';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'concierge_enquiry_sent', chamber: room, nights: nights });
+
+          // Open WhatsApp with prefilled message
+          window.open('https://wa.me/94777874555?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
+
+          // Show confirmation state
+          var form = document.getElementById('tbBookingForm');
+          var success = document.getElementById('tbBookingSuccess');
+          if (form && success) { form.style.display = 'none'; success.style.display = 'block'; }
+        });
+      }
+
+      if (btnCloseSuccess) {
+        btnCloseSuccess.addEventListener('click', function() {
+          closeReserveModal();
+        });
+      }
+
+      window.openReserveModal = openReserveModal;
+      window.closeReserveModal = closeReserveModal;
+      window.updateStayQuote = updateStayQuote;
+    }
+
+    // Scroll-Based Floating Bar — shows after 280px, hides near footer
+    if (floatingBar) {
+      var fbTimer = null;
+      function updateFloatingBar() {
+        var scrollY = window.scrollY || window.pageYOffset;
+        var docH = document.documentElement.scrollHeight;
+        var winH = window.innerHeight;
+        var nearBottom = (scrollY + winH) > (docH - 260);
+        if (scrollY > 280 && !nearBottom) {
+          floatingBar.classList.add('tb-bar-visible');
+          floatingBar.setAttribute('aria-hidden', 'false');
+        } else {
+          floatingBar.classList.remove('tb-bar-visible');
+          floatingBar.setAttribute('aria-hidden', 'true');
+        }
+      }
+      window.addEventListener('scroll', function() {
+        if (fbTimer) clearTimeout(fbTimer);
+        fbTimer = setTimeout(updateFloatingBar, 12);
+      }, { passive: true });
+      // Initial check in case page loads scrolled
+      updateFloatingBar();
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // GLOBAL SCROLL REVEAL ENGINE  (data-reveal attribute system)
+    // ─────────────────────────────────────────────────────────────
+    function initScrollReveal() {
+      var revealEls = document.querySelectorAll('[data-reveal]');
+      if (!revealEls.length) return;
+      if (!('IntersectionObserver' in window)) {
+        // Fallback: show everything immediately
+        revealEls.forEach(function(el) { el.classList.add('revealed'); });
+        return;
+      }
+
+      var revealObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var delay = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+          setTimeout(function() {
+            el.classList.add('revealed');
+          }, delay);
+          revealObs.unobserve(el);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+      revealEls.forEach(function(el) { revealObs.observe(el); });
+    }
+
+    window.initScrollReveal = initScrollReveal;
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initScrollReveal);
+    } else {
+      initScrollReveal();
     }
   })();
 </script>
