@@ -1,0 +1,90 @@
+[
+  {
+    "image": "/images/house.jpeg",
+    "caption": "The Bungalow",
+    "subcaption": "Galaha Estate · circa 1890",
+    "alt": "The Bungalow, Galaha Estate circa 1890 with mist on the hills",
+    "category": "estate",
+    "featured": true,
+    "span": "span-8",
+    "height": "h-xl",
+    "sort_order": 1
+  },
+  {
+    "image": "/images/IMG_7674.jpeg",
+    "caption": "The Car Porch",
+    "subcaption": "Arrival · Galaha Estate",
+    "alt": "The historic stone car porch entrance at The Tea Bungalow",
+    "category": "estate",
+    "featured": false,
+    "span": "span-4",
+    "height": "h-sm",
+    "sort_order": 2
+  },
+  {
+    "image": "/images/tea-estate.jpg",
+    "caption": "The Tea Fields",
+    "subcaption": "Working estate · Morning mist",
+    "alt": "Lush green rolling tea fields across Galaha Estate",
+    "category": "estate",
+    "featured": true,
+    "span": "span-4",
+    "height": "h-sm",
+    "sort_order": 3
+  },
+  {
+    "image": "/images/img6.jpg",
+    "caption": "Morning Mist",
+    "subcaption": "Early morning · Hill country vistas",
+    "alt": "Morning mist hanging over the valley at The Tea Bungalow",
+    "category": "estate",
+    "featured": false,
+    "span": "span-4",
+    "height": "h-sm",
+    "sort_order": 4
+  },
+  {
+    "image": "/images/IMG_7619.jpeg",
+    "caption": "The Long Verandah",
+    "subcaption": "Rear of the bungalow · Estate views",
+    "alt": "Colonial timber long verandah overlooking estate gardens",
+    "category": "estate",
+    "featured": false,
+    "span": "span-4",
+    "height": "h-sm",
+    "sort_order": 5
+  },
+  {
+    "image": "/images/Pekoe Trail access.jpg",
+    "caption": "Pekoe Trail Access",
+    "subcaption": "Trailhead at our gate · Stage 2 start",
+    "alt": "Pekoe Trail access marker directly beside The Tea Bungalow estate",
+    "category": "trail",
+    "featured": true,
+    "span": "span-6",
+    "height": "h-md",
+    "sort_order": 6
+  },
+  {
+    "image": "/images/swimming-pool-resort.jpg",
+    "caption": "The Stone Pool",
+    "subcaption": "Secluded garden setting",
+    "alt": "Private stone swimming pool framed by white jasmine and tea bushes",
+    "category": "garden",
+    "featured": true,
+    "span": "span-6",
+    "height": "h-md",
+    "sort_order": 7
+  },
+  {
+    "image": "/images/front-view-woman-pouring-iced-tea.jpg",
+    "caption": "Planter's Tea Service",
+    "subcaption": "Afternoon ritual on the verandah",
+    "alt": "Estate tea tasting ritual served in fine china",
+    "category": "dining",
+    "featured": false,
+    "span": "span-4",
+    "height": "h-sm",
+    "sort_order": 8
+  }
+]

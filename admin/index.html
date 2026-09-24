@@ -387,6 +387,30 @@
                 ]
               },
               {
+                name: 'journal', label: 'Journal & Stories',
+                label_singular: 'Story',
+                folder: 'data/journal', create: true, delete: true,
+                slug: '{{slug}}', extension: 'json', format: 'json',
+                summary: '{{title}} — {{category}} ({{date}})',
+                fields: [
+                  { label: 'Story Title', name: 'title', widget: 'string' },
+                  { label: 'Subtitle / Tagline', name: 'tagline', widget: 'string', required: false },
+                  { label: 'Slug / URL Identifier', name: 'slug', widget: 'string' },
+                  { label: 'Publication Date', name: 'date', widget: 'datetime',
+                    format: 'YYYY-MM-DD', date_format: 'DD MMM YYYY', time_format: false },
+                  { label: 'Author / Voice', name: 'author', widget: 'string', default: 'Estate Historian' },
+                  { label: 'Category', name: 'category', widget: 'select',
+                    options: ['tea-heritage','pekoe-trail','estate-life','flora-fauna','culinary'] },
+                  { label: 'Estimated Reading Time', name: 'read_time', widget: 'string', default: '5 min read' },
+                  { label: 'Featured Image', name: 'featured_image', widget: 'image', required: false },
+                  { label: 'Image Caption', name: 'image_caption', widget: 'string', required: false },
+                  { label: 'Excerpt / Summary', name: 'excerpt', widget: 'text' },
+                  { label: 'Story Body', name: 'body', widget: 'markdown' },
+                  { label: 'Featured on Homepage?', name: 'featured', widget: 'boolean', default: false },
+                  { label: 'Published?', name: 'published', widget: 'boolean', default: true }
+                ]
+              },
+              {
                 name: 'estate_announcements', label: 'Estate Announcements',
                 label_singular: 'Announcement',
                 folder: 'data/announcements', create: true, delete: true,

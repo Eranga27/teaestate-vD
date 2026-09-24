@@ -1,30 +1,30 @@
 ##############################################################################
 # Decap CMS Configuration — The Tea Bungalow · Galaha Estate
-# Ref: bungalow-ledger.md §08
+# Ref: bungalow-ledger.md §08 (Phase 3 CMS Implementation)
 # Docs: https://decapcms.org/docs/configuration-options/
 ##############################################################################
 
-# ── Backend: GitHub OAuth via Netlify Identity or GitHub Gateway ──────────
+# ── Backend: GitHub OAuth / Netlify Identity / Local Gateway ────────────────
 backend:
   name: github
   repo: Eranga27/teaestate-vD
-  branch: feature/platform-integrations   # Change to 'main' when ready for production
-  base_url: https://api.netlify.com        # OAuth provider; swap for Netlify Identity if preferred
+  branch: feature/platform-integrations   # Promoted to 'main' on production release
+  base_url: https://api.netlify.com        # OAuth gateway
   auth_endpoint: auth
 
 # Allow local editing during development with `npx decap-server`
 local_backend: true
 
-# ── Media / Image Storage ─────────────────────────────────────────────────
-media_folder: "The_Tea_Bungalow_vD_final_2026-09-08/vD/images/cms"
+# ── Media / Image Storage ───────────────────────────────────────────────────
+media_folder: "images/cms"
 public_folder: "/images/cms"
 
-# ── Site Settings ─────────────────────────────────────────────────────────
+# ── Site Metadata ───────────────────────────────────────────────────────────
 site_url: https://www.theteabungalow.com
 display_url: https://www.theteabungalow.com
 logo_url: https://www.theteabungalow.com/images/favicon.png
 
-# ── Slug Configuration ───────────────────────────────────────────────────
+# ── Slug Configuration ─────────────────────────────────────────────────────
 slug:
   encoding: ascii
   clean_accents: true
@@ -37,192 +37,367 @@ slug:
 collections:
 
   # ── 01. EXPERIENCES ─────────────────────────────────────────────────────
-  # Controls the cards on /experiences page (Pekoe trail guiding, tea tasting, etc.)
+  # Controls curated estate experiences, tea tastings, walks, and dining rituals
   - name: experiences
     label: "Experiences"
     label_singular: "Experience"
-    folder: "The_Tea_Bungalow_vD_final_2026-09-08/vD/data/experiences"
+    folder: "data/experiences"
     create: true
     delete: true
     slug: "{{slug}}"
     extension: json
     format: json
-    summary: "{{title}} — {{category}}"
-    sortable_fields: ["title", "category", "featured"]
+    summary: "{{title}} — {{category}} [{{duration}}]"
+    sortable_fields: ["title", "category", "featured", "active"]
     fields:
       - label: "Experience Title"
         name: title
         widget: string
-        hint: "e.g. Guided Pekoe Trail Walk"
+        hint: "e.g. The Planter's Afternoon Tea, Guided Estate Walk"
       - label: "Category"
         name: category
         widget: select
         options:
-          - { label: "Pekoe Trail", value: "pekoe-trail" }
-          - { label: "Tea Estate", value: "tea-estate" }
-          - { label: "Nature & Wildlife", value: "nature-wildlife" }
+          - { label: "Tea Estate & Rituals", value: "tea-estate" }
+          - { label: "Dining & Culinary", value: "dining" }
+          - { label: "Pekoe Trail & Hiking", value: "pekoe-trail" }
           - { label: "Colonial Heritage", value: "colonial-heritage" }
-          - { label: "Dining", value: "dining" }
-          - { label: "Wellness", value: "wellness" }
+          - { label: "Wellness & Nature", value: "wellness" }
       - label: "Short Description"
         name: description
         widget: text
-        hint: "2–3 sentences shown on the card. Keep under 160 characters."
+        hint: "2–3 sentences shown on the card. Keep under 180 characters."
       - label: "Duration"
         name: duration
         widget: string
-        hint: "e.g. 4–6 hours, Half-day, Full-day"
+        hint: "e.g. ~1 hr, ~2 hrs, Unhurried, Half-day"
+      - label: "Timing / Schedule"
+        name: timing
+        widget: string
+        hint: "e.g. 3:30 PM, 6:00 AM+, 7:30 PM, By arrangement"
+      - label: "Location on Estate"
+        name: location
+        widget: string
+        hint: "e.g. Verandah, Planter's Lounge, Morning Room, Tea Fields"
+      - label: "Rate Display"
+        name: rate
+        widget: string
+        hint: "e.g. Complimentary, Price on request, From $35"
+      - label: "Rate Unit / Condition"
+        name: rate_unit
+        widget: string
+        required: false
+        hint: "e.g. per person, for two, Included with your stay"
       - label: "Availability"
         name: availability
         widget: select
+        default: "year-round"
         options:
           - { label: "Year-round", value: "year-round" }
           - { label: "Seasonal (Oct–Apr)", value: "seasonal-oct-apr" }
           - { label: "On Request", value: "on-request" }
-      - label: "Featured on Homepage?"
+      - label: "Featured / Highlighted?"
         name: featured
         widget: boolean
         default: false
+        hint: "Feature on homepage and highlight in experience listings"
       - label: "Icon (Emoji)"
         name: icon
         widget: string
-        hint: "Single emoji used in the card header, e.g. 🍃"
-        required: false
+        default: "🌿"
+        hint: "Single emoji icon for badge/header, e.g. 🍵, 🕯️, 🥐, 🌿"
       - label: "Card Image"
         name: image
         widget: image
         required: false
-        hint: "Landscape, min 1200×700px, WebP preferred"
+        hint: "Landscape image, min 1200×700px, WebP or JPG preferred"
+      - label: "Bookable / Enquire CTA Active"
+        name: bookable
+        widget: boolean
+        default: true
+        hint: "Shows 'Book This Experience' button linking to Concierge Modal"
+      - label: "Active / Visible?"
+        name: active
+        widget: boolean
+        default: true
 
   # ── 02. PACKAGES & OFFERS ────────────────────────────────────────────────
-  # Controls the package listing on /packages (pricing, inclusions, descriptions)
+  # Controls packages, hiking itineraries, romantic getaways, and buyouts
   - name: packages
     label: "Packages & Offers"
     label_singular: "Package"
-    folder: "The_Tea_Bungalow_vD_final_2026-09-08/vD/data/packages"
+    folder: "data/packages"
     create: true
     delete: true
     slug: "{{slug}}"
     extension: json
     format: json
     summary: "{{name}} — {{nights}} Night(s) · {{rate}}"
-    sortable_fields: ["name", "nights", "active"]
+    sortable_fields: ["name", "nights", "featured", "active"]
     fields:
       - label: "Package Name"
         name: name
         widget: string
-        hint: "e.g. The Slow Week, Tea Country Escape"
+        hint: "e.g. The Complete Stage 1 Journey, The Slow Week"
       - label: "Tagline"
         name: tagline
         widget: string
-        hint: "One-line hook shown under the package name"
+        hint: "One-line hook shown under package name"
       - label: "Number of Nights"
         name: nights
         widget: number
         value_type: int
         min: 1
         max: 14
+        default: 2
       - label: "Category"
         name: category
         widget: select
         options:
           - { label: "Pekoe Trail / Hiking", value: "pekoe-trail" }
           - { label: "Romantic / Couples", value: "romantic" }
-          - { label: "Family", value: "family" }
-          - { label: "Wellness", value: "wellness" }
-          - { label: "Group / Buyout", value: "group" }
-          - { label: "Dining / Day Experience", value: "dining" }
-      - label: "Featured / Gold Card?"
+          - { label: "Wellness & Slow Travel", value: "wellness" }
+          - { label: "Estate Buyout / Group", value: "group" }
+          - { label: "Heritage Stay", value: "heritage" }
+      - label: "Featured / Hero Highlight?"
         name: featured
         widget: boolean
         default: false
-        hint: "Enables the gold-top highlight card style"
+        hint: "Enables prominent gold banner and featured layout"
       - label: "Popular Badge Label"
         name: badge
         widget: string
         required: false
-        hint: "e.g. ★ Most Booked — leave blank for none"
+        hint: "e.g. ★ Most Booked Package, Hiker Essential, Exclusive Residency"
       - label: "Rate Display"
         name: rate
         widget: string
-        hint: "e.g. From $185 per couple / Price on request"
+        hint: "e.g. $75 / couple · Introductory, From $185, Price on request"
+      - label: "Solo Traveler Rate"
+        name: solo_rate
+        widget: string
+        required: false
+        hint: "e.g. Price on request / person, From $55"
       - label: "Rate Period"
         name: rate_period
         widget: string
-        hint: "e.g. / couple, / night, / group"
         required: false
+        hint: "e.g. / couple, / person, / stay, / week"
+      - label: "Pekoe Trail Stages Covered"
+        name: stages_covered
+        widget: string
+        required: false
+        hint: "e.g. Stage 1 & 2, Stage 1 End, All Estate Trails"
       - label: "Package Inclusions"
         name: inclusions
         widget: list
         label_singular: "Inclusion"
-        hint: "Each line will appear as a bullet in the includes list"
+        hint: "Bullet points detailing all transfers, meals, and privileges included"
         field:
-          label: Inclusion
+          label: "Inclusion Detail"
           name: inclusion
           widget: string
       - label: "Active / Visible?"
         name: active
         widget: boolean
         default: true
-        hint: "Uncheck to hide this package without deleting it"
 
-  # ── 03. ESTATE ANNOUNCEMENTS ─────────────────────────────────────────────
-  # Seasonal alerts, trail conditions, dining specials — displayed as a banner
-  - name: estate_announcements
+  # ── 03. JOURNAL & STORIES ────────────────────────────────────────────────
+  # Estate heritage, Pekoe Trail notes, botanical flora, and tea stories
+  - name: journal
+    label: "Journal & Stories"
+    label_singular: "Story"
+    folder: "data/journal"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    summary: "{{title}} — {{category}} ({{date}})"
+    sortable_fields: ["date", "title", "category", "featured"]
+    fields:
+      - label: "Story Title"
+        name: title
+        widget: string
+        hint: "e.g. How Galaha and Loolecondera Gave Birth to Ceylon Tea in 1867"
+      - label: "Subtitle / Tagline"
+        name: tagline
+        widget: string
+        required: false
+        hint: "Poetic subhead summarizing the narrative"
+      - label: "Slug / URL Identifier"
+        name: slug
+        widget: string
+        hint: "e.g. birthplace-of-ceylon-tea-1867"
+      - label: "Publication Date"
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD MMM YYYY"
+        time_format: false
+      - label: "Author / Voice"
+        name: author
+        widget: string
+        default: "Estate Historian"
+        hint: "e.g. Estate Historian, Estate Naturalist, The Bungalow Team"
+      - label: "Category"
+        name: category
+        widget: select
+        options:
+          - { label: "Ceylon Tea Heritage", value: "tea-heritage" }
+          - { label: "Pekoe Trail & Hiking", value: "pekoe-trail" }
+          - { label: "Estate Life & Traditions", value: "estate-life" }
+          - { label: "Flora & Wildlife", value: "flora-fauna" }
+          - { label: "Culinary & Dining", value: "culinary" }
+      - label: "Estimated Reading Time"
+        name: read_time
+        widget: string
+        default: "5 min read"
+      - label: "Featured Image"
+        name: featured_image
+        widget: image
+        required: false
+        hint: "Primary cover photo for the story card"
+      - label: "Image Caption"
+        name: image_caption
+        widget: string
+        required: false
+      - label: "Excerpt / Summary"
+        name: excerpt
+        widget: text
+        hint: "Concise synopsis displayed on card previews (under 180 characters)"
+      - label: "Story Body"
+        name: body
+        widget: markdown
+        hint: "Full rich text story content formatted in Markdown"
+      - label: "Featured on Homepage?"
+        name: featured
+        widget: boolean
+        default: false
+      - label: "Published?"
+        name: published
+        widget: boolean
+        default: true
+
+  # ── 04. GALLERY CAPTIONS ────────────────────────────────────────────────
+  # Alt text, captions, and curated categories for the estate photography gallery
+  - name: gallery
+    label: "Gallery Captions"
+    label_singular: "Gallery Photo"
+    folder: "data/gallery"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    summary: "{{caption}} ({{category}})"
+    sortable_fields: ["sort_order", "category", "featured"]
+    fields:
+      - label: "Image File"
+        name: image
+        widget: image
+        hint: "High-resolution image (WebP or JPG)"
+      - label: "Caption Title"
+        name: caption
+        widget: string
+        hint: "Main title shown on hover and lightbox, e.g. The Long Verandah"
+      - label: "Subcaption / Context"
+        name: subcaption
+        widget: string
+        required: false
+        hint: "Secondary line, e.g. Galaha Estate · circa 1890"
+      - label: "Alt Text (Accessibility & SEO)"
+        name: alt
+        widget: string
+        hint: "Descriptive screen-reader text explaining the image"
+      - label: "Gallery Category"
+        name: category
+        widget: select
+        options:
+          - { label: "The Estate & Grounds", value: "estate" }
+          - { label: "Chambers & Suites", value: "chambers" }
+          - { label: "Pekoe Trail", value: "trail" }
+          - { label: "Dining & High Tea", value: "dining" }
+          - { label: "Fireplace & Lounge", value: "fire" }
+          - { label: "Garden & Pool", value: "garden" }
+      - label: "Grid Column Span"
+        name: span
+        widget: select
+        default: "span-4"
+        options:
+          - { label: "Standard (Span 4)", value: "span-4" }
+          - { label: "Wide / Featured (Span 8)", value: "span-8" }
+          - { label: "Full Width (Span 12)", value: "span-12" }
+          - { label: "Half Grid (Span 6)", value: "span-6" }
+      - label: "Tile Height"
+        name: height
+        widget: select
+        default: "h-sm"
+        options:
+          - { label: "Small (h-sm)", value: "h-sm" }
+          - { label: "Medium (h-md)", value: "h-md" }
+          - { label: "Large (h-lg)", value: "h-lg" }
+          - { label: "Extra Large (h-xl)", value: "h-xl" }
+      - label: "Featured in Slideshow?"
+        name: featured
+        widget: boolean
+        default: false
+      - label: "Sort Order"
+        name: sort_order
+        widget: number
+        value_type: int
+        default: 10
+        hint: "Lower numbers appear first"
+
+  # ── 05. ESTATE ANNOUNCEMENTS ─────────────────────────────────────────────
+  # Seasonal banners, trail condition bulletins, and harvest highlights
+  - name: announcements
     label: "Estate Announcements"
     label_singular: "Announcement"
-    folder: "The_Tea_Bungalow_vD_final_2026-09-08/vD/data/announcements"
+    folder: "data/announcements"
     create: true
     delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: json
     format: json
-    summary: "{{title}} [{{type}}] — {{date}}"
+    summary: "{{title}} [{{type}}]"
     sortable_fields: ["date", "type", "active"]
     fields:
       - label: "Announcement Title"
         name: title
         widget: string
-        hint: "e.g. Mist Trail Open · November–March Season"
+        hint: "e.g. Mist Trail Season Open · Pekoe Trail Stage 1 & 2 in Peak Condition"
       - label: "Type"
         name: type
         widget: select
         options:
           - { label: "Trail Condition", value: "trail" }
           - { label: "Seasonal Weather", value: "weather" }
-          - { label: "Dining Highlight", value: "dining" }
+          - { label: "Dining Special", value: "dining" }
           - { label: "Estate Notice", value: "notice" }
           - { label: "Special Offer", value: "offer" }
-      - label: "Body"
+      - label: "Announcement Body"
         name: body
         widget: text
-        hint: "1–3 sentences shown to guests. Plain text only."
-      - label: "Date"
+        hint: "1–2 sentences shown in header notice banner"
+      - label: "Publication Date"
         name: date
         widget: datetime
         format: "YYYY-MM-DD"
         date_format: "DD MMM YYYY"
         time_format: false
-      - label: "Active / Pinned?"
+      - label: "Active / Banner Visible?"
         name: active
         widget: boolean
         default: true
-      - label: "Expiry Date (optional)"
-        name: expiry
-        widget: datetime
-        format: "YYYY-MM-DD"
-        date_format: "DD MMM YYYY"
-        time_format: false
-        required: false
-        hint: "Announcement will auto-hide after this date (requires build pipeline logic)"
 
-  # ── 04. CHAMBERS & SUITE NOTES ───────────────────────────────────────────
-  # Rate notes, seasonal minimum stay, special conditions per chamber
+  # ── 06. CHAMBERS & SUITE CONDITIONS ──────────────────────────────────────
+  # Rate overrides, seasonal minimum stay, and availability notes per room
   - name: chambers
-    label: "Chambers"
+    label: "Chambers & Suites"
     label_singular: "Chamber"
-    folder: "The_Tea_Bungalow_vD_final_2026-09-08/vD/data/chambers"
-    create: false     # Rooms are fixed; only edit existing entries
+    folder: "data/chambers"
+    create: false
     delete: false
     extension: json
     format: json
@@ -234,7 +409,7 @@ collections:
       - label: "Rate Display"
         name: rate_display
         widget: string
-        hint: "Shown on the card, e.g. From $185/night · Price on request"
+        hint: "e.g. From $185 / night, Price on request"
       - label: "Minimum Stay (nights)"
         name: min_stay
         widget: number
@@ -246,60 +421,11 @@ collections:
         name: seasonal_note
         widget: text
         required: false
-        hint: "Optional note shown in small text below rate, e.g. 3-night minimum during peak season (Dec–Jan)"
       - label: "Availability Note"
         name: availability_note
         widget: string
         required: false
-        hint: "e.g. Closed for renovation until April 2027"
-      - label: "Visible on Chambers Page?"
+      - label: "Active on Website?"
         name: active
         widget: boolean
         default: true
-
-  # ── 05. GALLERY CAPTIONS ────────────────────────────────────────────────
-  # Alt text and captions for /gallery images — SEO + accessibility
-  - name: gallery
-    label: "Gallery Captions"
-    label_singular: "Gallery Image"
-    folder: "The_Tea_Bungalow_vD_final_2026-09-08/vD/data/gallery"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: json
-    format: json
-    summary: "{{caption}} ({{category}})"
-    fields:
-      - label: "Image File"
-        name: image
-        widget: image
-        hint: "Upload image — WebP or JPG, min 1200px wide"
-      - label: "Caption"
-        name: caption
-        widget: string
-        hint: "Descriptive caption displayed below image in gallery"
-      - label: "Alt Text"
-        name: alt
-        widget: string
-        hint: "Screen-reader description for accessibility and SEO"
-      - label: "Category"
-        name: category
-        widget: select
-        options:
-          - { label: "Estate & Grounds", value: "estate" }
-          - { label: "Chambers & Interiors", value: "chambers" }
-          - { label: "Pekoe Trail", value: "pekoe-trail" }
-          - { label: "Experiences", value: "experiences" }
-          - { label: "Dining", value: "dining" }
-          - { label: "Views & Landscape", value: "landscape" }
-      - label: "Featured in Slideshow?"
-        name: featured
-        widget: boolean
-        default: false
-      - label: "Sort Order"
-        name: sort_order
-        widget: number
-        value_type: int
-        min: 1
-        required: false
-        hint: "Lower numbers appear first. Leave blank for auto."
