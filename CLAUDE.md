@@ -2,6 +2,10 @@
 
 Luxury heritage stay: restored 1890s planter's bungalow in Galaha, Sri Lanka (base for Pekoe Trail Stages 1 & 2). 7 keys (6 chambers + Carriage House Cottage). Full roadmap and phase status: [docs/bungalow-ledger.md](docs/bungalow-ledger.md).
 
+- Production (`main`): https://teaestate.vercel.app
+- Preview (`feature/platform-integrations`): https://teabungalow-git-feature-platform-integrations-eranga-bowatte.vercel.app — the older `deploy-git-…` alias is frozen at a September build; don't use it.
+- Repo: github.com/Eranga27/teaestate-vD · Vercel project: `eranga-bowatte/teabungalow`
+
 ## Layout
 
 | Path | What it is |
