@@ -30,6 +30,14 @@ npm run verify:preview   # live checks against the Vercel preview
 
 Commit `src/`, `api/`, `scripts/` changes only. Vercel runs `npm run build` on every push and serves `public/` (see `vercel.json`).
 
+## CMS (`/admin`)
+
+Decap CMS on the GitHub backend. Editors sign in with GitHub (`api/auth.js` → GitHub → `api/callback.js`) and need write access to the repo; each save commits to `src/data/` on the branch in `src/admin/config.yml`, and Vercel rebuilds. Config lives only in `config.yml` — `index.html` just sets `base_url` to the current origin.
+
+- Needs Vercel env vars `OAUTH_GITHUB_CLIENT_ID` / `OAUTH_GITHUB_CLIENT_SECRET` from a GitHub OAuth App whose callback URL is `https://<host>/api/callback` (one host per OAuth App).
+- One JSON file per entry in folder collections. Never put an array of entries in one file — the CMS would treat it as a single entry and overwrite it. Order comes from `sort_order`.
+- Local editing without GitHub: `npx decap-server` in the repo root, then `npm run serve` and open `/admin`.
+
 ## Rules
 
 - Work on `feature/platform-integrations`; never commit to `main` (production at teaestate.vercel.app). Promotion is a reviewed PR.
@@ -39,6 +47,6 @@ Commit `src/`, `api/`, `scripts/` changes only. Vercel runs `npm run build` on e
 
 ## Known gaps
 
-- `/admin` login is a client-side placeholder (not a security boundary) and the CMS runs on Decap's `test-repo` backend, so edits are not saved. Real auth (GitHub OAuth / Git Gateway) is pending.
+- CMS "Packages & Offers" entries are not wired into `packages.html` yet (`build_static.js` loads them but nothing renders them); editing them has no effect on the site.
 - GTM container ID `GTM-TEABUNGALOW` is a placeholder; replace with the real `GTM-XXXXXXX` in `src/layout/navbar.php` and `scripts/build_static.js`.
 - PMS (Little Hotelier vs Beds24), PayHere merchant credentials and Brevo/HubSpot keys are awaiting the owner.

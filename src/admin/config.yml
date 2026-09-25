@@ -4,13 +4,17 @@
 # Docs: https://decapcms.org/docs/configuration-options/
 ##############################################################################
 
-# ── Backend: GitHub OAuth / Netlify Identity / Local Gateway ────────────────
+# ── Backend: GitHub, signed in through our own Vercel functions ───────────────
+# Editors sign in with GitHub and need write access to the repo. Every save is
+# a commit to `branch`, which Vercel rebuilds automatically.
+# base_url is set to the current site origin in admin/index.html, so the login
+# popup (api/auth.js → GitHub → api/callback.js) always runs on the same host.
 backend:
   name: github
   repo: Eranga27/teaestate-vD
   branch: feature/platform-integrations   # Promoted to 'main' on production release
-  base_url: https://api.netlify.com        # OAuth gateway
-  auth_endpoint: auth
+  auth_endpoint: api/auth
+  auth_scope: public_repo                 # Repo is public; use "repo" if it is made private
 
 # Allow local editing during development with `npx decap-server`
 local_backend: true
@@ -22,7 +26,7 @@ public_folder: "/images/cms"
 # ── Site Metadata ───────────────────────────────────────────────────────────
 site_url: https://www.theteabungalow.com
 display_url: https://www.theteabungalow.com
-logo_url: https://www.theteabungalow.com/images/favicon.png
+logo_url: /images/favicon.png
 
 # ── Slug Configuration ─────────────────────────────────────────────────────
 slug:
@@ -48,7 +52,7 @@ collections:
     extension: json
     format: json
     summary: "{{title}} — {{category}} [{{duration}}]"
-    sortable_fields: ["title", "category", "featured", "active"]
+    sortable_fields: ["sort_order", "title", "category", "featured", "active"]
     fields:
       - label: "Experience Title"
         name: title
@@ -116,6 +120,12 @@ collections:
         widget: boolean
         default: true
         hint: "Shows 'Book This Experience' button linking to Concierge Modal"
+      - label: "Sort Order"
+        name: sort_order
+        widget: number
+        value_type: int
+        required: false
+        hint: "Order on the Experiences page — lower numbers appear first (10, 20, 30…)"
       - label: "Active / Visible?"
         name: active
         widget: boolean
@@ -133,7 +143,7 @@ collections:
     extension: json
     format: json
     summary: "{{name}} — {{nights}} Night(s) · {{rate}}"
-    sortable_fields: ["name", "nights", "featured", "active"]
+    sortable_fields: ["sort_order", "name", "nights", "featured", "active"]
     fields:
       - label: "Package Name"
         name: name
@@ -197,6 +207,12 @@ collections:
           label: "Inclusion Detail"
           name: inclusion
           widget: string
+      - label: "Sort Order"
+        name: sort_order
+        widget: number
+        value_type: int
+        required: false
+        hint: "Lower numbers appear first (10, 20, 30…)"
       - label: "Active / Visible?"
         name: active
         widget: boolean
