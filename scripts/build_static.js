@@ -103,7 +103,9 @@ function loadCmsCollection(collectionName) {
   const collectionDir = path.join(DATA_SRC, collectionName);
   if (!fs.existsSync(collectionDir)) return [];
 
-  const files = fs.readdirSync(collectionDir);
+  // One JSON file per CMS entry. Sort so output doesn't depend on filesystem order
+  // (Vercel's Linux build returns directory entries unsorted).
+  const files = fs.readdirSync(collectionDir).sort();
   const items = [];
 
   for (const file of files) {
@@ -161,7 +163,9 @@ for (const page of pages) {
 
   // ── CMS Content Ingestion Bridge ──────────────────────────────────────────
   if (page.pageName === 'experiences' && cmsExperiences.length > 0) {
-    const activeExperiences = cmsExperiences.filter(e => e.active !== false);
+    const activeExperiences = cmsExperiences
+      .filter(e => e.active !== false)
+      .sort((a, b) => (a.sort_order ?? 9999) - (b.sort_order ?? 9999));
     const expCardsHtml = activeExperiences
       .map(e => {
         const catSlug = (e.category || 'tea-estate').toLowerCase();

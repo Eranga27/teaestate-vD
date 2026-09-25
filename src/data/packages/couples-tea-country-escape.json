@@ -1,0 +1,22 @@
+{
+  "name": "Couples Tea Country Escape",
+  "slug": "couples-tea-country-escape",
+  "nights": 2,
+  "tagline": "Lanterns, log fires, colonial luxury, and secluded tea country vistas.",
+  "category": "romantic",
+  "featured": false,
+  "badge": "Romantic",
+  "rate": "From $185 / couple",
+  "solo_rate": "",
+  "rate_period": "/ couple",
+  "stages_covered": "Estate Grounds",
+  "inclusions": [
+    "2 nights in Founders Suite or Highlands Suite",
+    "Welcome bottle of wine or Ceylon artisan spirits",
+    "Private fireside 3-course dinner for two",
+    "Verandah planter's champagne afternoon tea",
+    "Morning guided estate nature walk"
+  ],
+  "active": true,
+  "sort_order": 40
+}

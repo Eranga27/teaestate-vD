@@ -1,0 +1,17 @@
+{
+  "title": "Private Fireside Dinner",
+  "category": "dining",
+  "description": "Exclusive use of the Planter's Lounge for the evening. Three courses for two, served by the original 1890 hearth. Ceylon arrack, candlelight, the fire crackling beside you.",
+  "duration": "~2 hrs",
+  "timing": "7:30 PM",
+  "location": "Planter's Lounge",
+  "rate": "Price on request",
+  "rate_unit": "for two",
+  "availability": "year-round",
+  "featured": true,
+  "icon": "🕯️",
+  "image": "/images/img6.jpg",
+  "bookable": true,
+  "active": true,
+  "sort_order": 40
+}

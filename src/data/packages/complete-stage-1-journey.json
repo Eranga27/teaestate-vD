@@ -1,0 +1,23 @@
+{
+  "name": "The Complete Stage 1 Journey",
+  "slug": "complete-stage-1-journey",
+  "nights": 2,
+  "tagline": "Pre-hike night at Hantana Cottage. Stage 1 hike with luggage forwarded. Recovery at the Tea Bungalow. Stage 2 from our front door the next morning.",
+  "category": "pekoe-trail",
+  "featured": true,
+  "badge": "★ Most Booked Package",
+  "rate": "$75 / couple · Introductory",
+  "solo_rate": "Price on request / person",
+  "rate_period": "/ couple",
+  "stages_covered": "Stage 1 & 2",
+  "inclusions": [
+    "1 night — Hantana Cottage (pre-hike Kandy base)",
+    "1 night — Tea Bungalow Galaha (post-hike recovery)",
+    "All transfers: Kandy → Stage 1 Start → Stage 1 End → Stage 2 Start",
+    "Luggage forwarded from Hantana to Galaha during your hike",
+    "2 breakfasts, 1 hearty estate dinner, 1 packed trail lunch",
+    "Trail briefing, leech socks, weather advisory"
+  ],
+  "active": true,
+  "sort_order": 10
+}

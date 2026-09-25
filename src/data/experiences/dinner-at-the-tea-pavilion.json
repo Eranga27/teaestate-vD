@@ -1,0 +1,17 @@
+{
+  "title": "Dinner at the Tea Pavilion",
+  "category": "dining",
+  "description": "Lantern-lit dinners under the covered outdoor pavilion. Live cooking in the open. Sri Lankan, continental, or curated multi-cuisine menus crafted from estate garden produce.",
+  "duration": "~2 hrs",
+  "timing": "7:30 PM",
+  "location": "Tea Pavilion",
+  "rate": "Price on request",
+  "rate_unit": "per person",
+  "availability": "year-round",
+  "featured": false,
+  "icon": "🍽️",
+  "image": "/images/front-view-woman-pouring-iced-tea.jpg",
+  "bookable": true,
+  "active": true,
+  "sort_order": 50
+}

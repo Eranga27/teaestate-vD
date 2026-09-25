@@ -1,0 +1,17 @@
+{
+  "title": "Breakfast at the Long Table",
+  "category": "dining",
+  "description": "A proper estate breakfast served at the twelve-seat Long Table. Eggs, fresh local fruit, freshly baked breads, estate-fresh Ceylon tea. Hikers served from 6:30 AM.",
+  "duration": "Unhurried",
+  "timing": "6:30 AM – 10:00 AM",
+  "location": "Long Table",
+  "rate": "Complimentary",
+  "rate_unit": "Included with stay",
+  "availability": "year-round",
+  "featured": false,
+  "icon": "🥐",
+  "image": "/images/IMG_7651.jpeg",
+  "bookable": false,
+  "active": true,
+  "sort_order": 60
+}

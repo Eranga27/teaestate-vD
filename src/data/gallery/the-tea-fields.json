@@ -1,0 +1,11 @@
+{
+  "image": "/images/tea-estate.jpg",
+  "caption": "The Tea Fields",
+  "subcaption": "Working estate · Morning mist",
+  "alt": "Lush green rolling tea fields across Galaha Estate",
+  "category": "estate",
+  "featured": true,
+  "span": "span-4",
+  "height": "h-sm",
+  "sort_order": 3
+}

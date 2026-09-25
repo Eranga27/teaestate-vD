@@ -1,0 +1,17 @@
+{
+  "title": "Packed Trail Lunch",
+  "category": "pekoe-trail",
+  "description": "Pre-ordered the night before for Pekoe Trail hikers. Artisanal sandwich or wrap, fresh fruit, energy snacks, water, estate tea in a thermos. Prepared fresh at dawn.",
+  "duration": "Hikers' pace",
+  "timing": "Collect at breakfast",
+  "location": "Pekoe Trail Trailhead",
+  "rate": "Price on request",
+  "rate_unit": "per person",
+  "availability": "year-round",
+  "featured": true,
+  "icon": "🧺",
+  "image": "/images/Pekoe Trail access.jpg",
+  "bookable": true,
+  "active": true,
+  "sort_order": 100
+}

@@ -1,0 +1,22 @@
+{
+  "name": "The Entire Estate Buyout",
+  "slug": "the-entire-estate-buyout",
+  "nights": 3,
+  "tagline": "Exclusive private residency for up to 16 guests across 7 heritage rooms.",
+  "category": "group",
+  "featured": true,
+  "badge": "Exclusive Residency",
+  "rate": "Price on Request",
+  "solo_rate": "",
+  "rate_period": "/ estate buyout",
+  "stages_covered": "Whole Property",
+  "inclusions": [
+    "Full exclusive use of all 7 chambers & suites",
+    "Dedicated chef, estate manager, and private service brigade",
+    "Bespoke dining menus crafted to preference",
+    "Private garden pavilion and lounge access",
+    "Curated estate activities and Pekoe Trail logistics"
+  ],
+  "active": true,
+  "sort_order": 50
+}

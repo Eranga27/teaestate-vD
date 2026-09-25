@@ -1,0 +1,17 @@
+{
+  "title": "Guided Tea Estate Walk",
+  "category": "tea-estate",
+  "description": "A guided hour through the working tea fields of Galaha Estate. Learn how tea is plucked, withered, and rolled. Understand why this land became the birthplace of Ceylon Tea in 1867.",
+  "duration": "~1 hr",
+  "timing": "By arrangement",
+  "location": "Galaha Estate",
+  "rate": "Price on request",
+  "rate_unit": "per person",
+  "availability": "year-round",
+  "featured": true,
+  "icon": "🌿",
+  "image": "/images/tea-factory.jpg",
+  "bookable": true,
+  "active": true,
+  "sort_order": 30
+}

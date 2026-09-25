@@ -1,0 +1,23 @@
+{
+  "name": "Stage 1 Finisher",
+  "slug": "stage-1-finisher",
+  "nights": 1,
+  "tagline": "Arrive tired from Stage 1. Leave refreshed for Stage 2.",
+  "category": "pekoe-trail",
+  "featured": false,
+  "badge": "Hiker Essential",
+  "rate": "From $45 / person",
+  "solo_rate": "From $55",
+  "rate_period": "/ person",
+  "stages_covered": "Stage 1 End & Stage 2 Start",
+  "inclusions": [
+    "1 night — Tea Bungalow Galaha",
+    "Pick-up from Galaha Post Office (Stage 1 End)",
+    "3-course estate dinner by the fireplace",
+    "Early breakfast from 6:30 AM",
+    "Packed trail lunch for Stage 2",
+    "Walk-out start directly to Stage 2 trail"
+  ],
+  "active": true,
+  "sort_order": 20
+}

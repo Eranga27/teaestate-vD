@@ -1,0 +1,17 @@
+{
+  "title": "Sunset Sundowner",
+  "category": "dining",
+  "description": "Drinks and canapés served in the garden as the sun sets behind the hills. Ceylon arrack, G&Ts, local snacks. A short ritual before dinner — perfect for couples and groups.",
+  "duration": "~45 min",
+  "timing": "6:00 PM",
+  "location": "Garden",
+  "rate": "Price on request",
+  "rate_unit": "per person",
+  "availability": "year-round",
+  "featured": false,
+  "icon": "🌅",
+  "image": "/images/swimming-pool-resort.jpg",
+  "bookable": true,
+  "active": true,
+  "sort_order": 80
+}
