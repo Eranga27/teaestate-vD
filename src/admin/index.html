@@ -340,7 +340,7 @@
         CMS.init({
           config: {
             backend: { name: 'test-repo' },
-            media_folder: 'images/cms',
+            media_folder: 'src/images/cms',
             public_folder: '/images/cms',
             site_url: 'https://www.theteabungalow.com',
             display_url: 'https://www.theteabungalow.com',
@@ -349,7 +349,7 @@
               {
                 name: 'experiences', label: 'Experiences',
                 label_singular: 'Experience',
-                folder: 'data/experiences', create: true, delete: true,
+                folder: 'src/data/experiences', create: true, delete: true,
                 slug: '{{slug}}', extension: 'json', format: 'json',
                 summary: '{{title}} — {{category}}',
                 fields: [
@@ -368,7 +368,7 @@
               {
                 name: 'packages', label: 'Packages & Offers',
                 label_singular: 'Package',
-                folder: 'data/packages', create: true, delete: true,
+                folder: 'src/data/packages', create: true, delete: true,
                 slug: '{{slug}}', extension: 'json', format: 'json',
                 summary: '{{name}} — {{nights}} Night(s)',
                 fields: [
@@ -389,7 +389,7 @@
               {
                 name: 'journal', label: 'Journal & Stories',
                 label_singular: 'Story',
-                folder: 'data/journal', create: true, delete: true,
+                folder: 'src/data/journal', create: true, delete: true,
                 slug: '{{slug}}', extension: 'json', format: 'json',
                 summary: '{{title}} — {{category}} ({{date}})',
                 fields: [
@@ -413,7 +413,7 @@
               {
                 name: 'estate_announcements', label: 'Estate Announcements',
                 label_singular: 'Announcement',
-                folder: 'data/announcements', create: true, delete: true,
+                folder: 'src/data/announcements', create: true, delete: true,
                 slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
                 extension: 'json', format: 'json',
                 summary: '{{title}} [{{type}}]',
@@ -432,7 +432,7 @@
               {
                 name: 'chambers', label: 'Chambers',
                 label_singular: 'Chamber',
-                folder: 'data/chambers', create: false, delete: false,
+                folder: 'src/data/chambers', create: false, delete: false,
                 extension: 'json', format: 'json',
                 summary: '{{name}} — {{rate_display}}',
                 fields: [
@@ -448,7 +448,7 @@
               {
                 name: 'gallery', label: 'Gallery Captions',
                 label_singular: 'Gallery Image',
-                folder: 'data/gallery', create: true, delete: true,
+                folder: 'src/data/gallery', create: true, delete: true,
                 slug: '{{slug}}', extension: 'json', format: 'json',
                 summary: '{{caption}} ({{category}})',
                 fields: [

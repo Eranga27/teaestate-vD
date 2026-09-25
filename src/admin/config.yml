@@ -16,7 +16,7 @@ backend:
 local_backend: true
 
 # ── Media / Image Storage ───────────────────────────────────────────────────
-media_folder: "images/cms"
+media_folder: "src/images/cms"
 public_folder: "/images/cms"
 
 # ── Site Metadata ───────────────────────────────────────────────────────────
@@ -41,7 +41,7 @@ collections:
   - name: experiences
     label: "Experiences"
     label_singular: "Experience"
-    folder: "data/experiences"
+    folder: "src/data/experiences"
     create: true
     delete: true
     slug: "{{slug}}"
@@ -126,7 +126,7 @@ collections:
   - name: packages
     label: "Packages & Offers"
     label_singular: "Package"
-    folder: "data/packages"
+    folder: "src/data/packages"
     create: true
     delete: true
     slug: "{{slug}}"
@@ -207,7 +207,7 @@ collections:
   - name: journal
     label: "Journal & Stories"
     label_singular: "Story"
-    folder: "data/journal"
+    folder: "src/data/journal"
     create: true
     delete: true
     slug: "{{slug}}"
@@ -284,7 +284,7 @@ collections:
   - name: gallery
     label: "Gallery Captions"
     label_singular: "Gallery Photo"
-    folder: "data/gallery"
+    folder: "src/data/gallery"
     create: true
     delete: true
     slug: "{{slug}}"
@@ -354,7 +354,7 @@ collections:
   - name: announcements
     label: "Estate Announcements"
     label_singular: "Announcement"
-    folder: "data/announcements"
+    folder: "src/data/announcements"
     create: true
     delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
@@ -396,7 +396,7 @@ collections:
   - name: chambers
     label: "Chambers & Suites"
     label_singular: "Chamber"
-    folder: "data/chambers"
+    folder: "src/data/chambers"
     create: false
     delete: false
     extension: json

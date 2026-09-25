@@ -1,4 +1,11 @@
-
+<?php
+session_start();
+if (empty($_SESSION['csrf_token_wl'])) {
+    $_SESSION['csrf_token_wl'] = bin2hex(random_bytes(32));
+}
+$csrf_token_wl = $_SESSION['csrf_token_wl'];
+$page = basename($_SERVER['PHP_SELF'], '.php');
+?>
 
 <!DOCTYPE html> 
 
@@ -428,174 +435,14 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
 
 </style> 
 
-
-  <!-- Preloader Immediate Anti-Flash Script -->
-  <script>
-    try {
-      if (sessionStorage.getItem('tb_preloader_seen') === '1') {
-        document.documentElement.classList.add('tb-preloader-skip');
-      }
-    } catch (e) {}
-  </script>
-
-  <!-- Google Consent Mode v2 Default (PDPA / GDPR Compliant) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    var tbInitialConsent = null;
-    try { tbInitialConsent = localStorage.getItem('tb_cookie_consent'); } catch (e) {}
-    gtag('consent', 'default', {
-      'analytics_storage': tbInitialConsent === 'granted' ? 'granted' : 'denied',
-      'ad_storage': tbInitialConsent === 'granted' ? 'granted' : 'denied',
-      'wait_for_update': 500
-    });
-  </script>
-
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+dl:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-TEABUNGALOW');</script>
-  <!-- End Google Tag Manager -->
-  <style>
-    html.tb-preloader-skip #tb-preloader { display: none !important; }
-    @media (prefers-reduced-motion: reduce) { #tb-preloader { display: none !important; } }
-    #tb-preloader {
-      position: fixed; inset: 0; width: 100vw; height: 100vh;
-      background: radial-gradient(ellipse at center, #0e2b15 0%, #081a0d 65%, #040c06 100%);
-      z-index: 999999; display: flex; align-items: center; justify-content: center;
-      opacity: 1; visibility: visible;
-      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.75s ease;
-      pointer-events: all; user-select: none;
-    }
-    #tb-preloader.tb-preloader-fade { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
-    .tb-preloader-inner { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 24px; max-width: min(92vw, 560px); margin: 0 auto; box-sizing: border-box; }
-    .tb-leaf-stage { display: flex; flex-direction: column; align-items: center; transform-origin: center bottom; animation: tbLeafBreathe 3.4s ease-in-out infinite alternate; }
-    .tb-leaf-wrap { position: relative; width: clamp(56px, 8vw, 74px); height: clamp(80px, 11.5vw, 104px); margin-bottom: 22px; filter: drop-shadow(0 0 14px rgba(199, 168, 94, 0.22)); }
-    .tb-leaf-svg { width: 100%; height: 100%; display: block; overflow: visible; }
-    .tb-leaf-outline { stroke: #C7A85E; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 280; stroke-dashoffset: 280; animation: tbLeafDraw 1.1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-    .tb-leaf-stem { stroke-dasharray: 40; stroke-dashoffset: 40; animation: tbVeinDraw 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; }
-    .tb-leaf-midrib { stroke-dasharray: 120; stroke-dashoffset: 120; animation: tbVeinDraw 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards; }
-    .tb-leaf-vein { stroke-dasharray: 40; stroke-dashoffset: 40; stroke-opacity: 0.85; }
-    .tb-v1 { animation: tbVeinDraw 0.7s ease 0.45s forwards; }
-    .tb-v2 { animation: tbVeinDraw 0.7s ease 0.60s forwards; }
-    .tb-v3 { animation: tbVeinDraw 0.7s ease 0.75s forwards; }
-    .tb-v4 { animation: tbVeinDraw 0.7s ease 0.90s forwards; }
-    .tb-leaf-glint { opacity: 0; animation: tbGlintPulse 1.8s ease-in-out 1.0s infinite alternate; }
-    @keyframes tbLeafDraw { to { stroke-dashoffset: 0; } }
-    @keyframes tbVeinDraw { to { stroke-dashoffset: 0; } }
-    @keyframes tbLeafBreathe { 0% { transform: translateY(0) rotate(0deg) scale(1); } 50% { transform: translateY(-3px) rotate(0.8deg) scale(1.015); } 100% { transform: translateY(0) rotate(0deg) scale(1); } }
-    @keyframes tbGlintPulse { 0% { opacity: 0.25; transform: scale(0.9); filter: drop-shadow(0 0 2px #C7A85E); } 100% { opacity: 1; transform: scale(1.2); filter: drop-shadow(0 0 8px #dfc080); } }
-    .tb-preloader-welcome { display: flex; flex-direction: column; align-items: center; margin-top: 2px; }
-    .tb-welcome-intro { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: clamp(14px, 1.6vw, 17px); letter-spacing: 0.12em; color: rgba(245, 241, 233, 0.72); margin-bottom: 3px; opacity: 0; transform: translateY(6px); animation: tbFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards; }
-    .tb-welcome-luxury { font-family: 'Cinzel', Georgia, serif; font-size: clamp(12px, 1.4vw, 15px); font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(199, 168, 94, 0.95); margin-bottom: 3px; opacity: 0; transform: translateY(6px); animation: tbFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards; }
-    .tb-welcome-estate { font-family: 'Cinzel', Georgia, serif; font-size: clamp(17px, 2.3vw, 23px); font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: #F5F1E9; margin-bottom: 12px; opacity: 0; transform: translateY(6px); animation: tbFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.3s forwards; }
-    .tb-welcome-divider { height: 1px; width: 0; background: linear-gradient(90deg, transparent, rgba(199, 168, 94, 0.6) 30%, #dfc080 50%, rgba(199, 168, 94, 0.6) 70%, transparent); margin-bottom: 10px; opacity: 0; animation: tbRuleDraw 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards; }
-    .tb-welcome-tagline { font-family: 'Cinzel', Georgia, serif; font-size: clamp(8.5px, 1.05vw, 10.5px); letter-spacing: 0.32em; color: rgba(199, 168, 94, 0.82); text-transform: uppercase; opacity: 0; transform: translateY(4px); animation: tbFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.65s forwards; }
-    @keyframes tbFadeUp { to { opacity: 1; transform: translateY(0); } }
-    @keyframes tbRuleDraw { to { width: 120px; opacity: 0.85; } }
-
-    #tb-consent-banner {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%);
-      width: min(92vw, 680px); background: rgba(7, 19, 14, 0.94); backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(199, 168, 94, 0.35);
-      border-radius: 12px; padding: 20px 24px; z-index: 99990; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-      color: #F5F1E9; opacity: 0; visibility: hidden;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, visibility 0.6s;
-    }
-    #tb-consent-banner.tb-consent-show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
-    .tb-consent-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-    .tb-consent-crest { width: 14px; height: 14px; stroke: #C7A85E; flex-shrink: 0; }
-    .tb-consent-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.18em; color: #C7A85E; text-transform: uppercase; font-weight: 600; }
-    .tb-consent-text { font-family: 'EB Garamond', Georgia, serif; font-size: 14.5px; line-height: 1.5; color: rgba(245, 241, 233, 0.88); margin-bottom: 16px; }
-    .tb-consent-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
-    .tb-btn-consent-accept { background: #C7A85E; color: #07130E; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; padding: 9px 18px; border-radius: 6px; border: 1px solid #C7A85E; cursor: pointer; transition: background 0.25s, transform 0.2s; }
-    .tb-btn-consent-accept:hover { background: #dfc080; transform: translateY(-1px); }
-    .tb-btn-consent-decline { background: transparent; color: #F5F1E9; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 9px 16px; border-radius: 6px; border: 1px solid rgba(199, 168, 94, 0.4); cursor: pointer; transition: all 0.25s; }
-    .tb-btn-consent-decline:hover { background: rgba(199, 168, 94, 0.1); border-color: #C7A85E; }
-    .tb-consent-link { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; color: #dfc080; text-decoration: underline; text-underline-offset: 3px; margin-left: auto; }
-    @media (max-width: 600px) {
-      #tb-consent-banner { bottom: 16px; padding: 16px; }
-      .tb-consent-actions { flex-direction: column; align-items: stretch; gap: 8px; }
-      .tb-btn-consent-accept, .tb-btn-consent-decline { text-align: center; width: 100%; }
-      .tb-consent-link { margin-left: 0; text-align: center; margin-top: 4px; }
-    }
-  </style>
 </head> 
 
-<body>
-
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TEABUNGALOW"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <!-- Preloader Overlay (once-per-session luxury tea leaf intro) -->
-  <div id="tb-preloader" aria-hidden="true" role="status" aria-label="Loading The Tea Bungalow">
-    <div class="tb-preloader-inner">
-      <div class="tb-leaf-stage">
-        <div class="tb-leaf-wrap">
-          <svg class="tb-leaf-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="tbLeafWash" x1="50" y1="10" x2="50" y2="135" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#C7A85E" stop-opacity="0.25"/>
-                <stop offset="45%" stop-color="#1E4D2B" stop-opacity="0.20"/>
-                <stop offset="100%" stop-color="#081a0d" stop-opacity="0.05"/>
-              </linearGradient>
-              <linearGradient id="tbGoldStem" x1="50" y1="8" x2="50" y2="136" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#dfc080"/>
-                <stop offset="60%" stop-color="#C7A85E"/>
-                <stop offset="100%" stop-color="#967738"/>
-              </linearGradient>
-            </defs>
-            <path class="tb-leaf-outline" d="M 50 134 C 49.5 126, 49 120, 50 116 C 36 100, 24 76, 29 48 C 32 32, 41 19, 50 8 C 59 19, 68 32, 71 48 C 76 76, 64 100, 50 116 C 50.8 120, 50.5 126, 50 134 Z" fill="url(#tbLeafWash)"/>
-            <path class="tb-leaf-stem" d="M 50 116 C 50.4 122, 50 128, 49.5 136" stroke="url(#tbGoldStem)" stroke-width="1.3" stroke-linecap="round"/>
-            <path class="tb-leaf-midrib" d="M 49.8 124 C 50.2 105, 50.8 75, 49.5 50 C 49 34, 49.5 20, 50 8" stroke="url(#tbGoldStem)" stroke-width="1.2" stroke-linecap="round"/>
-            <path class="tb-leaf-vein tb-v1" d="M 50 96 C 43 90, 36 84, 34 76" stroke="#C7A85E" stroke-width="0.85" stroke-linecap="round"/>
-            <path class="tb-leaf-vein tb-v2" d="M 49.7 78 C 42 72, 35 63, 33 52" stroke="#C7A85E" stroke-width="0.85" stroke-linecap="round"/>
-            <path class="tb-leaf-vein tb-v3" d="M 49.5 60 C 43 53, 37 44, 38 35" stroke="#C7A85E" stroke-width="0.85" stroke-linecap="round"/>
-            <path class="tb-leaf-vein tb-v4" d="M 49.7 42 C 45 35, 42 27, 45 20" stroke="#C7A85E" stroke-width="0.85" stroke-linecap="round"/>
-            <path class="tb-leaf-vein tb-v1" d="M 50 92 C 57 86, 64 80, 66 72" stroke="#C7A85E" stroke-width="0.85" stroke-linecap="round"/>
-            <path class="tb-leaf-vein tb-v2" d="M 49.7 74 C 58 68, 65 59, 67 48" stroke="#C7A85E" stroke-width="0.85" stroke-linecap="round"/>
-            <path class="tb-leaf-vein tb-v3" d="M 49.5 56 C 57 49, 63 40, 62 31" stroke="#C7A85E" stroke-width="0.85" stroke-linecap="round"/>
-            <path class="tb-leaf-vein tb-v4" d="M 49.7 38 C 55 31, 58 23, 55 16" stroke="#C7A85E" stroke-width="0.85" stroke-linecap="round"/>
-            <circle class="tb-leaf-glint" cx="50" cy="8" r="1.5" fill="#dfc080"/>
-          </svg>
-        </div>
-      </div>
-      <div class="tb-preloader-welcome">
-        <div class="tb-welcome-intro">Welcome to the</div>
-        <div class="tb-welcome-luxury">Quiet Luxury of</div>
-        <div class="tb-welcome-estate">The Tea Bungalow</div>
-        <div class="tb-welcome-divider"></div>
-        <div class="tb-welcome-tagline">Galaha Estate Â· Circa 1890</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Privacy & Cookie Consent Banner -->
-  <div id="tb-consent-banner" role="dialog" aria-labelledby="tbConsentTitle" aria-describedby="tbConsentDesc" aria-modal="false">
-    <div class="tb-consent-header">
-      <svg class="tb-consent-crest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
-      </svg>
-      <div class="tb-consent-title" id="tbConsentTitle">Guest Privacy &amp; Consent</div>
-    </div>
-    <p class="tb-consent-text" id="tbConsentDesc">
-      We respect your privacy. The Tea Bungalow uses essential cookies to ensure seamless estate navigation, and optional analytics to understand guest journeys in accordance with Sri Lanka's Personal Data Protection Act.
-    </p>
-    <div class="tb-consent-actions">
-      <button type="button" class="tb-btn-consent-accept" id="tbConsentAccept">Accept All</button>
-      <button type="button" class="tb-btn-consent-decline" id="tbConsentDecline">Essential Only</button>
-      <a href="/privacy" class="tb-consent-link">Privacy &amp; Data Policy</a>
-    </div>
-  </div> 
+<body> 
 
  
 
 <nav id="nav"> 
-
+<?php $page = basename($_SERVER['PHP_SELF'], '.php'); ?>
   <div> 
 
     <div class="nav-logo">The Chairman's Bungalow</div> 
@@ -604,7 +451,7 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
 
   </div> 
 
-  <a href="/the-bungalow" class="nav-back">← The Tea Bungalow</a> 
+  <a href="/vD/the-bungalow.php" class="nav-back">← The Tea Bungalow</a> 
 
 </nav> 
 
@@ -948,7 +795,7 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
 
         </div> 
 
-        <a href="/" class="comp-cta">Visit The Tea Bungalow →</a> 
+        <a href="/vD/home.php" class="comp-cta">Visit The Tea Bungalow →</a> 
 
       </div> 
 
@@ -1021,7 +868,7 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
     <form class="waitlist-form reveal" id="waitlist-form" novalidate> 
 
       <!-- CSRF & honeypot --> 
-      <input type="hidden" name="csrf_token" value=""> 
+      <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token_wl, ENT_QUOTES, 'UTF-8'); ?>"> 
       <div style="display:none" aria-hidden="true"><label>Leave blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div> 
 
       <div class="wf-row"> 
@@ -1140,7 +987,7 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
 
  
 
-    <div class="wl-position-note reveal">In the meantime — <a href="/" style="color:var(--gold);text-decoration:none;">stay at The Tea Bungalow, Galaha →</a></div> 
+    <div class="wl-position-note reveal">In the meantime — <a href="/vD/home.php" style="color:var(--gold);text-decoration:none;">stay at The Tea Bungalow, Galaha →</a></div> 
 
   </div> 
 
@@ -1174,11 +1021,11 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
 
       <ul class="footer-links"> 
 
-        <li><a href="/the-bungalow">The Tea Bungalow, Galaha</a></li> 
+        <li><a href="/vD/the-bungalow.php">The Tea Bungalow, Galaha</a></li> 
 
-        <li><a href="/contact#enquiry-form">Hantana Cottage (Available Now)</a></li> 
+        <li><a href="/vD/contact.php#enquiry-form">Hantana Cottage (Available Now)</a></li> 
 
-        <li><a href="/chairmans-bungalow-2027#waitlist">Chairman's Bungalow (2027)</a></li> 
+        <li><a href="/vD/chairmans-bungalow-2027.php#waitlist">Chairman's Bungalow (2027)</a></li> 
 
       </ul> 
 
@@ -1190,13 +1037,13 @@ footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,1
 
       <ul class="footer-links"> 
 
-        <li><a href="/our-chambers">Our Chambers</a></li> 
+        <li><a href="/vD/our-chambers.php">Our Chambers</a></li> 
 
-        <li><a href="/packages">Pekoe Trail Packages</a></li> 
+        <li><a href="/vD/packages.php">Pekoe Trail Packages</a></li> 
 
-        <li><a href="/the-entire-estate#enquire">Estate Buyout</a></li> 
+        <li><a href="/vD/the-entire-estate.php#enquire">Estate Buyout</a></li> 
 
-        <li><a href="/contact">Contact &amp; Enquire</a></li> 
+        <li><a href="/vD/contact.php">Contact &amp; Enquire</a></li> 
 
       </ul> 
 
@@ -1289,7 +1136,7 @@ document.getElementById('waitlist-form').addEventListener('submit', async functi
   btn.textContent = 'Sending…'; 
 
   try { 
-    const res  = await fetch('/api/waitlist', { 
+    const res  = await fetch('submit_waitlist.php', { 
       method: 'POST', 
       body:   new FormData(this), 
     }); 
@@ -1314,99 +1161,6 @@ document.getElementById('waitlist-form').addEventListener('submit', async functi
 
 </script> 
 
-
-  <script>
-    (function() {
-      const preloader = document.getElementById('tb-preloader');
-      if (preloader) {
-        let isReducedMotion = false;
-        try { isReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-        let forcePreview = false;
-        try { forcePreview = window.location.search.indexOf('preview_preloader=1') !== -1; } catch (e) {}
-        let alreadySeen = false;
-        try { alreadySeen = sessionStorage.getItem('tb_preloader_seen') === '1'; } catch (e) {}
-        if ((alreadySeen && !forcePreview) || (isReducedMotion && !forcePreview)) {
-          if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
-        } else {
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ event: 'preloader_started' });
-
-          const minDisplayMs = 2400;
-          const maxDisplayMs = 3800;
-          const startTime = Date.now();
-          let pageReady = false;
-          let dismissed = false;
-
-          setTimeout(function() {
-            if (!dismissed) {
-              window.dataLayer = window.dataLayer || [];
-              window.dataLayer.push({ event: 'preloader_welcome_shown' });
-            }
-          }, 1300);
-
-          function executeDismiss() {
-            if (dismissed) return;
-            dismissed = true;
-            preloader.classList.add('tb-preloader-fade');
-            try { sessionStorage.setItem('tb_preloader_seen', '1'); } catch (e) {}
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({ event: 'preloader_complete' });
-            setTimeout(function() {
-              if (preloader && preloader.parentNode) preloader.parentNode.removeChild(preloader);
-            }, 780);
-          }
-
-          function checkReadinessAndDismiss() {
-            const elapsed = Date.now() - startTime;
-            const remaining = Math.max(0, minDisplayMs - elapsed);
-            setTimeout(executeDismiss, remaining);
-          }
-
-          function onPageReady() {
-            if (pageReady) return;
-            pageReady = true;
-            if (document.fonts && document.fonts.ready) {
-              document.fonts.ready.then(checkReadinessAndDismiss).catch(checkReadinessAndDismiss);
-            } else {
-              checkReadinessAndDismiss();
-            }
-          }
-
-          if (document.readyState === 'complete') onPageReady();
-          else window.addEventListener('load', onPageReady);
-          setTimeout(executeDismiss, maxDisplayMs);
-        }
-      }
-
-      // Consent Engine for Chairmans Bungalow
-      const consentBanner = document.getElementById('tb-consent-banner');
-      const btnAccept = document.getElementById('tbConsentAccept');
-      const btnDecline = document.getElementById('tbConsentDecline');
-      if (consentBanner) {
-        let consentStatus = null;
-        try { consentStatus = localStorage.getItem('tb_cookie_consent'); } catch (e) {}
-        function updateGtmConsent(granted) {
-          if (typeof gtag === 'function') {
-            gtag('consent', 'update', { 'analytics_storage': granted ? 'granted' : 'denied', 'ad_storage': granted ? 'granted' : 'denied' });
-          }
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ event: 'consent_update', consent_level: granted ? 'all' : 'essential' });
-        }
-        function dismissConsent() {
-          consentBanner.classList.remove('tb-consent-show');
-          setTimeout(function() { if (consentBanner && consentBanner.parentNode) consentBanner.parentNode.removeChild(consentBanner); }, 600);
-        }
-        if (!consentStatus) {
-          setTimeout(function() { consentBanner.classList.add('tb-consent-show'); }, 1400);
-          if (btnAccept) btnAccept.addEventListener('click', function() { try { localStorage.setItem('tb_cookie_consent', 'granted'); } catch (e) {} updateGtmConsent(true); dismissConsent(); });
-          if (btnDecline) btnDecline.addEventListener('click', function() { try { localStorage.setItem('tb_cookie_consent', 'denied'); } catch (e) {} updateGtmConsent(false); dismissConsent(); });
-        } else {
-          if (consentBanner.parentNode) consentBanner.parentNode.removeChild(consentBanner);
-          if (consentStatus === 'granted') updateGtmConsent(true);
-        }
-      }
-    })();
-  </script>
 </body> 
 
 </html> 
