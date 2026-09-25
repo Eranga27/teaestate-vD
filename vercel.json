@@ -23,6 +23,10 @@
     {
       "source": "/submit_waitlist.php",
       "destination": "/api/waitlist"
+    },
+    {
+      "source": "/api/github/:path*",
+      "destination": "/api/cms-github?_gh=:path*"
     }
   ]
 }

@@ -32,11 +32,14 @@ Commit `src/`, `api/`, `scripts/` changes only. Vercel runs `npm run build` on e
 
 ## CMS (`/admin`)
 
-Decap CMS on the GitHub backend. Editors sign in with GitHub (`api/auth.js` → GitHub → `api/callback.js`) and need write access to the repo; each save commits to `src/data/` on the branch in `src/admin/config.yml`, and Vercel rebuilds. Config lives only in `config.yml` — `index.html` just sets `base_url` to the current origin.
+Decap CMS with one shared estate login — editors don't need GitHub accounts.
 
-- Needs Vercel env vars `OAUTH_GITHUB_CLIENT_ID` / `OAUTH_GITHUB_CLIENT_SECRET` from a GitHub OAuth App whose callback URL is `https://<host>/api/callback` (one host per OAuth App).
+- `src/admin/index.html`: branded sign-in form → `api/cms-login.js` checks the password server-side and sets a 12-hour HttpOnly session cookie, then Decap loads with a placeholder user.
+- Decap's GitHub backend talks to `/api/github/*` (rewritten to `api/cms-github.js`), which checks the session and calls GitHub with the server-side token. It only allows reads of this repo plus the save sequence (blob → tree → commit → non-forced branch update), and trees may only contain regular files under `src/data/` or `src/images/cms/` — the CMS can never change code. `npm test` covers these rules (`scripts/test_cms_auth.js`).
+- Vercel env vars: `CMS_ADMIN_PASSWORD`, `CMS_GITHUB_TOKEN` (fine-grained token, this repo only, Contents read & write), optional `CMS_ADMIN_USERNAME` (default `estate-admin`). Changing the password or token signs everyone out.
+- Saves commit to the branch in `config.yml` as the token's owner; Vercel rebuilds (~30 s). Image uploads are capped at 3 MB per field (Vercel's 4.5 MB request limit).
+- Config lives only in `config.yml`; `index.html` just sets `api_root` to this origin.
 - One JSON file per entry in folder collections. Never put an array of entries in one file — the CMS would treat it as a single entry and overwrite it. Order comes from `sort_order`.
-- Local editing without GitHub: `npx decap-server` in the repo root, then `npm run serve` and open `/admin`.
 
 ## Rules
 

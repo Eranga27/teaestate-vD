@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "node scripts/build_static.js",
-    "test": "node scripts/test_preloader_gtm.js && node scripts/verify_deploy.js",
+    "test": "node scripts/test_preloader_gtm.js && node scripts/verify_deploy.js && node scripts/test_cms_auth.js",
     "serve": "node scripts/serve_local.js",
     "verify:preview": "node scripts/verify_live_preview.js"
   }

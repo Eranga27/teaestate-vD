@@ -4,20 +4,16 @@
 # Docs: https://decapcms.org/docs/configuration-options/
 ##############################################################################
 
-# ── Backend: GitHub, signed in through our own Vercel functions ───────────────
-# Editors sign in with GitHub and need write access to the repo. Every save is
-# a commit to `branch`, which Vercel rebuilds automatically.
-# base_url is set to the current site origin in admin/index.html, so the login
-# popup (api/auth.js → GitHub → api/callback.js) always runs on the same host.
+# ── Backend: GitHub, through our own server gateway ─────────────────────────
+# Editors sign in at /admin with the shared estate password (api/cms-login.js).
+# The CMS talks to GitHub via /api/github (api/cms-github.js), which holds the
+# GitHub token server-side and only allows content changes. Every save is a
+# commit to `branch`, which Vercel rebuilds automatically. api_root is set to
+# this site's /api/github in admin/index.html.
 backend:
   name: github
-  repo: Eranga27/teaestate-vD
+  repo: Eranga27/teaestate-vD             # must match REPO in api/_cms-session.js
   branch: feature/platform-integrations   # Promoted to 'main' on production release
-  auth_endpoint: api/auth
-  auth_scope: public_repo                 # Repo is public; use "repo" if it is made private
-
-# Allow local editing during development with `npx decap-server`
-local_backend: true
 
 # ── Media / Image Storage ───────────────────────────────────────────────────
 media_folder: "src/images/cms"
@@ -114,7 +110,10 @@ collections:
         name: image
         widget: image
         required: false
-        hint: "Landscape image, min 1200×700px, WebP or JPG preferred"
+        hint: "Landscape image, WebP or JPG, under 3 MB"
+        media_library:
+          config:
+            max_file_size: 3000000   # 3 MB — uploads pass through a Vercel function (4.5 MB request limit)
       - label: "Bookable / Enquire CTA Active"
         name: bookable
         widget: boolean
@@ -273,7 +272,10 @@ collections:
         name: featured_image
         widget: image
         required: false
-        hint: "Primary cover photo for the story card"
+        hint: "Primary cover photo for the story card (under 3 MB)"
+        media_library:
+          config:
+            max_file_size: 3000000   # 3 MB — uploads pass through a Vercel function (4.5 MB request limit)
       - label: "Image Caption"
         name: image_caption
         widget: string
@@ -312,7 +314,10 @@ collections:
       - label: "Image File"
         name: image
         widget: image
-        hint: "High-resolution image (WebP or JPG)"
+        hint: "WebP or JPG, under 3 MB"
+        media_library:
+          config:
+            max_file_size: 3000000   # 3 MB — uploads pass through a Vercel function (4.5 MB request limit)
       - label: "Caption Title"
         name: caption
         widget: string

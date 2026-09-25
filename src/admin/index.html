@@ -8,16 +8,211 @@
   <link rel="icon" type="image/png" href="/images/favicon.png">
   <!-- Absolute path: with cleanUrls this page is served at /admin, where a relative config.yml would resolve to /config.yml -->
   <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-deep: #07130E;
+      --gold:       #C7A85E;
+      --gold-light: #dfc080;
+      --cream:      #F5F1E9;
+      --ink:        #1a1510;
+    }
+
+    /* ── Login screen (removed once signed in, so it never touches the CMS UI) ── */
+    /* :where() keeps this reset at zero specificity so the component styles below win */
+    :where(#tb-cms-login, #tb-cms-login *) { box-sizing: border-box; margin: 0; padding: 0; }
+    #tb-cms-login {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at 50% 40%, #0e2b15 0%, #07130E 60%, #040c06 100%);
+      z-index: 999999;
+      padding: 24px;
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+    #tb-cms-login[hidden] { display: none; }
+
+    .tb-login-crest { margin-bottom: 20px; animation: crestGlow 2.2s ease-in-out infinite alternate; }
+    @keyframes crestGlow {
+      0%   { filter: drop-shadow(0 0 6px rgba(199,168,94,0.25)); transform: scale(0.97); }
+      100% { filter: drop-shadow(0 0 20px rgba(199,168,94,0.55)); transform: scale(1.02); }
+    }
+    @media (prefers-reduced-motion: reduce) { .tb-login-crest { animation: none; } }
+
+    .tb-login-estate-tag {
+      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.28em;
+      color: rgba(199,168,94,0.65); text-transform: uppercase; margin-bottom: 6px;
+    }
+    .tb-login-title {
+      font-family: 'Cinzel', serif; font-size: clamp(17px, 2.5vw, 22px);
+      font-weight: 500; letter-spacing: 0.16em; color: var(--cream);
+      text-transform: uppercase; text-align: center; margin-bottom: 4px;
+    }
+    .tb-login-sub {
+      font-size: 15px; font-style: italic;
+      color: rgba(245,241,233,0.5); margin-bottom: 32px;
+    }
+
+    .tb-login-card {
+      width: min(92vw, 400px);
+      background: rgba(15, 46, 28, 0.7);
+      border: 1px solid rgba(199,168,94,0.3);
+      border-radius: 12px;
+      padding: 32px 28px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+    }
+    .tb-login-label {
+      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.2em;
+      color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 7px;
+    }
+    .tb-login-input {
+      width: 100%;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(199,168,94,0.25);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-family: 'EB Garamond', serif; font-size: 15px; color: var(--cream);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      margin-bottom: 18px;
+    }
+    .tb-login-input:focus { border-color: rgba(199,168,94,0.65); box-shadow: 0 0 0 3px rgba(199,168,94,0.12); }
+    .tb-login-input::placeholder { color: rgba(245,241,233,0.3); }
+
+    .tb-login-btn {
+      width: 100%;
+      background: var(--gold); color: var(--ink);
+      font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 600;
+      padding: 14px; margin-top: 4px;
+      border: none; border-radius: 6px; cursor: pointer;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    }
+    .tb-login-btn:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(199,168,94,0.25); }
+    .tb-login-btn:active { transform: translateY(0); }
+    .tb-login-btn:disabled { opacity: 0.6; cursor: wait; transform: none; box-shadow: none; }
+
+    .tb-login-error {
+      font-size: 14px; color: #e8a0a0;
+      text-align: center; margin-top: 14px; min-height: 20px;
+    }
+    .tb-login-rule { height: 1px; background: linear-gradient(90deg, transparent, rgba(199,168,94,0.3), transparent); margin: 22px 0 0; }
+    .tb-login-footer { font-size: 12px; color: rgba(245,241,233,0.35); text-align: center; margin-top: 10px; }
+  </style>
 </head>
 <body>
-  <!-- Access control is GitHub sign-in (api/auth.js + api/callback.js): only accounts
-       with write access to the repo can load or save content. -->
-  <script>window.CMS_MANUAL_INIT = true;</script>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <div id="tb-cms-login" role="main" aria-label="Estate CMS sign-in" hidden>
+    <div class="tb-login-crest">
+      <svg width="52" height="52" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" stroke="#C7A85E" stroke-opacity="0.4" stroke-width="1"/>
+        <path d="M24 9C24 9 20.5 16.5 17.5 19.5C14.5 22.5 11.5 24.5 11.5 28.5C11.5 34.5 16.5 37.5 24 37.5C31.5 37.5 36.5 34.5 36.5 28.5C36.5 24.5 33.5 22.5 30.5 19.5C27.5 16.5 24 9 24 9Z" stroke="#C7A85E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 13V33.5M24 21.5L19 24.5M24 25.5L29 28.5" stroke="#C7A85E" stroke-width="1" stroke-opacity="0.75" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="tb-login-estate-tag">Galaha · Old Ceylon · Est. 1890</div>
+    <h1 class="tb-login-title">The Tea Bungalow</h1>
+    <div class="tb-login-sub">Estate Content Manager</div>
+
+    <form class="tb-login-card" id="cmsLoginForm" novalidate>
+      <label class="tb-login-label" for="cmsUsername">Username</label>
+      <input class="tb-login-input" type="text" id="cmsUsername" name="username"
+             autocomplete="username" autocapitalize="none" spellcheck="false" required>
+
+      <label class="tb-login-label" for="cmsPassword">Password</label>
+      <input class="tb-login-input" type="password" id="cmsPassword" name="password"
+             autocomplete="current-password" required>
+
+      <button type="submit" class="tb-login-btn" id="cmsLoginBtn">Enter Estate Manager</button>
+      <div class="tb-login-error" id="cmsLoginError" role="alert" aria-live="polite"></div>
+
+      <div class="tb-login-rule"></div>
+      <div class="tb-login-footer">Restricted access · The Tea Bungalow, Galaha Estate</div>
+    </form>
+  </div>
+
   <script>
-    // Merged over config.yml. Running the login popup on this page's own origin keeps
-    // the CMS working on whichever host it is opened from (preview now, production later).
-    CMS.init({ config: { backend: { base_url: window.location.origin } } });
+    (function () {
+      // The password is checked on the server (api/cms-login.js), which sets an HttpOnly
+      // session cookie. The CMS then reaches GitHub through /api/github (api/cms-github.js),
+      // which holds the real GitHub token — the browser only ever has a placeholder.
+      var USER_KEY = 'decap-cms-user';
+      var loginScreen = document.getElementById('tb-cms-login');
+      var form = document.getElementById('cmsLoginForm');
+      var button = document.getElementById('cmsLoginBtn');
+      var errorBox = document.getElementById('cmsLoginError');
+
+      function showLogin(message) {
+        try { localStorage.removeItem(USER_KEY); } catch (e) {}
+        errorBox.textContent = message || '';
+        loginScreen.hidden = false;
+        document.getElementById('cmsUsername').focus();
+      }
+
+      function signOut() {
+        fetch('/api/cms-login', { method: 'DELETE' }).catch(function () {}).then(function () { location.reload(); });
+      }
+
+      function startCMS() {
+        // Decap restores this stored "user" instead of showing its own GitHub login
+        localStorage.setItem(USER_KEY, JSON.stringify({ backendName: 'github', token: 'server-session' }));
+        loginScreen.remove();
+
+        // Decap clears the stored user when someone clicks "Log Out" (or the session has
+        // expired): end our session too and come back to this sign-in screen.
+        var removeItem = Storage.prototype.removeItem;
+        Storage.prototype.removeItem = function (key) {
+          removeItem.call(this, key);
+          if (this === window.localStorage && key === USER_KEY) signOut();
+        };
+
+        window.CMS_MANUAL_INIT = true;
+        var script = document.createElement('script');
+        script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+        script.onload = function () {
+          CMS.init({ config: { backend: { api_root: window.location.origin + '/api/github' } } });
+        };
+        document.body.appendChild(script);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errorBox.textContent = '';
+        button.disabled = true;
+        button.textContent = 'Signing in…';
+        fetch('/api/cms-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: document.getElementById('cmsUsername').value,
+            password: document.getElementById('cmsPassword').value
+          })
+        })
+          .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, data: data }; }); })
+          .then(function (r) {
+            if (r.ok) return startCMS();
+            showLogin(r.data.message || 'Sign-in failed. Please try again.');
+            document.getElementById('cmsPassword').value = '';
+          })
+          .catch(function () { showLogin('Could not reach the server. Please check your connection.'); })
+          .then(function () { button.disabled = false; button.textContent = 'Enter Estate Manager'; });
+      });
+
+      // Already signed in on this browser? Go straight to the CMS.
+      fetch('/api/cms-login', { cache: 'no-store' })
+        .then(function (res) {
+          if (res.ok) return startCMS();
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            showLogin(res.status === 503 ? data.message : '');
+          });
+        })
+        .catch(function () { showLogin('Could not reach the server. Please check your connection.'); });
+    })();
   </script>
+
 </body>
 </html>
