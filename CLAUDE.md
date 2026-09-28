@@ -2,7 +2,7 @@
 
 Luxury heritage stay: restored 1890s planter's bungalow in Galaha, Sri Lanka (base for Pekoe Trail Stages 1 & 2). 7 keys (6 chambers + Carriage House Cottage). Full roadmap and phase status: [docs/bungalow-ledger.md](docs/bungalow-ledger.md).
 
-- Production (`main`): https://teaestate.vercel.app
+- Live site: https://teaestate.vercel.app — a **manually pinned alias**, not the project's production domain. Since 2026-09-28 it points to the `live/enquiry-fix` deployment (the original site from commit ae7a17e + the enquiry-email fix). Merging to `main` does NOT change it: `main` builds go to teabungalow.vercel.app, and `main` also contains the first preloader version (349f861) that was never shown live. Re-point with `vercel alias set <deployment-url> teaestate.vercel.app` (previous target: deploy-nwe9vh0jf-eranga-bowatte.vercel.app). At launch, attach the real domain to the project's Production instead.
 - Preview (`feature/platform-integrations`): https://teabungalow-git-feature-platform-integrations-eranga-bowatte.vercel.app — the older `deploy-git-…` alias is frozen at a September build; don't use it.
 - Repo: github.com/Eranga27/teaestate-vD · Vercel project: `eranga-bowatte/teabungalow`
 
@@ -62,6 +62,4 @@ Decap CMS with one shared estate login — editors don't need GitHub accounts.
 
 ## Known gaps
 
-- Production (`main`) still has the old enquiry/waitlist code: forms post multipart data the handler can't read, and nothing is emailed — enquiries there are lost until the fix is promoted.
-- Awaiting the owner: PMS choice (Little Hotelier vs Beds24), PayHere merchant credentials, Brevo account/API key, real GTM container. Brevo automations for the guest journey (Day −14, −3, +1) are built in Brevo's UI on the enquiry list; booking-confirmed triggers need the PMS.
-- The privacy policy should name Brevo as a data processor once it is in use.
+- Awaiting the owner: PMS choice (Little Hotelier vs Beds24), PayHere merchant credentials, real GTM container, client review of the Brevo line in the privacy policy. Brevo lists/automations for the guest journey (Day −14, −3, +1) are optional and not set up; booking-confirmed triggers need the PMS.
