@@ -1,0 +1,21 @@
+{
+  "name": "Hiking Group Buyout",
+  "section": "trail",
+  "layout": "card",
+  "accent": "ink",
+  "duration": "Groups & Custom Stays",
+  "tagline": "For hiking clubs and group parties walking the trail together.",
+  "inclusions": [
+    "Exclusive estate — all rooms, all spaces",
+    "Up to 12 guests",
+    "Private chef & group meal arrangements",
+    "Dedicated vehicle for all stage transfers",
+    "Custom itinerary across Stages 1–3"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ night · estate",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 60
+}

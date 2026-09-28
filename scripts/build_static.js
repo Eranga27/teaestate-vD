@@ -139,6 +139,52 @@ const cmsGallery = loadCmsCollection('gallery');
 const cmsAnnouncements = loadCmsCollection('announcements');
 const cmsChambers = loadCmsCollection('chambers');
 
+// CMS text is plain text (editors type "&", not "&amp;"), so escape it for HTML
+const escapeHtml = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+function renderPackageCard(p, index) {
+  const accent = p.accent === 'gold' ? ' gold-top' : p.accent === 'ink' ? ' ink-top' : '';
+  const delay = ['', ' d1', ' d2'][index % 3];
+  return `    <!-- CMS Package: ${escapeHtml(p.name)} -->
+    <div class="pkg-card${accent} reveal${delay}">
+${p.badge ? `      <span class="pkg-pop-tag">${escapeHtml(p.badge)}</span>\n` : ''}      <div class="pkg-duration">${escapeHtml(p.duration)}</div>
+      <div class="pkg-name">${escapeHtml(p.name)}</div>
+      <p class="pkg-tagline">${escapeHtml(p.tagline)}</p>
+      <div class="pkg-includes">
+${(p.inclusions || []).map(item => `        <div class="pkg-include">${escapeHtml(item)}</div>`).join('\n')}
+      </div>
+      <div class="pkg-rate">
+${p.rate_prefix ? `        <span class="pkg-rate-from">${escapeHtml(p.rate_prefix)}</span>\n` : ''}        <span class="pkg-rate-amount">${escapeHtml(p.rate || 'Price on request')}</span>
+${p.rate_period ? `        <span class="pkg-rate-period">${escapeHtml(p.rate_period)}</span>\n` : ''}      </div>
+      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="${escapeHtml(p.enquiry_name || p.name)}" data-source="package_cta">${escapeHtml(p.cta_label || 'Enquire')}</a>
+    </div>`;
+}
+
+function renderFeaturedPackage(p) {
+  const meta = [['Duration', p.duration], ['Stages Covered', p.stages_covered], ['Rate', p.rate], ['Solo Rate', p.solo_rate]]
+    .filter(([, value]) => value)
+    .map(([label, value]) => `          <div><div class="phd-meta-label">${label}</div><div class="phd-meta-val">${escapeHtml(value)}</div></div>`)
+    .join('\n');
+  return `    <!-- CMS Package (featured): ${escapeHtml(p.name)} -->
+    <div class="pkg-hero-card reveal">
+      <div class="pkg-hero-visual">
+        <div class="phv-nights">${escapeHtml(p.hero_nights)}</div>
+        <div class="phv-label">${escapeHtml(p.hero_label)}</div>
+        <div class="phv-title">${escapeHtml(p.name)}</div>
+      </div>
+      <div class="pkg-hero-detail">
+${p.badge ? `        <span class="phd-popular">${escapeHtml(p.badge)}</span>\n` : ''}        <p class="phd-tagline">${escapeHtml(p.tagline)}</p>
+        <div class="phd-includes">
+${(p.inclusions || []).map(item => `          <div class="phd-include">${escapeHtml(item)}</div>`).join('\n')}
+        </div>
+        <div class="phd-meta">
+${meta}
+        </div>
+        <a href="#" class="phd-cta tb-reserve-trigger" data-package="${escapeHtml(p.enquiry_name || p.name)}" data-source="package_cta">${escapeHtml(p.cta_label || 'Enquire About This Package')}</a>
+      </div>
+    </div>`;
+}
+
 console.log(`[CMS Bridge] Loaded: ${cmsExperiences.length} experiences, ${cmsPackages.length} packages, ${cmsStories.length} stories, ${cmsGallery.length} gallery items, ${cmsAnnouncements.length} announcements, ${cmsChambers.length} chambers`);
 
 console.log('Rendering static HTML pages...');
@@ -218,6 +264,23 @@ for (const page of pages) {
       /(<div class="experiences-grid" id="tea-experiences">)[\s\S]*?(<\/div>\s*<!-- ═══ A DAY AT THE ESTATE ═══ -->)/i,
       (m, openTag, trailing) => `${openTag}\n\n${expCardsHtml}\n\n  ${trailing}`
     );
+  }
+
+  if (page.pageName === 'packages' && cmsPackages.length > 0) {
+    // Pekoe Trail and Heritage grids come from CMS packages (buyout rates stay in the template)
+    for (const section of ['trail', 'heritage']) {
+      const sectionPackages = cmsPackages
+        .filter(p => p.active !== false && (p.section || 'heritage') === section)
+        .sort((a, b) => (a.sort_order ?? 9999) - (b.sort_order ?? 9999));
+      let cardIndex = 0;
+      const cardsHtml = sectionPackages
+        .map(p => (p.layout === 'featured' ? renderFeaturedPackage(p) : renderPackageCard(p, cardIndex++)))
+        .join('\n\n');
+      content = content.replace(
+        new RegExp(`(<div class="${section}-pkgs-grid">)[\\s\\S]*?(<\\/div>\\s*<\\/section>)`),
+        (m, openTag, trailing) => `${openTag}\n\n${cardsHtml}\n\n  ${trailing}`
+      );
+    }
   }
 
   if (page.pageName === 'gallery' && cmsGallery.length > 0) {

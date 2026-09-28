@@ -131,7 +131,8 @@ collections:
         default: true
 
   # ── 02. PACKAGES & OFFERS ────────────────────────────────────────────────
-  # Controls packages, hiking itineraries, romantic getaways, and buyouts
+  # Builds the Pekoe Trail and Heritage package grids on /packages
+  # (the Estate Buyout rates section on that page is not CMS-managed)
   - name: packages
     label: "Packages & Offers"
     label_singular: "Package"
@@ -139,80 +140,109 @@ collections:
     create: true
     delete: true
     slug: "{{slug}}"
+    identifier_field: name
     extension: json
     format: json
-    summary: "{{name}} — {{nights}} Night(s) · {{rate}}"
-    sortable_fields: ["sort_order", "name", "nights", "featured", "active"]
+    summary: "{{name}} — {{section}} · {{rate}}"
+    sortable_fields: ["sort_order", "name", "section", "active"]
     fields:
       - label: "Package Name"
         name: name
         widget: string
-        hint: "e.g. The Complete Stage 1 Journey, The Slow Week"
+        hint: "e.g. Stage 1 Finisher, Tea Country Escape"
+      - label: "Page Section"
+        name: section
+        widget: select
+        default: "heritage"
+        options:
+          - { label: "Pekoe Trail Packages (for hikers)", value: "trail" }
+          - { label: "Heritage Estate Packages (leisure guests)", value: "heritage" }
+      - label: "Card Style"
+        name: layout
+        widget: select
+        default: "card"
+        options:
+          - { label: "Standard card", value: "card" }
+          - { label: "Large featured card (use for one package only)", value: "featured" }
+      - label: "Duration"
+        name: duration
+        widget: string
+        hint: "e.g. 1 Night, 2–4 Nights, Day Use — No Overnight"
       - label: "Tagline"
         name: tagline
-        widget: string
-        hint: "One-line hook shown under package name"
-      - label: "Number of Nights"
-        name: nights
-        widget: number
-        value_type: int
-        min: 1
-        max: 14
-        default: 2
-      - label: "Category"
-        name: category
-        widget: select
-        options:
-          - { label: "Pekoe Trail / Hiking", value: "pekoe-trail" }
-          - { label: "Romantic / Couples", value: "romantic" }
-          - { label: "Wellness & Slow Travel", value: "wellness" }
-          - { label: "Estate Buyout / Group", value: "group" }
-          - { label: "Heritage Stay", value: "heritage" }
-      - label: "Featured / Hero Highlight?"
-        name: featured
-        widget: boolean
-        default: false
-        hint: "Enables prominent gold banner and featured layout"
-      - label: "Popular Badge Label"
+        widget: text
+        hint: "One or two sentences under the name"
+      - label: "Badge"
         name: badge
         widget: string
         required: false
-        hint: "e.g. ★ Most Booked Package, Hiker Essential, Exclusive Residency"
-      - label: "Rate Display"
-        name: rate
-        widget: string
-        hint: "e.g. $75 / couple · Introductory, From $185, Price on request"
-      - label: "Solo Traveler Rate"
-        name: solo_rate
+        hint: "Optional ribbon, e.g. ★ For Couples, ★ Serious Trekker"
+      - label: "Top Accent"
+        name: accent
+        widget: select
+        required: false
+        default: "none"
+        hint: "Coloured line on top of standard cards"
+        options:
+          - { label: "None", value: "none" }
+          - { label: "Gold", value: "gold" }
+          - { label: "Ink", value: "ink" }
+      - label: "What's Included"
+        name: inclusions
+        widget: list
+        label_singular: "Inclusion"
+        field: { label: "Inclusion", name: inclusion, widget: string }
+      - label: "Rate Prefix"
+        name: rate_prefix
         widget: string
         required: false
-        hint: "e.g. Price on request / person, From $55"
+        default: "From"
+        hint: "Small word before the rate on standard cards, e.g. From"
+      - label: "Rate"
+        name: rate
+        widget: string
+        default: "Price on request"
+        hint: "e.g. Price on request, $185, $75 / couple · Introductory"
       - label: "Rate Period"
         name: rate_period
         widget: string
         required: false
-        hint: "e.g. / couple, / person, / stay, / week"
-      - label: "Pekoe Trail Stages Covered"
+        hint: "Standard cards: e.g. / couple · 2 nights, / person"
+      - label: "Stages Covered (featured card)"
         name: stages_covered
         widget: string
         required: false
-        hint: "e.g. Stage 1 & 2, Stage 1 End, All Estate Trails"
-      - label: "Package Inclusions"
-        name: inclusions
-        widget: list
-        label_singular: "Inclusion"
-        hint: "Bullet points detailing all transfers, meals, and privileges included"
-        field:
-          label: "Inclusion Detail"
-          name: inclusion
-          widget: string
+      - label: "Solo Rate (featured card)"
+        name: solo_rate
+        widget: string
+        required: false
+      - label: "Big Nights Label (featured card)"
+        name: hero_nights
+        widget: string
+        required: false
+        hint: "e.g. 2N"
+      - label: "Picture Caption (featured card)"
+        name: hero_label
+        widget: string
+        required: false
+        hint: "e.g. ★ Most Popular · Hantana + Galaha"
+      - label: "Button Text"
+        name: cta_label
+        widget: string
+        required: false
+        hint: "Defaults to Enquire (Enquire About This Package on the featured card)"
+      - label: "Enquiry Name"
+        name: enquiry_name
+        widget: string
+        required: false
+        hint: "Package name pre-filled in the reservation form. Leave empty to use the Package Name."
       - label: "Sort Order"
         name: sort_order
         widget: number
         value_type: int
         required: false
-        hint: "Lower numbers appear first (10, 20, 30…)"
-      - label: "Active / Visible?"
+        hint: "Order within its section — lower numbers appear first (10, 20, 30…)"
+      - label: "Visible on Website?"
         name: active
         widget: boolean
         default: true

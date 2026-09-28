@@ -1,22 +1,23 @@
 {
   "name": "The Slow Week",
-  "slug": "the-slow-week",
-  "nights": 7,
-  "tagline": "Seven days in the high mist. Reading, walking, tea tasting, and quiet recovery.",
-  "category": "wellness",
-  "featured": true,
-  "badge": "Extended Stay Privilege",
-  "rate": "Price on request",
-  "solo_rate": "Price on request",
-  "rate_period": "/ week",
-  "stages_covered": "Stages 1, 2 & Estate Trails",
+  "section": "heritage",
+  "layout": "card",
+  "accent": "none",
+  "duration": "5–7 Nights",
+  "tagline": "For those who want to stop rushing — a full week at the estate with nothing scheduled that you don't ask for.",
   "inclusions": [
-    "7 nights in your chosen heritage chamber",
-    "Full daily breakfast, afternoon tea, and fireside dinners",
-    "Private guided tea estate tour & factory cupping",
-    "Unlimited trail concierge & local transfer support",
-    "Dedicated butler and laundry service"
+    "5–7 nights in your chosen chamber",
+    "Daily breakfasts",
+    "3 dinners included (others optional)",
+    "Two guided tea estate walks",
+    "One Ayurvedic session included",
+    "Afternoon tea on two days",
+    "Full estate access throughout"
   ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ couple · 5 nights",
+  "cta_label": "Enquire",
   "active": true,
-  "sort_order": 30
+  "sort_order": 90
 }

@@ -1,0 +1,22 @@
+{
+  "name": "Estate Wellness Retreat",
+  "section": "heritage",
+  "layout": "card",
+  "accent": "none",
+  "duration": "3 Nights",
+  "tagline": "Three days of Ayurveda, estate walks, slow meals, and deep rest in the hill country air.",
+  "inclusions": [
+    "3 nights — Camellia or Highlands Suite",
+    "Daily breakfasts & two dinners",
+    "2 Ayurvedic massage sessions",
+    "Morning estate walk each day",
+    "Afternoon tea on two days",
+    "Post-hike foot soaks as required"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ person · 3 nights",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 120
+}

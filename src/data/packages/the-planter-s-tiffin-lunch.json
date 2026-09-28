@@ -1,0 +1,21 @@
+{
+  "name": "The Planter's Tiffin Lunch",
+  "section": "trail",
+  "layout": "card",
+  "accent": "none",
+  "duration": "Day Use — No Overnight",
+  "tagline": "A proper rest between Stage 1 and Stage 2 — without staying the night.",
+  "inclusions": [
+    "Pick-up at Galaha Post Office (Stage 1 End)",
+    "3-course verandah lunch",
+    "Estate-fresh Ceylon tea service",
+    "Drop-off at Stage 2 start or Galaha town",
+    "Seating window: 12:00 PM – 2:30 PM"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ person",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 50
+}
