@@ -1,0 +1,156 @@
+{
+  "heroimg-1.jpeg": {
+    "name": "lounge-main",
+    "widths": [
+      900,
+      1600,
+      2400
+    ]
+  },
+  "IMG_7639.jpeg": {
+    "name": "lounge-arches",
+    "widths": [
+      900,
+      1600,
+      2400
+    ]
+  },
+  "IMG_7650.jpeg": {
+    "name": "lounge-fireplace",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "IMG_7643 (1).jpeg": {
+    "name": "lounge-red",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "IMG_7651.jpeg": {
+    "name": "lounge-windows",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "IMG_7660.jpeg": {
+    "name": "lounge-evening",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "IMG_7674.jpeg": {
+    "name": "lounge-lamps",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "IMG_7675.jpeg": {
+    "name": "hall-mirror",
+    "widths": [
+      700,
+      1200
+    ]
+  },
+  "IMG_7619.jpeg": {
+    "name": "room-bench",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "garden.webp": {
+    "name": "garden",
+    "widths": [
+      900,
+      1360
+    ]
+  },
+  "838733193.jpg": {
+    "name": "chamber-founders",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "838733260.jpg": {
+    "name": "chamber-highlands",
+    "widths": [
+      1024
+    ]
+  },
+  "838733265.jpg": {
+    "name": "chamber-pekoe",
+    "widths": [
+      1024
+    ]
+  },
+  "838733269.jpg": {
+    "name": "chamber-verandah",
+    "widths": [
+      1024
+    ]
+  },
+  "838733276.jpg": {
+    "name": "chamber-camellia",
+    "widths": [
+      1024
+    ]
+  },
+  "IMG_7653.jpeg": {
+    "name": "chamber-galaha",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "IMG_7654.jpeg": {
+    "name": "chamber-carriage",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "tea-factory.jpg": {
+    "name": "tea-factory",
+    "widths": [
+      900,
+      1600,
+      2400
+    ]
+  },
+  "Pekoe Trail access.jpg": {
+    "name": "trail-forest",
+    "widths": [
+      900,
+      1600,
+      2400
+    ]
+  },
+  "front-view-woman-pouring-iced-tea.jpg": {
+    "name": "afternoon-tea",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "eating outdoor.jpg": {
+    "name": "dining-outdoor",
+    "widths": [
+      900,
+      1600
+    ]
+  },
+  "Snooker evenings.jpg": {
+    "name": "snooker",
+    "widths": [
+      900,
+      1600
+    ]
+  }
+}

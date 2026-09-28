@@ -3,29 +3,31 @@ const path = require('path');
 
 const DEPLOY_DIR = path.resolve(__dirname, '..', 'public');
 const htmlFiles = fs.readdirSync(DEPLOY_DIR).filter(f => f.endsWith('.html'));
-const imgDir = path.join(DEPLOY_DIR, 'images');
-const availableImgs = new Set(fs.readdirSync(imgDir));
-
 let missingImgs = 0;
 let totalImgRefs = 0;
 let brokenLinks = 0;
 
 // Every built page is a valid clean-URL target (vercel.json cleanUrls)
-const validPages = new Set(['/', ...htmlFiles.map(f => '/' + f.replace(/.html$/, ''))]);
+const validPages = new Set(['/', ...htmlFiles.map(f => '/' + f.replace(/\.html$/, ''))]);
+
+// Pages live at the site root, so "images/x.jpg" and "/images/x.jpg" resolve to the same file
+const existsInBuild = ref => fs.existsSync(path.join(DEPLOY_DIR, decodeURIComponent(ref.split('?')[0].replace(/^\//, ''))));
 
 for (const file of htmlFiles) {
   const content = fs.readFileSync(path.join(DEPLOY_DIR, file), 'utf8');
 
-  // Check images
-  const imgRegex = /src=["'](?:images\/|\/images\/)?([^"']+)["']/g;
+  // Check every src (images, video, scripts) plus every /media/ reference (srcset, posters, data attributes)
+  const refs = new Set();
   let match;
-  while ((match = imgRegex.exec(content)) !== null) {
-    const src = match[1];
-    if (src.startsWith('http') || src.startsWith('data:')) continue;
+  const srcRegex = /\ssrc=["']([^"']*)["']/g;
+  while ((match = srcRegex.exec(content)) !== null) refs.add(match[1]);
+  const mediaRegex = /\/media\/[A-Za-z0-9._-]+/g;
+  while ((match = mediaRegex.exec(content)) !== null) refs.add(match[0]);
+  for (const src of refs) {
+    if (!src || /^(https?:|data:|\/\/)/.test(src)) continue;
     totalImgRefs++;
-    const base = path.basename(src);
-    if (!availableImgs.has(base)) {
-      console.log(`[Missing Image] in ${file}: ${src}`);
+    if (!existsInBuild(src)) {
+      console.log(`[Missing file] in ${file}: ${src}`);
       missingImgs++;
     }
   }
