@@ -858,6 +858,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="tb-reserve-desc" id="tbReserveDesc">
       Select your dates and chamber to receive an estimated quote. We'll confirm availability and send your personalised itinerary via WhatsApp within 2 hours.
     </p>
+    <p class="tb-reserve-extras" id="tbReserveExtras" hidden style="margin: -6px 0 18px; padding: 10px 14px; border-left: 2px solid #C7A85E; background: rgba(199,168,94,0.08); font-family: 'EB Garamond', Georgia, serif; font-size: 15px; line-height: 1.5; color: rgba(245,241,233,0.88);"></p>
 
     <!-- Step 1: Date & Room selector -->
     <div class="tb-form-row">
@@ -1143,6 +1144,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     // 5. Phase 2: Live Booking Engine, Stay Calculator & Scroll-Docking Bar
     const reserveModal = document.getElementById('tb-reserve-modal');
+    var reserveExtras = [];
     const reserveClose = document.getElementById('tbReserveClose');
     const floatingBar = document.getElementById('tb-floating-bar');
 
@@ -1285,6 +1287,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (!btn) return;
         e.preventDefault();
         var item = btn.getAttribute('data-room') || btn.getAttribute('data-package') || '';
+        // Experiences chosen on the page (e.g. /experiences "Your stay") travel with the enquiry
+        reserveExtras = (btn.getAttribute('data-experiences') || '').split('|').filter(Boolean);
+        var extrasEl = document.getElementById('tbReserveExtras');
+        if (extrasEl) {
+          extrasEl.hidden = !reserveExtras.length;
+          extrasEl.textContent = reserveExtras.length ? 'With: ' + reserveExtras.join(', ') : '';
+        }
         openReserveModal(
           btn.getAttribute('data-source') || (item ? 'item_cta' : 'cta_button'),
           item
@@ -1322,6 +1331,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           var addons = [];
           if (document.getElementById('tbAddonPekoe') && document.getElementById('tbAddonPekoe').checked) addons.push('Pekoe Trail Guided Trek');
           if (document.getElementById('tbAddonDining') && document.getElementById('tbAddonDining').checked) addons.push('Private Chef Estate Dinner');
+          reserveExtras.forEach(function (x) { if (addons.indexOf(x) < 0) addons.push(x); });
 
           var msg = 'Hi, I\u2019d like to enquire about a stay at The Tea Bungalow.\n\n';
           if (name) msg += '\u2022 Guest: ' + name + '\n';
