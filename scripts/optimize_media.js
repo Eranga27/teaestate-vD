@@ -48,8 +48,12 @@ const JOBS = [
 ];
 
 const VIDEO = { src: 'v1.mp4', name: 'hero-estate', posterAt: 1.2, portraitCrop: 'crop=720:1080:460:0' };
-// Stills pulled from the film: [seconds, name, widths]
-const STILLS = [[15, 'estate-house', [900, 1600]]];
+// Stills pulled from the film: [seconds, name, widths, optional ffmpeg crop]
+const STILLS = [
+  [15, 'estate-house', [900, 1600]],
+  [19.5, 'trail-tea', [960], 'crop=960:540:960:150'],        // tea slopes and the far ridge, right of the house
+  [21.3, 'trail-highlands', [920], 'crop=920:518:1000:110'],  // distant highland ridges
+];
 // Small portrait crops for the preloader's arch montage (shown in this order), cut from the web versions above
 // [name, crop position]: 'attention' finds the subject; centre where it's already framed
 const PRELOADER = [['tea-factory', 'centre'], ['lounge-arches', 'attention'], ['afternoon-tea', 'attention'], ['chamber-pekoe', 'attention'],
@@ -108,10 +112,11 @@ async function video() {
     await sharp(frame).resize({ width: crop ? 720 : 1920 }).webp({ quality: 72 }).toFile(poster);
     console.log('poster', file, kb(poster));
   }
-  for (const [at, name, widths] of STILLS) {
+  for (const [at, name, widths, crop] of STILLS) {
     const outs = widths.map(w => [w, path.join(OUT, `${name}-${w}.webp`)]).filter(([, out]) => !exists(out));
     if (!outs.length) continue;
-    const frame = execFileSync('ffmpeg', ['-v', 'error', '-ss', String(at), '-i', input, '-frames:v', '1', '-f', 'image2', '-c:v', 'png', 'pipe:1'], { maxBuffer: 64 * 1024 * 1024 });
+    const frame = execFileSync('ffmpeg', ['-v', 'error', '-ss', String(at), '-i', input, '-frames:v', '1', ...(crop ? ['-vf', crop] : []),
+      '-f', 'image2', '-c:v', 'png', 'pipe:1'], { maxBuffer: 64 * 1024 * 1024 });
     for (const [w, out] of outs) {
       await sharp(frame).resize({ width: w }).webp({ quality: 72, effort: 5 }).toFile(out);
       console.log('still', path.basename(out), kb(out));
