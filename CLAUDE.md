@@ -28,7 +28,7 @@ npm run serve            # http://localhost:3000 serving public/
 npm run verify:preview   # live checks against the Vercel preview
 ```
 
-Commit `src/`, `api/`, `scripts/` changes only. Vercel runs `npm run build` on every push and serves `public/` (see `vercel.json`).
+Estate staff commit content through the CMS on this same branch, so `git pull` before starting work. Commit `src/`, `api/`, `scripts/` changes only. Vercel runs `npm run build` on every push and serves `public/` (see `vercel.json`).
 
 ## CMS (`/admin`)
 
