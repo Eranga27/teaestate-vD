@@ -7,6 +7,15 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const SOURCE_DIR = path.join(ROOT_DIR, 'src');
 const OUT_DIR = path.join(ROOT_DIR, 'public');
 
+// Google Tag Manager container, e.g. GTM-AB12CD3 (Vercel env var, read at build time).
+// Templates use the GTM-TEABUNGALOW placeholder; without a real ID the GTM loader is left
+// out (the placeholder container 404s), while Consent Mode + dataLayer events stay in place.
+const GTM_ID = (process.env.GTM_ID || '').trim().toUpperCase();
+if (GTM_ID && !/^GTM-[A-Z0-9]{4,12}$/.test(GTM_ID)) {
+  throw new Error(`GTM_ID "${GTM_ID}" doesn't look like a Tag Manager container ID (GTM-XXXXXXX)`);
+}
+console.log(GTM_ID ? `Google Tag Manager: ${GTM_ID}` : 'Google Tag Manager: GTM_ID not set — GTM loader omitted');
+
 // Start from an empty output dir so removed pages/images don't linger
 fs.rmSync(OUT_DIR, { recursive: true, force: true });
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -633,6 +642,14 @@ for (const page of pages) {
 
   headInject += '\n</head>';
   content = content.replace('</head>', () => headInject);
+
+  if (GTM_ID) {
+    content = content.split('GTM-TEABUNGALOW').join(GTM_ID);
+  } else {
+    content = content
+      .replace(/[ \t]*<!-- Google Tag Manager -->[\s\S]*?<!-- End Google Tag Manager -->\n?/g, '')
+      .replace(/[ \t]*<!-- Google Tag Manager \(noscript\) -->[\s\S]*?<!-- End Google Tag Manager \(noscript\) -->\n?/g, '');
+  }
 
   const outPath = path.join(OUT_DIR, page.htmlFile);
   fs.writeFileSync(outPath, content, 'utf8');

@@ -10,6 +10,9 @@ if (htmlFiles.length === 0) {
   process.exit(1);
 }
 
+// Mirrors build_static.js: GTM is only loaded when a real container ID is configured
+const GTM_ID = (process.env.GTM_ID || '').trim().toUpperCase();
+
 let allPassed = true;
 
 for (const file of htmlFiles) {
@@ -34,8 +37,10 @@ for (const file of htmlFiles) {
   const checks = [
     { name: 'Anti-Flash in <head>', pass: antiFlashInHead },
     { name: 'Google Consent Mode in <head>', pass: consentModeInHead },
-    { name: 'GTM script in <head>', pass: gtmScriptInHead },
-    { name: 'GTM noscript in <body>', pass: gtmNoscriptInBody },
+    GTM_ID
+      ? { name: `GTM ${GTM_ID} script in <head> + noscript in <body>`, pass: gtmScriptInHead && gtmNoscriptInBody && content.includes(`'${GTM_ID}'`) }
+      : { name: 'No GTM request while GTM_ID is unset', pass: !content.includes('googletagmanager.com') },
+    { name: 'No placeholder GTM ID', pass: !content.includes('GTM-TEABUNGALOW') },
     { name: 'Preloader markup in <body>', pass: preloaderMarkupInBody },
     { name: 'Consent Banner in <body>', pass: consentBannerInBody },
     { name: 'Preloader CSS styles', pass: preloaderCss },
@@ -50,7 +55,7 @@ for (const file of htmlFiles) {
     console.error(`❌ ${file} FAILED:`, failed.map(f => f.name).join(', '));
     allPassed = false;
   } else {
-    console.log(`✓ ${file}: All 11 checks passed`);
+    console.log(`✓ ${file}: All ${checks.length} checks passed`);
   }
 }
 

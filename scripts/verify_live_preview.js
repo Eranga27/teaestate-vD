@@ -42,14 +42,16 @@ async function run() {
     const hasAntiFlash = res.body.includes("sessionStorage.getItem('tb_preloader_seen')");
     const hasConsentMode = res.body.includes("gtag('consent', 'default'");
     const hasConsentBanner = res.body.includes('id="tb-consent-banner"');
-    const hasGtmHead = res.body.includes("googletagmanager.com/gtm.js") && res.body.includes("'GTM-TEABUNGALOW'");
-    const hasGtmNoScript = res.body.includes("ns.html?id=GTM-TEABUNGALOW");
+    // GTM loads only when the deployment was built with GTM_ID; pass the same GTM_ID here to check it
+    const gtmOk = process.env.GTM_ID
+      ? res.body.includes(`'${process.env.GTM_ID}'`) && res.body.includes(`ns.html?id=${process.env.GTM_ID}`)
+      : !res.body.includes('GTM-TEABUNGALOW');
     
-    if (ok && hasPreloader && hasAntiFlash && hasConsentMode && hasConsentBanner && hasGtmHead && hasGtmNoScript) {
+    if (ok && hasPreloader && hasAntiFlash && hasConsentMode && hasConsentBanner && gtmOk) {
       console.log(`  ✓ ${p} (Status ${res.status}, all assets present)`);
       passed++;
     } else {
-      console.log(`  ✗ ${p} FAILED: status=${res.status}, preloader=${hasPreloader}, antiFlash=${hasAntiFlash}, consentMode=${hasConsentMode}, consentBanner=${hasConsentBanner}, gtmHead=${hasGtmHead}, gtmNoScript=${hasGtmNoScript}`);
+      console.log(`  ✗ ${p} FAILED: status=${res.status}, preloader=${hasPreloader}, antiFlash=${hasAntiFlash}, consentMode=${hasConsentMode}, consentBanner=${hasConsentBanner}, gtm=${gtmOk}`);
     }
   }
 

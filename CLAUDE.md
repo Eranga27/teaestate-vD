@@ -40,16 +40,27 @@ Decap CMS with one shared estate login — editors don't need GitHub accounts.
 - Saves commit to the branch in `config.yml` as the token's owner; Vercel rebuilds (~30 s). Image uploads are capped at 3 MB per field (Vercel's 4.5 MB request limit).
 - Config lives only in `config.yml`; `index.html` just sets `api_root` to this origin.
 - One JSON file per entry in folder collections. Never put an array of entries in one file — the CMS would treat it as a single entry and overwrite it. Order comes from `sort_order`.
+- Packages & Offers render the Pekoe Trail and Heritage grids on `/packages` (one `layout: featured` card allowed); the Estate Buyout rates section stays in `src/packages.php`.
+
+## Guest forms & CRM (Brevo)
+
+- `/contact` → `api/enquiry.js`, Chairman's Bungalow waitlist → `api/waitlist.js`; shared helpers in `api/_brevo.js`. Forms must send URL-encoded bodies (`new URLSearchParams(new FormData(form))`) — Vercel functions don't parse multipart.
+- With `BREVO_API_KEY`: each submission emails `ESTATE_NOTIFY_EMAIL` (guest as Reply-To) from `BREVO_SENDER_EMAIL`, then adds the guest to `BREVO_ENQUIRY_LIST_ID` / `BREVO_WAITLIST_LIST_ID` (enquiries carry `ARRIVAL_DATE` / `DEPARTURE_DATE` for Brevo automations). If the email fails the guest gets an error, never a false "thank you". Without the key, submissions are only logged (Vercel keeps logs briefly — don't rely on it).
+- `scripts/test_forms.js` (in `npm test`) mocks Brevo.
+
+## Analytics
+
+- `GTM_ID` (Vercel env var, build time) sets the Tag Manager container. Unset → the GTM loader is omitted; Consent Mode v2 defaults and `dataLayer` events stay. Templates keep the `GTM-TEABUNGALOW` placeholder, replaced at build.
 
 ## Rules
 
 - Work on `feature/platform-integrations`; never commit to `main` (production at teaestate.vercel.app). Promotion is a reviewed PR.
 - Site-wide changes belong in `src/layout/*.php`, not in individual pages.
-- Every page must keep: once-per-session tea-leaf preloader, PDPA consent banner wired to Google Consent Mode v2, GTM snippet, reservation modal. `npm test` enforces this.
+- Every page must keep: once-per-session tea-leaf preloader, PDPA consent banner wired to Google Consent Mode v2, GTM snippet (when `GTM_ID` is set), reservation modal. `npm test` enforces this.
 - Design tokens: Forest Green `#1E4D2B` / `#07130E`, Heritage Gold `#C7A85E` / `#dfc080`, Estate Cream `#F5F1E9`. Fonts: Cinzel, Playfair Display, EB Garamond, Lato. Restrained heritage luxury — no generic Bootstrap/Tailwind look, no intrusive popups.
 
 ## Known gaps
 
-- CMS "Packages & Offers" entries are not wired into `packages.html` yet (`build_static.js` loads them but nothing renders them); editing them has no effect on the site.
-- GTM container ID `GTM-TEABUNGALOW` is a placeholder; replace with the real `GTM-XXXXXXX` in `src/layout/navbar.php` and `scripts/build_static.js`.
-- PMS (Little Hotelier vs Beds24), PayHere merchant credentials and Brevo/HubSpot keys are awaiting the owner.
+- Production (`main`) still has the old enquiry/waitlist code: forms post multipart data the handler can't read, and nothing is emailed — enquiries there are lost until the fix is promoted.
+- Awaiting the owner: PMS choice (Little Hotelier vs Beds24), PayHere merchant credentials, Brevo account/API key, real GTM container. Brevo automations for the guest journey (Day −14, −3, +1) are built in Brevo's UI on the enquiry list; booking-confirmed triggers need the PMS.
+- The privacy policy should name Brevo as a data processor once it is in use.
