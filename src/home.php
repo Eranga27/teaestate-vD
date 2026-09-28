@@ -23,7 +23,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap">
   <!-- Sinhala glyphs only (subset via &text=), so the accents render the same on every device -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Sinhala:wght@400&display=swap&text=%E0%B6%9C%E0%B6%BD%E0%B7%84%E0%B6%86%E0%B6%BA%E0%B7%94%E0%B6%B6%E0%B7%9D%E0%B7%80%E0%B6%B1%E0%B7%8A%E0%B6%AD%E0%B7%9A%E0%B6%9A%E0%B7%8F%E0%B6%B8%E0%B6%BB%E0%B6%B4%E0%B7%92%E0%B6%9C%E0%B7%92">
-  <link rel="preload" as="image" href="/media/hero-estate-poster.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/media/hero-estate-poster.webp" media="(min-aspect-ratio: 1/1)" fetchpriority="high">
+<link rel="preload" as="image" href="/media/hero-estate-poster-portrait.webp" media="(max-aspect-ratio: 1/1)" fetchpriority="high">
   <link rel="stylesheet" href="/ve/ve.css">
   <link rel="stylesheet" href="/ve/home.css">
 </head>
@@ -40,8 +41,9 @@
     <section class="vh-hero" id="top" data-theme="dark" aria-label="Galaha Estate">
       <div class="vh-hero__frame">
         <div class="vh-hero__media">
-          <video class="vh-hero__video" muted loop playsinline autoplay preload="auto" poster="/media/hero-estate-poster.webp"
-                 data-src-lg="/media/hero-estate-1600.mp4" data-src-sm="/media/hero-estate-1280.mp4" aria-hidden="true"></video>
+          <video class="vh-hero__video" muted loop playsinline autoplay preload="auto" 
+                 data-src-lg="/media/hero-estate-1080.mp4" data-src-sm="/media/hero-estate-portrait.mp4"
+                 data-poster-lg="/media/hero-estate-poster.webp" data-poster-sm="/media/hero-estate-poster-portrait.webp" aria-hidden="true"></video>
           <div class="vh-hero__shade"></div>
           <div class="ve-grain"></div>
         </div>

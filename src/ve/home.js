@@ -7,14 +7,16 @@
   var q = function (s, el) { return (el || document).querySelector(s); };
   var qa = function (s, el) { return [].slice.call((el || document).querySelectorAll(s)); };
 
-  /* ── Hero film: pick a size, play it while on screen (poster only for reduced motion / Save-Data) ── */
+  /* ── Hero film: landscape 1080p, or the portrait cut on upright screens; plays while on screen
+        (reduced motion / Save-Data keep the poster, which home.css shows as the background) ── */
   (function setupVideo() {
     var v = q('.vh-hero__video');
     if (!v) return;
     var conn = navigator.connection || {};
     if (VE.reduce || conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '')) return;
-    var small = window.matchMedia('(max-width: 900px)').matches;
-    v.src = v.getAttribute(small ? 'data-src-sm' : 'data-src-lg');
+    var upright = window.matchMedia('(max-aspect-ratio: 1/1)').matches;
+    v.poster = v.getAttribute(upright ? 'data-poster-sm' : 'data-poster-lg');
+    v.src = v.getAttribute(upright ? 'data-src-sm' : 'data-src-lg');
     var play = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
     play();
     if ('IntersectionObserver' in window) {

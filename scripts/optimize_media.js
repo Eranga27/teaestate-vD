@@ -47,9 +47,13 @@ const JOBS = [
   ['Snooker evenings.jpg', 'snooker', [900, 1600]],
 ];
 
-const VIDEO = { src: 'v1.mp4', name: 'hero-estate', posterAt: 1.2 };
+const VIDEO = { src: 'v1.mp4', name: 'hero-estate', posterAt: 1.2, portraitCrop: 'crop=720:1080:460:0' };
 // Stills pulled from the film: [seconds, name, widths]
 const STILLS = [[15, 'estate-house', [900, 1600]]];
+// Small portrait crops for the preloader's arch montage (shown in this order), cut from the web versions above
+// [name, crop position]: 'attention' finds the subject; centre where it's already framed
+const PRELOADER = [['tea-factory', 'centre'], ['lounge-arches', 'attention'], ['afternoon-tea', 'attention'], ['chamber-pekoe', 'attention'],
+  ['trail-forest', 'centre'], ['lounge-red', 'attention'], ['chamber-galaha', 'attention'], ['estate-house', 'centre']];
 
 const kb = f => Math.round(fs.statSync(f).size / 1024) + ' KB';
 const exists = f => fs.existsSync(f) && !FORCE;
@@ -78,19 +82,31 @@ async function video() {
   const input = path.join(SRC, VIDEO.src);
   if (!fs.existsSync(input)) return;
   if (!hasFfmpeg()) { console.warn('ffmpeg not found — skipping the hero film'); return; }
-  // Aerial foliage compresses badly; light denoise + 24fps keeps it ~4 MB (desktop) / ~2 MB (phones)
-  for (const [w, crf] of [[1600, 33], [1280, 34]]) {
-    const out = path.join(OUT, `${VIDEO.name}-${w}.mp4`);
+  // The drone footage is grainy and costly to compress, so it keeps its native 1080p/29.97fps and gets
+  // bitrate rather than denoising (VMAF vs the source: 87 here, against 65 for the old 1600px/CRF 33 cut).
+  // Phones in portrait get their own 720x1080 cut around the house instead of an upscaled slice of the landscape film.
+  const encodes = [
+    [`${VIDEO.name}-1080.mp4`, [], '4500k', '7000k'],
+    [`${VIDEO.name}-portrait.mp4`, ['-vf', VIDEO.portraitCrop], '2000k', '3200k'],
+  ];
+  for (const [file, filters, rate, peak] of encodes) {
+    const out = path.join(OUT, file);
     if (exists(out)) continue;
-    execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', input, '-an', '-vf', `fps=24,hqdn3d=3:2:6:4,scale=${w}:-2`, '-c:v', 'libx264', '-preset', 'slow',
-      '-crf', String(crf), '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out]);
-    console.log('video', path.basename(out), kb(out));
+    const common = ['-v', 'error', '-y', '-i', input, '-an', ...filters, '-c:v', 'libx264', '-preset', 'slow', '-profile:v', 'high',
+      '-pix_fmt', 'yuv420p', '-b:v', rate, '-maxrate', peak, '-bufsize', peak, '-passlogfile', path.join(OUT, '.x264-2pass')];
+    execFileSync('ffmpeg', [...common, '-pass', '1', '-f', 'null', '-']);
+    execFileSync('ffmpeg', [...common, '-pass', '2', '-movflags', '+faststart', out]);
+    fs.readdirSync(OUT).filter(f => f.startsWith('.x264-2pass')).forEach(f => fs.unlinkSync(path.join(OUT, f)));
+    console.log('video', file, kb(out));
   }
-  const poster = path.join(OUT, `${VIDEO.name}-poster.webp`);
-  if (!exists(poster)) {
-    const frame = execFileSync('ffmpeg', ['-v', 'error', '-ss', String(VIDEO.posterAt), '-i', input, '-frames:v', '1', '-f', 'image2', '-c:v', 'png', 'pipe:1'], { maxBuffer: 64 * 1024 * 1024 });
-    await sharp(frame).resize({ width: 1920 }).webp({ quality: 70 }).toFile(poster);
-    console.log('poster', path.basename(poster), kb(poster));
+  const posters = [[`${VIDEO.name}-poster.webp`, null], [`${VIDEO.name}-poster-portrait.webp`, VIDEO.portraitCrop]];
+  for (const [file, crop] of posters) {
+    const poster = path.join(OUT, file);
+    if (exists(poster)) continue;
+    const frame = execFileSync('ffmpeg', ['-v', 'error', '-ss', String(VIDEO.posterAt), '-i', input, '-frames:v', '1', ...(crop ? ['-vf', crop] : []),
+      '-f', 'image2', '-c:v', 'png', 'pipe:1'], { maxBuffer: 64 * 1024 * 1024 });
+    await sharp(frame).resize({ width: crop ? 720 : 1920 }).webp({ quality: 72 }).toFile(poster);
+    console.log('poster', file, kb(poster));
   }
   for (const [at, name, widths] of STILLS) {
     const outs = widths.map(w => [w, path.join(OUT, `${name}-${w}.webp`)]).filter(([, out]) => !exists(out));
@@ -100,6 +116,20 @@ async function video() {
       await sharp(frame).resize({ width: w }).webp({ quality: 72, effort: 5 }).toFile(out);
       console.log('still', path.basename(out), kb(out));
     }
+  }
+}
+
+async function preloaderCrops() {
+  for (const [name, position] of PRELOADER) {
+    const out = path.join(OUT, `pl-${name}.webp`);
+    if (exists(out)) continue;
+    const source = fs.readdirSync(OUT)
+      .map(f => [f, Number((f.match(new RegExp('^' + name + '-(\\d+)\\.webp$')) || [])[1])])
+      .filter(([, w]) => w).sort((a, b) => b[1] - a[1])[0];
+    if (!source) { console.warn('preloader: no web version of', name); continue; }
+    await sharp(path.join(OUT, source[0])).resize(520, 740, { fit: 'cover', position: position === 'attention' ? sharp.strategy.attention : position })
+      .webp({ quality: 62, effort: 6 }).toFile(out);
+    console.log('preloader', path.basename(out), kb(out));
   }
 }
 
@@ -120,6 +150,7 @@ function writeManifest() {
   fs.mkdirSync(OUT, { recursive: true });
   await images();
   await video();
+  await preloaderCrops();
   writeManifest();
   const total = fs.readdirSync(OUT).reduce((n, f) => n + fs.statSync(path.join(OUT, f)).size, 0);
   console.log(`src/media: ${fs.readdirSync(OUT).length} files, ${(total / 1048576).toFixed(1)} MB`);

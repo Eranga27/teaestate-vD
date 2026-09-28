@@ -6,6 +6,7 @@
 .vh-hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; background: var(--ve-forest-deep); color: var(--ve-cream); overflow: hidden; }
 .vh-hero__frame { position: absolute; inset: 0; will-change: clip-path; }
 .vh-hero__media { position: absolute; inset: 0; overflow: hidden; background: #0e2016 url('/media/hero-estate-poster.webp') center / cover no-repeat; }
+@media (max-aspect-ratio: 1/1) { .vh-hero__media { background-image: url('/media/hero-estate-poster-portrait.webp'); } }
 .vh-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); }
 .vh-hero__shade { position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(180deg, rgba(4, 12, 8, .62) 0%, rgba(4, 12, 8, .12) 30%, rgba(4, 12, 8, .18) 58%, rgba(4, 12, 8, .86) 100%), radial-gradient(120% 80% at 50% 40%, transparent 55%, rgba(4, 12, 8, .45) 100%); }
