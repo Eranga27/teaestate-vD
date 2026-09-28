@@ -19,14 +19,20 @@
   /* Page code registers here; runs once the intro has finished (or immediately if there is none) */
   VE.ready = function (fn) { if (VE._booted) fn(VE); else VE._ready.push(fn); };
 
-  // The preloader fires tb:preloader-reveal as its doorway opens onto the page, then
-  // tb:preloader-done once it's gone (older builds only send the latter)
+  // Something may cover the page on arrival: the preloader (first visit) or the segue curtain
+  // (from another page). Each fires tb:<cover>-reveal as it opens and tb:<cover>-done once gone.
+  var introCover = function () {
+    if (document.getElementById('tb-preloader')) return 'preloader';
+    if (document.documentElement.classList.contains('tb-segue-in')) return 'segue';
+    return null;
+  };
   function whenIntroDone(cb, event) {
-    if (!document.getElementById('tb-preloader')) return cb();
+    var cover = introCover();
+    if (!cover) return cb();
     var fired = false;
     var go = function () { if (!fired) { fired = true; cb(); } };
-    if (event !== 'done') document.addEventListener('tb:preloader-reveal', go, { once: true });
-    document.addEventListener('tb:preloader-done', go, { once: true });
+    if (event !== 'done') document.addEventListener('tb:' + cover + '-reveal', go, { once: true });
+    document.addEventListener('tb:' + cover + '-done', go, { once: true });
   }
 
   /* ── Smooth scroll ──────────────────────────────────────────────────── */
@@ -37,7 +43,7 @@
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
-    if (document.getElementById('tb-preloader')) lenis.stop();
+    if (introCover()) lenis.stop();
     // Pin spacers change the document height after Lenis measured it
     ScrollTrigger.addEventListener('refresh', function () { lenis.resize(); });
   }

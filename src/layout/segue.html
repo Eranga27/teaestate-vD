@@ -1,0 +1,161 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     SEGUE: the page-to-page transition (injected after the preloader on every page
+     by scripts/build_static.js).
+
+     Leaving: clicking an internal link raises a deep-green curtain with a gold
+     lotus-petal edge, naming where you're going (English + Sinhala), then navigates.
+     Arriving: the head script (build_static.js) sees the hand-off in sessionStorage,
+     so the new page paints under the same curtain, which then lifts off the top.
+
+     Skipped for reduced motion, new tabs, modifier-clicks, downloads, in-page anchors,
+     mail/phone/WhatsApp links, /admin and /api. Fires tb:segue-reveal as it lifts
+     (vE pages start their entrance) and tb:segue-done when it's gone.
+═══════════════════════════════════════════════════════════════════════════ -->
+<style>
+  #tb-segue { position: fixed; inset: 0; z-index: 99998; visibility: hidden; pointer-events: none; overflow: hidden; }
+  #tb-segue.is-leaving, html.tb-segue-in #tb-segue { visibility: visible; pointer-events: all; }
+  .tb-sg-panel {
+    position: absolute; left: 0; right: 0; top: 0; height: 100%;
+    background: radial-gradient(120% 90% at 50% 42%, #133222 0%, #0a1c12 55%, #06110b 100%);
+    transform: translate3d(0, calc(100% + 30px), 0); will-change: transform;
+  }
+  html.tb-segue-in .tb-sg-panel { transform: none; }
+  #tb-segue.is-leaving .tb-sg-panel { transform: none; transition: transform .72s cubic-bezier(.76, 0, .24, 1); }
+  #tb-segue.is-lifting .tb-sg-panel { transform: translate3d(0, calc(-100% - 30px), 0); transition: transform .95s cubic-bezier(.76, 0, .24, 1); }
+  .tb-sg-edge { position: absolute; left: 0; width: 100%; height: 24px; display: block; }
+  .tb-sg-edge--top { top: -23px; }
+  .tb-sg-edge--bottom { bottom: -23px; transform: scaleY(-1); }
+  .tb-sg-grain { position: absolute; inset: 0; opacity: .06; mix-blend-mode: overlay; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .tb-sg-card { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); display: grid; justify-items: center; gap: 14px; padding: 0 20px; text-align: center; color: #F5F1E9; }
+  .tb-sg-si { min-height: 1.4em; font-family: 'Noto Serif Sinhala', 'Iskoola Pota', 'Sinhala Sangam MN', 'Nirmala UI', serif; font-size: clamp(20px, 2.2vw, 30px); line-height: 1.4; color: #dfc080; }
+  .tb-sg-title { display: flex; flex-wrap: wrap; justify-content: center; max-width: 16em; font-family: 'Cinzel', Georgia, serif; font-weight: 400; font-size: clamp(34px, 6.2vw, 92px); line-height: 1.02; letter-spacing: .03em; }
+  .tb-sg-word { display: inline-flex; margin: 0 .16em; }
+  .tb-sg-l { display: inline-block; overflow: hidden; padding: .04em .01em .1em; }
+  .tb-sg-l > span { display: inline-block; transform: translateY(110%); }
+  .tb-sg-rule { width: 0; height: 1px; background: linear-gradient(90deg, transparent, #C7A85E, transparent); }
+  .tb-sg-sub { font-family: 'Cinzel', Georgia, serif; font-size: 10px; letter-spacing: .34em; text-transform: uppercase; color: rgba(245, 241, 233, .5); opacity: 0; }
+  /* Leaving: letters rise once the curtain is most of the way up */
+  #tb-segue.is-leaving .tb-sg-l > span { transform: none; transition: transform .8s cubic-bezier(.16, 1, .3, 1) calc(.3s + var(--i) * .03s); }
+  #tb-segue.is-leaving .tb-sg-rule { width: min(240px, 50vw); transition: width .9s cubic-bezier(.16, 1, .3, 1) .45s; }
+  #tb-segue.is-leaving .tb-sg-sub { opacity: 1; transition: opacity .6s ease .5s; }
+  /* Arriving: the card is already there, then drifts up and fades as the curtain lifts */
+  html.tb-segue-in .tb-sg-l > span { transform: none; }
+  html.tb-segue-in .tb-sg-rule { width: min(240px, 50vw); }
+  html.tb-segue-in .tb-sg-sub { opacity: 1; }
+  #tb-segue.is-lifting .tb-sg-card { opacity: 0; transform: translateY(-62%); transition: opacity .45s ease, transform .9s cubic-bezier(.76, 0, .24, 1); }
+  @media (prefers-reduced-motion: reduce) { #tb-segue { display: none !important; } }
+</style>
+
+<div id="tb-segue" aria-hidden="true">
+  <div class="tb-sg-panel">
+    <svg class="tb-sg-edge tb-sg-edge--top" aria-hidden="true" focusable="false"><defs><pattern id="tbSgPetal" width="28" height="24" patternUnits="userSpaceOnUse"><path d="M0 24 C4 13 9 5 14 1 C19 5 24 13 28 24 Z" fill="#0f2a1a"/><path d="M0 24 C4 13 9 5 14 1 C19 5 24 13 28 24" fill="none" stroke="#C7A85E" stroke-opacity=".6" stroke-width="1"/><circle cx="14" cy="15" r="1.4" fill="#C7A85E" fill-opacity=".55"/></pattern></defs><rect width="100%" height="100%" fill="url(#tbSgPetal)"/></svg>
+    <svg class="tb-sg-edge tb-sg-edge--bottom" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#tbSgPetal)"/></svg>
+    <div class="tb-sg-grain"></div>
+    <div class="tb-sg-card">
+      <span class="tb-sg-si" lang="si"></span>
+      <span class="tb-sg-title"></span>
+      <span class="tb-sg-rule"></span>
+      <span class="tb-sg-sub">The Tea Bungalow &middot; Galaha</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var layer = document.getElementById('tb-segue');
+    if (!layer) return;
+    var root = document.documentElement;
+    // Where each page lives: its title on the curtain, and a Sinhala word for it
+    var PAGES = {
+      '/': ['The Tea Bungalow', 'ගලහ'],
+      '/the-bungalow': ['The Bungalow', 'නිවස'],
+      '/our-chambers': ['Our Chambers', 'කාමර'],
+      '/the-entire-estate': ['The Entire Estate', 'වත්ත'],
+      '/pekoe-trail': ['The Pekoe Trail', 'මාවත'],
+      '/experiences': ['Experiences', 'අත්දැකීම්'],
+      '/packages': ['Packages & Offers', ''],
+      '/gallery': ['Gallery', 'ඡායාරූප'],
+      '/about': ['About the Estate', 'කතාව'],
+      '/contact': ['Contact', ''],
+      '/privacy': ['Privacy', ''],
+      '/chairmans-bungalow-2027': ['The Chairman’s Bungalow', '']
+    };
+    var clean = function (p) { return (p.replace(/\/index(\.html)?$/, '/').replace(/\.html$/, '').replace(/\/+$/, '') || '/'); };
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+    function paint(title, si) {
+      var t = layer.querySelector('.tb-sg-title'), n = 0;
+      t.innerHTML = '';
+      String(title).split(' ').forEach(function (word) {
+        var w = document.createElement('span');
+        w.className = 'tb-sg-word';
+        word.split('').forEach(function (ch) {
+          var l = document.createElement('span'), s = document.createElement('span');
+          l.className = 'tb-sg-l';
+          s.textContent = ch;
+          s.style.setProperty('--i', n++);
+          l.appendChild(s);
+          w.appendChild(l);
+        });
+        t.appendChild(w);
+      });
+      layer.querySelector('.tb-sg-si').textContent = si || '';
+    }
+
+    /* ── Arriving (the head script set html.tb-segue-in and window.__tbSegue) ── */
+    if (root.classList.contains('tb-segue-in')) {
+      var incoming = window.__tbSegue || {};
+      paint(incoming.title || 'The Tea Bungalow', incoming.si || '');
+      var lifted = false;
+      var lift = function () {
+        if (lifted) return;
+        lifted = true;
+        layer.classList.add('is-lifting');
+        try { document.dispatchEvent(new CustomEvent('tb:segue-reveal')); } catch (e) {}
+        setTimeout(function () {
+          root.classList.remove('tb-segue-in');
+          layer.classList.remove('is-lifting');
+          try { document.dispatchEvent(new CustomEvent('tb:segue-done')); } catch (e) {}
+        }, 1000);
+      };
+      // Lift once the page underneath has started up (and never later than 1.6s)
+      var ready = function () { setTimeout(function () { requestAnimationFrame(function () { requestAnimationFrame(lift); }); }, 180); };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready, { once: true }); else ready();
+      setTimeout(lift, 1600);
+    }
+
+    /* ── Leaving ── */
+    var leaving = false;
+    document.addEventListener('click', function (e) {
+      if (leaving || reduce || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || a.hasAttribute('download') || a.hasAttribute('data-no-segue') || a.classList.contains('tb-reserve-trigger')) return;
+      var url;
+      try { url = new URL(a.getAttribute('href'), location.href); } catch (err) { return; }
+      if (url.origin !== location.origin || !/^https?:$/.test(url.protocol)) return;
+      if (/^\/(admin|api)(\/|$)/.test(url.pathname) || /\.(pdf|jpe?g|png|webp|zip|mp4)$/i.test(url.pathname)) return;
+      var to = clean(url.pathname), from = clean(location.pathname);
+      if (to === from) return; // same page (anchors are handled by the page)
+      e.preventDefault();
+      leaving = true;
+      var info = PAGES[to] || [(a.getAttribute('data-segue-title') || a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 40) || 'The Tea Bungalow', ''];
+      paint(info[0], info[1]);
+      try { sessionStorage.setItem('tb_segue', JSON.stringify({ title: info[0], si: info[1], at: Date.now() })); } catch (err) {}
+      void layer.offsetWidth;
+      layer.classList.add('is-leaving');
+      setTimeout(function () { location.href = url.href; }, 880);
+      // If the navigation never happens (blocked, offline), give the page back
+      setTimeout(function () { leaving = false; layer.classList.remove('is-leaving'); }, 6000);
+    });
+
+    // Back/forward from the cache restores this page mid-transition: clear it
+    window.addEventListener('pageshow', function (e) {
+      if (!e.persisted) return;
+      leaving = false;
+      layer.classList.remove('is-leaving', 'is-lifting');
+      root.classList.remove('tb-segue-in');
+    });
+  })();
+</script>

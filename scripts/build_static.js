@@ -32,10 +32,10 @@ const pages = [
   // ve: true = vE design (src/ve/*, src/layout/ve/*); the legacy header chrome is stripped
   { phpFile: 'home.php', htmlFile: 'index.html', pageName: 'home', ve: true },
   { phpFile: 'about.php', htmlFile: 'about.html', pageName: 'about' },
-  { phpFile: 'our-chambers.php', htmlFile: 'our-chambers.html', pageName: 'our-chambers' },
+  { phpFile: 'our-chambers.php', htmlFile: 'our-chambers.html', pageName: 'our-chambers', ve: true },
   { phpFile: 'the-bungalow.php', htmlFile: 'the-bungalow.html', pageName: 'the-bungalow' },
   { phpFile: 'the-entire-estate.php', htmlFile: 'the-entire-estate.html', pageName: 'the-entire-estate' },
-  { phpFile: 'pekoe-trail.php', htmlFile: 'pekoe-trail.html', pageName: 'pekoe-trail' },
+  { phpFile: 'pekoe-trail.php', htmlFile: 'pekoe-trail.html', pageName: 'pekoe-trail', ve: true },
   { phpFile: 'experiences.php', htmlFile: 'experiences.html', pageName: 'experiences' },
   { phpFile: 'packages.php', htmlFile: 'packages.html', pageName: 'packages' },
   { phpFile: 'gallery.php', htmlFile: 'gallery.html', pageName: 'gallery' },
@@ -48,6 +48,13 @@ const navbarTpl = fs.readFileSync(path.join(SOURCE_DIR, 'layout', 'navbar.php'),
 const footerTpl = fs.readFileSync(path.join(SOURCE_DIR, 'layout', 'footer.php'), 'utf8');
 // Cinematic intro injected after <body> on every page (single source of truth)
 const preloaderHtml = fs.readFileSync(path.join(SOURCE_DIR, 'layout', 'preloader.html'), 'utf8').replace(/^\uFEFF/, '');
+const segueHtml = fs.readFileSync(path.join(SOURCE_DIR, 'layout', 'segue.html'), 'utf8').replace(/^\uFEFF/, '');
+// <!-- tb:sinhala-font -->: Noto Serif Sinhala subset (&text=) to exactly the glyphs this page, the
+// preloader greeting and the segue curtain's page names use
+function sinhalaFontLink(content) {
+  const glyphs = [...new Set((content + segueHtml + preloaderHtml).match(/[\u0D80-\u0DFF]/g) || [])].sort().join('');
+  return glyphs ? `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Sinhala:wght@400&display=swap&text=${encodeURIComponent(glyphs)}">` : '';
+}
 
 function cleanUrlRewrites(content) {
   let c = content;
@@ -304,9 +311,38 @@ function renderVeMarkers(content) {
       </div>
     </section>` : ''));
   }
-  const rates = Object.fromEntries(cmsChambers.filter(c => c.name && c.rate_display).map(c => [c.name, c.rate_display]));
+  if (content.includes('<!-- tb:trail-packages -->')) {
+    const packs = cmsPackages.filter(p => p.section === 'trail' && p.active !== false)
+      .sort((a, b) => (a.sort_order ?? 9999) - (b.sort_order ?? 9999));
+    const cards = packs.map((p, i) => {
+      const featured = p.layout === 'featured';
+      const items = (p.inclusions || []).map(x => `<li>${escapeHtml(x)}</li>`).join('');
+      const solo = p.solo_rate ? `<span class="vt-pack__solo">Solo &middot; ${escapeHtml(p.solo_rate)}</span>` : '';
+      return `
+          <article class="vt-pack${featured ? ' vt-pack--featured' : ''}" data-reveal="up" data-delay="${((i % 3) * 0.1).toFixed(1)}">
+            <p class="vt-pack__top"><span class="vt-pack__dur">${escapeHtml(p.duration || '')}</span>${p.badge ? `<span class="vt-pack__badge">${escapeHtml(p.badge)}</span>` : ''}</p>
+            <h3 class="vt-pack__name">${escapeHtml(p.name)}</h3>
+            ${p.stages_covered ? `<p class="vt-pack__stages">${escapeHtml(p.stages_covered)}</p>` : ''}
+            <p class="vt-pack__tag">${escapeHtml(p.tagline || '')}</p>
+            ${items ? `<ul class="vt-pack__list">${items}</ul>` : ''}
+            <p class="vt-pack__rate"><span>${escapeHtml(p.rate || 'Price on request')}</span>${solo}</p>
+            <button type="button" class="ve-btn${featured ? ' ve-btn--gold' : ''} tb-reserve-trigger" data-package="${escapeHtml(p.enquiry_name || p.name)}" data-source="trail_package"><span>${escapeHtml(p.cta_label || 'Enquire')}</span></button>
+          </article>`;
+    }).join('');
+    content = content.replace('<!-- tb:trail-packages -->', () => cards);
+  }
+  const byName = Object.fromEntries(cmsChambers.filter(c => c.name).map(c => [c.name, c]));
+  // data-cms-note="Chamber": the chamber's availability / seasonal note and minimum stay (empty if none)
+  content = content.replace(/(<(\w+)\b[^>]*\sdata-cms-note="([^"]+)"[^>]*>)([^<]*)(<\/\2>)/g, (m, open, tag, name, text, close) => {
+    const c = byName[name] || {};
+    const notes = [c.availability_note, c.seasonal_note].filter(Boolean);
+    // min_stay only when no note already states a minimum (they usually describe the same rule)
+    const minStay = c.min_stay > 1 && !notes.some(n => /minimum/i.test(n)) ? `Minimum stay ${c.min_stay} nights` : '';
+    const note = [c.active === false ? 'Currently unavailable' : '', ...notes, minStay].filter(Boolean).join(' · ');
+    return open + escapeHtml(note) + close;
+  });
   return content.replace(/(<(\w+)\b[^>]*\sdata-cms-rate="([^"]+)"[^>]*>)([^<]*)(<\/\2>)/g,
-    (m, open, tag, name, text, close) => open + escapeHtml(rates[name] || text) + close);
+    (m, open, tag, name, text, close) => open + escapeHtml((byName[name] && byName[name].rate_display) || text) + close);
 }
 
 console.log(`[CMS Bridge] Loaded: ${cmsExperiences.length} experiences, ${cmsPackages.length} packages, ${cmsStories.length} stories, ${cmsGallery.length} gallery items, ${cmsAnnouncements.length} announcements, ${cmsChambers.length} chambers`);
@@ -482,7 +518,7 @@ for (const page of pages) {
     }
   }
 
-  if (page.pageName === 'our-chambers' && cmsChambers.length > 0) {
+  if (page.pageName === 'our-chambers' && !page.ve && cmsChambers.length > 0) {
     for (const ch of cmsChambers) {
       if (ch.name && ch.rate_display) {
         const escapedName = ch.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -493,6 +529,7 @@ for (const page of pages) {
   }
 
   content = renderVeMarkers(content);
+  content = content.replace(/<!-- tb:sinhala-font[^>]*-->/, () => sinhalaFontLink(content));
 
   // Inject synchronous Preloader Anti-Flash Script, Google Consent Mode & GTM into <head>
   let headInject = `
@@ -501,6 +538,19 @@ for (const page of pages) {
     try {
       if (sessionStorage.getItem('tb_preloader_seen') === '1') {
         document.documentElement.classList.add('tb-preloader-skip');
+      }
+    } catch (e) {}
+  </script>
+
+  <!-- Page-to-page segue hand-off (src/layout/segue.html): arrive under the same curtain -->
+  <script>
+    try {
+      var tbSg = JSON.parse(sessionStorage.getItem('tb_segue') || 'null');
+      sessionStorage.removeItem('tb_segue');
+      if (tbSg && Date.now() - tbSg.at < 8000 && sessionStorage.getItem('tb_preloader_seen') === '1' &&
+          !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('tb-segue-in');
+        window.__tbSegue = tbSg;
       }
     } catch (e) {}
   </script>
@@ -618,7 +668,8 @@ for (const page of pages) {
   }
 
   // Cinematic intro (src/layout/preloader.html) goes first after <body> on every page
-  content = content.replace(/<body[^>]*>/i, (m) => m + '\n' + preloaderHtml);
+  // then the page-to-page segue curtain (src/layout/segue.html)
+  content = content.replace(/<body[^>]*>/i, (m) => m + '\n' + preloaderHtml + '\n' + segueHtml);
 
   headInject += '\n</head>';
   content = content.replace('</head>', () => headInject);
