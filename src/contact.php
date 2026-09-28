@@ -1094,7 +1094,7 @@ document.getElementById('enquiry-form').addEventListener('submit', async functio
   try { 
     const res  = await fetch('submit_enquiry.php', { 
       method: 'POST', 
-      body:   new FormData(this), 
+      body:   new URLSearchParams(new FormData(this)), // URL-encoded: Vercel functions do not parse multipart 
     }); 
     const data = await res.json(); 
     if (data.ok) { 

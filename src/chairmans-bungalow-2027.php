@@ -1138,7 +1138,7 @@ document.getElementById('waitlist-form').addEventListener('submit', async functi
   try { 
     const res  = await fetch('submit_waitlist.php', { 
       method: 'POST', 
-      body:   new FormData(this), 
+      body:   new URLSearchParams(new FormData(this)), // URL-encoded: Vercel functions do not parse multipart 
     }); 
     const data = await res.json(); 
     if (data.ok) { 
