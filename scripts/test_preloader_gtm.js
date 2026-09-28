@@ -32,6 +32,10 @@ for (const file of htmlFiles) {
   const sessionCheck = content.includes("sessionStorage.getItem('tb_preloader_seen')");
   const reducedMotion = content.includes('prefers-reduced-motion');
   const eventsHook = content.includes('preloader_complete');
+  // Page-to-page segue: one curtain after <body>, plus the head hand-off that lets a page arrive under it
+  const segueCount = content.split('id="tb-segue"').length - 1;
+  const segueHandoff = content.indexOf("sessionStorage.getItem('tb_segue')");
+  const segue = segueCount === 1 && content.indexOf('id="tb-segue"') > bodyIdx && segueHandoff > -1 && segueHandoff < headIdx;
 
   const consentModeInHead = content.includes("gtag('consent', 'default'") && content.indexOf("gtag('consent', 'default'") < headIdx;
   const consentBannerInBody = content.includes('id="tb-consent-banner"') && content.indexOf('id="tb-consent-banner"') > bodyIdx;
@@ -49,7 +53,8 @@ for (const file of htmlFiles) {
     { name: 'Preloader lifecycle script', pass: preloaderScript },
     { name: 'sessionStorage check', pass: sessionCheck },
     { name: 'prefers-reduced-motion check', pass: reducedMotion },
-    { name: 'preloader_complete event hook', pass: eventsHook }
+    { name: 'preloader_complete event hook', pass: eventsHook },
+    { name: 'Page segue curtain + head hand-off', pass: segue }
   ];
 
   const failed = checks.filter(c => !c.pass);

@@ -13,7 +13,8 @@
 //     "intro": false,                          // true = let the preloader play
 //     "probe": "performance.now()",            // optional: evaluated after the shots and printed
 //     "shots": [{ "name": "services", "selector": "#services", "offset": 0,
-//                 "exact": false }] }]           // exact: capture right after "wait" (timed intro frames)
+//                 "exact": false,                // exact: capture right after "wait" (timed intro frames)
+//                 "eval": "document.querySelector('a').click(), 1" }] }]  // optional JS run first (no scrolling then)
 // }
 //
 // Prints, per page, the document width vs viewport and any elements that
@@ -133,7 +134,9 @@ for (const page of cfg.pages) {
   console.log(page.name, JSON.stringify(audit));
 
   for (const shot of page.shots) {
-    const y = await evaluate(`(() => {
+    // "eval": JS to run first, e.g. clicking a link to film a page transition
+    if (shot.eval) await evaluate(shot.eval);
+    const y = shot.eval ? null : await evaluate(`(() => {
       ${shot.selector ? `const el = document.querySelector(${JSON.stringify(shot.selector)}); if (!el) return 'missing'; const base = el.getBoundingClientRect().top + window.scrollY;` : "const base = 0;"}
       const y = base + ${shot.offset ?? 0};
       window.scrollTo(0, y);

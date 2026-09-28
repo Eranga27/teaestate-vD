@@ -263,6 +263,46 @@ html.ve-motion [data-split] .ve-line-mask > span { transform: translateY(105%); 
   .ve-footer__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+/* ── Shared page parts: breadcrumbs, chips, icons, FAQ, next chapter ───── */
+.ve-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 26px; font-family: var(--ve-display); font-size: 10px; letter-spacing: .28em; text-transform: uppercase; opacity: .72; }
+.ve-crumbs a { text-decoration: none; }
+.ve-crumbs a:hover { color: var(--ve-gold-light); }
+
+.ve-chip {
+  all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border: 1px solid var(--ve-line); border-radius: 999px;
+  font-family: var(--ve-display); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ve-forest);
+  transition: background-color .35s, color .35s, border-color .35s;
+}
+.ve-chip:hover { border-color: var(--ve-gold-deep); }
+.ve-chip.is-on { background: var(--ve-forest-deep); border-color: var(--ve-forest-deep); color: var(--ve-cream); }
+.ve-chip:focus-visible { outline: 2px solid var(--ve-gold); outline-offset: 3px; }
+
+.ve-ico { width: 28px; height: 28px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+
+.ve-faq { border-top: 1px solid var(--ve-line); }
+.ve-faq details { border-bottom: 1px solid var(--ve-line); }
+.ve-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 0; font-family: var(--ve-display); font-size: clamp(17px, 1.5vw, 22px); line-height: 1.3; transition: color .3s; }
+.ve-faq summary::-webkit-details-marker { display: none; }
+.ve-faq summary:hover { color: var(--ve-gold-deep); }
+.ve-faq summary::after { content: ''; flex: none; width: 14px; height: 14px; background: linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat, linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat; transition: transform .45s var(--ve-ease); }
+.ve-faq details[open] summary::after { transform: rotate(135deg); }
+.ve-faq details > div { padding: 0 0 28px; max-width: 46em; color: var(--ve-muted); font-size: 17px; line-height: 1.65; }
+.ve-faq details > div p { margin: 0; }
+
+/* Next chapter: the page's last word is a doorway to the next one (it opens with the segue) */
+.ve .ve-next { position: relative; display: grid; align-content: center; justify-items: center; gap: 18px; min-height: 86vh; padding: 120px var(--ve-gutter); overflow: hidden; isolation: isolate; text-align: center; text-decoration: none; color: var(--ve-cream); background: var(--ve-forest-deep); }
+.ve-next__bg { position: absolute; inset: 0; z-index: -1; clip-path: inset(12% 16% 12% 16% round 999px 999px 0 0); transition: clip-path 1.2s var(--ve-ease); }
+.ve-next__bg img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 1.6s var(--ve-ease); filter: brightness(.55); }
+.ve-next:hover .ve-next__bg { clip-path: inset(0 0 0 0 round 0 0 0 0); }
+.ve-next:hover .ve-next__bg img { transform: scale(1.02); }
+.ve-next__label { color: var(--ve-gold-light); display: inline-flex; gap: 14px; align-items: center; }
+.ve-next__label .ve-si { font-size: 18px; }
+.ve-next__title { font-family: var(--ve-display); font-size: clamp(44px, 9vw, 150px); line-height: .95; letter-spacing: .01em; text-shadow: 0 10px 50px rgba(0, 0, 0, .35); }
+.ve-next__sub { font-style: italic; font-size: clamp(18px, 1.6vw, 24px); color: rgba(245, 241, 233, .82); max-width: 26em; }
+.ve-next__go { display: grid; place-items: center; width: 64px; height: 64px; margin-top: 10px; border: 1px solid rgba(245, 241, 233, .5); border-radius: 50%; font-size: 22px; transition: background-color .4s, color .4s, transform .6s var(--ve-ease); }
+.ve-next:hover .ve-next__go { background: var(--ve-gold); color: var(--ve-forest-deep); border-color: var(--ve-gold); transform: translateX(8px); }
+@media (hover: none) { .ve-next__bg { clip-path: inset(0 0 0 0 round 0 0 0 0); } }
+
 /* ── Reduced motion: everything static and visible ────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .ve-grain { animation: none; }
