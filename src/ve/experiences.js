@@ -1,77 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   vE · Experiences. "Your stay" (the shortlist behind every Add button) and
-   the promise's word split work without motion; the pour, the tasting table,
-   the dive into the last cup and the fire run through VE.ready.
+   vE · Experiences. The promise's word split works without motion; the pour,
+   the tasting table, the dive into the last cup and the fire run through
+   VE.ready. "Your stay" (every Add button) is the shared shortlist in ve.js.
 ═══════════════════════════════════════════════════════════════════════════ */
 (function () {
   if (!window.VE) return;
   var q = function (s, el) { return (el || document).querySelector(s); };
   var qa = function (s, el) { return [].slice.call((el || document).querySelectorAll(s)); };
-  var WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
-
-  /* ── Your stay: everything added on this page, kept in this browser for the next visit ── */
-  var KEY = 'tb_exp_stay';
-  var addBtns = qa('.xp-add'), offered = addBtns.map(function (b) { return b.getAttribute('data-add'); });
-  var chosen = [];
-  try { chosen = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { chosen = []; }
-  chosen = (Array.isArray(chosen) ? chosen : []).filter(function (n, i, all) { return offered.indexOf(n) > -1 && all.indexOf(n) === i; });
-  var stay = q('.xp-stay'), list = q('.xp-stay__list'), countEl = q('.xp-stay__count'), nounEl = q('.xp-stay__noun');
-  var enquire = q('.xp-stay__enquire'), wa = q('.xp-stay__wa');
-  var sticky = q('.xp-sticky'), stickyText = q('.xp-sticky__text'), stickyCount = q('.xp-sticky__count');
-  var WA = 'https://wa.me/94777874555?text=';
-  var save = function () { try { localStorage.setItem(KEY, JSON.stringify(chosen)); } catch (e) {} };
-
-  function renderStay() {
-    var n = chosen.length;
-    addBtns.forEach(function (b) {
-      var on = chosen.indexOf(b.getAttribute('data-add')) > -1, small = b.classList.contains('xp-add--sm'), label = q('.xp-add__label', b);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      if (label) label.textContent = on ? (small ? 'Added' : 'Added to your stay') : (small ? 'Add' : 'Add to my stay');
-    });
-    if (list) {
-      list.innerHTML = '';
-      chosen.forEach(function (name) {
-        var li = document.createElement('li'), span = document.createElement('span'), rm = document.createElement('button');
-        span.textContent = name;
-        rm.type = 'button'; rm.className = 'xp-stay__remove'; rm.setAttribute('data-remove', name);
-        rm.setAttribute('aria-label', 'Remove ' + name); rm.innerHTML = '&times;';
-        li.appendChild(span); li.appendChild(rm); list.appendChild(li);
-      });
-    }
-    if (stay) stay.classList.toggle('has-items', n > 0);
-    if (countEl) countEl.textContent = WORDS[n] || String(n);
-    if (nounEl) nounEl.textContent = n === 1 ? 'experience' : 'experiences';
-    if (enquire) {
-      enquire.setAttribute('data-experiences', chosen.join('|'));
-      var label = q('span', enquire);
-      if (label) label.textContent = n ? 'Enquire with ' + (n === 1 ? 'this' : 'these') : 'Send an enquiry';
-    }
-    if (wa) wa.href = WA + encodeURIComponent(n
-      ? 'Hello, I’d like to arrange these experiences during a stay at The Tea Bungalow: ' + chosen.join(', ') + '.'
-      : 'Hello, I’d like to ask about experiences during a stay at The Tea Bungalow.');
-    if (stickyText) stickyText.textContent = n ? 'Your stay' : 'Plan your experiences';
-    if (stickyCount) { stickyCount.hidden = !n; stickyCount.textContent = n + ' chosen'; }
-    // Without motion there's no scroll trigger for the pill: it shows once something is chosen
-    if (sticky && VE.reduce) sticky.classList.toggle('is-visible', n > 0);
-  }
-  function toggle(name) {
-    var i = chosen.indexOf(name), adding = i < 0;
-    if (adding) chosen.push(name); else chosen.splice(i, 1);
-    save(); renderStay();
-    if (sticky) { sticky.classList.remove('is-bumped'); void sticky.offsetWidth; sticky.classList.add('is-bumped'); }
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'experience_shortlist', item: name, action: adding ? 'add' : 'remove', count: chosen.length });
-  }
-  addBtns.forEach(function (b) { b.addEventListener('click', function () { toggle(b.getAttribute('data-add')); }); });
-  if (list) list.addEventListener('click', function (e) {
-    var rm = e.target.closest('[data-remove]');
-    if (rm) toggle(rm.getAttribute('data-remove'));
-  });
-  if (sticky) sticky.addEventListener('click', function () {
-    var target = document.getElementById('arrange');
-    if (VE.scrollTo) VE.scrollTo(target); else target.scrollIntoView({ behavior: 'smooth' });
-  });
-  renderStay();
 
   /* ── The promise: one word at a time ── */
   var promise = q('.xp-promise__text'), words = [];
@@ -197,6 +132,7 @@
       scrollTrigger: { trigger: '.xp-close', start: 'top 65%', once: true } });
 
     /* ── "Your stay" pill: from the tasting table until the arrange section ── */
+    var sticky = q('.xp-sticky');
     if (sticky) {
       // refreshPriority -1: measured after the pins above have added their length
       ScrollTrigger.create({ trigger: '.xp-table', start: 'top 70%', endTrigger: '.xp-close', end: 'top 75%', refreshPriority: -1,

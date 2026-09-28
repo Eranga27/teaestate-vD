@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    vE runtime (shared by every vE page)
    Lenis smooth scroll + GSAP ScrollTrigger, header, menu, cursor, moonstone
-   progress, reveals. Pages add their own timelines through VE.ready(fn).
+   progress, reveals, the "Your stay" shortlist. Pages add their own timelines through VE.ready(fn).
    Reduced motion: no smooth scroll, no pins, everything in its final state.
 ═══════════════════════════════════════════════════════════════════════════ */
 (function () {
@@ -220,10 +220,98 @@
     });
   }
 
+  /* ── Your stay: a shortlist that follows the guest between pages ────────
+     Any [data-add="Name"] button toggles an item (label in [data-add-label], texts from data-label-off /
+     data-label-on). [data-stay] panels list them ([data-stay-list], [data-stay-count], [data-stay-noun]);
+     [data-stay-enquire] carries them into the enquiry modal as data-experiences="A|B"; [data-stay-wa]
+     gets a prefilled WhatsApp link; [data-stay-pill] shows the count. Kept in localStorage. */
+  function setupStay() {
+    var adds = [].slice.call(document.querySelectorAll('[data-add]'));
+    if (!adds.length && !document.querySelector('[data-stay]')) return;
+    var KEY = 'tb_stay', WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
+    var WA = 'https://wa.me/94777874555?text=';
+    var chosen = [];
+    try {
+      var old = localStorage.getItem('tb_exp_stay'); // the Experiences page's first version
+      if (old && !localStorage.getItem(KEY)) { localStorage.setItem(KEY, old); localStorage.removeItem('tb_exp_stay'); }
+      chosen = JSON.parse(localStorage.getItem(KEY) || '[]');
+    } catch (e) { chosen = []; }
+    chosen = (Array.isArray(chosen) ? chosen : []).filter(function (n, i, all) { return typeof n === 'string' && n && all.indexOf(n) === i; }).slice(0, 40);
+    var all = function (sel) { return [].slice.call(document.querySelectorAll(sel)); };
+    var save = function () { try { localStorage.setItem(KEY, JSON.stringify(chosen)); } catch (e) {} };
+
+    function render() {
+      var n = chosen.length;
+      adds.forEach(function (b) {
+        var on = chosen.indexOf(b.getAttribute('data-add')) > -1, label = b.querySelector('[data-add-label]');
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (label) label.textContent = on ? (b.getAttribute('data-label-on') || 'Added') : (b.getAttribute('data-label-off') || 'Add');
+      });
+      all('[data-stay]').forEach(function (panel) {
+        panel.classList.toggle('has-items', n > 0);
+        var list = panel.querySelector('[data-stay-list]'), count = panel.querySelector('[data-stay-count]'), noun = panel.querySelector('[data-stay-noun]');
+        if (list) {
+          list.innerHTML = '';
+          chosen.forEach(function (name) {
+            var li = document.createElement('li'), span = document.createElement('span'), rm = document.createElement('button');
+            span.textContent = name;
+            rm.type = 'button'; rm.className = 'stay-remove'; rm.setAttribute('data-remove', name);
+            rm.setAttribute('aria-label', 'Remove ' + name); rm.innerHTML = '&times;';
+            li.appendChild(span); li.appendChild(rm); list.appendChild(li);
+          });
+        }
+        if (count) count.textContent = WORDS[n] || String(n);
+        if (noun) noun.textContent = n === 1 ? (noun.getAttribute('data-one') || 'item') : (noun.getAttribute('data-many') || 'items');
+      });
+      all('[data-stay-enquire]').forEach(function (btn) {
+        btn.setAttribute('data-experiences', chosen.join('|'));
+        var label = btn.querySelector('span');
+        if (label) label.textContent = n ? 'Enquire with ' + (n === 1 ? 'this' : 'these') : (btn.getAttribute('data-empty-label') || label.textContent);
+      });
+      all('[data-stay-wa]').forEach(function (a) {
+        a.href = WA + encodeURIComponent(n
+          ? 'Hello, I’d like to arrange these during a stay at The Tea Bungalow: ' + chosen.join(', ') + '.'
+          : 'Hello, I’d like to ask about a stay at The Tea Bungalow.');
+      });
+      all('[data-stay-pill]').forEach(function (pill) {
+        var text = pill.querySelector('[data-stay-pill-text]'), count = pill.querySelector('[data-stay-pill-count]');
+        if (text) text.textContent = n ? 'Your stay' : (text.getAttribute('data-empty-text') || text.textContent);
+        if (count) { count.hidden = !n; count.textContent = n + ' chosen'; }
+        // Without motion no scroll trigger shows the pill: it appears once something is chosen
+        if (VE.reduce) pill.classList.toggle('is-visible', n > 0);
+      });
+    }
+    function toggle(name) {
+      var i = chosen.indexOf(name), adding = i < 0;
+      if (adding) chosen.push(name); else chosen.splice(i, 1);
+      save(); render();
+      all('[data-stay-pill]').forEach(function (pill) { pill.classList.remove('is-bumped'); void pill.offsetWidth; pill.classList.add('is-bumped'); });
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'stay_shortlist', item: name, action: adding ? 'add' : 'remove', count: chosen.length, page: location.pathname });
+    }
+    document.addEventListener('click', function (e) {
+      var add = e.target.closest('[data-add]'), rm = e.target.closest('[data-remove]'), pill = e.target.closest('[data-stay-pill]');
+      if (add) toggle(add.getAttribute('data-add'));
+      else if (rm) toggle(rm.getAttribute('data-remove'));
+      else if (pill) {
+        var target = document.getElementById(pill.getAttribute('aria-controls'));
+        if (target) VE.scrollTo(target);
+      }
+    });
+    // Another tab changed the list
+    window.addEventListener('storage', function (e) {
+      if (e.key !== KEY) return;
+      try { chosen = JSON.parse(e.newValue || '[]') || []; } catch (err) { chosen = []; }
+      render();
+    });
+    VE.stay = { list: function () { return chosen.slice(); }, toggle: toggle };
+    render();
+  }
+
   /* ── Boot ───────────────────────────────────────────────────────────── */
   function boot() {
     // Each feature is independent: one failing must not take the others (or the page) down
-    [setupMenu, setupCursor, setupMoon, setupHeader, setupReveals].forEach(function (setup) {
+    [setupMenu, setupCursor, setupMoon, setupHeader, setupReveals, setupStay].forEach(function (setup) {
       try { setup(); } catch (e) { console.error('[vE] ' + setup.name + ' failed', e); }
     });
     // Scrolling waits until the preloader has fully gone (the page is still locked while it opens)
