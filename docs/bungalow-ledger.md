@@ -417,7 +417,11 @@ Started 28 Sept 2026 on branch `ve/homepage`. Goal: an award-level, cinematic sc
 
 **Shared with every future vE page:** Lenis smooth scroll, a header that hides and re-themes per section, a full-screen menu with photo previews, a custom cursor, reveals, and a new footer.
 
-**Stack:** GSAP 3 + ScrollTrigger and Lenis, self-hosted. Photos are optimised to WebP (the whole media set is 12 MB, down from the originals' tens of MB). The hero film is 4.3 MB on desktop and 2.3 MB on phones. On reduced motion or Save-Data, the hero shows the poster only.
+**Preloader, "Through the doorway":** a gold colonial arch draws itself, with a lotus keystone and a sandakada pahana (moonstone) at its threshold. Estate photographs cut through it while THE TEA / BUNGALOW rise either side, ආයුබෝවන් sits above and the year rolls from 1867 (Ceylon's first tea) to 1890 (the bungalow). Then the words part and the arch opens past the screen onto the page: on the homepage, straight onto the film as GALAHA rises. It replaces "Dawn over Galaha" and plays for about 5.9 s, once per session, and can be skipped.
+
+**Hero film quality:** re-encoded from the source at native 1080p/29.97fps (VMAF 87 against the source, up from 65 for the first web cut), 12 MB. Phones held upright get a dedicated 720×1080 portrait cut around the house (5 MB) instead of an upscaled slice of the landscape film.
+
+**Stack:** GSAP 3 + ScrollTrigger and Lenis, self-hosted. Photos are optimised to WebP. On reduced motion or Save-Data, the hero shows the poster only.
 
 **QA:** headless Chrome captures at 1440/768/390, reduced motion and the preloader hand-off. Also checked: no horizontal overflow and no console errors. `npm test` passes.
 
