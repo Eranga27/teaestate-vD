@@ -29,7 +29,8 @@ console.log(`Copied ${fs.readdirSync(OUT_IMAGES_DIR).length} image/media entries
 
 // 2. Define page mappings
 const pages = [
-  { phpFile: 'home.php', htmlFile: 'index.html', pageName: 'home' },
+  // ve: true = vE design (src/ve/*, src/layout/ve/*); the legacy header chrome is stripped
+  { phpFile: 'home.php', htmlFile: 'index.html', pageName: 'home', ve: true },
   { phpFile: 'about.php', htmlFile: 'about.html', pageName: 'about' },
   { phpFile: 'our-chambers.php', htmlFile: 'our-chambers.html', pageName: 'our-chambers' },
   { phpFile: 'the-bungalow.php', htmlFile: 'the-bungalow.html', pageName: 'the-bungalow' },
@@ -89,7 +90,7 @@ function cleanUrlRewrites(content) {
   return c;
 }
 
-function renderNavbar(pageName) {
+function renderNavbar(pageName, ve) {
   let nav = navbarTpl;
   // Remove top PHP declaration
   nav = nav.replace(/<\?php[\s\S]*?\?>/, '');
@@ -97,7 +98,29 @@ function renderNavbar(pageName) {
   nav = nav.replace(/<\?=\s*\$page\s*===\s*['"]([^'"]+)['"]\s*\?\s*['"]active['"]\s*:\s*['"]['"]\s*\?>/g, (m, target) => {
     return target === pageName ? 'active' : '';
   });
+  if (ve) nav = stripLegacyChrome(nav);
   return cleanUrlRewrites(nav);
+}
+
+// vE pages keep the shared consent banner, reservation drawer and analytics hooks from
+// navbar.php, but replace its header, mobile drawer and floating bar with src/layout/ve/header.html
+function stripLegacyChrome(nav) {
+  const cut = (startMarker, endMarker) => {
+    const a = nav.indexOf(startMarker);
+    const b = a === -1 ? -1 : nav.indexOf(endMarker, a + startMarker.length);
+    if (a === -1 || b === -1) throw new Error(`stripLegacyChrome: "${startMarker}" … "${endMarker}" not found in navbar.php`);
+    nav = nav.slice(0, a) + nav.slice(b);
+  };
+  cut('<!-- Floating Luxury Booking Bar', '<!-- Concierge Enquiry Drawer');
+  cut('<nav id="nav">', '<!-- Mobile Navigation Drawer -->');
+  cut('<!-- Mobile Navigation Drawer -->', '<script>');
+  return nav;
+}
+
+// <?php include 'layout/…/x.html'; ?> → file contents (plain-HTML partials, e.g. the vE header)
+function resolveIncludes(content) {
+  return content.replace(/<\?php\s+include\s+['"](layout\/[a-z0-9\/_-]+\.html)['"];\s*\?>/gi, (m, rel) =>
+    fs.readFileSync(path.join(SOURCE_DIR, rel), 'utf8').replace(/^﻿/, ''));
 }
 
 function renderFooter() {
@@ -196,6 +219,96 @@ ${meta}
     </div>`;
 }
 
+// ── vE helpers ──────────────────────────────────────────────────────────────
+const VE_SRC = path.join(SOURCE_DIR, 've');
+const MEDIA_SRC = path.join(SOURCE_DIR, 'media');
+const VENDOR_FILES = [
+  ['gsap/dist/gsap.min.js', 'gsap.min.js'],
+  ['gsap/dist/ScrollTrigger.min.js', 'ScrollTrigger.min.js'],
+  ['lenis/dist/lenis.min.js', 'lenis.min.js'],
+];
+const mediaManifestPath = path.join(MEDIA_SRC, 'manifest.json');
+const mediaManifest = fs.existsSync(mediaManifestPath) ? JSON.parse(fs.readFileSync(mediaManifestPath, 'utf8')) : {};
+
+// Web-sized version of an original (e.g. a CMS "/images/IMG_7674.jpeg"), or null if none exists
+function mediaFor(imagePath, want = 900) {
+  const m = mediaManifest[decodeURIComponent(path.basename(String(imagePath || '')))];
+  if (!m) return null;
+  return `/media/${m.name}-${m.widths.find(w => w >= want) || m.widths[m.widths.length - 1]}.webp`;
+}
+// Used when a CMS photo has no web version, or is one we keep off the vE pages (see optimize_media.js)
+const CATEGORY_MEDIA = {
+  'tea-estate': '/media/tea-factory-900.webp', 'tea-heritage': '/media/tea-factory-900.webp',
+  'pekoe-trail': '/media/trail-forest-900.webp', dining: '/media/dining-outdoor-900.webp', culinary: '/media/afternoon-tea-900.webp',
+  'colonial-heritage': '/media/lounge-fireplace-900.webp', 'estate-life': '/media/lounge-fireplace-900.webp',
+  wellness: '/media/garden-900.webp', 'flora-fauna': '/media/garden-900.webp',
+};
+const imageFor = (imagePath, category) => mediaFor(imagePath) || CATEGORY_MEDIA[category] || '/media/lounge-main-900.webp';
+
+// Cache-busting: /ve/*.css|js and /js/vendor/*.js get ?v=<content hash>
+const assetVersions = {};
+const hashFile = f => require('crypto').createHash('sha1').update(fs.readFileSync(f)).digest('hex').slice(0, 10);
+if (fs.existsSync(VE_SRC)) for (const f of fs.readdirSync(VE_SRC)) assetVersions[`/ve/${f}`] = hashFile(path.join(VE_SRC, f));
+for (const [from, to] of VENDOR_FILES) {
+  const p = path.join(ROOT_DIR, 'node_modules', from);
+  if (fs.existsSync(p)) assetVersions[`/js/vendor/${to}`] = hashFile(p);
+}
+function versionAssets(content) {
+  return content.replace(/(["'])(\/(?:ve|js\/vendor)\/[A-Za-z0-9._-]+\.(?:css|js))\1/g,
+    (m, q, p) => (assetVersions[p] ? `${q}${p}?v=${assetVersions[p]}${q}` : m));
+}
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const formatDate = d => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); return m ? `${+m[3]} ${MONTHS[+m[2] - 1]} ${m[1]}` : (d || ''); };
+const labelFor = s => String(s || '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+// <!-- tb:announcement -->, <!-- tb:experiences -->, <!-- tb:stories --> and data-cms-rate="Chamber"
+function renderVeMarkers(content) {
+  if (content.includes('<!-- tb:announcement -->')) {
+    const a = cmsAnnouncements.find(x => x.active !== false);
+    content = content.replace('<!-- tb:announcement -->', () => (a
+      ? `<p class="ve-notice" title="${escapeHtml(a.body)}"><span class="ve-notice__tag">${escapeHtml(a.type || 'Notice')}</span><span class="ve-notice__text">${escapeHtml(a.title)}</span></p>`
+      : ''));
+  }
+  if (content.includes('<!-- tb:experiences -->')) {
+    const rows = cmsExperiences.filter(e => e.active !== false)
+      .sort((a, b) => (a.sort_order ?? 9999) - (b.sort_order ?? 9999)).slice(0, 6)
+      .map((e, i) => {
+        const img = imageFor(e.image, e.category);
+        const meta = [e.timing, e.location].filter(Boolean).join(' · ');
+        return `<li class="vh-exp__row"><a href="/experiences" data-img="${img}"><span class="ve-num">${String(i + 1).padStart(2, '0')}</span>` +
+          `<span class="vh-exp__title">${escapeHtml(e.title)}</span><span class="vh-exp__meta">${escapeHtml(meta)}</span>` +
+          `<img class="vh-exp__thumb" src="${img}" alt="" width="72" height="88" loading="lazy" decoding="async"><span class="vh-exp__arrow" aria-hidden="true">&rarr;</span></a></li>`;
+      }).join('\n          ');
+    content = content.replace('<!-- tb:experiences -->', () => rows);
+  }
+  if (content.includes('<!-- tb:stories -->')) {
+    const stories = cmsStories.filter(s => s.published !== false).slice(0, 3);
+    const cards = stories.map((s, i) => `
+          <a class="vh-story" href="/about#heritage" data-reveal="up" data-delay="${(i * 0.12).toFixed(2)}">
+            <figure class="vh-story__media"><img src="${imageFor(s.featured_image, s.category)}" alt="${escapeHtml(s.image_caption || s.title)}" loading="lazy" decoding="async"></figure>
+            <p class="vh-story__meta">${escapeHtml(labelFor(s.category || 'Heritage'))} &middot; ${escapeHtml(formatDate(s.date))} &middot; ${escapeHtml(s.read_time || '5 min read')}</p>
+            <h3 class="vh-story__title">${escapeHtml(s.title)}</h3>
+            <p class="vh-story__text">${escapeHtml(s.excerpt || '')}</p>
+            <span class="ve-link">Read story <span aria-hidden="true">&rarr;</span></span>
+          </a>`).join('');
+    content = content.replace('<!-- tb:stories -->', () => (stories.length ? `<section class="vh-stories" data-theme="light">
+      <div class="ve-wrap">
+        <div class="vh-stories__head">
+          <p class="ve-label ve-kicker">06 &mdash; Estate stories</p>
+          <h2 class="ve-h2" data-split>From the<br><em>estate journal.</em></h2>
+          <a class="ve-link" href="/about#heritage">About the estate <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="vh-stories__grid">${cards}
+        </div>
+      </div>
+    </section>` : ''));
+  }
+  const rates = Object.fromEntries(cmsChambers.filter(c => c.name && c.rate_display).map(c => [c.name, c.rate_display]));
+  return content.replace(/(<(\w+)\b[^>]*\sdata-cms-rate="([^"]+)"[^>]*>)([^<]*)(<\/\2>)/g,
+    (m, open, tag, name, text, close) => open + escapeHtml(rates[name] || text) + close);
+}
+
 console.log(`[CMS Bridge] Loaded: ${cmsExperiences.length} experiences, ${cmsPackages.length} packages, ${cmsStories.length} stories, ${cmsGallery.length} gallery items, ${cmsAnnouncements.length} announcements, ${cmsChambers.length} chambers`);
 
 console.log('Rendering static HTML pages...');
@@ -204,12 +317,13 @@ for (const page of pages) {
   let content = fs.readFileSync(srcPath, 'utf8');
 
   // Navbar include replacement
-  const renderedNav = renderNavbar(page.pageName);
+  const renderedNav = renderNavbar(page.pageName, page.ve);
   content = content.replace(/<\?php\s+include\s+['"]layout\/navbar\.php['"];\s*\?>/g, () => renderedNav);
 
   // Footer include replacement
   const renderedFoot = renderFooter();
   content = content.replace(/<\?php\s+include\s+['"]layout\/footer\.php['"];\s*\?>/g, () => renderedFoot);
+  content = resolveIncludes(content);
 
   // Remove session_start and CSRF PHP blocks at the top or anywhere
   content = content.replace(/<\?php[\s\S]*?\?>/g, '');
@@ -313,7 +427,7 @@ for (const page of pages) {
     );
   }
 
-  if (page.pageName === 'home') {
+  if (page.pageName === 'home' && !page.ve) { // vE homepage uses the tb: markers below instead
     // 1. Announcements banner
     const activeAnnouncement = cmsAnnouncements.find(a => a.active !== false);
     if (activeAnnouncement) {
@@ -377,6 +491,8 @@ for (const page of pages) {
       }
     }
   }
+
+  content = renderVeMarkers(content);
 
   // Inject synchronous Preloader Anti-Flash Script, Google Consent Mode & GTM into <head>
   let headInject = `
@@ -515,6 +631,8 @@ for (const page of pages) {
       .replace(/[ \t]*<!-- Google Tag Manager \(noscript\) -->[\s\S]*?<!-- End Google Tag Manager \(noscript\) -->\n?/g, '');
   }
 
+  content = versionAssets(content);
+
   const outPath = path.join(OUT_DIR, page.htmlFile);
   fs.writeFileSync(outPath, content, 'utf8');
   console.log(`Generated: public/${page.htmlFile}`);
@@ -551,6 +669,13 @@ if (fs.existsSync(DATA_SRC)) {
   copyDirRecursive(DATA_SRC, DATA_DEST);
   console.log('Copied Decap CMS data → public/data');
 }
+
+// vE assets: styles/scripts, optimised media, and the GSAP + Lenis builds from node_modules
+if (fs.existsSync(VE_SRC)) copyDirRecursive(VE_SRC, path.join(OUT_DIR, 've'));
+if (fs.existsSync(MEDIA_SRC)) copyDirRecursive(MEDIA_SRC, path.join(OUT_DIR, 'media'));
+fs.mkdirSync(path.join(OUT_DIR, 'js', 'vendor'), { recursive: true });
+for (const [from, to] of VENDOR_FILES) fs.copyFileSync(path.join(ROOT_DIR, 'node_modules', from), path.join(OUT_DIR, 'js', 'vendor', to));
+console.log(`Copied vE assets → public/ve, public/media (${fs.readdirSync(path.join(OUT_DIR, 'media')).length} files), public/js/vendor`);
 
 console.log('Static site build complete!');
 

@@ -1,0 +1,81 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     vE chrome (src/layout/ve/header.html): header, full-screen menu, cursor,
+     moonstone scroll indicator. Behaviour lives in /ve/ve.js, styles in /ve/ve.css.
+═══════════════════════════════════════════════════════════════════════════ -->
+<a class="ve-skip" href="#main">Skip to content</a>
+
+<header class="ve-header" id="veHeader" data-theme="dark">
+  <div class="ve-header__side">
+    <button type="button" class="ve-menu-btn" id="veMenuBtn" aria-expanded="false" aria-controls="veMenu" data-magnetic>
+      <span class="ve-menu-btn__icon" aria-hidden="true"><i></i><i></i></span>
+      <span class="ve-menu-btn__text"><span>Menu</span><span>Close</span></span>
+    </button>
+    <a class="ve-header__link ve-hide-md" href="/our-chambers">Chambers</a>
+    <a class="ve-header__link ve-hide-md" href="/pekoe-trail">Pekoe Trail</a>
+  </div>
+
+  <a class="ve-header__brand" href="/" aria-label="The Tea Bungalow, home">
+    <svg class="ve-header__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <path d="M32 62 C32 54 32 44 32 33"/>
+      <path d="M32 34 C27.5 24 28.5 12 32 3 C35.5 12 36.5 24 32 34 Z"/>
+      <path d="M31.5 45 C22 45 12 37 9 25 C19 26.5 28 33 31.5 45 Z"/>
+      <path d="M32.5 52 C42 53 52.5 45 56 34 C45.5 35 36.5 42 32.5 52 Z"/>
+    </svg>
+    <span class="ve-header__name">The Tea Bungalow</span>
+    <span class="ve-header__sub">Galaha &middot; 1890</span>
+  </a>
+
+  <div class="ve-header__side ve-header__side--end">
+    <a class="ve-header__link ve-hide-md" href="/experiences">Experiences</a>
+    <a class="ve-header__link ve-hide-sm" href="https://wa.me/94777874555" target="_blank" rel="noopener">WhatsApp</a>
+    <button type="button" class="ve-btn ve-btn--gold ve-btn--sm tb-reserve-trigger" data-source="header_cta" data-magnetic>Reserve</button>
+  </div>
+</header>
+
+<div class="ve-menu" id="veMenu" aria-hidden="true" data-lenis-prevent>
+  <div class="ve-band ve-menu__band" aria-hidden="true"></div>
+  <div class="ve-menu__inner">
+    <nav class="ve-menu__nav" aria-label="Main">
+      <a href="/" data-img="/media/lounge-main-900.webp"><em>01</em><span>Home</span></a>
+      <a href="/the-bungalow" data-img="/media/lounge-arches-900.webp"><em>02</em><span>The Bungalow</span></a>
+      <a href="/our-chambers" data-img="/media/chamber-founders-900.webp"><em>03</em><span>Chambers</span></a>
+      <a href="/the-entire-estate" data-img="/media/lounge-evening-900.webp"><em>04</em><span>The Entire Estate</span></a>
+      <a href="/pekoe-trail" data-img="/media/trail-forest-900.webp"><em>05</em><span>Pekoe Trail</span></a>
+      <a href="/experiences" data-img="/media/afternoon-tea-900.webp"><em>06</em><span>Experiences</span></a>
+      <a href="/packages" data-img="/media/dining-outdoor-900.webp"><em>07</em><span>Packages</span></a>
+      <a href="/gallery" data-img="/media/lounge-windows-900.webp"><em>08</em><span>Gallery</span></a>
+      <a href="/about" data-img="/media/hall-mirror-700.webp"><em>09</em><span>About</span></a>
+      <a href="/chairmans-bungalow-2027" data-img="/media/garden-900.webp"><em>10</em><span>Chairman&rsquo;s Bungalow</span></a>
+    </nav>
+    <figure class="ve-menu__visual" aria-hidden="true">
+      <img src="/media/lounge-main-900.webp" alt="" width="900" height="506" decoding="async">
+    </figure>
+    <div class="ve-menu__meta">
+      <div>
+        <p class="ve-label">Reservations</p>
+        <a href="mailto:stay@theteabungalow.com">stay@theteabungalow.com</a>
+        <a href="https://wa.me/94777874555" target="_blank" rel="noopener">WhatsApp &middot; +94 77 787 4555</a>
+        <a href="/contact">Enquiry form</a>
+      </div>
+      <div>
+        <p class="ve-label">The Estate</p>
+        <p>Galaha, Central Province<br>Sri Lanka &middot; 45 min from Kandy</p>
+      </div>
+      <p class="ve-menu__greet"><span class="ve-si" lang="si">ආයුබෝවන්</span> <span>Ayubowan &middot; welcome</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="ve-cursor" aria-hidden="true">
+  <div class="ve-cursor__ring"><span class="ve-cursor__label"></span></div>
+  <div class="ve-cursor__dot"></div>
+</div>
+
+<!-- Scroll indicator shaped like a sandakada pahana (moonstone); its rings fill as you scroll -->
+<button type="button" class="ve-moon" id="veMoon" aria-label="Back to top">
+  <svg viewBox="0 0 64 34" aria-hidden="true" focusable="false">
+    <g class="ve-moon__track"><path d="M2 32 A30 30 0 0 1 62 32"/><path d="M8 32 A24 24 0 0 1 56 32"/><path d="M14 32 A18 18 0 0 1 50 32"/><path d="M20 32 A12 12 0 0 1 44 32"/></g>
+    <g class="ve-moon__fill"><path pathLength="1" d="M2 32 A30 30 0 0 1 62 32"/><path pathLength="1" d="M8 32 A24 24 0 0 1 56 32"/><path pathLength="1" d="M14 32 A18 18 0 0 1 50 32"/><path pathLength="1" d="M20 32 A12 12 0 0 1 44 32"/></g>
+    <path class="ve-moon__lotus" d="M26 32 A6 6 0 0 1 38 32 Z"/>
+  </svg>
+</button>
