@@ -1,2244 +1,319 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="ve-page">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Entire Estate · Exclusive Use · The Tea Bungalow</title>
+  <meta name="description" content="Reserve The Tea Bungalow exclusively: six chambers, the Carriage House Cottage, the Planter's Lounge, garden, pool and full estate team for up to 12 guests. For families, hiking groups, celebrations and retreats in Galaha, Sri Lanka.">
 
 <link rel="icon" type="image/png" href="images/favicon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Exclusive Estate Hire · Entire Bungalow · The Tea Bungalow">
-<meta property="og:description" content="Book The Tea Bungalow exclusively — all five chambers, the estate, grounds, and staff for your private group. Ideal for retreats, weddings, and celebrations.">
+<meta property="og:title" content="The Entire Estate · Exclusive Use · The Tea Bungalow">
+<meta property="og:description" content="The whole 1890 planter's bungalow, for your party alone: six chambers and the Carriage House Cottage for up to 12 guests, a private chef and the full estate team.">
 <meta property="og:url" content="https://www.theteabungalow.com/the-entire-estate">
-<meta property="og:image" content="https://www.theteabungalow.com/images/tea-estate.jpg">
+<meta property="og:image" content="https://www.theteabungalow.com/media/estate-house-1600.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Exclusive Estate Hire · Entire Bungalow · The Tea Bungalow">
-<meta name="twitter:description" content="Book The Tea Bungalow exclusively — all five chambers, the estate, grounds, and staff for your private group. Ideal for retreats, weddings, and celebrations.">
+<meta name="twitter:title" content="The Entire Estate · Exclusive Use · The Tea Bungalow">
+<meta name="twitter:description" content="The whole 1890 planter's bungalow, for your party alone: six chambers and the Carriage House Cottage for up to 12 guests, a private chef and the full estate team.">
 <link rel="canonical" href="https://www.theteabungalow.com/the-entire-estate">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-  <style>
-    /* ════════════════════════════════════════════════
-   ROOT
-════════════════════════════════════════════════ */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    :root {
-      --green: #1E4D2B;
-      --green-mid: #2a6638;
-      --green-deep: #0f2e16;
-      --green-pale: #c8dece;
-      --green-ghost: #eaf2ec;
-      --gold: #C7A85E;
-      --gold-light: #dfc080;
-      --gold-pale: #f5edd4;
-      --gold-deep: #8a6a30;
-      --cream: #F5F1E9;
-      --cream-dark: #ede7db;
-      --ink: #1a1510;
-      --ink-mid: #3d3428;
-      --ink-light: #7a6e60;
-      --mist: #8a9e8f;
-      --white: #ffffff;
-      --shadow: rgba(30, 77, 43, 0.13);
-    }
-
-    body {
-      background: var(--cream);
-      font-family: 'EB Garamond', Georgia, serif;
-      color: var(--ink);
-      overflow-x: hidden;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* ════════════════════════════════════════════════
-   NAV
-════════════════════════════════════════════════ */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
-      height: 72px;
-      padding: 0 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.4s, box-shadow 0.4s;
-    }
-
-    nav.scrolled {
-      background: rgba(245, 241, 233, 0.96);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 rgba(30, 77, 43, 0.1);
-    }
-
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      color: var(--white);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    nav.scrolled .nav-logo {
-      color: var(--green);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-
-    nav.scrolled .nav-links a {
-      color: var(--ink-mid);
-    }
-
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
-    nav.scrolled .nav-links a:hover {
-      color: var(--green);
-    }
-
-    .nav-cta {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--white);
-      background: var(--green);
-      border: 1px solid var(--green);
-      padding: 9px 20px;
-      text-decoration: none;
-      transition: background 0.25s, border-color 0.25s;
-    }
-
-    .nav-cta:hover {
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-
-    /* ════════════════════════════════════════════════
-   HERO — cinematic statement
-════════════════════════════════════════════════ */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg,
-          rgba(13, 36, 21, 0.6) 0%,
-          rgba(10, 24, 16, 0.82) 60%,
-          #0a1e10 100%),
-        url('images/tea-estate.jpg') center/cover no-repeat;
-    }
-
-    /* Tea-row texture */
-    .hero-texture {
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(170deg, transparent 0, transparent 32px,
-          rgba(255, 255, 255, 0.022) 32px, rgba(255, 255, 255, 0.022) 33px);
-      pointer-events: none;
-    }
-
-    /* Mist drift */
-    .hero-mist {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 40% at 50% 100%,
-          rgba(255, 255, 255, 0.04) 0%, transparent 70%);
-      animation: driftMist 12s ease-in-out infinite;
-    }
-
-    /* The big watermark word */
-    .hero-watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Cinzel', serif;
-      font-size: clamp(140px, 24vw, 360px);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: rgba(199, 168, 94, 0.04);
-      white-space: nowrap;
-      pointer-events: none;
-      line-height: 0.8;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 980px;
-      padding: 0 10vw;
-      text-align: center;
-    }
-
-    .hero-breadcrumb {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.45em;
-      color: rgba(199, 168, 94, 0.6);
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s ease forwards;
-    }
-
-    .hero-breadcrumb a {
-      color: rgba(199, 168, 94, 0.5);
-      text-decoration: none;
-    }
-
-    .hero-breadcrumb a:hover {
-      color: var(--gold);
-    }
-
-    .hero-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.4s ease forwards;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    .hero-eyebrow::before,
-    .hero-eyebrow::after {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .hero-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(44px, 7vw, 96px);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.0;
-      letter-spacing: 0.01em;
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.6s ease forwards;
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-      font-weight: 400;
-    }
-
-    .hero-statement {
-      font-size: clamp(22px, 2.4vw, 30px);
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.78);
-      line-height: 1.5;
-      max-width: 680px;
-      margin: 0 auto 40px;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.8s ease forwards;
-    }
-
-    .hero-promise-row {
-      display: flex;
-      gap: 32px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 48px 0 56px;
-      opacity: 0;
-      animation: fadeUp 0.9s 1s ease forwards;
-    }
-
-    .hero-promise {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-promise-num {
-      font-family: 'Cinzel', serif;
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .hero-promise-label {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      color: rgba(255, 255, 255, 0.55);
-      text-transform: uppercase;
-    }
-
-    .hero-divider {
-      width: 1px;
-      align-self: stretch;
-      background: linear-gradient(to bottom, transparent, rgba(199, 168, 94, 0.3), transparent);
-    }
-
-    .hero-cta-row {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.9s 1.2s ease forwards;
-    }
-
-    .btn-gold {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: var(--gold);
-      color: var(--ink);
-      padding: 18px 36px;
-      text-decoration: none;
-      border: 1px solid var(--gold);
-      transition: background 0.25s, color 0.25s, transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-gold:hover {
-      background: var(--white);
-      color: var(--green);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline-light {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--white);
-      padding: 18px 32px;
-      text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: border-color 0.25s, color 0.25s, transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-outline-light:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-
-    /* Scroll cue */
-    .hero-scroll-cue {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      animation: fadeUp 0.8s 1.5s ease forwards;
-    }
-
-    .hero-scroll-cue span {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.35em;
-      color: rgba(255, 255, 255, 0.4);
-      text-transform: uppercase;
-    }
-
-    .hero-scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
-      animation: scrollPulse 2s 2s ease-in-out infinite;
-    }
-
-    /* ════════════════════════════════════════════════
-   PRIVACY PROMISE — the manifesto
-════════════════════════════════════════════════ */
-    .promise-section {
-      padding: 120px 10vw;
-      background: var(--cream);
-      text-align: center;
-    }
-
-    .promise-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .promise-statement {
-      font-family: 'EB Garamond', serif;
-      font-size: clamp(28px, 4vw, 52px);
-      font-weight: 400;
-      color: var(--green);
-      line-height: 1.25;
-      max-width: 940px;
-      margin: 0 auto;
-      font-style: italic;
-      letter-spacing: -0.005em;
-    }
-
-    .promise-statement em {
-      font-style: normal;
-      color: var(--gold-deep);
-    }
-
-    .promise-list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      max-width: 1100px;
-      margin: 80px auto 0;
-      border-top: 1px solid var(--green-pale);
-      border-bottom: 1px solid var(--green-pale);
-    }
-
-    .promise-item {
-      padding: 36px 24px;
-      text-align: center;
-      border-right: 1px solid var(--green-pale);
-    }
-
-    .promise-item:last-child {
-      border-right: none;
-    }
-
-    .promise-item-icon {
-      font-size: 26px;
-      margin-bottom: 14px;
-      display: block;
-    }
-
-    .promise-item-title {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      color: var(--green);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .promise-item-text {
-      font-size: 13.5px;
-      font-style: italic;
-      color: var(--ink-light);
-      line-height: 1.55;
-    }
-
-    /* ════════════════════════════════════════════════
-   WHAT'S INCLUDED — full inventory
-════════════════════════════════════════════════ */
-    .included-section {
-      background: var(--ink);
-      padding: 120px 10vw 96px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .included-section::before {
-      content: 'YOURS';
-      position: absolute;
-      right: -3vw;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Cinzel', serif;
-      font-size: clamp(140px, 18vw, 280px);
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: rgba(199, 168, 94, 0.025);
-      pointer-events: none;
-      line-height: 0.8;
-      white-space: nowrap;
-    }
-
-    .included-header {
-      text-align: center;
-      margin-bottom: 80px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .included-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .included-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(30px, 4vw, 48px);
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    .included-sub {
-      font-size: 18px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.55);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .included-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .included-block {
-      border-top: 1px solid rgba(199, 168, 94, 0.25);
-      padding-top: 28px;
-    }
-
-    .included-block-title {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .included-rooms-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .inc-room {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: padding 0.25s, color 0.25s;
-    }
-
-    .inc-room:hover {
-      padding-left: 8px;
-    }
-
-    .inc-room:last-child {
-      border-bottom: none;
-    }
-
-    .inc-room-num {
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      color: var(--gold);
-      width: 28px;
-      text-align: center;
-      flex-shrink: 0;
-      letter-spacing: 0.05em;
-    }
-
-    .inc-room-info {
-      flex: 1;
-    }
-
-    .inc-room-name {
-      font-family: 'Cinzel', serif;
-      font-size: 13px;
-      color: var(--white);
-      letter-spacing: 0.04em;
-      margin-bottom: 2px;
-    }
-
-    .inc-room-detail {
-      font-size: 12.5px;
-      color: rgba(255, 255, 255, 0.45);
-      font-style: italic;
-    }
-
-    .inc-room-cap {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      color: rgba(199, 168, 94, 0.7);
-      letter-spacing: 0.06em;
-      flex-shrink: 0;
-    }
-
-    /* Capacity totals bar */
-    .capacity-bar {
-      margin-top: 60px;
-      padding: 32px 40px;
-      background: rgba(199, 168, 94, 0.06);
-      border: 1px solid rgba(199, 168, 94, 0.25);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 24px;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cap-stat {
-      text-align: center;
-    }
-
-    .cap-stat-num {
-      font-family: 'Cinzel', serif;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .cap-stat-label {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      color: rgba(255, 255, 255, 0.55);
-      text-transform: uppercase;
-    }
-
-    .cap-divider {
-      width: 1px;
-      height: 36px;
-      background: rgba(199, 168, 94, 0.3);
-    }
-
-    /* ════════════════════════════════════════════════
-   THE ESTATE WALK — visual flow
-════════════════════════════════════════════════ */
-    .walk-section {
-      padding: 120px 10vw;
-      background: var(--cream);
-    }
-
-    .walk-header {
-      text-align: center;
-      margin-bottom: 64px;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .walk-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .walk-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-    .walk-sub {
-      font-size: 18px;
-      font-style: italic;
-      color: var(--ink-light);
-      line-height: 1.65;
-    }
-
-    .walk-flow {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .walk-card {
-      background: var(--white);
-      padding: 36px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      position: relative;
-      border-bottom: 3px solid transparent;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-      cursor: default;
-      min-height: 200px;
-    }
-
-    .walk-card:hover {
-      border-bottom-color: var(--gold);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px var(--shadow);
-    }
-
-    .walk-card.featured {
-      background: var(--green);
-      color: var(--white);
-      grid-column: span 2;
-    }
-
-    .walk-card.featured:hover {
-      border-bottom-color: var(--gold-light);
-    }
-
-    .walk-num {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    .walk-card.featured .walk-num {
-      color: var(--gold-light);
-    }
-
-    .walk-name {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(17px, 1.8vw, 22px);
-      font-weight: 600;
-      color: var(--green);
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-    }
-
-    .walk-card.featured .walk-name {
-      color: var(--white);
-      font-size: clamp(20px, 2.2vw, 28px);
-    }
-
-    .walk-desc {
-      font-size: 14.5px;
-      font-style: italic;
-      color: var(--ink-light);
-      line-height: 1.65;
-    }
-
-    .walk-card.featured .walk-desc {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 16px;
-    }
-
-    .walk-tag {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      color: var(--mist);
-      text-transform: uppercase;
-      margin-top: auto;
-    }
-
-    .walk-card.featured .walk-tag {
-      color: var(--gold);
-    }
-
-    /* ════════════════════════════════════════════════
-   CURATED SERVICES — for buyout guests
-════════════════════════════════════════════════ */
-    .services-section {
-      background: var(--cream-dark);
-      padding: 120px 10vw;
-    }
-
-    .services-header {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 64px;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto 72px;
-    }
-
-    .services-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .services-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.1;
-    }
-
-    .services-intro p {
-      font-size: 17px;
-      font-style: italic;
-      color: var(--ink-light);
-      line-height: 1.75;
-      margin-bottom: 16px;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .service-card {
-      background: var(--white);
-      padding: 36px 28px;
-      border-left: 3px solid var(--gold);
-      transition: transform 0.25s, box-shadow 0.25s;
-      cursor: default;
-    }
-
-    .service-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px var(--shadow);
-    }
-
-    .service-icon {
-      font-size: 24px;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .service-name {
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--green);
-      letter-spacing: 0.04em;
-      margin-bottom: 10px;
-    }
-
-    .service-desc {
-      font-size: 14px;
-      color: var(--ink-light);
-      line-height: 1.65;
-      font-style: italic;
-    }
-
-    /* ════════════════════════════════════════════════
-   SUITED FOR — use cases
-════════════════════════════════════════════════ */
-    .suited-section {
-      padding: 120px 10vw;
-      background: var(--cream);
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
-    .suited-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .suited-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .suited-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-    .suited-sub {
-      font-size: 18px;
-      font-style: italic;
-      color: var(--ink-light);
-      line-height: 1.65;
-      max-width: 580px;
-      margin: 0 auto;
-    }
-
-    .suited-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-    }
-
-    .suited-card {
-      background: var(--white);
-      padding: 48px 40px;
-      border-top: 3px solid var(--green);
-      position: relative;
-      transition: transform 0.25s, box-shadow 0.25s;
-      cursor: default;
-    }
-
-    .suited-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px var(--shadow);
-    }
-
-    .suited-card-num {
-      position: absolute;
-      top: 24px;
-      right: 28px;
-      font-family: 'Cinzel', serif;
-      font-size: 56px;
-      font-weight: 700;
-      color: var(--green-pale);
-      line-height: 1;
-    }
-
-    .suited-card-icon {
-      font-size: 32px;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .suited-card-title {
-      font-family: 'Cinzel', serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--green);
-      margin-bottom: 16px;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-      max-width: 80%;
-    }
-
-    .suited-card-text {
-      font-size: 15.5px;
-      color: var(--ink-mid);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .suited-card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding-top: 20px;
-      border-top: 1px solid var(--green-pale);
-    }
-
-    .suited-tag {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      color: var(--gold-deep);
-      text-transform: uppercase;
-      padding: 4px 10px;
-      background: var(--gold-pale);
-    }
-
-    /* ════════════════════════════════════════════════
-   A DAY AT THE ESTATE — narrative timeline
-════════════════════════════════════════════════ */
-    .day-section {
-      background: var(--green-deep);
-      padding: 120px 10vw;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .day-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(170deg, transparent 0, transparent 30px,
-          rgba(255, 255, 255, 0.018) 30px, rgba(255, 255, 255, 0.018) 31px);
-    }
-
-    .day-header {
-      text-align: center;
-      margin-bottom: 72px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .day-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .day-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-    .day-sub {
-      font-size: 18px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.55);
-      max-width: 580px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    .day-timeline {
-      max-width: 760px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .day-moment {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 32px;
-      padding: 28px 0;
-      border-bottom: 1px solid rgba(199, 168, 94, 0.15);
-      align-items: start;
-    }
-
-    .day-moment:last-child {
-      border-bottom: none;
-    }
-
-    .day-time {
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      color: var(--gold);
-      text-transform: uppercase;
-      padding-top: 4px;
-    }
-
-    .day-content {}
-
-    .day-name {
-      font-family: 'Cinzel', serif;
-      font-size: 17px;
-      color: var(--white);
-      letter-spacing: 0.02em;
-      margin-bottom: 6px;
-    }
-
-    .day-detail {
-      font-size: 15px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.6;
-    }
-
-    /* ════════════════════════════════════════════════
-   PRICING / RATE BANNER
-════════════════════════════════════════════════ */
-    .rate-banner {
-      background: var(--cream-dark);
-      padding: 96px 10vw;
-      text-align: center;
-    }
-
-    .rate-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .rate-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(26px, 3vw, 38px);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.15;
-      margin-bottom: 32px;
-    }
-
-    .rate-display {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 16px;
-      padding: 28px 56px;
-      background: var(--white);
-      border: 1px solid var(--green-pale);
-      margin-bottom: 28px;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-
-    .rate-from {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--mist);
-      text-transform: uppercase;
-    }
-
-    .rate-amount {
-      font-family: 'Cinzel', serif;
-      font-size: 38px;
-      font-weight: 700;
-      color: var(--green);
-      letter-spacing: -0.01em;
-    }
-
-    .rate-period {
-      font-family: 'EB Garamond', serif;
-      font-size: 16px;
-      font-style: italic;
-      color: var(--ink-light);
-    }
-
-    .rate-note {
-      font-size: 14px;
-      font-style: italic;
-      color: var(--ink-light);
-      max-width: 620px;
-      margin: 0 auto 36px;
-      line-height: 1.65;
-    }
-
-    .rate-includes {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px 32px;
-      max-width: 800px;
-      margin: 32px auto 0;
-      padding-top: 32px;
-      border-top: 1px solid var(--green-pale);
-    }
-
-    .rate-include-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: var(--ink-mid);
-    }
-
-    .rate-include-item::before {
-      content: '✓';
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    /* ════════════════════════════════════════════════
-   ENQUIRE CTA SECTION
-════════════════════════════════════════════════ */
-    .enquire-section {
-      padding: 120px 10vw;
-      background: var(--ink);
-      color: var(--white);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-
-    .enquire-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 50%,
-          rgba(199, 168, 94, 0.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .enquire-content {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .enq-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-    }
-
-    .enq-eyebrow::before,
-    .enq-eyebrow::after {
-      content: '';
-      width: 32px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .enq-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(30px, 4vw, 52px);
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 24px;
-    }
-
-    .enq-title em {
-      font-style: italic;
-      color: var(--gold-light);
-      font-weight: 400;
-    }
-
-    .enq-body {
-      font-size: 19px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.65);
-      line-height: 1.7;
-      margin-bottom: 44px;
-    }
-
-    .enq-buttons {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-large-gold {
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      background: var(--gold);
-      color: var(--ink);
-      padding: 20px 44px;
-      text-decoration: none;
-      border: 1px solid var(--gold);
-      transition: background 0.25s, color 0.25s, transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-large-gold:hover {
-      background: var(--white);
-      color: var(--green);
-      transform: translateY(-2px);
-    }
-
-    .btn-large-outline {
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      background: transparent;
-      color: rgba(255, 255, 255, 0.85);
-      padding: 20px 36px;
-      text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      transition: border-color 0.25s, color 0.25s, transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-large-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-
-    .enq-meta {
-      margin-top: 48px;
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      padding-top: 36px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .enq-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.55);
-      font-family: 'Cinzel', serif;
-      letter-spacing: 0.1em;
-    }
-
-    .enq-meta-icon {
-      color: var(--gold);
-    }
-
-   /* ═══════════════════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════════════════ */
-footer {
-  background: var(--ink);
-  padding: 72px 10vw 40px;
-}
-.footer-top {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 56px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  margin-bottom: 32px;
-}
-.footer-brand {}
-.footer-logo {
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--white);
-  letter-spacing: 0.08em;
-  margin-bottom: 8px;
-}
-.footer-tagline {
-  font-size: 14px;
-  font-style: italic;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-.footer-contact-item {
-  font-size: 13.5px;
-  color: rgba(255,255,255,0.55);
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.footer-contact-item a { color: var(--gold); text-decoration: none; }
-
-.footer-col-title {
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
-  letter-spacing: 0.35em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.footer-links a {
-  font-size: 14px;
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--white); }
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.footer-copy {
-  font-size: 12px;
-  color: rgba(255,255,255,0.25);
-  font-style: italic;
-}
-.footer-collection {
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--gold);
-  text-transform: uppercase;
-  opacity: 0.6;
-}
-
-
-    /* ═══════════════════════════════════════════════════════════════
-   WHATSAPP FLOATING BUTTON
-═══════════════════════════════════════════════════════════════ */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 24px;
-      right: 20px;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #3d8050;
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      padding: 13px 20px 13px 16px;
-      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      animation: wa-pulse 2.8s ease-in-out 1.5s 3;
-    }
-
-    .whatsapp-float:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 8px 28px rgba(37, 211, 102, 0.55);
-    }
-
-    .whatsapp-float:active {
-      transform: scale(0.97);
-    }
-
-    .whatsapp-label {
-      white-space: nowrap;
-    }
-
-    @keyframes wa-pulse {
-      0% {
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
-      }
-
-      50% {
-        box-shadow: 0 4px 32px rgba(37, 211, 102, 0.75), 0 0 0 8px rgba(37, 211, 102, 0.12);
-      }
-
-      100% {
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
-      }
-    }
-
-    /* On very small screens, collapse to icon-only circle */
-    @media (max-width: 360px) {
-      .whatsapp-float {
-        padding: 14px;
-        border-radius: 50%;
-      }
-
-      .whatsapp-label {
-        display: none;
-      }
-    }
-
-
-    /* ════════════════════════════════════════════════
-   ANIMATIONS
-════════════════════════════════════════════════ */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes scrollPulse {
-
-      0%,
-      100% {
-        opacity: 0.4;
-        transform: scaleY(1);
-      }
-
-      50% {
-        opacity: 0.9;
-        transform: scaleY(1.2);
-      }
-    }
-
-    @keyframes driftMist {
-
-      0%,
-      100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.5;
-      }
-
-      50% {
-        transform: translateY(-20px) scale(1.05);
-        opacity: 0.8;
-      }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ════════════════════════════════════════════════
-   RESPONSIVE
-════════════════════════════════════════════════ */
-    @media (max-width: 1100px) {
-      .promise-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .promise-item:nth-child(2) {
-        border-right: none;
-      }
-
-      .promise-item:nth-child(1),
-      .promise-item:nth-child(2) {
-        border-bottom: 1px solid var(--green-pale);
-      }
-
-      .included-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .walk-flow {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .walk-card.featured {
-        grid-column: span 2;
-      }
-
-      .services-header {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .suited-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 0 24px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero-promise-row {
-        gap: 20px;
-      }
-
-      .hero-divider {
-        display: none;
-      }
-
-      .promise-list {
-        grid-template-columns: 1fr;
-      }
-
-      .promise-item {
-        border-right: none;
-        border-bottom: 1px solid var(--green-pale);
-      }
-
-      .promise-item:last-child {
-        border-bottom: none;
-      }
-
-      .walk-flow {
-        grid-template-columns: 1fr;
-      }
-
-      .walk-card.featured {
-        grid-column: span 1;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .day-moment {
-        grid-template-columns: 1fr;
-        gap: 4px;
-      }
-
-      .capacity-bar {
-        gap: 16px;
-        padding: 24px;
-      }
-
-      .cap-divider {
-        display: none;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-watermark {
-        font-size: clamp(60px, 18vw, 140px);
-      }
-
-      .rate-display {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        padding: 20px 24px;
-        gap: 12px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-watermark {
-        font-size: clamp(40px, 14vw, 80px);
-      }
-
-      .rate-display {
-        padding: 16px 14px;
-        gap: 8px;
-      }
-
-      .rate-amount {
-        font-size: 26px;
-      }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+  <!-- tb:sinhala-font -->
+  <link rel="preload" as="image" href="/media/estate-house-1600.webp" fetchpriority="high">
+  <link rel="stylesheet" href="/ve/ve.css">
+  <link rel="stylesheet" href="/ve/estate.css">
 </head>
 
-<body>
+<body class="ve ve-estate">
 
-  <!-- ═════ NAV ═════ -->
+  <!-- Shared: consent banner, reservation drawer, analytics hooks (legacy header stripped by the build on vE pages) -->
   <?php include 'layout/navbar.php'; ?>
+  <?php include 'layout/ve/header.html'; ?>
 
-  <!-- ═════ HERO ═════ -->
-  <section class="hero">
-    <div class="hero-texture"></div>
-    <div class="hero-mist"></div>
-    <div class="hero-watermark">YOURS</div>
+  <!-- Line icons used on this page -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="x-chef" viewBox="0 0 32 32"><path d="M10 18.5V27h12v-8.5M10 18.5a5 5 0 0 1-1.6-9.7A6 6 0 0 1 16 5a6 6 0 0 1 7.6 3.8 5 5 0 0 1-1.6 9.7zM10 23h12"/></symbol>
+    <symbol id="x-van" viewBox="0 0 32 32"><path d="M3.5 22V10h17l5 5.5 3 1.5V22h-25z"/><path d="M20.5 10v6h8M8 10v6h12"/><circle cx="9" cy="22.5" r="2.6"/><circle cx="23" cy="22.5" r="2.6"/></symbol>
+    <symbol id="x-glass" viewBox="0 0 32 32"><path d="M8 5h7l-.7 7.5a2.8 2.8 0 0 1-5.6 0zM17 5h7l-.7 7.5a2.8 2.8 0 0 1-5.6 0zM11.5 15.5V26M20.5 15.5V26M8.5 26h6M17.5 26h6"/></symbol>
+    <symbol id="x-boot" viewBox="0 0 32 32"><path d="M9 4.5h7.5v10.5l7.4 2.8A3.4 3.4 0 0 1 26 21v3.5H6.5V16z"/><path d="M6.5 24.5h19.5M9.5 8.5h7M9.5 12h7"/></symbol>
+    <symbol id="x-cup" viewBox="0 0 32 32"><path d="M6 12h16v5a8 8 0 0 1-16 0zM22 13.5h2.5a3 3 0 0 1 0 6H21.3M4 28h20M11 4.5c0 2 2 2 2 4M16 4.5c0 2 2 2 2 4"/></symbol>
+    <symbol id="x-lotus" viewBox="0 0 32 32"><path d="M16 25c-3-3-4.5-7-4.5-11 0 0 2.5 1.5 4.5 5 2-3.5 4.5-5 4.5-5 0 4-1.5 8-4.5 11zM16 25c-4 0-9-2.5-11-7 3 0 6 1 8 3M16 25c4 0 9-2.5 11-7-3 0-6 1-8 3M16 19V6.5c1.7 2 2.5 4.5 2.5 7"/></symbol>
+  </svg>
 
-    <div class="hero-content">
-      <div class="hero-breadcrumb">
-        <a href="/vD/home.php">Home</a> &nbsp;/&nbsp; The Entire Estate
-      </div>
+  <main id="main">
 
-      <div class="hero-eyebrow">Estate Buyout · Exclusive Use</div>
+    <!-- ═══ 1. ARRIVAL: dusk at the gates. Scroll and they open onto the house ═══ -->
+    <section class="vx-hero" data-theme="dark" aria-labelledby="estateTitle">
+      <div class="vx-hero__pin">
+        <div class="vx-hero__scene" aria-hidden="true"><img src="/media/estate-house-1600.webp" srcset="/media/estate-house-900.webp 900w, /media/estate-house-1600.webp 1600w" sizes="100vw" alt="" decoding="async"></div>
+        <div class="vx-hero__grade" aria-hidden="true"></div>
+        <div class="vx-hero__glow" aria-hidden="true"></div>
+        <div class="vx-mist vx-mist--a" aria-hidden="true"></div>
 
-      <h1 class="hero-title">
-        The Entire<br>
-        <em>Estate.</em>
-      </h1>
-
-      <p class="hero-statement">
-        Six chambers. The Carriage House. The Planter's Lounge. The garden, the pool, the verandah, the fire — and not a single passing guest. The whole house, the whole hill, entirely yours.
-      </p>
-
-      <div class="hero-promise-row">
-        <div class="hero-promise">
-          <div class="hero-promise-num">12</div>
-          <div class="hero-promise-label">Guests Max</div>
+        <div class="vx-gates" aria-hidden="true">
+          <span class="vx-pillar vx-pillar--l"><span class="vx-lamp"></span></span>
+          <div class="vx-gate vx-gate--l"><svg class="vx-gate__leaf" viewBox="0 0 300 640" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false"><path class="vx-gate__frame" d="M6 634 V150 Q150 58 300 44 V634 Z"/><path class="vx-gate__bars" d="M34 634 V130.9 M58 634 V117.4 M82 634 V105.1 M106 634 V93.8 M130 634 V83.7 M154 634 V74.6 M178 634 V66.6 M202 634 V59.6 M226 634 V53.7 M250 634 V48.9 M274 634 V45.0 M298 634 V42.2"/><path class="vx-gate__rail" d="M6 212 H300 M6 260 H300 M6 566 H300 M6 612 H300"/><path class="vx-gate__gilt" d="M6 212 H300 M6 260 H300 M6 566 H300 M6 612 H300 M6 634 V150 Q150 58 300 44"/><g class="vx-gate__rings"><circle cx="46.0" cy="236" r="8"/><circle cx="70.0" cy="236" r="8"/><circle cx="94.0" cy="236" r="8"/><circle cx="118.0" cy="236" r="8"/><circle cx="142.0" cy="236" r="8"/><circle cx="166.0" cy="236" r="8"/><circle cx="190.0" cy="236" r="8"/><circle cx="214.0" cy="236" r="8"/><circle cx="238.0" cy="236" r="8"/><circle cx="262.0" cy="236" r="8"/><circle cx="286.0" cy="236" r="8"/></g><path class="vx-gate__scrolls" d="M38.0 590 C38.0 578 54.0 578 54.0 590 C54.0 600 44.0 600 44.0 592 M62.0 590 C62.0 578 78.0 578 78.0 590 C78.0 600 68.0 600 68.0 592 M86.0 590 C86.0 578 102.0 578 102.0 590 C102.0 600 92.0 600 92.0 592 M110.0 590 C110.0 578 126.0 578 126.0 590 C126.0 600 116.0 600 116.0 592 M134.0 590 C134.0 578 150.0 578 150.0 590 C150.0 600 140.0 600 140.0 592 M158.0 590 C158.0 578 174.0 578 174.0 590 C174.0 600 164.0 600 164.0 592 M182.0 590 C182.0 578 198.0 578 198.0 590 C198.0 600 188.0 600 188.0 592 M206.0 590 C206.0 578 222.0 578 222.0 590 C222.0 600 212.0 600 212.0 592 M230.0 590 C230.0 578 246.0 578 246.0 590 C246.0 600 236.0 600 236.0 592 M254.0 590 C254.0 578 270.0 578 270.0 590 C270.0 600 260.0 600 260.0 592 M278.0 590 C278.0 578 294.0 578 294.0 590 C294.0 600 284.0 600 284.0 592"/><path class="vx-gate__tips" d="M34 102.9 C37 110.9 40 118.9 34 128.9 C28 118.9 31 110.9 34 102.9 Z M58 89.4 C61 97.4 64 105.4 58 115.4 C52 105.4 55 97.4 58 89.4 Z M82 77.1 C85 85.1 88 93.1 82 103.1 C76 93.1 79 85.1 82 77.1 Z M106 65.8 C109 73.8 112 81.8 106 91.8 C100 81.8 103 73.8 106 65.8 Z M130 55.7 C133 63.7 136 71.7 130 81.7 C124 71.7 127 63.7 130 55.7 Z M154 46.6 C157 54.6 160 62.6 154 72.6 C148 62.6 151 54.6 154 46.6 Z M178 38.6 C181 46.6 184 54.6 178 64.6 C172 54.6 175 46.6 178 38.6 Z M202 31.6 C205 39.6 208 47.6 202 57.6 C196 47.6 199 39.6 202 31.6 Z M226 25.7 C229 33.7 232 41.7 226 51.7 C220 41.7 223 33.7 226 25.7 Z M250 20.9 C253 28.9 256 36.9 250 46.9 C244 36.9 247 28.9 250 20.9 Z M274 17.0 C277 25.0 280 33.0 274 43.0 C268 33.0 271 25.0 274 17.0 Z M298 14.2 C301 22.2 304 30.2 298 40.2 C292 30.2 295 22.2 298 14.2 Z"/><path class="vx-gate__medal-bg" d="M300 296 A88 88 0 0 0 300 472 Z"/><path class="vx-gate__medal" d="M300 296 A88 88 0 0 0 300 472 M300 314 A70 70 0 0 0 300 454 M300 332 A52 52 0 0 0 300 436"/><path class="vx-gate__lotus" d="M300 414 C286 404 282 386 290 366 C296 378 300 392 300 414 Z M300 414 C280 412 266 398 262 382 C276 384 292 396 300 414 Z"/></svg></div>
+          <div class="vx-gate vx-gate--r"><svg class="vx-gate__leaf" viewBox="0 0 300 640" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false"><path class="vx-gate__frame" d="M6 634 V150 Q150 58 300 44 V634 Z"/><path class="vx-gate__bars" d="M34 634 V130.9 M58 634 V117.4 M82 634 V105.1 M106 634 V93.8 M130 634 V83.7 M154 634 V74.6 M178 634 V66.6 M202 634 V59.6 M226 634 V53.7 M250 634 V48.9 M274 634 V45.0 M298 634 V42.2"/><path class="vx-gate__rail" d="M6 212 H300 M6 260 H300 M6 566 H300 M6 612 H300"/><path class="vx-gate__gilt" d="M6 212 H300 M6 260 H300 M6 566 H300 M6 612 H300 M6 634 V150 Q150 58 300 44"/><g class="vx-gate__rings"><circle cx="46.0" cy="236" r="8"/><circle cx="70.0" cy="236" r="8"/><circle cx="94.0" cy="236" r="8"/><circle cx="118.0" cy="236" r="8"/><circle cx="142.0" cy="236" r="8"/><circle cx="166.0" cy="236" r="8"/><circle cx="190.0" cy="236" r="8"/><circle cx="214.0" cy="236" r="8"/><circle cx="238.0" cy="236" r="8"/><circle cx="262.0" cy="236" r="8"/><circle cx="286.0" cy="236" r="8"/></g><path class="vx-gate__scrolls" d="M38.0 590 C38.0 578 54.0 578 54.0 590 C54.0 600 44.0 600 44.0 592 M62.0 590 C62.0 578 78.0 578 78.0 590 C78.0 600 68.0 600 68.0 592 M86.0 590 C86.0 578 102.0 578 102.0 590 C102.0 600 92.0 600 92.0 592 M110.0 590 C110.0 578 126.0 578 126.0 590 C126.0 600 116.0 600 116.0 592 M134.0 590 C134.0 578 150.0 578 150.0 590 C150.0 600 140.0 600 140.0 592 M158.0 590 C158.0 578 174.0 578 174.0 590 C174.0 600 164.0 600 164.0 592 M182.0 590 C182.0 578 198.0 578 198.0 590 C198.0 600 188.0 600 188.0 592 M206.0 590 C206.0 578 222.0 578 222.0 590 C222.0 600 212.0 600 212.0 592 M230.0 590 C230.0 578 246.0 578 246.0 590 C246.0 600 236.0 600 236.0 592 M254.0 590 C254.0 578 270.0 578 270.0 590 C270.0 600 260.0 600 260.0 592 M278.0 590 C278.0 578 294.0 578 294.0 590 C294.0 600 284.0 600 284.0 592"/><path class="vx-gate__tips" d="M34 102.9 C37 110.9 40 118.9 34 128.9 C28 118.9 31 110.9 34 102.9 Z M58 89.4 C61 97.4 64 105.4 58 115.4 C52 105.4 55 97.4 58 89.4 Z M82 77.1 C85 85.1 88 93.1 82 103.1 C76 93.1 79 85.1 82 77.1 Z M106 65.8 C109 73.8 112 81.8 106 91.8 C100 81.8 103 73.8 106 65.8 Z M130 55.7 C133 63.7 136 71.7 130 81.7 C124 71.7 127 63.7 130 55.7 Z M154 46.6 C157 54.6 160 62.6 154 72.6 C148 62.6 151 54.6 154 46.6 Z M178 38.6 C181 46.6 184 54.6 178 64.6 C172 54.6 175 46.6 178 38.6 Z M202 31.6 C205 39.6 208 47.6 202 57.6 C196 47.6 199 39.6 202 31.6 Z M226 25.7 C229 33.7 232 41.7 226 51.7 C220 41.7 223 33.7 226 25.7 Z M250 20.9 C253 28.9 256 36.9 250 46.9 C244 36.9 247 28.9 250 20.9 Z M274 17.0 C277 25.0 280 33.0 274 43.0 C268 33.0 271 25.0 274 17.0 Z M298 14.2 C301 22.2 304 30.2 298 40.2 C292 30.2 295 22.2 298 14.2 Z"/><path class="vx-gate__medal-bg" d="M300 296 A88 88 0 0 0 300 472 Z"/><path class="vx-gate__medal" d="M300 296 A88 88 0 0 0 300 472 M300 314 A70 70 0 0 0 300 454 M300 332 A52 52 0 0 0 300 436"/><path class="vx-gate__lotus" d="M300 414 C286 404 282 386 290 366 C296 378 300 392 300 414 Z M300 414 C280 412 266 398 262 382 C276 384 292 396 300 414 Z"/></svg></div>
+          <span class="vx-pillar vx-pillar--r"><span class="vx-lamp"></span></span>
         </div>
-        <div class="hero-divider"></div>
-        <div class="hero-promise">
-          <div class="hero-promise-num">7</div>
-          <div class="hero-promise-label">Bedrooms</div>
+        <div class="vx-mist vx-mist--b" aria-hidden="true"></div>
+        <div class="ve-grain" aria-hidden="true"></div>
+
+        <div class="ve-wrap vx-hero__intro">
+          <nav class="ve-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>The Entire Estate</span></nav>
+          <p class="ve-label ve-kicker">Estate buyout &middot; Exclusive use <span class="ve-si" lang="si">වත්ත</span></p>
+          <h1 class="vx-hero__title" id="estateTitle"><span class="vx-hero__line"><span>The Entire</span></span><span class="vx-hero__line"><em>Estate.</em></span></h1>
+          <p class="vx-hero__hint ve-label" aria-hidden="true"><span class="vx-hero__hint-line"></span>Scroll to open the gates</p>
         </div>
-        <div class="hero-divider"></div>
-        <div class="hero-promise">
-          <div class="hero-promise-num">0</div>
-          <div class="hero-promise-label">Other Guests</div>
+
+        <div class="ve-wrap vx-hero__promise">
+          <p class="vx-hero__quote">When you reserve the entire estate, <em>the gates close behind&nbsp;you.</em></p>
+          <p class="vx-hero__quote-sub">The house doesn&rsquo;t take other guests. The schedule isn&rsquo;t shared. The fire is lit when you say it&rsquo;s time.</p>
         </div>
-        <div class="hero-divider"></div>
-        <div class="hero-promise">
-          <div class="hero-promise-num">∞</div>
-          <div class="hero-promise-label">Privacy</div>
+        <div class="vx-hero__fade" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ═══ 2. THE MANIFESTO ═════════════════════════════════════════════ -->
+    <section class="vx-manifesto" data-theme="light" aria-label="What the estate is">
+      <div class="ve-wrap">
+        <p class="vx-manifesto__text" data-words>Seven bedrooms. <b>Twelve</b> guests at most. <b>Eight</b> rooms to share, one fire to gather round, and not a single stranger. For as long as you stay, <em>the whole hill is yours.</em></p>
+        <ul class="vx-manifesto__promise">
+          <li><h3>No other guests</h3><p>Only your party, for the whole of your stay.</p></li>
+          <li><h3>Your schedule</h3><p>Meals, outings and arrivals set to your rhythm.</p></li>
+          <li><h3>Dedicated staff</h3><p>Chef, housekeeping and one point of contact.</p></li>
+          <li><h3>Complete privacy</h3><p>No shared rooms, no reception desk, no interruptions.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ 3. SEVEN BEDROOMS: an arched window follows you down the list ═══ -->
+    <section class="vx-rooms" id="whats-included" data-theme="light" aria-labelledby="roomsTitle">
+      <div class="ve-wrap vx-rooms__grid">
+        <div class="vx-rooms__stick" aria-hidden="true">
+          <figure class="vx-rooms__arch">
+            <img class="is-on" data-room="founders" src="/media/chamber-founders-900.webp" alt="" loading="lazy" decoding="async">
+            <img data-room="highlands" src="/media/chamber-highlands-1024.webp" alt="" loading="lazy" decoding="async">
+            <img data-room="pekoe" src="/media/chamber-pekoe-1024.webp" alt="" loading="lazy" decoding="async">
+            <img data-room="verandah" src="/media/chamber-verandah-1024.webp" alt="" loading="lazy" decoding="async">
+            <img data-room="camellia" src="/media/chamber-camellia-1024.webp" alt="" loading="lazy" decoding="async">
+            <img data-room="galaha" src="/media/chamber-galaha-900.webp" alt="" loading="lazy" decoding="async">
+            <img data-room="cottage" src="/media/chamber-carriage-900.webp" alt="" loading="lazy" decoding="async">
+          </figure>
+          <p class="vx-rooms__count"><span>01</span> / 07</p>
         </div>
-      </div>
-
-      <div class="hero-cta-row">
-        <a href="#" class="btn-gold tb-reserve-trigger" data-room="The Entire Estate (Full Buyout)" data-source="estate_hero_cta">Enquire About Buyout</a>
-        <a href="#whats-included" class="btn-outline-light">What's Included</a>
-      </div>
-    </div>
-
-    <div class="hero-scroll-cue">
-      <div class="hero-scroll-line"></div>
-      <span>Scroll</span>
-    </div>
-  </section>
-
-  <!-- ═════ PRIVACY PROMISE ═════ -->
-  <section class="promise-section">
-    <div class="promise-eyebrow reveal">The Promise</div>
-    <p class="promise-statement reveal">
-      "When you reserve the entire estate, the gates close behind you. The house doesn't take other guests. The schedule isn't shared. The fire is lit when <em>you</em> say it's time."
-    </p>
-
-    <div class="promise-list reveal">
-      <div class="promise-item">
-        <div class="promise-item-icon">🚪</div>
-        <div class="promise-item-title">No Other Guests</div>
-        <div class="promise-item-text">The bungalow welcomes only your party for the duration of your stay.</div>
-      </div>
-      <div class="promise-item">
-        <div class="promise-item-icon">⏰</div>
-        <div class="promise-item-title">Your Schedule</div>
-        <div class="promise-item-text">Meals, activities, and arrivals all arranged around your group's rhythm.</div>
-      </div>
-      <div class="promise-item">
-        <div class="promise-item-icon">👤</div>
-        <div class="promise-item-title">Dedicated Staff</div>
-        <div class="promise-item-text">Full estate team — chef, housekeeping, and a single point of contact.</div>
-      </div>
-      <div class="promise-item">
-        <div class="promise-item-icon">🤫</div>
-        <div class="promise-item-title">Complete Privacy</div>
-        <div class="promise-item-text">No common areas to share. No reception desk. No interruptions.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════ WHAT'S INCLUDED ═════ -->
-  <section id="whats-included" class="included-section">
-    <div class="included-header reveal">
-      <div class="included-eyebrow">Inventory of Spaces</div>
-      <h2 class="included-title">Every Room.<br>Every Garden Path.</h2>
-      <p class="included-sub">When you reserve the estate in full, this is what becomes yours — for as long as you stay.</p>
-    </div>
-
-    <div class="included-grid">
-
-      <!-- BEDROOMS -->
-      <div class="included-block reveal">
-        <div class="included-block-title">— The Bedrooms</div>
-        <div class="included-rooms-list">
-          <div class="inc-room">
-            <div class="inc-room-num">01</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Founder's Suite</div>
-              <div class="inc-room-detail">Principal · private verandah · pool access · accessible</div>
-            </div>
-            <div class="inc-room-cap">2 guests</div>
-          </div>
-          <div class="inc-room">
-            <div class="inc-room-num">02</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Highlands Suite</div>
-              <div class="inc-room-detail">Elevated · accessible · connects to Pekoe Room</div>
-            </div>
-            <div class="inc-room-cap">2–3 guests</div>
-          </div>
-          <div class="inc-room">
-            <div class="inc-room-num">03</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Pekoe Room</div>
-              <div class="inc-room-detail">Family wing option · named for the leaf</div>
-            </div>
-            <div class="inc-room-cap">2 guests</div>
-          </div>
-          <div class="inc-room">
-            <div class="inc-room-num">04</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Verandah Chamber</div>
-              <div class="inc-room-detail">Direct garden access · seamless indoor-outdoor</div>
-            </div>
-            <div class="inc-room-cap">2 guests</div>
-          </div>
-          <div class="inc-room">
-            <div class="inc-room-num">05</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Camellia Room</div>
-              <div class="inc-room-detail">Botanical · quiet retreat · couples</div>
-            </div>
-            <div class="inc-room-cap">2 guests</div>
-          </div>
-          <div class="inc-room">
-            <div class="inc-room-num">06</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Galaha Room</div>
-              <div class="inc-room-detail">Estate views · grounded character</div>
-            </div>
-            <div class="inc-room-cap">1–2 guests</div>
-          </div>
-          <div class="inc-room">
-            <div class="inc-room-num">CH</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Carriage House Cottage</div>
-              <div class="inc-room-detail">Private 2BR cottage · own living/dining · stepless</div>
-            </div>
-            <div class="inc-room-cap">4 guests</div>
-          </div>
+        <div class="vx-rooms__body">
+          <p class="ve-label ve-kicker">The bedrooms &middot; up to twelve guests</p>
+          <h2 class="ve-h2" id="roomsTitle" data-split>Every room<br><em>is yours.</em></h2>
+          <p class="ve-lede" data-reveal="up">Six chambers in the bungalow and the Carriage House Cottage in the garden, each with its own character, and every one of them held for your party.</p>
+          <ol class="vx-rooms__list">
+            <li data-room="founders"><a href="/our-chambers#founders"><span class="vx-rooms__no">01</span><b>The Founder&rsquo;s Suite</b><em>Private verandah &middot; pool access &middot; step-free</em><span class="vx-rooms__sleeps">Sleeps 2</span></a></li>
+            <li data-room="highlands"><a href="/our-chambers#highlands"><span class="vx-rooms__no">02</span><b>The Highlands Suite</b><em>Step-free &middot; connects to the Pekoe Room</em><span class="vx-rooms__sleeps">Sleeps 2&ndash;3</span></a></li>
+            <li data-room="pekoe"><a href="/our-chambers#pekoe"><span class="vx-rooms__no">03</span><b>The Pekoe Room</b><em>The family wing option &middot; named for the leaf</em><span class="vx-rooms__sleeps">Sleeps 2</span></a></li>
+            <li data-room="verandah"><a href="/our-chambers#verandah"><span class="vx-rooms__no">04</span><b>The Verandah Chamber</b><em>Straight onto the garden</em><span class="vx-rooms__sleeps">Sleeps 2</span></a></li>
+            <li data-room="camellia"><a href="/our-chambers#camellia"><span class="vx-rooms__no">05</span><b>The Camellia Room</b><em>Botanical &middot; a quiet retreat</em><span class="vx-rooms__sleeps">Sleeps 2</span></a></li>
+            <li data-room="galaha"><a href="/our-chambers#galaha"><span class="vx-rooms__no">06</span><b>The Galaha Room</b><em>Estate views &middot; grounded character</em><span class="vx-rooms__sleeps">Sleeps 1&ndash;2</span></a></li>
+            <li data-room="cottage"><a href="/our-chambers#cottage"><span class="vx-rooms__no">CH</span><b>The Carriage House Cottage</b><em>Two bedrooms &middot; its own living room and kitchen &middot; stepless</em><span class="vx-rooms__sleeps">Sleeps 4</span></a></li>
+          </ol>
+          <p class="vx-rooms__foot">The Highlands Suite and the Pekoe Room join through a dressing room as a family wing for 6&ndash;8, and three rooms are step-free throughout: the Founder&rsquo;s Suite, the Highlands Suite and the cottage.</p>
+          <a class="ve-link" href="/our-chambers">Look inside every chamber <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
+    </section>
 
-      <!-- SHARED SPACES -->
-      <div class="included-block reveal">
-        <div class="included-block-title">— The Shared Spaces</div>
-        <div class="included-rooms-list">
-          <div class="inc-room">
-            <div class="inc-room-num">☀</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Morning Room</div>
-              <div class="inc-room-detail">Light-filled reception · early tea service</div>
-            </div>
+    <!-- ═══ 4. A DAY IN THE HOUSE: doorway to doorway, morning to night ═══ -->
+    <section class="vx-day" data-theme="light" aria-labelledby="dayTitle">
+      <div class="vx-day__pin">
+        <div class="ve-wrap vx-day__ui">
+          <div class="vx-day__head">
+            <p class="ve-label ve-kicker">A day in the house</p>
+            <h2 class="vx-day__title" id="dayTitle">Room by room, <em>hour by hour.</em></h2>
+            <p class="vx-day__sub">An imagined rhythm, shaped entirely around your party.</p>
           </div>
-          <div class="inc-room">
-            <div class="inc-room-num">🕯</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Evening Salon</div>
-              <div class="inc-room-detail">Conversation · aperitifs · candlelit gathering</div>
-            </div>
+          <div class="vx-day__window">
+            <figure class="vx-droom" data-hour="6.5"><img src="/media/lounge-windows-900.webp" srcset="/media/lounge-windows-900.webp 900w, /media/lounge-windows-1600.webp 1600w" sizes="(max-width: 760px) 80vw, 46vw" alt="A light-filled room with tall curtained windows" loading="lazy" decoding="async"></figure>
+            <figure class="vx-droom vx-droom--day" data-hour="8" role="img" aria-label="Drawing: the Long Table set for twelve under two pendant lamps">
+              <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+                <g class="vx-draw vx-draw--soft"><path d="M0 0 L175 120 M600 0 L425 120 M0 750 L175 400 M600 750 L425 400 M175 120 H425 V400 H175 Z M300 694 L300 434"/></g>
+                <g class="vx-draw"><path d="M252 372 V222 A48 48 0 0 1 348 222 V372 Z M300 174 V372 M252 280 H348 M262 0 V118 M338 0 V118 M248 118 H276 L284 134 H240 Z M324 118 H352 L360 134 H316 Z M130 700 L262 430 L338 430 L470 700 Z M130 700 V722 H470 V700 M144 722 V750 M456 722 V750 M104.5 678.5 V637 A12 12 0 0 1 128.4 637 V678.5 M471.6 678.5 V637 A12 12 0 0 1 495.5 637 V678.5 M140.7 618.1 V584.3 A9.8 9.8 0 0 1 160.2 584.3 V618.1 M439.8 618.1 V584.3 A9.8 9.8 0 0 1 459.3 584.3 V618.1 M170.4 568.7 V541.2 A7.9 7.9 0 0 1 186.2 541.2 V568.7 M413.8 568.7 V541.2 A7.9 7.9 0 0 1 429.6 541.2 V568.7 M193.4 530.2 V507.7 A6.5 6.5 0 0 1 206.5 507.7 V530.2 M393.5 530.2 V507.7 A6.5 6.5 0 0 1 406.6 507.7 V530.2 M211.6 500 V481.3 A5.4 5.4 0 0 1 222.4 481.3 V500 M377.6 500 V481.3 A5.4 5.4 0 0 1 388.4 481.3 V500 M226.4 475.3 V459.8 A4.5 4.5 0 0 1 235.4 459.8 V475.3 M364.6 475.3 V459.8 A4.5 4.5 0 0 1 373.6 459.8 V475.3"/></g>
+                <g class="vx-draw vx-draw--fine"><path d="M189.3 673 a16.6 7 0 1 0 33.2 0 a16.6 7 0 1 0 -33.2 0 M377.5 673 a16.6 7 0 1 0 33.2 0 a16.6 7 0 1 0 -33.2 0 M209.8 613.6 a13.5 5.7 0 1 0 27 0 a13.5 5.7 0 1 0 -27 0 M363.1 613.6 a13.5 5.7 0 1 0 27 0 a13.5 5.7 0 1 0 -27 0 M226.6 565 a11 4.6 0 1 0 22 0 a11 4.6 0 1 0 -22 0 M351.4 565 a11 4.6 0 1 0 22 0 a11 4.6 0 1 0 -22 0 M239.7 527.2 a9 3.8 0 1 0 18 0 a9 3.8 0 1 0 -18 0 M342.3 527.2 a9 3.8 0 1 0 18 0 a9 3.8 0 1 0 -18 0 M249.9 497.5 a7.5 3.1 0 1 0 14.9 0 a7.5 3.1 0 1 0 -14.9 0 M335.1 497.5 a7.5 3.1 0 1 0 14.9 0 a7.5 3.1 0 1 0 -14.9 0 M258.3 473.2 a6.2 2.6 0 1 0 12.4 0 a6.2 2.6 0 1 0 -12.4 0 M329.3 473.2 a6.2 2.6 0 1 0 12.4 0 a6.2 2.6 0 1 0 -12.4 0 M300 646 V617.3 M300 575.8 V554 M300 511 V495.6"/></g>
+                <g class="vx-flames"><circle cx="300" cy="613.1" r="4.2"/><circle cx="300" cy="550.8" r="3.2"/><circle cx="300" cy="493.3" r="2.4"/></g>
+              </svg>
+            </figure>
+            <figure class="vx-droom vx-droom--day" data-hour="9.5" role="img" aria-label="Drawing: the long verandah, arch after arch, to the hills">
+              <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+                <g class="vx-draw vx-draw--soft"><path d="M0 750 L242.4 464.6 M600 750 L357.6 464.6 M130.8 644.2 H469.2 M175.5 572.3 H424.6 M206 523.2 H394 M227.2 489.2 H372.9 M242.4 464.6 H357.6 M65 750 L130.8 644.2 M535 750 L469.2 644.2 M130.8 644.2 L175.5 572.3 M469.2 644.2 L424.6 572.3 M242.4 434.6 C262.4 412.6 286.4 406.6 300 424.6 C327.6 438.6 345.6 420.6 357.6 416.6 M248.4 448.6 C282.4 440.6 317.6 454.6 353.6 442.6 M252.4 458.6 C286.4 451.6 313.6 464.6 349.6 454.6"/></g>
+                <g class="vx-draw"><path d="M65 750 V325 A235 235 0 0 1 535 325 V750 M130.8 644.2 V338.2 A169.2 169.2 0 0 1 469.2 338.2 V644.2 M175.5 572.3 V347.1 A124.6 124.6 0 0 1 424.6 347.1 V572.3 M206 523.2 V353.2 A94 94 0 0 1 394 353.2 V523.2 M227.2 489.2 V357.4 A72.9 72.9 0 0 1 372.9 357.4 V489.2 M242.4 464.6 V360.5 A57.6 57.6 0 0 1 357.6 360.5 V464.6"/></g>
+              </svg>
+            </figure>
+            <figure class="vx-droom" data-hour="16"><img src="/media/garden-900.webp" srcset="/media/garden-900.webp 900w, /media/garden-1360.webp 1360w" sizes="(max-width: 760px) 80vw, 46vw" alt="The estate garden and tree line" loading="lazy" decoding="async"></figure>
+            <figure class="vx-droom" data-hour="18.5"><img src="/media/lounge-fireplace-900.webp" srcset="/media/lounge-fireplace-900.webp 900w, /media/lounge-fireplace-1600.webp 1600w" sizes="(max-width: 760px) 80vw, 46vw" alt="The Planter's Lounge with its fireplace wall and lamps" loading="lazy" decoding="async"></figure>
+            <figure class="vx-droom" data-hour="19.4"><img src="/media/lounge-arches-900.webp" srcset="/media/lounge-arches-900.webp 900w, /media/lounge-arches-1600.webp 1600w" sizes="(max-width: 760px) 80vw, 46vw" alt="A lamp-lit salon seen through twin arched doorways" loading="lazy" decoding="async"></figure>
+            <figure class="vx-droom vx-droom--night" data-hour="20" role="img" aria-label="Drawing: lanterns strung under the Tea Pavilion roof over a long table">
+              <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+                <g class="vx-stars"><circle cx="70" cy="70" r="1.6"/><circle cx="150" cy="38" r="1.2"/><circle cx="230" cy="96" r="1"/><circle cx="390" cy="58" r="1.4"/><circle cx="470" cy="104" r="1"/><circle cx="540" cy="44" r="1.6"/><circle cx="505" cy="150" r="1.1"/><circle cx="110" cy="150" r="1"/><circle cx="330" cy="30" r="1.1"/></g>
+                <g class="vx-draw vx-draw--soft"><path d="M0 520 C80 486 150 474 220 494 C290 514 350 470 430 462 C500 456 560 478 600 490 M0 556 C120 540 200 556 300 546 C400 536 500 556 600 546 M60 318 L300 244 L540 318 M88 338 L135.1 365.7 L182.2 386.4 L229.3 400.2 L276.4 407.1 L323.6 407.1 L370.7 400.2 L417.8 386.4 L464.9 365.7 L512 338"/></g>
+                <g class="vx-draw"><path d="M60 318 L300 176 L540 318 Z M60 318 H540 M88 318 V630 M512 318 V630 M300 176 V318 M30 630 H570 M52 652 H548 M74 674 H526 M150 616 L246 488 H354 L450 616 Z M150 616 V628 H450 V616"/></g>
+                <g class="vx-draw vx-draw--fine"><path d="M178 578 h18 M212 534 h14 M404 578 h18 M374 534 h14 M234 506 h10 M356 506 h10 M135.1 365.7 V372.7 M182.2 386.4 V393.4 M229.3 400.2 V407.2 M276.4 407.1 V414.1 M323.6 407.1 V414.1 M370.7 400.2 V407.2 M417.8 386.4 V393.4 M464.9 365.7 V372.7"/></g>
+                <g class="vx-lanterns"><circle cx="135.1" cy="379.7" r="7"/><circle cx="182.2" cy="400.4" r="7"/><circle cx="229.3" cy="414.2" r="7"/><circle cx="276.4" cy="421.1" r="7"/><circle cx="323.6" cy="421.1" r="7"/><circle cx="370.7" cy="414.2" r="7"/><circle cx="417.8" cy="400.4" r="7"/><circle cx="464.9" cy="379.7" r="7"/></g>
+              </svg>
+            </figure>
+            <figure class="vx-droom vx-droom--night" data-hour="22.5" role="img" aria-label="Drawing: one lamp over the billiards table, racked for a last frame">
+              <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+                <g class="vx-lampglow"><ellipse cx="300" cy="520" rx="250" ry="150"/></g>
+                <g class="vx-draw vx-draw--soft"><path d="M208 252 L96 560 M392 252 L504 560"/></g>
+                <g class="vx-draw"><path d="M300 0 V190 M246 190 H354 L392 252 H208 Z M70 650 L170 452 H430 L530 650 Z M70 650 V676 H530 V650 M100 676 V750 M500 676 V750 M104 632 L192 464 H408 L496 632 Z M150 750 L290 606"/></g>
+                <g class="vx-draw vx-draw--fine"><path d="M93 632 a11 6.6 0 1 0 22 0 a11 6.6 0 1 0 -22 0 M485 632 a11 6.6 0 1 0 22 0 a11 6.6 0 1 0 -22 0 M185 464 a7 4.2 0 1 0 14 0 a7 4.2 0 1 0 -14 0 M401 464 a7 4.2 0 1 0 14 0 a7 4.2 0 1 0 -14 0 M139.5 548 a8.5 5.1 0 1 0 17 0 a8.5 5.1 0 1 0 -17 0 M443.5 548 a8.5 5.1 0 1 0 17 0 a8.5 5.1 0 1 0 -17 0 M293.8 496 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M287.4 486.7 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M300.2 486.7 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M281.1 477.4 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M293.8 477.4 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M306.5 477.4 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M274.7 468.1 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M287.4 468.1 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M300.2 468.1 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M312.9 468.1 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M268.4 458.8 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M281.1 458.8 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M293.8 458.8 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M306.5 458.8 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M319.2 458.8 a6.2 4.5 0 1 0 12.4 0 a6.2 4.5 0 1 0 -12.4 0 M291 596 a9 6.5 0 1 0 18 0 a9 6.5 0 1 0 -18 0"/></g>
+              </svg>
+            </figure>
+            <div class="vx-day__tint" aria-hidden="true"></div>
           </div>
-          <div class="inc-room">
-            <div class="inc-room-num">🪑</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Long Table</div>
-              <div class="inc-room-detail">Seats 12 · breakfasts, lunches, slow suppers</div>
-            </div>
+          <div class="vx-clock" aria-hidden="true">
+            <svg viewBox="-60 -60 120 120" focusable="false">
+              <path class="vx-clock__day" d="M-50 0 A50 50 0 0 1 50 0 Z"/><path class="vx-clock__night" d="M50 0 A50 50 0 0 1 -50 0 Z"/>
+              <circle class="vx-clock__ring" r="50"/><circle class="vx-clock__ring vx-clock__ring--soft" r="38"/>
+              <g class="vx-clock__hand"><path d="M0 6 V-44"/><circle cy="-44" r="3.5"/></g><circle class="vx-clock__hub" r="6"/>
+            </svg>
+            <p><span class="vx-clock__time">6:30</span><em class="vx-clock__ampm">AM</em></p>
           </div>
-          <div class="inc-room">
-            <div class="inc-room-num">🌿</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Verandah</div>
-              <div class="inc-room-detail">Long rear corridor · reading, mist-watching</div>
-            </div>
+          <ol class="vx-day__cards">
+            <li class="vx-dcard"><p class="ve-label">6:30 AM &middot; The Morning Room</p><h3>Mist on the verandah</h3><p>Early tea in the Morning Room, where the light comes through tall windows and every stay begins. The house is still quiet, the hill country slowly waking.</p></li>
+            <li class="vx-dcard"><p class="ve-label">8:00 AM &middot; The Long Table</p><h3>Breakfast for twelve</h3><p>At the heart of the house: estate tea, eggs, fresh fruit and local breads, the talk drifting between trail plans and lazy garden mornings.</p></li>
+            <li class="vx-dcard"><p class="ve-label">9:30 AM &middot; The Verandah</p><h3>The day splits</h3><p>Some leave for Pekoe Trail Stage 2 with packed lunches; others take a guided estate walk, or stay on the long verandah with a book. By one, a long lunch of rice and curry is laid out here.</p></li>
+            <li class="vx-dcard"><p class="ve-label">4:00 PM &middot; The Private Pool &amp; Garden</p><h3>An afternoon at the pool</h3><p>The hikers come back tired and triumphant. Foot soaks on the verandah, a long swim in the stone-edged pool among the jasmine, and tea that appears unprompted.</p></li>
+            <li class="vx-dcard"><p class="ve-label">6:30 PM &middot; The Planter&rsquo;s Lounge</p><h3>The fire is lit</h3><p>The original stone hearth, leather armchairs worn soft by a century of evenings, Ceylon arrack, and conversations that stretch on.</p></li>
+            <li class="vx-dcard"><p class="ve-label">Before dinner &middot; The Evening Salon</p><h3>Candlelight through the arches</h3><p>Through twin arches, the salon: aperitifs, candlelight, and the kind of conversation that only happens when nobody else is in the house.</p></li>
+            <li class="vx-dcard"><p class="ve-label">8:00 PM &middot; The Tea Pavilion</p><h3>Dinner under lanterns</h3><p>A covered pavilion beyond the verandah, the garden quiet, and a long, slow meal cooked in the open by your private chef, each course arriving in its own time.</p></li>
+            <li class="vx-dcard"><p class="ve-label">10:30 PM &middot; The Billiards Room</p><h3>Snooker, mist, sleep</h3><p>A last frame in the old estate kitchen while the mist settles outside. Then everyone to their rooms, the fire crackling down, and the estate silent.</p></li>
+          </ol>
+          <ol class="vx-day__steps" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- From here the page stays in the evening: services, who it's for, and the close -->
+    <div class="vx-night">
+
+      <!-- ═══ 5. CURATED, NOT CONCIERGED ═══════════════════════════════ -->
+      <section class="vx-services" data-theme="dark" aria-labelledby="servicesTitle">
+        <div class="ve-wrap vx-services__grid">
+          <div class="vx-services__collage" aria-hidden="true">
+            <figure class="vx-services__a" data-reveal="curtain"><img src="/media/lounge-lamps-900.webp" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="vx-services__b" data-reveal="curtain" data-delay=".15"><img src="/media/hall-mirror-700.webp" alt="" loading="lazy" decoding="async"></figure>
           </div>
-          <div class="inc-room">
-            <div class="inc-room-num">🍽</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Tea Pavilion</div>
-              <div class="inc-room-detail">Covered outdoor dining · live cooking</div>
-            </div>
-          </div>
-          <div class="inc-room">
-            <div class="inc-room-num">🔥</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Planter's Lounge</div>
-              <div class="inc-room-detail">Original 1890 stone fireplace · leather armchairs</div>
-            </div>
-          </div>
-          <div class="inc-room">
-            <div class="inc-room-num">🎱</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Billiards Room</div>
-              <div class="inc-room-detail">Former kitchen · snooker, rainy afternoons</div>
-            </div>
-          </div>
-          <div class="inc-room">
-            <div class="inc-room-num">💧</div>
-            <div class="inc-room-info">
-              <div class="inc-room-name">The Private Pool & Garden</div>
-              <div class="inc-room-detail">Stone-edged · tea-border planting · jasmine</div>
-            </div>
+          <div class="vx-services__body">
+            <p class="ve-label ve-kicker">For buyout guests</p>
+            <h2 class="ve-h2" id="servicesTitle" data-split>Curated,<br><em>not concierged.</em></h2>
+            <p class="ve-lede" data-reveal="up">Not a hotel stay with extras: a private residence opened to your party. Tell us your group and your plans, and we arrange the rest.</p>
+            <ul class="vx-services__list">
+              <li><svg class="ve-ico"><use href="#x-chef"/></svg><div><h3>Private chef</h3><p>Sri Lankan, continental or curated menus, every dietary need given full attention.</p></div></li>
+              <li><svg class="ve-ico"><use href="#x-van"/></svg><div><h3>Group transfers</h3><p>Private vehicles from Kandy or Peradeniya stations, the airport, or your next stop.</p></div></li>
+              <li><svg class="ve-ico"><use href="#x-glass"/></svg><div><h3>Private celebrations</h3><p>Birthdays, anniversaries and intimate weddings, with catering and on-site coordination.</p></div></li>
+              <li><svg class="ve-ico"><use href="#x-boot"/></svg><div><h3>Pekoe Trail logistics</h3><p>Trail-head drop-offs, luggage between stages, packed lunches and briefings for everyone.</p></div></li>
+              <li><svg class="ve-ico"><use href="#x-cup"/></svg><div><h3>Estate experiences</h3><p>Tea walks, verandah tastings, heritage talks by the fire, sundowners in the garden.</p></div></li>
+              <li><svg class="ve-ico"><use href="#x-lotus"/></svg><div><h3>In-house wellness</h3><p>Local Ayurvedic massage, foot soaks after hiking days and quiet spa moments.</p></div></li>
+            </ul>
           </div>
         </div>
-      </div>
+      </section>
 
-    </div>
-
-    <!-- Capacity bar -->
-    <div class="capacity-bar reveal">
-      <div class="cap-stat">
-        <div class="cap-stat-num">7</div>
-        <div class="cap-stat-label">Bedrooms</div>
-      </div>
-      <div class="cap-divider"></div>
-      <div class="cap-stat">
-        <div class="cap-stat-num">12</div>
-        <div class="cap-stat-label">Guests Max</div>
-      </div>
-      <div class="cap-divider"></div>
-      <div class="cap-stat">
-        <div class="cap-stat-num">8</div>
-        <div class="cap-stat-label">Shared Rooms</div>
-      </div>
-      <div class="cap-divider"></div>
-      <div class="cap-stat">
-        <div class="cap-stat-num">3</div>
-        <div class="cap-stat-label">Accessible Rooms</div>
-      </div>
-      <div class="cap-divider"></div>
-      <div class="cap-stat">
-        <div class="cap-stat-num">1890</div>
-        <div class="cap-stat-label">Year Established</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════ THE WALK ═════ -->
-  <section class="walk-section">
-    <div class="walk-header reveal">
-      <div class="walk-eyebrow">A Walk Through</div>
-      <h2 class="walk-title">The Estate, Room by Room</h2>
-      <p class="walk-sub">From the car porch through to the fire-lit lounge — the rhythm of the house, in the order you'll discover it.</p>
-    </div>
-
-    <div class="walk-flow">
-      <div class="walk-card featured reveal">
-        <div class="walk-num">01 · Arrival</div>
-        <div class="walk-name">The Morning Room</div>
-        <p class="walk-desc">Step beneath the car porch and through the front doors. The Morning Room receives you — light through tall windows, early tea poured, the day quietly beginning. This is where every stay begins.</p>
-        <div class="walk-tag">East light · Welcome ritual</div>
-      </div>
-      <div class="walk-card reveal">
-        <div class="walk-num">02</div>
-        <div class="walk-name">The Evening Salon</div>
-        <p class="walk-desc">Through twin arches lies the salon — a space for conversation and candlelit evenings.</p>
-        <div class="walk-tag">Pre-dinner gathering</div>
-      </div>
-
-      <div class="walk-card reveal">
-        <div class="walk-num">03</div>
-        <div class="walk-name">The Long Table</div>
-        <p class="walk-desc">At the heart of the house. Seats twelve. Breakfasts, lunches, slow suppers — the table where days both begin and end.</p>
-        <div class="walk-tag">Up to 12 covers</div>
-      </div>
-      <div class="walk-card reveal">
-        <div class="walk-num">04</div>
-        <div class="walk-name">The Verandah</div>
-        <p class="walk-desc">Both corridor and retreat. The long rear verandah runs the length of the house — for reading, watching mist, sitting in stillness.</p>
-        <div class="walk-tag">All-day access</div>
-      </div>
-      <div class="walk-card reveal">
-        <div class="walk-num">05</div>
-        <div class="walk-name">The Tea Pavilion</div>
-        <p class="walk-desc">A covered outdoor pavilion beyond the verandah. Live cooking, garden dining, lantern-lit evenings under the open sky.</p>
-        <div class="walk-tag">Outdoor dining</div>
-      </div>
-
-      <div class="walk-card reveal">
-        <div class="walk-num">06</div>
-        <div class="walk-name">The Billiards Room</div>
-        <p class="walk-desc">Former estate kitchen, now a place of relaxed play. Snooker during rainstorms, easy company.</p>
-        <div class="walk-tag">All ages welcome</div>
-      </div>
-      <div class="walk-card featured reveal">
-        <div class="walk-num">07 · The Heart</div>
-        <div class="walk-name">The Planter's Lounge</div>
-        <p class="walk-desc">The fire is lit at six-thirty. Original stone hearth. Leather armchairs worn soft by a century of evenings. This is where the day ends — the room that has warmed planters, hikers, and now you, since the 1890s.</p>
-        <div class="walk-tag">Fireside · Evening ritual</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════ CURATED SERVICES ═════ -->
-  <section class="services-section">
-    <div class="services-header reveal">
-      <div>
-        <div class="services-eyebrow">For Buyout Guests</div>
-        <h2 class="services-title">Curated, Not Concierged.</h2>
-      </div>
-      <div class="services-intro">
-        <p>An estate buyout is not a hotel stay with extras. It is a private residence opened to your party — with services that adapt entirely to who you are and what you came for.</p>
-        <p>Tell us your group. Tell us your plans. We arrange the rest.</p>
-      </div>
-    </div>
-
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <span class="service-icon">👨‍🍳</span>
-        <div class="service-name">Private Chef</div>
-        <p class="service-desc">A dedicated chef for your stay — Sri Lankan, continental, or curated multi-cuisine menus. Dietary needs accommodated with full attention.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">🚐</span>
-        <div class="service-name">Group Transfers</div>
-        <p class="service-desc">Private vehicles arranged for your entire party — from Kandy or Peradeniya stations, the airport, or any onward destination.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">🎉</span>
-        <div class="service-name">Private Celebrations</div>
-        <p class="service-desc">Birthdays, anniversaries, intimate weddings, milestone gatherings — bespoke catering, table arrangements, and on-site coordination.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">🥾</span>
-        <div class="service-name">Pekoe Trail Group Logistics</div>
-        <p class="service-desc">For hiking groups: morning drop-offs at trail heads, luggage transfers between stages, packed lunches for the entire party, and trail briefings.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">🍵</span>
-        <div class="service-name">Private Estate Experiences</div>
-        <p class="service-desc">Tea estate walks, tasting sessions on the verandah, heritage talks by the fire, sundowner setups in the garden.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">💆</span>
-        <div class="service-name">In-House Wellness</div>
-        <p class="service-desc">Local Ayurvedic massage practitioners, foot soaks after hiking days, and quiet pre-arranged spa moments — all on the estate.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════ SUITED FOR ═════ -->
-  <section class="suited-section">
-    <div class="suited-header reveal">
-      <div class="suited-eyebrow">Particularly Well Suited For</div>
-      <h2 class="suited-title">Who the Estate Welcomes</h2>
-      <p class="suited-sub">A buyout is right when you want time together without an audience. Here are the parties we've designed it for.</p>
-    </div>
-
-    <div class="suited-grid">
-
-      <div class="suited-card reveal">
-        <div class="suited-card-num">01</div>
-        <div class="suited-card-icon">👨‍👩‍👧‍👦</div>
-        <div class="suited-card-title">Multi-Generational Family Holidays</div>
-        <p class="suited-card-text">
-          With three fully accessible rooms (Founder's Suite, Highlands Suite, Carriage House Cottage), the bungalow welcomes grandparents, parents, and children together. Children move freely between rooms and garden. The cottage offers grandparents the independence of their own kitchen and living area within the estate grounds.
-        </p>
-        <div class="suited-card-tags">
-          <span class="suited-tag">Up to 12 guests</span>
-          <span class="suited-tag">Accessible rooms</span>
-          <span class="suited-tag">Cottage option</span>
+      <!-- ═══ 6. WHO IT'S FOR ══════════════════════════════════════════ -->
+      <section class="vx-parties" data-theme="dark" aria-labelledby="partiesTitle">
+        <div class="ve-wrap vx-parties__grid">
+          <div class="vx-parties__body">
+            <p class="ve-label ve-kicker">Particularly well suited for</p>
+            <h2 class="ve-h2" id="partiesTitle" data-split>Time together,<br><em>without an audience.</em></h2>
+            <div class="vx-parties__tabs" role="tablist" aria-label="Kinds of party">
+              <button type="button" role="tab" id="pt-family" aria-controls="pp-family" aria-selected="true" class="is-on">Families</button>
+              <button type="button" role="tab" id="pt-hikers" aria-controls="pp-hikers" aria-selected="false" tabindex="-1">Hiking groups</button>
+              <button type="button" role="tab" id="pt-celebrate" aria-controls="pp-celebrate" aria-selected="false" tabindex="-1">Celebrations</button>
+              <button type="button" role="tab" id="pt-retreat" aria-controls="pp-retreat" aria-selected="false" tabindex="-1">Retreats</button>
+            </div>
+            <div class="vx-parties__panels">
+              <article class="vx-party is-on" role="tabpanel" id="pp-family" aria-labelledby="pt-family" data-img="0">
+                <h3>Multi-generational family holidays</h3>
+                <p>Three step-free rooms (the Founder&rsquo;s Suite, the Highlands Suite and the Carriage House Cottage) let grandparents, parents and children stay together. Children roam between rooms and garden; the cottage gives grandparents their own kitchen and living room.</p>
+                <ul><li>Up to 12 guests</li><li>Step-free rooms</li><li>Cottage option</li></ul>
+              </article>
+              <article class="vx-party" role="tabpanel" id="pp-hikers" aria-labelledby="pt-hikers" data-img="1">
+                <h3>Hiking groups and Pekoe Trail parties</h3>
+                <p>Walk Stages 1, 2 and 3 without changing rooms. Early breakfasts, packed lunches, drop-offs at every trail head, luggage handled between stages, and the fire ready after a long day.</p>
+                <ul><li>Stages 1, 2 &amp; 3</li><li>Group transfers</li><li>Packed lunches</li></ul>
+                <a class="ve-link" href="/pekoe-trail">The Pekoe Trail <span aria-hidden="true">&rarr;</span></a>
+              </article>
+              <article class="vx-party" role="tabpanel" id="pp-celebrate" aria-labelledby="pt-celebrate" data-img="2">
+                <h3>Private celebrations and anniversaries</h3>
+                <p>Intimate weddings, milestone birthdays and vow renewals, with the estate as venue, home and backdrop: long-table dinners under the Tea Pavilion lanterns, morning ceremonies on the verandah.</p>
+                <ul><li>Up to 12 guests</li><li>Private chef</li><li>Garden setting</li></ul>
+              </article>
+              <article class="vx-party" role="tabpanel" id="pp-retreat" aria-labelledby="pt-retreat" data-img="3">
+                <h3>Retreats and group gatherings</h3>
+                <p>Yoga retreats, writers&rsquo; weeks, reunions, and offsites that don&rsquo;t feel corporate: six chambers for rest, the Long Table for meals, the verandah for sessions, and nobody else competing for the quiet.</p>
+                <ul><li>Multi-night stays</li><li>Full privacy</li><li>Custom programming</li></ul>
+              </article>
+            </div>
+          </div>
+          <figure class="vx-parties__arch" aria-hidden="true">
+            <img class="is-on" src="/media/lounge-main-1600.webp" alt="" loading="lazy" decoding="async">
+            <img src="/media/trail-forest-900.webp" alt="" loading="lazy" decoding="async">
+            <img src="/media/lounge-evening-900.webp" alt="" loading="lazy" decoding="async">
+            <img src="/media/garden-900.webp" alt="" loading="lazy" decoding="async">
+          </figure>
         </div>
-      </div>
+      </section>
 
-      <div class="suited-card reveal">
-        <div class="suited-card-num">02</div>
-        <div class="suited-card-icon">🥾</div>
-        <div class="suited-card-title">Hiking Groups & Pekoe Trail Parties</div>
-        <p class="suited-card-text">
-          Walk Stages 1, 2, and 3 of the Pekoe Trail without changing accommodation. The estate works as a single base for the entire group — early breakfasts, packed lunches, drop-offs at every trailhead, luggage handled between stages, and the fire ready in the lounge after a long day on the trail.
-        </p>
-        <div class="suited-card-tags">
-          <span class="suited-tag">Stages 1, 2, 3</span>
-          <span class="suited-tag">Group transfers</span>
-          <span class="suited-tag">Packed lunches</span>
+      <!-- ═══ 7. THE CLOSE: the house at night, the offer, one clear next step ═══ -->
+      <section class="vx-close" id="enquire" data-theme="dark" aria-labelledby="closeTitle">
+        <div class="vx-close__bg" aria-hidden="true"><img src="/media/estate-house-1600.webp" srcset="/media/estate-house-900.webp 900w, /media/estate-house-1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="ve-wrap vx-close__grid">
+          <div class="vx-close__main">
+            <p class="ve-label ve-kicker">Reserve the estate</p>
+            <h2 class="vx-close__title" id="closeTitle" data-split>Make the house<br><em>yours.</em></h2>
+            <p class="ve-lede">Tell us your dates, your party and what brings you here. We&rsquo;ll reply with full availability, a tailored proposal and a single point of contact for the whole booking.</p>
+            <div class="vx-close__cta">
+              <button type="button" class="ve-btn ve-btn--gold tb-reserve-trigger" data-room="The Entire Estate (Full Buyout)" data-source="estate_enquiry_cta" data-magnetic><span>Request a proposal</span></button>
+              <a class="ve-link" href="https://wa.me/94777874555" target="_blank" rel="noopener">WhatsApp us <span aria-hidden="true">&nearr;</span></a>
+            </div>
+            <ul class="vx-close__notes"><li>Reply within 24 hours</li><li>Free cancellation 7 days</li><li>Direct rates on request</li></ul>
+          </div>
+          <div class="vx-close__offer">
+            <p class="ve-label">An estate buyout is bespoke</p>
+            <p class="vx-close__price">Price on request<em>per night &middot; the whole estate</em></p>
+            <p class="vx-close__note">Priced to your group size, length of stay, season and the service you need. Multi-night stays receive preferential rates.</p>
+            <p class="ve-label vx-close__incl-label">Always included</p>
+            <ul class="vx-close__incl">
+              <li>Exclusive use of the entire estate</li><li>All six chambers and the cottage</li><li>Estate-fresh breakfast daily</li><li>Dedicated estate staff</li>
+              <li>Welcome tea service</li><li>Wi-Fi throughout</li><li>Every shared room</li><li>The pool and garden</li>
+            </ul>
+          </div>
         </div>
-      </div>
-
-      <div class="suited-card reveal">
-        <div class="suited-card-num">03</div>
-        <div class="suited-card-icon">💍</div>
-        <div class="suited-card-title">Private Celebrations & Anniversaries</div>
-        <p class="suited-card-text">
-          Intimate weddings, milestone birthdays, anniversaries, vow renewals — the estate becomes the venue, the home, and the backdrop. Long-table dinners under the Tea Pavilion lanterns. Morning ceremonies on the verandah. The garden, the fireplace, the quiet — entirely yours for the occasion.
-        </p>
-        <div class="suited-card-tags">
-          <span class="suited-tag">Up to 12 guests</span>
-          <span class="suited-tag">Private chef</span>
-          <span class="suited-tag">Garden setting</span>
-        </div>
-      </div>
-
-      <div class="suited-card reveal">
-        <div class="suited-card-num">04</div>
-        <div class="suited-card-icon">🧘</div>
-        <div class="suited-card-title">Retreats & Group Gatherings</div>
-        <p class="suited-card-text">
-          Yoga retreats, writers' weeks, friendship reunions, corporate offsites that don't feel corporate. The estate offers complete focus — six chambers for individual rest, the Long Table for shared meals, the verandah for sessions, and no other guests to compete for the quiet.
-        </p>
-        <div class="suited-card-tags">
-          <span class="suited-tag">Multi-night stays</span>
-          <span class="suited-tag">Full privacy</span>
-          <span class="suited-tag">Custom programming</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═════ A DAY AT THE ESTATE ═════ -->
-  <section class="day-section">
-    <div class="day-header reveal">
-      <div class="day-eyebrow">When You Have the Whole House</div>
-      <h2 class="day-title">A Day at the Estate</h2>
-      <p class="day-sub">An imagined rhythm — the kind of day a buyout makes possible. Adapted entirely to your party, but here's how it might unfold.</p>
+      </section>
     </div>
 
-    <div class="day-timeline">
-      <div class="day-moment reveal">
-        <div class="day-time">6:30 AM</div>
-        <div class="day-content">
-          <div class="day-name">Mist on the verandah</div>
-          <div class="day-detail">Early tea poured in the Morning Room. The estate is still quiet — the children sleeping, the hill country slowly waking.</div>
-        </div>
-      </div>
-      <div class="day-moment reveal">
-        <div class="day-time">8:00 AM</div>
-        <div class="day-content">
-          <div class="day-name">Breakfast at the Long Table</div>
-          <div class="day-detail">Twelve seats. Estate-fresh tea, eggs, fresh fruit, local breads. Conversation drifts between trail plans and lazy garden mornings.</div>
-        </div>
-      </div>
-      <div class="day-moment reveal">
-        <div class="day-time">9:30 AM</div>
-        <div class="day-content">
-          <div class="day-name">The day splits</div>
-          <div class="day-detail">Some leave for Pekoe Trail Stage 2 — packed lunches in their daypacks. Others take a guided estate walk. The grandparents stay in the Carriage House garden with coffee and a book.</div>
-        </div>
-      </div>
-      <div class="day-moment reveal">
-        <div class="day-time">1:00 PM</div>
-        <div class="day-content">
-          <div class="day-name">Long lunch on the verandah</div>
-          <div class="day-detail">Cold rice and curry, fresh salads, the children back from the garden. Mist beginning to settle on the tea fields. No rush.</div>
-        </div>
-      </div>
-      <div class="day-moment reveal">
-        <div class="day-time">4:00 PM</div>
-        <div class="day-content">
-          <div class="day-name">Afternoon at the pool</div>
-          <div class="day-detail">The hikers return, tired and triumphant. Foot soaks on the verandah. A long swim in The Private Pool. Tea service appears unprompted.</div>
-        </div>
-      </div>
-      <div class="day-moment reveal">
-        <div class="day-time">6:30 PM</div>
-        <div class="day-content">
-          <div class="day-name">The fire is lit</div>
-          <div class="day-detail">The Planter's Lounge fills. Ceylon arrack, leather armchairs, the original 1890 hearth. Conversations stretch into the evening.</div>
-        </div>
-      </div>
-      <div class="day-moment reveal">
-        <div class="day-time">8:00 PM</div>
-        <div class="day-content">
-          <div class="day-name">Dinner in the Tea Pavilion</div>
-          <div class="day-detail">Lanterns lit. The garden quiet. A long, slow meal cooked in the open by your private chef — courses that arrive in their own time.</div>
-        </div>
-      </div>
-      <div class="day-moment reveal">
-        <div class="day-time">10:30 PM</div>
-        <div class="day-content">
-          <div class="day-name">Snooker, mist, sleep</div>
-          <div class="day-detail">A game in the Billiards Room. The mist heavy outside. Each guest finds their chamber — six along the verandah, two more in the cottage. The fire crackles down. The estate is silent.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- ═══ NEXT CHAPTER ═════════════════════════════════════════════════ -->
+    <a class="ve-next" href="/experiences" data-theme="dark" data-cursor="Enter">
+      <span class="ve-next__bg" aria-hidden="true"><img src="/media/lounge-evening-1600.webp" srcset="/media/lounge-evening-900.webp 900w, /media/lounge-evening-1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async"></span>
+      <span class="ve-next__label ve-label">Next chapter <span class="ve-si" lang="si">අත්දැකීම්</span></span>
+      <span class="ve-next__title">Experiences</span>
+      <span class="ve-next__sub">What fills the days: tea, walks, fire and the Long Table.</span>
+      <span class="ve-next__go" aria-hidden="true">&rarr;</span>
+    </a>
 
-  <!-- ═════ RATE BANNER ═════ -->
-  <section class="rate-banner">
-    <div class="rate-eyebrow reveal">Investment</div>
-    <h2 class="rate-title reveal">An Estate Buyout Is Bespoke</h2>
-    <div class="rate-display reveal">
-      <span class="rate-from">From</span>
-      <span class="rate-amount">Price on request</span>
-      <span class="rate-period">/ night · whole estate</span>
-    </div>
-    <p class="rate-note reveal">
-      Pricing is offered on enquiry — based on your group size, length of stay, season, and the level of service you need. Multi-night stays receive preferential rates.
-    </p>
-    <div class="rate-includes reveal">
-      <div class="rate-include-item">Exclusive use — entire estate</div>
-      <div class="rate-include-item">All 6 chambers and cottage</div>
-      <div class="rate-include-item">Estate-fresh breakfast daily</div>
-      <div class="rate-include-item">Dedicated estate staff</div>
-      <div class="rate-include-item">Welcome tea service</div>
-      <div class="rate-include-item">Wi-Fi throughout</div>
-      <div class="rate-include-item">Use of all shared spaces</div>
-      <div class="rate-include-item">Pool & garden access</div>
-    </div>
-  </section>
+  </main>
 
-  <!-- ═════ ENQUIRE ═════ -->
-  <section id="enquire" class="enquire-section">
-    <div class="enquire-content">
-      <div class="enq-eyebrow reveal">Reserve the Estate</div>
-      <h2 class="enq-title reveal">Make the House <em>Yours</em></h2>
-      <p class="enq-body reveal">
-        Tell us your dates, your party, and what brings you here. We'll respond with full availability, a tailored proposal, and a single point of contact for the entire booking.
-      </p>
-      <div class="enq-buttons reveal">
-        <a href="#" class="btn-large-gold tb-reserve-trigger" data-room="The Entire Estate (Full Buyout)" data-source="estate_enquiry_cta">Enquire About Buyout</a>
-        <a href="https://wa.me/94777874555" class="btn-large-outline" target="_blank" rel="noopener noreferrer">WhatsApp Direct</a>
-      </div>
-      <div class="enq-meta">
-        <div class="enq-meta-item"><span class="enq-meta-icon">✦</span> Response within 24 hours</div>
-        <div class="enq-meta-item"><span class="enq-meta-icon">✦</span> Free cancellation 7 days</div>
-        <div class="enq-meta-item"><span class="enq-meta-icon">✦</span> Direct rates on request</div>
-      </div>
-    </div>
-  </section>
+  <!-- Always one tap from an enquiry (shown between the gates and the close) -->
+  <button type="button" class="vx-sticky tb-reserve-trigger" data-room="The Entire Estate (Full Buyout)" data-source="estate_sticky_cta"><span class="vx-sticky__dot" aria-hidden="true"></span><span>Enquire about the whole estate</span><em>Up to 12 guests</em></button>
 
-  <!-- ═════ FOOTER ═════ -->
-  <?php include 'layout/footer.php'; ?>
+  <?php include 'layout/ve/footer.html'; ?>
 
-  <script>
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, {
-      threshold: 0.08
-    });
-    reveals.forEach(el => obs.observe(el));
-  </script>
-
+  <script src="/js/vendor/gsap.min.js" defer></script>
+  <script src="/js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/js/vendor/lenis.min.js" defer></script>
+  <script src="/ve/ve.js" defer></script>
+  <script src="/ve/estate.js" defer></script>
 </body>
 
 </html>
