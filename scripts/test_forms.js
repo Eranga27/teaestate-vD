@@ -31,8 +31,10 @@ const guest = { first: 'Ada', last: 'Lovelace', email: 'Ada@Example.com', phone:
   console.log('✓ enquiry: 405 on GET, honeypot swallowed, bad email / empty message / empty body → 400');
 
   delete process.env.BREVO_API_KEY;
-  res = await post(enquiry, guest); assert.equal(res.statusCode, 200); assert.equal(calls.length, 0);
-  console.log('✓ enquiry without BREVO_API_KEY → accepted and logged, no external calls');
+  res = await post(enquiry, guest); assert.equal(res.statusCode, 503); assert.equal(res.body.ok, false); assert.equal(calls.length, 0);
+  assert.match(res.body.message, /WhatsApp/);
+  res = await post(waitlist, { 'wl-first': 'Ada', 'wl-email': 'ada@example.com' }); assert.equal(res.statusCode, 503);
+  console.log('✓ without BREVO_API_KEY → guest told to use WhatsApp/email (never a false "thank you"), no external calls');
 
   process.env.BREVO_API_KEY = 'xkeysib-test';
   process.env.ESTATE_NOTIFY_EMAIL = 'stay@theteabungalow.com, manager@example.com';

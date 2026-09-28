@@ -2,8 +2,8 @@
  * Guest-form helpers: input cleaning + Brevo email/CRM (not a route: Vercel skips "_" files).
  *
  * Env (Vercel):
- *   BREVO_API_KEY            enables email notifications + contact sync. Without it, submissions
- *                            are only written to the function log.
+ *   BREVO_API_KEY            required: without it the forms tell guests to use WhatsApp/email
+ *                            instead (the submission is only written to the function log).
  *   BREVO_SENDER_EMAIL       a sender verified in Brevo (default stay@theteabungalow.com)
  *   ESTATE_NOTIFY_EMAIL      who receives enquiries; comma-separate several (default stay@theteabungalow.com)
  *   BREVO_ENQUIRY_LIST_ID    optional Brevo list for enquiry guests (drives guest-journey automations)

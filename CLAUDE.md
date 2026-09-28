@@ -45,8 +45,9 @@ Decap CMS with one shared estate login — editors don't need GitHub accounts.
 ## Guest forms & CRM (Brevo)
 
 - `/contact` → `api/enquiry.js`, Chairman's Bungalow waitlist → `api/waitlist.js`; shared helpers in `api/_brevo.js`. Forms must send URL-encoded bodies (`new URLSearchParams(new FormData(form))`) — Vercel functions don't parse multipart.
-- With `BREVO_API_KEY`: each submission emails `ESTATE_NOTIFY_EMAIL` (guest as Reply-To) from `BREVO_SENDER_EMAIL`, then adds the guest to `BREVO_ENQUIRY_LIST_ID` / `BREVO_WAITLIST_LIST_ID` (enquiries carry `ARRIVAL_DATE` / `DEPARTURE_DATE` for Brevo automations). If the email fails the guest gets an error, never a false "thank you". Without the key, submissions are only logged (Vercel keeps logs briefly — don't rely on it).
+- With `BREVO_API_KEY`: each submission emails `ESTATE_NOTIFY_EMAIL` (guest as Reply-To) from `BREVO_SENDER_EMAIL`, then adds the guest to `BREVO_ENQUIRY_LIST_ID` / `BREVO_WAITLIST_LIST_ID` (enquiries carry `ARRIVAL_DATE` / `DEPARTURE_DATE` for Brevo automations). If the email fails the guest gets an error, never a false "thank you". Without the key the forms show guests an error pointing to WhatsApp / stay@theteabungalow.com (submission only logged).
 - `scripts/test_forms.js` (in `npm test`) mocks Brevo.
+- Current setup (Preview): sent through the developer's Brevo account with a Gmail sender, which Brevo replaces with its own compliant From address; recipients are stay@theteabungalow.com + the developer. To send as stay@, authenticate theteabungalow.com in Brevo (DNS at IONOS) and set `BREVO_SENDER_EMAIL`. Lists are not configured yet.
 
 ## Analytics
 

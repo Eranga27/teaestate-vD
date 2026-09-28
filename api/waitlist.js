@@ -4,6 +4,8 @@ const { brevoConfig, line, paragraph, isEmail, notifyEstate, upsertContact } = r
  * Chairman's Bungalow (2027) waitlist. Emails the estate and adds the guest to the Brevo
  * waitlist list ("one email per milestone — no newsletters", as promised on the page).
  */
+const UNAVAILABLE = 'We could not add you just now. Please try again, message us on WhatsApp, or email stay@theteabungalow.com.';
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, message: 'Method Not Allowed' });
@@ -31,8 +33,8 @@ module.exports = async (req, res) => {
   const name = `${entry.first} ${entry.last}`.trim();
   const cfg = brevoConfig();
   if (!cfg) {
-    console.warn('[Waitlist] BREVO_API_KEY not set — signup only logged, nobody was emailed:', entry);
-    return res.status(200).json({ ok: true, message: "Thank you — you're on the list." });
+    console.error('[Waitlist] BREVO_API_KEY not set — signup NOT delivered:', entry);
+    return res.status(503).json({ ok: false, message: UNAVAILABLE });
   }
 
   try {
@@ -44,7 +46,7 @@ module.exports = async (req, res) => {
     });
   } catch (err) {
     console.error('[Waitlist] Notification email failed:', err.message, entry);
-    return res.status(502).json({ ok: false, message: 'We could not add you just now. Please try again, or message us on WhatsApp.' });
+    return res.status(502).json({ ok: false, message: UNAVAILABLE });
   }
 
   try {

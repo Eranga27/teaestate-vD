@@ -5,6 +5,8 @@ const { brevoConfig, line, paragraph, isEmail, isoDate, notifyEstate, upsertCont
  * Brevo enquiry list, whose automations can use ARRIVAL_DATE / DEPARTURE_DATE for
  * pre-arrival and post-stay emails. See api/_brevo.js for the env vars.
  */
+const UNAVAILABLE = 'We could not send your enquiry just now. Please try again, message us on WhatsApp, or email stay@theteabungalow.com.';
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, message: 'Method Not Allowed' });
@@ -36,9 +38,10 @@ module.exports = async (req, res) => {
 
   const name = `${enquiry.first} ${enquiry.last}`.trim();
   const cfg = brevoConfig();
+  // Never thank a guest for an enquiry nobody will receive
   if (!cfg) {
-    console.warn('[Enquiry] BREVO_API_KEY not set — enquiry only logged, nobody was emailed:', enquiry);
-    return res.status(200).json({ ok: true, message: 'Thank you for your enquiry. We will contact you within 24 hours.' });
+    console.error('[Enquiry] BREVO_API_KEY not set — enquiry NOT delivered:', enquiry);
+    return res.status(503).json({ ok: false, message: UNAVAILABLE });
   }
 
   try {
@@ -55,7 +58,7 @@ module.exports = async (req, res) => {
     });
   } catch (err) {
     console.error('[Enquiry] Notification email failed:', err.message, enquiry);
-    return res.status(502).json({ ok: false, message: 'We could not send your enquiry just now. Please try again, or message us on WhatsApp.' });
+    return res.status(502).json({ ok: false, message: UNAVAILABLE });
   }
 
   // CRM sync is best-effort: the estate already has the enquiry by email
