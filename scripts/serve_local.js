@@ -31,6 +31,7 @@ const MIME = {
 
 const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0]; // strip query string for file lookup
+  try { urlPath = decodeURIComponent(urlPath); } catch (e) { res.writeHead(400); res.end('Bad Request'); return; } // e.g. "Pekoe%20Trail%20access.jpg"
   if (urlPath === '/' || urlPath === '') urlPath = '/index.html';
 
   // Append .html if no extension given (clean URLs)

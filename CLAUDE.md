@@ -11,7 +11,8 @@ Luxury heritage stay: restored 1890s planter's bungalow in Galaha, Sri Lanka (ba
 | Path | What it is |
 |---|---|
 | `src/*.php` | The 12 page templates (edit here). `submit_*.php`, `config/`, `.htaccess` are legacy PHP-hosting files, superseded by `api/` |
-| `src/layout/navbar.php`, `footer.php` | Shared partials: nav, preloader, consent banner, reservation modal (`#tb-reserve-modal`) |
+| `src/layout/navbar.php`, `footer.php` | Shared partials: nav, consent banner, reservation modal (`#tb-reserve-modal`) |
+| `src/layout/preloader.html` | "Dawn over Galaha" intro (CSS + SVG + JS, no images). The build injects it right after `<body>` on every page. Replay with `?preview_preloader=1` |
 | `src/data/**/*.json` | CMS content (experiences, packages, journal, gallery, announcements, chamber rates) |
 | `src/admin/` | Decap CMS (`config.yml` + login/bootstrap `index.html`) |
 | `src/images/` | Estate photos; CMS uploads go to `src/images/cms/` |
@@ -57,7 +58,7 @@ Decap CMS with one shared estate login — editors don't need GitHub accounts.
 
 - Work on `feature/platform-integrations`; never commit to `main` (production at teaestate.vercel.app). Promotion is a reviewed PR.
 - Site-wide changes belong in `src/layout/*.php`, not in individual pages.
-- Every page must keep: once-per-session tea-leaf preloader, PDPA consent banner wired to Google Consent Mode v2, GTM snippet (when `GTM_ID` is set), reservation modal. `npm test` enforces this.
+- Every page must keep: exactly one once-per-session preloader (skippable; hidden for reduced motion; waits for a background tab to become visible), PDPA consent banner wired to Google Consent Mode v2, GTM snippet (when `GTM_ID` is set), reservation modal. `npm test` enforces this.
 - Design tokens: Forest Green `#1E4D2B` / `#07130E`, Heritage Gold `#C7A85E` / `#dfc080`, Estate Cream `#F5F1E9`. Fonts: Cinzel, Playfair Display, EB Garamond, Lato. Restrained heritage luxury — no generic Bootstrap/Tailwind look, no intrusive popups.
 
 ## Known gaps

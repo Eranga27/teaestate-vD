@@ -24,9 +24,11 @@ for (const file of htmlFiles) {
   const antiFlashInHead = content.includes('tb-preloader-skip') && content.indexOf('tb-preloader-skip') < headIdx;
   const gtmScriptInHead = content.includes('googletagmanager.com/gtm.js') && content.indexOf('googletagmanager.com/gtm.js') < headIdx;
   const gtmNoscriptInBody = content.includes('googletagmanager.com/ns.html') && content.indexOf('googletagmanager.com/ns.html') > bodyIdx;
-  const preloaderMarkupInBody = content.includes('id="tb-preloader"') && content.indexOf('id="tb-preloader"') > bodyIdx;
-  const preloaderCss = content.includes('.tb-preloader-fade') && content.includes('tbRuleDraw');
-  const preloaderScript = content.includes('minDisplayMs') && content.includes('maxDisplayMs');
+  // Exactly one preloader (src/layout/preloader.html), placed right after <body>
+  const preloaderCount = content.split('id="tb-preloader"').length - 1;
+  const preloaderMarkupInBody = preloaderCount === 1 && content.indexOf('id="tb-preloader"') > bodyIdx;
+  const preloaderCss = content.includes('html.tb-preloader-skip #tb-preloader') && content.includes('.tb-pl-veil');
+  const preloaderScript = content.includes("sessionStorage.setItem('tb_preloader_seen'") && content.includes('removeChild(preloader)') && content.includes('clip-path');
   const sessionCheck = content.includes("sessionStorage.getItem('tb_preloader_seen')");
   const reducedMotion = content.includes('prefers-reduced-motion');
   const eventsHook = content.includes('preloader_complete');
@@ -41,7 +43,7 @@ for (const file of htmlFiles) {
       ? { name: `GTM ${GTM_ID} script in <head> + noscript in <body>`, pass: gtmScriptInHead && gtmNoscriptInBody && content.includes(`'${GTM_ID}'`) }
       : { name: 'No GTM request while GTM_ID is unset', pass: !content.includes('googletagmanager.com') },
     { name: 'No placeholder GTM ID', pass: !content.includes('GTM-TEABUNGALOW') },
-    { name: 'Preloader markup in <body>', pass: preloaderMarkupInBody },
+    { name: 'Exactly one preloader, in <body>', pass: preloaderMarkupInBody },
     { name: 'Consent Banner in <body>', pass: consentBannerInBody },
     { name: 'Preloader CSS styles', pass: preloaderCss },
     { name: 'Preloader lifecycle script', pass: preloaderScript },

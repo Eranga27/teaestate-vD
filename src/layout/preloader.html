@@ -1,0 +1,496 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     PRELOADER — "Dawn over Galaha"  (injected after <body> on every page by
+     scripts/build_static.js; plays once per browser session)
+
+     1. Pre-dawn  — letterbox bars slide in; tea-hill ridges with silver-oak shade
+                    trees rise out of the dark, mist drifts, the sun crests the ridge.
+     2. Ayubowan  — the traditional Sri Lankan greeting as a title card.
+     3. Brand     — "two leaves and a bud" draws in gold, THE TEA BUNGALOW rises
+                    letter by letter and catches the light.
+     4. Open      — a gold tea-leaf outline draws at centre and opens out past the
+                    screen edges onto the page.
+
+     ~3.8s. Click / tap / Esc skips. Reduced-motion visitors never see it; the
+     head script (build_static.js) hides it before first paint once seen.
+═══════════════════════════════════════════════════════════════════════════ -->
+<style>
+  html.tb-preloader-skip #tb-preloader { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { #tb-preloader { display: none !important; } }
+  html.tb-pl-lock, html.tb-pl-lock body { overflow: hidden !important; }
+
+  #tb-preloader {
+    --tb-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --tb-gold: #C7A85E;
+    --tb-gold-light: #dfc080;
+    --tb-cream: #F5F1E9;
+    position: fixed; inset: 0; z-index: 999999;
+    pointer-events: all; user-select: none; -webkit-user-select: none; cursor: default;
+    -webkit-tap-highlight-color: transparent;
+    /* CSS failsafe: if the script never runs, get out of the way */
+    animation: tbPlFailsafe 7s linear forwards;
+  }
+  @keyframes tbPlFailsafe { 0%, 96% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
+  #tb-preloader *, #tb-preloader *::before, #tb-preloader *::after { box-sizing: border-box; }
+
+  /* Everything that covers the page; gets the leaf-shaped hole on exit */
+  .tb-pl-veil { position: absolute; inset: 0; overflow: hidden; background: #030a06; }
+  #tb-preloader.is-fade .tb-pl-veil { opacity: 0; transition: opacity 0.7s ease; }
+
+  /* ── Sky ─────────────────────────────────────────────────────────────── */
+  .tb-pl-sky { position: absolute; inset: 0; background: linear-gradient(180deg, #010504 0%, #04100a 36%, #0a1f13 60%, #143019 100%); }
+  .tb-pl-dawn {
+    position: absolute; left: 50%; top: 56%; width: 170vmax; height: 95vmax;
+    transform: translate(-50%, -44%) scale(0.85); opacity: 0;
+    background: radial-gradient(closest-side, rgba(240, 196, 124, 0.5), rgba(199, 168, 94, 0.2) 34%, rgba(150, 119, 56, 0.07) 60%, transparent 78%);
+  }
+  #tb-preloader.is-on .tb-pl-dawn { animation: tbPlDawn 2.8s cubic-bezier(0.33, 0, 0.2, 1) forwards; }
+  @keyframes tbPlDawn { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+
+  .tb-pl-stars {
+    position: absolute; top: 0; left: 0; width: 1.5px; height: 1.5px; border-radius: 50%; opacity: 0.9;
+    box-shadow: 8vw 9vh rgba(245,241,233,.8), 21vw 22vh rgba(245,241,233,.5), 33vw 6vh rgba(245,241,233,.7),
+      46vw 17vh rgba(245,241,233,.45), 59vw 8vh rgba(245,241,233,.75), 71vw 25vh rgba(245,241,233,.4),
+      84vw 12vh rgba(245,241,233,.7), 92vw 30vh rgba(245,241,233,.45), 15vw 34vh rgba(245,241,233,.35),
+      64vw 36vh rgba(245,241,233,.3), 39vw 29vh rgba(245,241,233,.4), 77vw 4vh rgba(245,241,233,.6);
+  }
+  #tb-preloader.is-on .tb-pl-stars { animation: tbPlFadeOut 2.2s ease-in 0.5s forwards; }
+  @keyframes tbPlFadeOut { to { opacity: 0; } }
+
+  /* ── Hills (SVG, anchored to the bottom edge) ───────────────────────── */
+  .tb-pl-hills { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .tb-pl-hill { opacity: 0; transform: translateY(46px); }
+  #tb-preloader.is-on .tb-pl-hill { animation: tbPlRise 1.5s var(--tb-ease) forwards; }
+  #tb-preloader.is-on .tb-pl-hill-far { animation-delay: 0.05s; }
+  #tb-preloader.is-on .tb-pl-hill-mid { animation-delay: 0.2s; }
+  #tb-preloader.is-on .tb-pl-hill-near { animation-delay: 0.35s; }
+  @keyframes tbPlRise { to { opacity: 1; transform: none; } }
+  .tb-pl-sun { opacity: 0; transform: translateY(70px); }
+  #tb-preloader.is-on .tb-pl-sun { animation: tbPlSun 2.9s cubic-bezier(0.25, 0.8, 0.3, 1) 0.2s forwards; }
+  @keyframes tbPlSun { to { opacity: 1; transform: none; } }
+  .tb-pl-rows { stroke-dasharray: 1.5 7; stroke-linecap: round; }
+
+  /* ── Mist, birds, grain, vignette ───────────────────────────────────── */
+  .tb-pl-mist {
+    position: absolute; left: -35%; width: 170%; height: 26vh; border-radius: 50%; opacity: 0;
+    background: radial-gradient(closest-side, rgba(226, 218, 200, 0.16), rgba(226, 218, 200, 0.06) 55%, transparent 100%);
+  }
+  .tb-pl-mist-1 { top: 47%; }
+  .tb-pl-mist-2 { top: 63%; height: 20vh; }
+  #tb-preloader.is-on .tb-pl-mist-1 { animation: tbPlMistIn 1.6s ease-out 0.4s forwards, tbPlDrift 9s linear forwards; }
+  #tb-preloader.is-on .tb-pl-mist-2 { animation: tbPlMistIn 1.6s ease-out 0.7s forwards, tbPlDriftBack 9s linear forwards; }
+  @keyframes tbPlMistIn { to { opacity: 1; } }
+  @keyframes tbPlDrift { from { translate: -3% 0; } to { translate: 6% 0; } }
+  @keyframes tbPlDriftBack { from { translate: 4% 0; } to { translate: -5% 0; } }
+
+  .tb-pl-birds { position: absolute; left: 14%; top: 27%; width: clamp(46px, 5vw, 70px); opacity: 0; overflow: visible; }
+  .tb-pl-birds path { fill: none; stroke: rgba(245, 241, 233, 0.55); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  #tb-preloader.is-on .tb-pl-birds { animation: tbPlBirds 4.2s linear 0.6s forwards; }
+  @keyframes tbPlBirds {
+    0% { opacity: 0; transform: translate(0, 0); }
+    20% { opacity: 0.8; }
+    100% { opacity: 0.8; transform: translate(34vw, -7vh); }
+  }
+
+  .tb-pl-grain {
+    position: absolute; inset: -50%; opacity: 0.07; mix-blend-mode: overlay; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: tbPlGrain 0.6s steps(4) infinite;
+  }
+  @keyframes tbPlGrain {
+    0% { transform: translate(0, 0); } 25% { transform: translate(-3%, 2%); }
+    50% { transform: translate(2%, -3%); } 75% { transform: translate(-1%, -2%); } 100% { transform: translate(3%, 1%); }
+  }
+  .tb-pl-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 90% at 50% 45%, transparent 45%, rgba(0, 0, 0, 0.55) 100%); }
+
+  /* ── Title stage ─────────────────────────────────────────────────────── */
+  .tb-pl-stage {
+    position: absolute; left: 0; right: 0; top: 40%; transform: translateY(-50%);
+    display: grid; place-items: center; text-align: center; padding: 0 20px;
+  }
+  #tb-preloader.is-exit .tb-pl-stage {
+    opacity: 0; filter: blur(6px); transform: translateY(-54%) scale(0.97);
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 1, 1), filter 0.35s ease, transform 0.35s ease;
+  }
+  .tb-pl-greet, .tb-pl-brand { grid-area: 1 / 1; }
+
+  .tb-pl-greet-si {
+    font-family: 'Noto Serif Sinhala', 'Iskoola Pota', 'Sinhala Sangam MN', 'Noto Sans Sinhala', 'Nirmala UI', serif;
+    font-size: clamp(38px, 7.2vw, 78px); font-weight: 400; line-height: 1.35;
+    background: linear-gradient(180deg, #f3dca4 0%, var(--tb-gold-light) 45%, var(--tb-gold) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 6px 26px rgba(199, 168, 94, 0.25));
+    opacity: 0; transform: translateY(16px); transition: opacity 0.8s ease, transform 1s var(--tb-ease);
+  }
+  .tb-pl-greet-en {
+    margin-top: 6px; font-family: 'EB Garamond', Georgia, serif; font-style: italic;
+    font-size: clamp(13px, 1.4vw, 16px); letter-spacing: 0.14em; color: rgba(245, 241, 233, 0.62);
+    opacity: 0; transform: translateY(8px); transition: opacity 0.8s ease 0.15s, transform 1s var(--tb-ease) 0.15s;
+  }
+  #tb-preloader.is-greet .tb-pl-greet-si, #tb-preloader.is-greet .tb-pl-greet-en { opacity: 1; transform: none; }
+  .tb-pl-greet { transition: opacity 0.35s ease-in, filter 0.35s ease-in, transform 0.35s ease-in; }
+  #tb-preloader.is-greet-out .tb-pl-greet { opacity: 0; filter: blur(8px); transform: translateY(-10px); }
+
+  .tb-pl-bud { display: block; width: clamp(40px, 4.6vw, 56px); height: auto; margin: 0 auto 16px; overflow: visible; filter: drop-shadow(0 0 10px rgba(223, 192, 128, 0.35)); }
+  .tb-pl-bud path { fill: transparent; stroke: var(--tb-gold-light); stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  #tb-preloader.is-brand .tb-pl-bud path { stroke-dashoffset: 0; transition: stroke-dashoffset 0.8s cubic-bezier(0.65, 0, 0.35, 1) var(--d, 0s), fill 0.7s ease calc(var(--d, 0s) + 0.6s); }
+  #tb-preloader.is-brand .tb-pl-bud .tb-pl-blade { fill: rgba(199, 168, 94, 0.16); }
+
+  .tb-pl-word {
+    position: relative; display: inline-block; white-space: nowrap;
+    font-family: 'Cinzel', Georgia, serif; font-weight: 600; font-size: clamp(20px, 3.3vw, 40px);
+    line-height: 1.2; letter-spacing: 0.2em; padding-left: 0.2em; color: var(--tb-cream);
+  }
+  .tb-pl-l { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; }
+  .tb-pl-l > span { display: inline-block; transform: translateY(112%); }
+  #tb-preloader.is-brand .tb-pl-l > span { transform: none; transition: transform 1s var(--tb-ease) calc(0.2s + var(--i) * 0.035s); }
+  .tb-pl-sp { display: inline-block; width: 0.42em; }
+  /* Light sweep through the letters only. The script measures the word (--tb-w) and each
+     letter's offset in it (--tb-x) so every letter shows its slice of one shared gradient. */
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .tb-pl-l > span {
+      background-image: linear-gradient(100deg, #efe8d8 0%, #efe8d8 42%, #e9c98a 46.5%, #ffffff 50%, #e9c98a 53.5%, #efe8d8 58%, #efe8d8 100%);
+      background-size: calc(var(--tb-w, 600px) * 3) 100%; background-repeat: no-repeat;
+      background-position: calc(var(--tb-w, 600px) * -1.7 - var(--tb-x, 0px)) 0;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    #tb-preloader.is-brand .tb-pl-l > span { animation: tbPlSweep 1.15s cubic-bezier(0.45, 0, 0.2, 1) 0.9s both; }
+    @keyframes tbPlSweep {
+      from { background-position: calc(var(--tb-w, 600px) * -1.7 - var(--tb-x, 0px)) 0; }
+      to { background-position: calc(var(--tb-w, 600px) * -0.3 - var(--tb-x, 0px)) 0; }
+    }
+  }
+
+  .tb-pl-tag { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 14px; }
+  .tb-pl-rule { display: block; width: clamp(26px, 6vw, 72px); height: 1px; transform: scaleX(0); }
+  .tb-pl-rule-l { background: linear-gradient(90deg, transparent, var(--tb-gold)); transform-origin: right; }
+  .tb-pl-rule-r { background: linear-gradient(270deg, transparent, var(--tb-gold)); transform-origin: left; }
+  #tb-preloader.is-brand .tb-pl-rule { transform: scaleX(1); transition: transform 1.1s var(--tb-ease) 0.5s; }
+  .tb-pl-tag-text {
+    font-family: 'Cinzel', Georgia, serif; font-size: clamp(8.5px, 0.95vw, 11px); text-transform: uppercase;
+    color: var(--tb-gold-light); white-space: nowrap; letter-spacing: 0.9em; padding-left: 0.9em; opacity: 0;
+  }
+  #tb-preloader.is-brand .tb-pl-tag-text {
+    letter-spacing: 0.34em; padding-left: 0.34em; opacity: 1;
+    transition: letter-spacing 1.3s var(--tb-ease) 0.45s, padding-left 1.3s var(--tb-ease) 0.45s, opacity 0.9s ease 0.45s;
+  }
+
+  /* ── Letterbox bars ─────────────────────────────────────────────────── */
+  .tb-pl-bar {
+    position: absolute; left: 0; right: 0; height: clamp(38px, 7.5vh, 66px); background: #020604;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 clamp(16px, 3vw, 36px);
+    font-family: 'Cinzel', Georgia, serif; font-size: clamp(8px, 0.75vw, 10px); letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(199, 168, 94, 0.72); white-space: nowrap; transition: transform 0.7s var(--tb-ease);
+  }
+  .tb-pl-bar-top { top: 0; transform: translateY(-100%); }
+  .tb-pl-bar-bottom { bottom: 0; transform: translateY(100%); }
+  #tb-preloader.is-on .tb-pl-bar { transform: none; }
+  #tb-preloader.is-exit .tb-pl-bar-top { transform: translateY(-100%); transition-duration: 0.5s; }
+  #tb-preloader.is-exit .tb-pl-bar-bottom { transform: translateY(100%); transition-duration: 0.5s; }
+  .tb-pl-dim { color: rgba(245, 241, 233, 0.38); }
+  .tb-pl-progress { position: absolute; left: 0; top: 0; width: 100%; height: 1px; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--tb-gold) 30%, var(--tb-gold-light)); }
+  #tb-preloader.is-on .tb-pl-progress { transform: scaleX(1); transition: transform 2.45s linear; }
+  .tb-pl-skip {
+    all: unset; margin-left: auto; cursor: pointer; font: inherit; letter-spacing: inherit; text-transform: inherit;
+    color: rgba(245, 241, 233, 0.45); transition: color 0.25s ease;
+  }
+  .tb-pl-skip:hover { color: var(--tb-cream); }
+  @media (max-width: 640px) { .tb-pl-hide-sm { display: none; } }
+
+  /* ── Exit window (sits above the veil so its outline isn't clipped) ── */
+  .tb-pl-window { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; filter: drop-shadow(0 0 7px rgba(223, 192, 128, 0.55)); }
+  .tb-pl-edge { fill: none; stroke: var(--tb-gold-light); stroke-width: 1.6; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .tb-pl-cover { fill: #07130E; opacity: 0; }
+  .tb-pl-window.is-drawn .tb-pl-edge { stroke-dashoffset: 0; transition: stroke-dashoffset 0.32s cubic-bezier(0.65, 0, 0.35, 1); }
+  .tb-pl-window.is-drawn .tb-pl-cover { opacity: 0.94; transition: opacity 0.32s ease; }
+  .tb-pl-window.is-lit .tb-pl-cover { opacity: 0; transition: opacity 0.26s ease-out; }
+</style>
+
+<div id="tb-preloader" aria-hidden="true">
+  <div class="tb-pl-veil">
+    <div class="tb-pl-sky"></div>
+    <div class="tb-pl-stars"></div>
+    <div class="tb-pl-dawn"></div>
+
+    <svg class="tb-pl-hills" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="tbPlSunGlow"><stop offset="0" stop-color="#f7dfa6" stop-opacity=".55"/><stop offset=".35" stop-color="#e2b36a" stop-opacity=".22"/><stop offset="1" stop-color="#c7a85e" stop-opacity="0"/></radialGradient>
+        <radialGradient id="tbPlSunDisc"><stop offset="0" stop-color="#fff3d2"/><stop offset=".7" stop-color="#f3d49a"/><stop offset="1" stop-color="#e2b36a"/></radialGradient>
+        <linearGradient id="tbPlHillFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b4733"/><stop offset="1" stop-color="#172e1f"/></linearGradient>
+        <linearGradient id="tbPlHillMid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#173420"/><stop offset="1" stop-color="#0d2215"/></linearGradient>
+        <linearGradient id="tbPlHillNear" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1b10"/><stop offset="1" stop-color="#040c07"/></linearGradient>
+        <!-- Silver oak (grevillea): the tall shade trees dotted across Ceylon tea estates -->
+        <g id="tbPlOak">
+          <path d="M0 0 V-96" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <ellipse cx="0" cy="-80" rx="7" ry="18"/><ellipse cx="0.5" cy="-57" rx="8.5" ry="14"/><ellipse cx="-0.5" cy="-38" rx="6" ry="9"/>
+        </g>
+      </defs>
+
+      <g class="tb-pl-sun">
+        <circle cx="770" cy="468" r="250" fill="url(#tbPlSunGlow)"/>
+        <circle cx="770" cy="468" r="32" fill="url(#tbPlSunDisc)"/>
+      </g>
+
+      <g class="tb-pl-hill tb-pl-hill-far">
+        <path fill="url(#tbPlHillFar)" d="M0 598 C120 560 220 518 340 538 C460 558 530 498 650 470 C740 449 820 488 900 512 C1000 540 1100 530 1190 498 C1290 464 1380 520 1440 548 V900 H0 Z"/>
+        <!-- Dawn rim light along the ridge -->
+        <path fill="none" stroke="#ecc98c" stroke-opacity=".3" stroke-width="1.6" d="M0 598 C120 560 220 518 340 538 C460 558 530 498 650 470 C740 449 820 488 900 512 C1000 540 1100 530 1190 498 C1290 464 1380 520 1440 548"/>
+        <g class="tb-pl-rows" fill="none" stroke="#c7a85e" stroke-opacity=".10" stroke-width="3">
+          <path d="M0 628 C120 590 220 548 340 568 C460 588 530 528 650 500 C740 479 820 518 900 542 C1000 570 1100 560 1190 528 C1290 494 1380 550 1440 578"/>
+          <path d="M0 660 C120 622 220 580 340 600 C460 620 530 560 650 532 C740 511 820 550 900 574 C1000 602 1100 592 1190 560 C1290 526 1380 582 1440 610"/>
+        </g>
+      </g>
+
+      <g class="tb-pl-hill tb-pl-hill-mid">
+        <g fill="#0f2617" color="#0f2617">
+          <use href="#tbPlOak" transform="translate(236 632) scale(1.05)"/>
+          <use href="#tbPlOak" transform="translate(284 626) scale(.8)"/>
+          <use href="#tbPlOak" transform="translate(600 686) scale(.85)"/>
+          <use href="#tbPlOak" transform="translate(905 648) scale(.95)"/>
+          <use href="#tbPlOak" transform="translate(1080 614) scale(1.15)"/>
+          <use href="#tbPlOak" transform="translate(1122 614) scale(.75)"/>
+          <use href="#tbPlOak" transform="translate(1330 642) scale(.9)"/>
+        </g>
+        <path fill="url(#tbPlHillMid)" d="M0 692 C140 642 260 612 420 640 C560 666 640 702 780 672 C920 644 1020 598 1160 620 C1280 638 1360 672 1440 662 V900 H0 Z"/>
+        <path fill="none" stroke="#ecc98c" stroke-opacity=".14" stroke-width="1.4" d="M0 692 C140 642 260 612 420 640 C560 666 640 702 780 672 C920 644 1020 598 1160 620 C1280 638 1360 672 1440 662"/>
+        <g class="tb-pl-rows" fill="none" stroke="#c7a85e" stroke-opacity=".13" stroke-width="3.5">
+          <path d="M0 718 C140 668 260 638 420 666 C560 692 640 728 780 698 C920 670 1020 624 1160 646 C1280 664 1360 698 1440 688"/>
+          <path d="M0 746 C140 696 260 666 420 694 C560 720 640 756 780 726 C920 698 1020 652 1160 674 C1280 692 1360 726 1440 716"/>
+          <path d="M0 774 C140 724 260 694 420 722 C560 748 640 784 780 754 C920 726 1020 680 1160 702 C1280 720 1360 754 1440 744"/>
+        </g>
+      </g>
+
+      <g class="tb-pl-hill tb-pl-hill-near">
+        <path fill="url(#tbPlHillNear)" d="M0 774 C170 732 330 758 480 790 C640 824 800 776 960 752 C1120 728 1270 780 1440 758 V900 H0 Z"/>
+        <g class="tb-pl-rows" fill="none" stroke="#c7a85e" stroke-opacity=".08" stroke-width="4">
+          <path d="M0 806 C170 764 330 790 480 822 C640 856 800 808 960 784 C1120 760 1270 812 1440 790"/>
+          <path d="M0 840 C170 798 330 824 480 856 C640 890 800 842 960 818 C1120 794 1270 846 1440 824"/>
+        </g>
+      </g>
+    </svg>
+
+    <div class="tb-pl-mist tb-pl-mist-1"></div>
+    <div class="tb-pl-mist tb-pl-mist-2"></div>
+    <svg class="tb-pl-birds" viewBox="0 0 70 30" aria-hidden="true" focusable="false">
+      <path d="M2 12 Q8 6 13 12 Q18 6 24 12"/><path d="M28 5 Q33 0 37 5 Q41 0 46 5"/><path d="M44 21 Q48 17 52 21 Q56 17 60 21"/>
+    </svg>
+    <div class="tb-pl-grain"></div>
+    <div class="tb-pl-vignette"></div>
+
+    <div class="tb-pl-stage">
+      <div class="tb-pl-greet">
+        <div class="tb-pl-greet-si" lang="si">ආයුබෝවන්</div>
+        <div class="tb-pl-greet-en">Ayubowan &middot; may you live long</div>
+      </div>
+      <div class="tb-pl-brand">
+        <!-- Two leaves and a bud: the plucking standard of fine Ceylon tea -->
+        <svg class="tb-pl-bud" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <path pathLength="1" style="--d: 0s" d="M32 62 C32 54 32 44 32 33"/>
+          <path class="tb-pl-blade" pathLength="1" style="--d: .12s" d="M32 34 C27.5 24 28.5 12 32 3 C35.5 12 36.5 24 32 34 Z"/>
+          <path class="tb-pl-blade" pathLength="1" style="--d: .24s" d="M31.5 45 C22 45 12 37 9 25 C19 26.5 28 33 31.5 45 Z"/>
+          <path class="tb-pl-blade" pathLength="1" style="--d: .36s" d="M32.5 52 C42 53 52.5 45 56 34 C45.5 35 36.5 42 32.5 52 Z"/>
+        </svg>
+        <div class="tb-pl-word">
+          <span class="tb-pl-l"><span style="--i:0">T</span></span><span class="tb-pl-l"><span style="--i:1">H</span></span><span class="tb-pl-l"><span style="--i:2">E</span></span><span class="tb-pl-sp"></span><span class="tb-pl-l"><span style="--i:3">T</span></span><span class="tb-pl-l"><span style="--i:4">E</span></span><span class="tb-pl-l"><span style="--i:5">A</span></span><span class="tb-pl-sp"></span><span class="tb-pl-l"><span style="--i:6">B</span></span><span class="tb-pl-l"><span style="--i:7">U</span></span><span class="tb-pl-l"><span style="--i:8">N</span></span><span class="tb-pl-l"><span style="--i:9">G</span></span><span class="tb-pl-l"><span style="--i:10">A</span></span><span class="tb-pl-l"><span style="--i:11">L</span></span><span class="tb-pl-l"><span style="--i:12">O</span></span><span class="tb-pl-l"><span style="--i:13">W</span></span>
+        </div>
+        <div class="tb-pl-tag">
+          <span class="tb-pl-rule tb-pl-rule-l"></span>
+          <span class="tb-pl-tag-text">Galaha &middot; Ceylon &middot; 1890</span>
+          <span class="tb-pl-rule tb-pl-rule-r"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tb-pl-bar tb-pl-bar-top">
+      <span>The Tea Bungalow</span>
+      <span class="tb-pl-dim">7.19&deg; N &middot; 80.66&deg; E</span>
+    </div>
+    <div class="tb-pl-bar tb-pl-bar-bottom">
+      <span class="tb-pl-progress"></span>
+      <span class="tb-pl-hide-sm">Galaha &middot; Central Province &middot; Sri Lanka</span>
+      <button type="button" class="tb-pl-skip" tabindex="-1">Skip intro</button>
+    </div>
+  </div>
+
+  <svg class="tb-pl-window" aria-hidden="true" focusable="false">
+    <path class="tb-pl-cover" d=""/>
+    <path class="tb-pl-edge" pathLength="1" d=""/>
+  </svg>
+</div>
+
+<script>
+  (function () {
+    var preloader = document.getElementById('tb-preloader');
+    if (!preloader) return;
+    var root = document.documentElement;
+
+    var forcePreview = false;
+    try { forcePreview = /[?&]preview_preloader=1(&|$)/.test(window.location.search); } catch (e) {}
+    var alreadySeen = false;
+    try { alreadySeen = sessionStorage.getItem('tb_preloader_seen') === '1'; } catch (e) {}
+    var reducedMotion = false;
+    try { reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+    if ((alreadySeen && !forcePreview) || reducedMotion) {
+      if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      return;
+    }
+    // ?preview_preloader=1 replays it even after the head script marked it as seen
+    root.classList.remove('tb-preloader-skip');
+    root.classList.add('tb-pl-lock');
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'preloader_started' });
+
+    // ---- Timeline (ms) ----
+    var GREET_MS = 250, GREET_OUT_MS = 1000, BRAND_MS = 1100, EXIT_MS = 2450;
+    var LOCKUP_OUT_MS = 180, OUTLINE_MS = 320, LIT_MS = 200, OPEN_MS = 850;
+
+    var timers = [];
+    var at = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
+    var phase = function (name) { preloader.classList.add(name); };
+    var exiting = false, finished = false, completed = false;
+    var inerted = [];
+
+    var hardCap;
+
+    function start() {
+      // Restart the CSS failsafe from now (the page may have waited in a background tab);
+      // the forced reflow also gives the transitions below their start state
+      preloader.style.animation = 'none';
+      void preloader.offsetWidth;
+      preloader.style.animation = '';
+      phase('is-on');
+      at(GREET_MS, function () { phase('is-greet'); });
+      at(GREET_OUT_MS, function () { phase('is-greet-out'); });
+      at(BRAND_MS, function () {
+        measureWord();
+        phase('is-brand');
+        window.dataLayer.push({ event: 'preloader_welcome_shown' });
+      });
+      at(BRAND_MS + 850, measureWord); // again just before the sweep, in case the webfont swapped in
+      at(EXIT_MS, exit);
+      hardCap = setTimeout(finish, 6500); // never hold the page longer than this
+    }
+
+    // Opened in a background tab: hold the intro until the guest actually looks at it
+    if (document.hidden) {
+      document.addEventListener('visibilitychange', function onVisible() {
+        if (document.hidden) return;
+        document.removeEventListener('visibilitychange', onVisible);
+        start();
+      });
+    } else {
+      start();
+    }
+
+    // Keep keyboard focus off the page underneath while the intro plays
+    document.addEventListener('DOMContentLoaded', function () {
+      if (finished) return;
+      Array.prototype.forEach.call(document.body.children, function (el) {
+        if (el !== preloader && el.tagName !== 'SCRIPT' && !el.inert) { el.inert = true; inerted.push(el); }
+      });
+    });
+
+    preloader.addEventListener('click', exit);
+    document.addEventListener('keydown', onKey);
+    function onKey(e) { if (e.key === 'Escape') exit(); }
+
+    // Positions for the light sweep: word width and each letter's offset within it
+    function measureWord() {
+      var word = preloader.querySelector('.tb-pl-word');
+      if (!word) return;
+      var left = word.getBoundingClientRect().left;
+      word.style.setProperty('--tb-w', word.offsetWidth + 'px');
+      Array.prototype.forEach.call(word.querySelectorAll('.tb-pl-l > span'), function (el) {
+        el.style.setProperty('--tb-x', (el.getBoundingClientRect().left - left).toFixed(1) + 'px');
+      });
+    }
+
+    function markComplete() {
+      if (completed) return;
+      completed = true;
+      try { sessionStorage.setItem('tb_preloader_seen', '1'); } catch (e) {}
+      window.dataLayer.push({ event: 'preloader_complete' });
+    }
+
+    // Tea leaf in unit space: tip up, widest point at the origin, tilted like a plucked leaf
+    var LEAF = [[0, -1], [0.42, -0.62], [0.62, 0.05], [0, 1], [-0.62, 0.05], [-0.42, -0.62], [0, -1]];
+    var TILT = -14 * Math.PI / 180, COS = Math.cos(TILT), SIN = Math.sin(TILT);
+    function leafPath(cx, cy, s) {
+      var p = LEAF.map(function (pt) {
+        var x = pt[0], y = pt[1] + 0.21;
+        return (cx + (x * COS - y * SIN) * s).toFixed(1) + ' ' + (cy + (x * SIN + y * COS) * s).toFixed(1);
+      });
+      return 'M' + p[0] + ' C' + p[1] + ' ' + p[2] + ' ' + p[3] + ' C' + p[4] + ' ' + p[5] + ' ' + p[6] + ' Z';
+    }
+    function easeInOutQuart(t) { return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2; }
+
+    function exit() {
+      if (exiting) return;
+      exiting = true;
+      timers.forEach(clearTimeout);
+      phase('is-exit');
+      var canCut = false;
+      try { canCut = CSS.supports('clip-path', 'path(evenodd, "M0 0H1V1Z")'); } catch (e) {}
+      if (!canCut) {
+        phase('is-fade');
+        markComplete();
+        setTimeout(finish, 750);
+        return;
+      }
+      setTimeout(openLeaf, LOCKUP_OUT_MS);
+    }
+
+    function openLeaf() {
+      if (finished) return;
+      var veil = preloader.querySelector('.tb-pl-veil');
+      var win = preloader.querySelector('.tb-pl-window');
+      var edge = preloader.querySelector('.tb-pl-edge');
+      var cover = preloader.querySelector('.tb-pl-cover');
+      var w = window.innerWidth, h = window.innerHeight, cx = w / 2, cy = h / 2;
+      var s0 = Math.min(w, h) * 0.09;
+      var s1 = Math.sqrt(w * w + h * h) * 1.45; // leaf's inner circle (~0.38s) clears every corner
+      var cut = function (s) { return 'path(evenodd, "M0 0H' + w + 'V' + h + 'H0Z ' + leafPath(cx, cy, s) + '")'; };
+
+      win.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      edge.setAttribute('d', leafPath(cx, cy, s0));
+      cover.setAttribute('d', leafPath(cx, cy, s0));
+      win.getBoundingClientRect(); // commit the start state before transitioning
+      win.classList.add('is-drawn');
+
+      setTimeout(function () {
+        if (finished) return;
+        veil.style.clipPath = cut(s0);
+        win.classList.add('is-lit');
+        markComplete();
+        setTimeout(function () {
+          var start = null;
+          var frame = function (now) {
+            if (finished) return;
+            if (start === null) start = now;
+            var t = Math.min(1, (now - start) / OPEN_MS);
+            var s = s0 + (s1 - s0) * easeInOutQuart(t);
+            veil.style.clipPath = cut(s);
+            edge.setAttribute('d', leafPath(cx, cy, s));
+            edge.style.opacity = String(1 - Math.min(1, Math.max(0, (t - 0.3) / 0.45)));
+            if (t < 1) requestAnimationFrame(frame); else finish();
+          };
+          requestAnimationFrame(frame);
+          setTimeout(finish, OPEN_MS + 1200); // background tabs get no animation frames
+        }, LIT_MS);
+      }, OUTLINE_MS);
+    }
+
+    function finish() {
+      if (finished) return;
+      finished = true;
+      clearTimeout(hardCap);
+      timers.forEach(clearTimeout);
+      markComplete();
+      document.removeEventListener('keydown', onKey);
+      root.classList.remove('tb-pl-lock');
+      inerted.forEach(function (el) { el.inert = false; });
+      if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      try { document.dispatchEvent(new CustomEvent('tb:preloader-done')); } catch (e) {}
+    }
+  })();
+</script>
