@@ -5,6 +5,9 @@ const { brevoConfig, line, paragraph, isEmail, isoDate, notifyEstate, upsertCont
  * Brevo enquiry list, whose automations can use ARRIVAL_DATE / DEPARTURE_DATE for
  * pre-arrival and post-stay emails. See api/_brevo.js for the env vars.
  */
+// "1 adult, 2 children"; zero or empty counts are left out
+const count = (n, singular, plural) => (n && n !== '0' ? `${n} ${n === '1' ? singular : plural}` : '');
+
 const UNAVAILABLE = 'We could not send your enquiry just now. Please try again, message us on WhatsApp, or email stay@theteabungalow.com.';
 
 module.exports = async (req, res) => {
@@ -52,7 +55,7 @@ module.exports = async (req, res) => {
       rows: [
         ['Name', name], ['Email', enquiry.email], ['Phone', enquiry.phone],
         ['Arrival', enquiry.arrival], ['Departure', enquiry.departure],
-        ['Guests', [enquiry.adults && `${enquiry.adults} adults`, enquiry.children && `${enquiry.children} children`].filter(Boolean).join(', ')],
+        ['Guests', [count(enquiry.adults, 'adult', 'adults'), count(enquiry.children, 'child', 'children')].filter(Boolean).join(', ')],
         ['Heard about us', enquiry.how], ['Message', enquiry.message]
       ]
     });

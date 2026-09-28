@@ -195,6 +195,7 @@ $meta_desc = "Privacy policy and guest personal data handling practices for The 
     <p>We collect only the personal information strictly necessary to fulfill your enquiries and provide tailored hospitality services:</p>
     <ul>
       <li><strong>Enquiry &amp; Reservation Details:</strong> Full name, email address, telephone/WhatsApp contact number, intended dates of stay, number of guests, and chamber preferences.</li>
+      <li><strong>How Website Enquiries Reach Us:</strong> Messages sent through our enquiry and waitlist forms are delivered to the estate's inbox by Brevo, an email delivery provider based in France, acting on our behalf as a data processor solely to deliver your message.</li>
       <li><strong>Concierge Communications:</strong> Dietary requirements, Pekoe Trail hiking support requests, airport transfer logistics, and bespoke dining preferences communicated via WhatsApp or email.</li>
       <li><strong>Technical &amp; Analytics Data:</strong> Minimal anonymized technical information (such as browser type, approximate country-level location, and page interaction events) gathered via Google Analytics only where explicit consent has been granted.</li>
     </ul>
