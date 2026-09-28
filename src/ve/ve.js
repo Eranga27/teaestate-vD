@@ -19,9 +19,14 @@
   /* Page code registers here; runs once the intro has finished (or immediately if there is none) */
   VE.ready = function (fn) { if (VE._booted) fn(VE); else VE._ready.push(fn); };
 
-  function whenIntroDone(cb) {
+  // The preloader fires tb:preloader-reveal as its doorway opens onto the page, then
+  // tb:preloader-done once it's gone (older builds only send the latter)
+  function whenIntroDone(cb, event) {
     if (!document.getElementById('tb-preloader')) return cb();
-    document.addEventListener('tb:preloader-done', function () { cb(); }, { once: true });
+    var fired = false;
+    var go = function () { if (!fired) { fired = true; cb(); } };
+    if (event !== 'done') document.addEventListener('tb:preloader-reveal', go, { once: true });
+    document.addEventListener('tb:preloader-done', go, { once: true });
   }
 
   /* ── Smooth scroll ──────────────────────────────────────────────────── */
@@ -215,8 +220,12 @@
     [setupMenu, setupCursor, setupMoon, setupHeader, setupReveals].forEach(function (setup) {
       try { setup(); } catch (e) { console.error('[vE] ' + setup.name + ' failed', e); }
     });
+    // Scrolling waits until the preloader has fully gone (the page is still locked while it opens)
     whenIntroDone(function () {
       if (VE.lenis) VE.lenis.start();
+      if (hasGsap) ScrollTrigger.refresh();
+    }, 'done');
+    whenIntroDone(function () {
       VE._booted = true;
       VE._ready.splice(0).forEach(function (fn) { try { fn(VE); } catch (e) { console.error(e); } });
       if (hasGsap) {

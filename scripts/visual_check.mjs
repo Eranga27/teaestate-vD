@@ -11,7 +11,9 @@
 //   "reducedMotion": false,                    // optional
 //   "pages": [{ "name": "home", "url": "http://localhost:3000/",
 //     "intro": false,                          // true = let the preloader play
-//     "shots": [{ "name": "services", "selector": "#services", "offset": 0 }] }]
+//     "probe": "performance.now()",            // optional: evaluated after the shots and printed
+//     "shots": [{ "name": "services", "selector": "#services", "offset": 0,
+//                 "exact": false }] }]           // exact: capture right after "wait" (timed intro frames)
 // }
 //
 // Prints, per page, the document width vs viewport and any elements that
@@ -138,13 +140,18 @@ for (const page of cfg.pages) {
       return Math.round(y);
     })()`);
     await sleep(shot.wait ?? 1800);
-    // Second jump settles ScrollTrigger scrub lag.
-    await evaluate(`window.scrollTo(0, ${typeof y === "number" ? y : 0}); 1`);
-    await sleep(700);
+    if (!shot.exact) {
+      // Second jump settles ScrollTrigger scrub lag ("exact": true skips it, for timed intro frames).
+      await evaluate(`window.scrollTo(0, ${typeof y === "number" ? y : 0}); 1`);
+      await sleep(700);
+    }
+    const at = shot.exact ? await evaluate("Math.round(performance.now())") : null;
     const shotRes = await send("Page.captureScreenshot", { format: "jpeg", quality: 70 });
     writeFileSync(`${OUT}/${page.name}-${shot.name}.jpg`, Buffer.from(shotRes.result.data, "base64"));
-    console.log("  shot", shot.name, "y=", y);
+    console.log("  shot", shot.name, "y=", y, at === null ? "" : `t=${at}ms`);
   }
+  // "probe": a JS expression evaluated after the shots; its result is printed
+  if (page.probe) console.log("  probe", JSON.stringify(await evaluate(page.probe)));
 }
 console.log("LOGS:\n" + (logs.length ? [...new Set(logs)].join("\n") : "(none)"));
 ws.close();
