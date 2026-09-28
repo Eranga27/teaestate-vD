@@ -427,11 +427,17 @@ Started 28 Sept 2026 on branch `ve/homepage`. Goal: an award-level, cinematic sc
 
 **Getting here, "the flight in":** a chart of the island with a lat/long grid, sea names and a lotus compass. The coast draws itself, the road runs in from the airport as a travelling light, then the camera flies from the whole island into the hills around Galaha, where gold contour lines, Peradeniya, Kandy and Loolecondera appear. A live scale bar (50 km → 5 km) and coordinates follow the camera, and each travel time in the list lights up as its place appears.
 
+**Page transitions:** clicking any internal link raises a deep-green curtain with a gold lotus-petal edge that names where you're going, in English and Sinhala (e.g. "The Pekoe Trail · මාවත"); it lifts off the next page as that page makes its entrance. It runs on every page, vE or legacy, and is skipped for reduced motion.
+
+**Our Chambers (vE):** "Seven keys". The hero is the reception key rack: seven brass fobs, one per room; pointing at one shows that room behind the rack and names its guests and bed, clicking goes to it. A "Who's coming?" finder (a couple, a family, step-free, Pekoe Trail hikers, travelling solo, a private cottage) names the rooms that suit and dims the rest. Each room is a chapter revealed through an arched doorway as you scroll, with a side index (a "01 / 07" pill on phones); the family wing is drawn as a diagram of the two connecting rooms; then a side-by-side comparison, the whole-house buyout and the enquiry. Rates and availability notes come from the admin.
+
+**Pekoe Trail (vE):** gold contour lines survey the forest in the hero; a "you are here" line diagram of stage starts and ends with drive times; stage cards that stack as you scroll; "A day on the trail", where scrolling runs the clock through the sample itinerary so the sun crosses the sky, night falls with the bungalow's windows lit, and dawn comes again; the hiker's promise lit word by word; logistics; trail packages from the admin; a month-by-month walking calendar (with this month marked); and the FAQ.
+
 **Stack:** GSAP 3 + ScrollTrigger and Lenis, self-hosted. Photos are optimised to WebP. On reduced motion or Save-Data, the hero shows the poster only.
 
 **QA:** headless Chrome captures at 1440/768/390, reduced motion and the preloader hand-off. Also checked: no horizontal overflow and no console errors. `npm test` passes.
 
-**Next:** roll vE out to Our Chambers, Pekoe Trail, Experiences, The Entire Estate, Packages, Gallery, About and Contact. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
+**Next:** roll vE out to Experiences, The Entire Estate, Packages, Gallery, About and Contact. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
 
 ---
 
