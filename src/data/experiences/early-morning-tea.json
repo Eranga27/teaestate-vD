@@ -1,0 +1,17 @@
+{
+  "title": "Early Morning Tea",
+  "category": "tea-estate",
+  "description": "A pot of estate-fresh tea, poured in the Morning Room as the light comes up. The day's first ritual — quiet, unhurried, no formality. The mist lifts over the tea fields outside.",
+  "duration": "Anytime",
+  "timing": "6:00 AM+",
+  "location": "Morning Room",
+  "rate": "Complimentary",
+  "rate_unit": "Included with stay",
+  "availability": "year-round",
+  "featured": false,
+  "icon": "☀️",
+  "image": "/images/tea-estate.jpg",
+  "bookable": false,
+  "active": true,
+  "sort_order": 20
+}

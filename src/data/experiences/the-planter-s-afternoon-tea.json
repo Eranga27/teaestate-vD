@@ -1,0 +1,17 @@
+{
+  "title": "The Planter's Afternoon Tea",
+  "category": "tea-estate",
+  "description": "Three-tier tea service on the verandah — estate-fresh Ceylon tea tasting alongside savouries, scones, and small sweets. A proper afternoon ritual in the way planters once took it.",
+  "duration": "~1 hr",
+  "timing": "3:30 PM",
+  "location": "Verandah",
+  "rate": "Price on request",
+  "rate_unit": "per person",
+  "availability": "year-round",
+  "featured": true,
+  "icon": "🍵",
+  "image": "/images/IMG_7674.jpeg",
+  "bookable": true,
+  "active": true,
+  "sort_order": 10
+}

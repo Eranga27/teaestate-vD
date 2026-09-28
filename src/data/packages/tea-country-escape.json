@@ -1,0 +1,24 @@
+{
+  "name": "Tea Country Escape",
+  "section": "heritage",
+  "layout": "card",
+  "accent": "gold",
+  "duration": "2 Nights",
+  "badge": "★ For Couples",
+  "tagline": "Two nights of estate life — mornings, afternoons, and fireside evenings in full.",
+  "inclusions": [
+    "2 nights in a heritage chamber",
+    "2 estate-fresh breakfasts",
+    "Planter's Afternoon Tea for two",
+    "1 evening dinner at the Long Table or verandah",
+    "Guided tea estate walk",
+    "Evening Heritage Talk by the fire",
+    "Complimentary welcome arrack sundowner"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ couple · 2 nights",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 70
+}

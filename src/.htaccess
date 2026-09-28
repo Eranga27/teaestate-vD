@@ -1,0 +1,22 @@
+# The Tea Bungalow /vD canonical routing
+RewriteEngine On
+DirectoryIndex home.php
+
+# HTTPS is required before collecting enquiry data.
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Canonical home route from legacy navigation.
+RewriteRule ^index\.html$ /vD/home.php [R=301,L,NE]
+
+# Canonicalise renamed PHP endpoints.
+RewriteRule ^pakages\.php$ /vD/packages.php [R=301,L,NE]
+RewriteRule ^experinces\.php$ /vD/experiences.php [R=301,L,NE]
+RewriteRule ^chairman's-bungalow-2027\.php$ /vD/chairmans-bungalow-2027.php [R=301,L,NE]
+
+# Legacy .html routes from the earlier vB/vC naming convention.
+RewriteRule ^tea-bungalow-packages\.html$ /vD/packages.php [R=301,L,NE]
+RewriteRule ^tea-bungalow-pekoetrail\.html$ /vD/pekoe-trail.php [R=301,L,NE]
+RewriteRule ^tea-bungalow-ourchambers\.html$ /vD/our-chambers.php [R=301,L,NE]
+RewriteRule ^tea-bungalow-entireestate\.html$ /vD/the-entire-estate.php [R=301,L,NE]
+RewriteRule ^tea-bungalow-thebungalow\.html$ /vD/the-bungalow.php [R=301,L,NE]

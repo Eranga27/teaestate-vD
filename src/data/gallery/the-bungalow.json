@@ -1,0 +1,11 @@
+{
+  "image": "/images/house.jpeg",
+  "caption": "The Bungalow",
+  "subcaption": "Galaha Estate · circa 1890",
+  "alt": "The Bungalow, Galaha Estate circa 1890 with mist on the hills",
+  "category": "estate",
+  "featured": true,
+  "span": "span-8",
+  "height": "h-xl",
+  "sort_order": 1
+}

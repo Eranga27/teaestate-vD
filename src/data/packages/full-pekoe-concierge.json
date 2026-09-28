@@ -1,0 +1,22 @@
+{
+  "name": "Full Pekoe Concierge",
+  "section": "trail",
+  "layout": "card",
+  "accent": "none",
+  "duration": "3 Nights · Stages 1, 2 & 3",
+  "tagline": "Every transfer, every stage, every detail handled.",
+  "inclusions": [
+    "3 nights combined accommodation",
+    "All transfers for Stages 1, 2 & 3",
+    "Full luggage handling between all stages",
+    "3 breakfasts, 2 dinners, 2 packed lunches",
+    "Trail pass arranged on your behalf",
+    "Optional local guide for any stage"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ couple",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 40
+}

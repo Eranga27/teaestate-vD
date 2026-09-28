@@ -1,0 +1,17 @@
+{
+  "title": "The Private Pool",
+  "category": "wellness",
+  "description": "Intimate stone-edged pool framed by tea borders and white jasmine. Morning swims, afternoon cool-offs, evening reflections under the upland sky. Lantern-lit after dark.",
+  "duration": "Your pace",
+  "timing": "All day",
+  "location": "Garden",
+  "rate": "Complimentary",
+  "rate_unit": "Always open",
+  "availability": "year-round",
+  "featured": false,
+  "icon": "💧",
+  "image": "/images/swimming-pool-resort.jpg",
+  "bookable": false,
+  "active": true,
+  "sort_order": 90
+}

@@ -1,0 +1,1420 @@
+<?php $page = basename($_SERVER['PHP_SELF'], '.php'); ?>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     CANONICAL NAVBAR & RESPONSIVE DRAWER STYLES
+  ═══════════════════════════════════════════════════════════════ */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  #nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(16px, 3vw, 48px);
+    height: 72px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+
+  #nav .nav-logo {
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  #nav .nav-links {
+    display: flex;
+    gap: clamp(8px, 1.3vw, 20px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  #nav .nav-links a {
+    white-space: nowrap !important;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(9.5px, 0.85vw, 11px);
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  #nav .nav-cta {
+    white-space: nowrap !important;
+    flex-shrink: 0;
+    padding: 10px 18px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+  }
+
+  /* Hamburger Toggle Button */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: rgba(10, 25, 15, 0.65);
+    border: 1px solid rgba(199, 168, 94, 0.45);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+    flex-shrink: 0;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  nav.scrolled .nav-hamburger {
+    background: rgba(245, 241, 233, 0.92);
+    border-color: rgba(30, 77, 43, 0.3);
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: var(--gold, #C7A85E);
+    border-radius: 1px;
+    transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+  }
+
+  nav.scrolled .nav-hamburger span {
+    background-color: var(--green, #1E4D2B);
+  }
+
+  /* Mobile Fullscreen Drawer */
+  .mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 25, 15, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 20px 32px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+  .mobile-nav-overlay.open {
+    display: flex;
+  }
+
+  .mobile-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(199, 168, 94, 0.2);
+  }
+
+  .mobile-nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--gold, #C7A85E);
+    text-decoration: none;
+  }
+
+  .mobile-nav-close {
+    width: 38px;
+    height: 38px;
+    background: transparent;
+    border: 1px solid rgba(199, 168, 94, 0.35);
+    color: var(--gold, #C7A85E);
+    font-size: 22px;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .mobile-nav-close:hover {
+    background: rgba(199, 168, 94, 0.15);
+    border-color: var(--gold, #C7A85E);
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    margin: 24px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mobile-nav-list a {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 233, 0.88);
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .mobile-nav-list a:hover,
+  .mobile-nav-list a.active {
+    color: var(--gold, #C7A85E);
+    transform: translateX(6px);
+  }
+
+  .mobile-nav-list a.active::before {
+    content: '— ';
+    color: var(--gold, #C7A85E);
+  }
+
+  .mobile-nav-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(199, 168, 94, 0.2);
+  }
+
+  .mobile-nav-cta {
+    display: block;
+    text-align: center;
+    background: var(--gold, #C7A85E);
+    color: var(--green, #1E4D2B);
+    padding: 13px 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+
+  .mobile-nav-contact {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14px;
+    color: rgba(245, 241, 233, 0.65);
+    text-align: center;
+  }
+
+  .mobile-nav-contact a {
+    color: var(--gold, #C7A85E);
+    text-decoration: none;
+  }
+
+  @media (max-width: 1040px) {
+    #nav .nav-links {
+      display: none !important;
+    }
+    .nav-hamburger {
+      display: flex !important;
+    }
+    #nav .nav-cta {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #nav {
+      padding: 0 16px !important;
+    }
+    #nav .nav-logo {
+      font-size: 12px !important;
+      letter-spacing: 0.08em !important;
+      max-width: calc(100% - 50px);
+    }
+  }
+
+  /* Privacy & Consent Banner (PDPA / GDPR Compliant) */
+  #tb-consent-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    width: min(92vw, 680px);
+    background: rgba(7, 19, 14, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(199, 168, 94, 0.35);
+    border-radius: 12px;
+    padding: 20px 24px;
+    z-index: 99990;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    color: #F5F1E9;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, visibility 0.6s;
+  }
+  #tb-consent-banner.tb-consent-show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  .tb-consent-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .tb-consent-crest {
+    width: 14px;
+    height: 14px;
+    stroke: #C7A85E;
+    flex-shrink: 0;
+  }
+  .tb-consent-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: #C7A85E;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .tb-consent-text {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: rgba(245, 241, 233, 0.88);
+    margin-bottom: 16px;
+  }
+  .tb-consent-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tb-btn-consent-accept {
+    background: #C7A85E;
+    color: #07130E;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 6px;
+    border: 1px solid #C7A85E;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .tb-btn-consent-accept:hover {
+    background: #dfc080;
+    transform: translateY(-1px);
+  }
+  .tb-btn-consent-decline {
+    background: transparent;
+    color: #F5F1E9;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(199, 168, 94, 0.4);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .tb-btn-consent-decline:hover {
+    background: rgba(199, 168, 94, 0.1);
+    border-color: #C7A85E;
+  }
+  .tb-consent-link {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14px;
+    color: #dfc080;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin-left: auto;
+    transition: color 0.2s;
+  }
+  .tb-consent-link:hover {
+    color: #ffffff;
+  }
+  @media (max-width: 600px) {
+    #tb-consent-banner {
+      bottom: 14px;
+      padding: 16px;
+      width: calc(100vw - 28px);
+    }
+    .tb-consent-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+    .tb-btn-consent-accept, .tb-btn-consent-decline {
+      text-align: center;
+      width: 100%;
+      min-height: 44px; /* Touch target Apple HIG >= 44px */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tb-consent-link {
+      margin-left: 0;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* Prevent mobile WhatsApp float from colliding with active consent banner */
+    body.tb-has-active-consent .whatsapp-float {
+      bottom: 105px !important;
+      transition: bottom 0.35s ease;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     PHASE 2: LIVE BOOKING ENGINE & CONCIERGE DRAWER
+  ═══════════════════════════════════════════════════════════════ */
+  #tb-reserve-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99995;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(4, 12, 9, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+  }
+  #tb-reserve-modal.tb-modal-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .tb-reserve-dialog {
+    background: #0D2619;
+    background: linear-gradient(170deg, #0e2b17 0%, #081a0e 100%);
+    border: 1px solid rgba(199, 168, 94, 0.35);
+    border-radius: 14px;
+    width: min(95vw, 660px);
+    max-height: calc(100dvh - 32px);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 28px 28px 32px;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 40px rgba(199, 168, 94, 0.08);
+    color: #F5F1E9;
+    transform: scale(0.96) translateY(12px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #tb-reserve-modal.tb-modal-open .tb-reserve-dialog {
+    transform: scale(1) translateY(0);
+  }
+  .tb-reserve-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: rgba(245, 241, 233, 0.7);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .tb-reserve-close:hover {
+    color: #C7A85E;
+    transform: rotate(90deg);
+  }
+  .tb-reserve-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: #C7A85E;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tb-reserve-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: #F5F1E9;
+    margin-bottom: 6px;
+  }
+  .tb-reserve-desc {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: rgba(245, 241, 233, 0.82);
+    margin-bottom: 18px;
+  }
+
+  /* Booking Tabs */
+  .tb-booking-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(199, 168, 94, 0.25);
+    margin-bottom: 20px;
+    gap: 8px;
+  }
+  .tb-booking-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: rgba(245, 241, 233, 0.65);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .tb-booking-tab:hover {
+    color: #F5F1E9;
+  }
+  .tb-booking-tab.active {
+    color: #C7A85E;
+    border-bottom-color: #C7A85E;
+    font-weight: 600;
+  }
+
+  /* Form Fields */
+  .tb-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .tb-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+  .tb-form-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #C7A85E;
+  }
+  .tb-form-input, .tb-form-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(199, 168, 94, 0.3);
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: #F5F1E9;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .tb-form-input:focus, .tb-form-select:focus {
+    border-color: #C7A85E;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .tb-form-select option {
+    background: #0d2619;
+    color: #F5F1E9;
+  }
+
+  /* Summary Card */
+  .tb-stay-summary {
+    background: rgba(199, 168, 94, 0.06);
+    border: 1px solid rgba(199, 168, 94, 0.22);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0 20px;
+  }
+  .tb-summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14px;
+    color: rgba(245, 241, 233, 0.85);
+    margin-bottom: 6px;
+  }
+  .tb-summary-total {
+    border-top: 1px solid rgba(199, 168, 94, 0.2);
+    padding-top: 8px;
+    margin-top: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #C7A85E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Action Buttons */
+  .tb-btn-primary-reserve {
+    background: #C7A85E;
+    color: #07130E;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 13px 20px;
+    border-radius: 6px;
+    border: 1px solid #C7A85E;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  .tb-btn-primary-reserve:hover {
+    background: #dfc080;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(199, 168, 94, 0.3);
+  }
+  .tb-btn-secondary-reserve {
+    background: transparent;
+    color: #F5F1E9;
+    font-family: 'Cinzel', serif;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 11px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(199, 168, 94, 0.35);
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+  .tb-btn-secondary-reserve:hover {
+    background: rgba(199, 168, 94, 0.1);
+    border-color: #C7A85E;
+  }
+
+  /* Options list for concierge */
+  .tb-reserve-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(199, 168, 94, 0.22);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: #F5F1E9;
+    transition: all 0.25s;
+  }
+  .tb-reserve-option:hover {
+    background: rgba(199, 168, 94, 0.12);
+    border-color: #C7A85E;
+    transform: translateY(-1px);
+  }
+  .tb-reserve-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .tb-reserve-opt-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: #F5F1E9;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .tb-reserve-opt-sub {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 13.5px;
+    color: rgba(199, 168, 94, 0.9);
+  }
+  .tb-pms-slot {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(199, 168, 94, 0.15);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 12.5px;
+    color: rgba(245, 241, 233, 0.6);
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     GLOBAL SCROLL REVEAL ANIMATION SYSTEM
+     Usage: add data-reveal="fade-up|fade-left|fade-right|zoom|clip|stagger"
+     Optionally add data-reveal-delay="100" (ms)
+  ═══════════════════════════════════════════════════════════════ */
+  [data-reveal] {
+    opacity: 0;
+    transition-property: opacity, transform, clip-path;
+    transition-duration: 0.8s;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  [data-reveal="fade-up"]    { transform: translateY(40px); }
+  [data-reveal="fade-left"]  { transform: translateX(-44px); }
+  [data-reveal="fade-right"] { transform: translateX(44px); }
+  [data-reveal="zoom"]       { transform: scale(0.92); }
+  [data-reveal="clip"]       { clip-path: inset(0 0 100% 0); transform: translateY(16px); }
+  [data-reveal="stagger"]    { opacity: 1; } /* parent only — children get staggered */
+  [data-reveal="stagger"] > * {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-reveal="stagger"].revealed > * {
+    opacity: 1;
+    transform: none;
+  }
+  /* Generate stagger delays for up to 12 children */
+  [data-reveal="stagger"].revealed > *:nth-child(1)  { transition-delay: 0ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(2)  { transition-delay: 90ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(3)  { transition-delay: 180ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(4)  { transition-delay: 270ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(5)  { transition-delay: 360ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(6)  { transition-delay: 450ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(7)  { transition-delay: 540ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(8)  { transition-delay: 620ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(9)  { transition-delay: 700ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(10) { transition-delay: 780ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(11) { transition-delay: 850ms; }
+  [data-reveal="stagger"].revealed > *:nth-child(12) { transition-delay: 920ms; }
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal], [data-reveal="stagger"] > * {
+      transform: none !important;
+      clip-path: none !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Floating Booking Bar (Scroll-Based) */
+  #tb-floating-bar {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* properly hidden — can't be clicked when invisible */
+    z-index: 9990;
+    background: rgba(8, 24, 14, 0.96);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border: 1px solid rgba(199, 168, 94, 0.45);
+    border-radius: 40px;
+    padding: 8px 10px 8px 22px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(199, 168, 94, 0.08), inset 0 1px 0 rgba(255,255,255,0.04);
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, visibility 0s linear 0.45s;
+    color: #F5F1E9;
+  }
+  #tb-floating-bar.tb-bar-visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, visibility 0s linear 0s;
+  }
+  .tb-float-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .tb-float-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #C7A85E;
+    font-weight: 600;
+  }
+  .tb-float-sub {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 13.5px;
+    color: rgba(245, 241, 233, 0.85);
+  }
+  .tb-float-btn {
+    background: #C7A85E;
+    color: #07130E;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #C7A85E;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tb-float-btn:hover {
+    background: #dfc080;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(199, 168, 94, 0.3);
+  }
+  @media (max-width: 680px) {
+    #tb-floating-bar {
+      width: calc(100vw - 32px);
+      justify-content: space-between;
+      border-radius: 12px;
+      padding: 10px 14px;
+      gap: 10px;
+      bottom: 14px;
+    }
+    .tb-float-sub {
+      display: none;
+    }
+    .tb-form-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .tb-reserve-dialog {
+      padding: 22px 18px 24px;
+      width: calc(100vw - 20px);
+    }
+    .tb-reserve-title {
+      font-size: 19px !important;
+    }
+  }
+</style>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TEABUNGALOW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Privacy & Cookie Consent Banner (Sri Lanka PDPA / GDPR) -->
+<div id="tb-consent-banner" role="dialog" aria-labelledby="tbConsentTitle" aria-describedby="tbConsentDesc" aria-modal="false">
+  <div class="tb-consent-header">
+    <svg class="tb-consent-crest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
+    </svg>
+    <div class="tb-consent-title" id="tbConsentTitle">Guest Privacy &amp; Consent</div>
+  </div>
+  <p class="tb-consent-text" id="tbConsentDesc">
+    We respect your privacy. The Tea Bungalow uses essential cookies to ensure seamless estate navigation, and optional analytics to understand guest journeys in accordance with Sri Lanka's Personal Data Protection Act.
+  </p>
+  <div class="tb-consent-actions">
+    <button type="button" class="tb-btn-consent-accept" id="tbConsentAccept">Accept All</button>
+    <button type="button" class="tb-btn-consent-decline" id="tbConsentDecline">Essential Only</button>
+    <a href="/privacy" class="tb-consent-link">Privacy &amp; Data Policy</a>
+  </div>
+</div>
+
+<!-- Floating Luxury Booking Bar (Scroll-Based Docking) -->
+<div id="tb-floating-bar" aria-hidden="true" role="region" aria-label="Quick Reservation Bar">
+  <div class="tb-float-info">
+    <div class="tb-float-title">The Tea Bungalow · Galaha</div>
+    <div class="tb-float-sub">7 Heritage Chambers &amp; Private Cottage · From $310/night</div>
+  </div>
+  <button type="button" class="tb-float-btn tb-reserve-trigger" data-source="floating_bar">
+    <span>Check Availability</span>
+    <span>→</span>
+  </button>
+</div>
+
+<!-- Concierge Enquiry Drawer (Phase 2) -->
+<div id="tb-reserve-modal" role="dialog" aria-modal="true" aria-labelledby="tbReserveTitle" aria-hidden="true">
+  <div class="tb-reserve-dialog">
+    <button type="button" class="tb-reserve-close" id="tbReserveClose" aria-label="Close reservation dialog">&times;</button>
+    <div class="tb-reserve-tag" id="tbReserveTag">Galaha Estate · Old Ceylon</div>
+    <h2 class="tb-reserve-title" id="tbReserveTitle">Plan Your Stay</h2>
+    <p class="tb-reserve-desc" id="tbReserveDesc">
+      Select your dates and chamber to receive an estimated quote. We'll confirm availability and send your personalised itinerary via WhatsApp within 2 hours.
+    </p>
+
+    <!-- Step 1: Date & Room selector -->
+    <div class="tb-form-row">
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbCheckIn">Arrival</label>
+        <input type="date" id="tbCheckIn" class="tb-form-input" required>
+      </div>
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbCheckOut">Departure</label>
+        <input type="date" id="tbCheckOut" class="tb-form-input" required>
+      </div>
+    </div>
+
+    <div class="tb-form-row">
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbRoomSelect">Chamber</label>
+        <select id="tbRoomSelect" class="tb-form-select">
+          <option value="The Founder's Suite" data-rate="450">01 · Founder's Suite — King · From $450/nt</option>
+          <option value="The Highlands Suite" data-rate="390">02 · Highlands Suite — King · From $390/nt</option>
+          <option value="The Pekoe Room" data-rate="320">03 · Pekoe Room — Queen · From $320/nt</option>
+          <option value="The Verandah Chamber" data-rate="340">04 · Verandah Chamber — King · From $340/nt</option>
+          <option value="The Camellia Room" data-rate="310">05 · Camellia Room — Queen · From $310/nt</option>
+          <option value="The Galaha Room" data-rate="310">06 · Galaha Room — Twin/King · From $310/nt</option>
+          <option value="The Carriage House Cottage" data-rate="580">07 · Carriage House Cottage — 4 Guests · From $580/nt</option>
+          <option value="The Entire Estate" data-rate="2600">Entire Estate Buyout — 14 Guests · From $2,600/nt</option>
+        </select>
+      </div>
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbGuestsCount">Guests</label>
+        <select id="tbGuestsCount" class="tb-form-select">
+          <option value="1">1 Guest</option>
+          <option value="2" selected>2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4">4 Guests</option>
+          <option value="6">6 Guests</option>
+          <option value="8">8 Guests (Cottage)</option>
+          <option value="14">14 Guests (Full Buyout)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Add-ons -->
+    <div class="tb-form-group" style="margin-bottom: 10px;">
+      <label class="tb-form-label">Estate Experiences</label>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px;">
+        <label style="display: flex; align-items: center; gap: 8px; font-family: 'EB Garamond', Georgia, serif; font-size: 14px; color: rgba(245,241,233,0.85); cursor: pointer;">
+          <input type="checkbox" id="tbAddonPekoe" value="Pekoe Trail Guided Trek"
+            style="accent-color: #C7A85E; width: 14px; height: 14px;">
+          <span>Pekoe Trail Guided Trek (Stages 1 &amp; 2) · +$60</span>
+        </label>
+        <label style="display: flex; align-items: center; gap: 8px; font-family: 'EB Garamond', Georgia, serif; font-size: 14px; color: rgba(245,241,233,0.85); cursor: pointer;">
+          <input type="checkbox" id="tbAddonDining" value="Estate Dinner"
+            style="accent-color: #C7A85E; width: 14px; height: 14px;">
+          <span>Private Chef 4-Course Dinner on Verandah · +$45/guest</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Live Quote Card -->
+    <div class="tb-stay-summary">
+      <div class="tb-summary-row">
+        <span id="tbSummaryNightsLabel">Chamber Rate (2 nights)</span>
+        <span id="tbSummaryRateVal">$780</span>
+      </div>
+      <div class="tb-summary-row">
+        <span>Heritage Service Levy (10%)</span>
+        <span id="tbSummaryTaxVal">$78</span>
+      </div>
+      <div class="tb-summary-row" id="tbSummaryAddonsRow" style="display:none;">
+        <span>Curated Experiences</span>
+        <span id="tbSummaryAddonsVal">$0</span>
+      </div>
+      <div class="tb-summary-total">
+        <span>Estimated Quote</span>
+        <span id="tbSummaryTotalVal">$858 <small style="font-size:11px;opacity:0.7;font-family:'EB Garamond';">≈ LKR 265,000</small></span>
+      </div>
+    </div>
+
+    <!-- Guest Details -->
+    <div class="tb-form-row" style="margin-top:6px;">
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbGuestName">Your Name</label>
+        <input type="text" id="tbGuestName" class="tb-form-input" placeholder="e.g. Eleanor Vance">
+      </div>
+      <div class="tb-form-group">
+        <label class="tb-form-label" for="tbGuestPhone">WhatsApp / Mobile</label>
+        <input type="tel" id="tbGuestPhone" class="tb-form-input" placeholder="+94 7X XXX XXXX">
+      </div>
+    </div>
+
+    <!-- Primary CTA: WhatsApp-prefilled enquiry -->
+    <button type="button" class="tb-btn-primary-reserve" id="tbBtnSubmitBooking" style="margin-top:8px;">
+      <span>💬 Send Enquiry via WhatsApp</span>
+    </button>
+
+    <!-- Secondary: email -->
+    <a href="mailto:stay@theteabungalow.com" class="tb-btn-secondary-reserve" id="tbBtnEmailFallback" style="margin-top:8px; text-align:center; display:flex; align-items:center; justify-content:center; gap:8px;">
+      <span>✉️ Email us instead</span>
+    </a>
+
+    <!-- Concierge footnote -->
+    <div class="tb-pms-slot" style="margin-top:16px;">
+      Our concierge is on duty daily 06:30 – 22:00 SLST (UTC+5:30). Direct payment &amp; instant booking coming soon.
+    </div>
+
+    <!-- Success state -->
+    <div id="tbBookingSuccess" style="display:none; padding:20px; background:rgba(30,77,43,0.3); border:1px solid #C7A85E; border-radius:8px; text-align:center; margin-top:14px;">
+      <div style="font-size:24px; color:#C7A85E; margin-bottom:6px;">✓</div>
+      <div style="font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.14em; color:#C7A85E; margin-bottom:6px;">Enquiry Sent</div>
+      <p id="tbBookingSuccessMsg" style="font-family:'EB Garamond',Georgia,serif; font-size:14.5px; line-height:1.4; color:rgba(245,241,233,0.9); margin-bottom:12px;">
+        Your enquiry has been prepared. Please complete it in WhatsApp — our estate manager will reply within 2 hours.
+      </p>
+      <button type="button" class="tb-btn-secondary-reserve" id="tbBtnCloseSuccess" style="width:auto; margin:0 auto;">Back to Estate</button>
+    </div>
+  </div>
+</div>
+
+
+
+<nav id="nav">
+  <a href="/vD/home.php" class="nav-logo">THE TEA BUNGALOW</a>
+
+  <ul class="nav-links">
+    <li><a href="/vD/the-bungalow.php" class="<?= $page === 'the-bungalow' ? 'active' : '' ?>">The Bungalow</a></li>
+    <li><a href="/vD/pekoe-trail.php" class="<?= $page === 'pekoe-trail' ? 'active' : '' ?>">Pekoe Trail</a></li>
+    <li><a href="/vD/our-chambers.php" class="<?= $page === 'our-chambers' ? 'active' : '' ?>">Our Chambers</a></li>
+    <li><a href="/vD/experiences.php" class="<?= $page === 'experiences' ? 'active' : '' ?>">Experiences</a></li>
+    <li><a href="/vD/packages.php" class="<?= $page === 'packages' ? 'active' : '' ?>">Packages</a></li>
+    <li><a href="/vD/gallery.php" class="<?= $page === 'gallery' ? 'active' : '' ?>">Gallery</a></li>
+    <li><a href="/vD/about.php" class="<?= $page === 'about' ? 'active' : '' ?>">About Us</a></li>
+    <li><a href="/vD/chairmans-bungalow-2027.php" class="<?= $page === 'chairmans-bungalow-2027' ? 'active' : '' ?>">Chairman's Bungalow</a></li>
+  </ul>
+
+  <button type="button" class="nav-cta tb-reserve-trigger" id="navReserveBtn" data-source="header_cta" style="border:none; cursor:pointer; background:transparent;">Enquire Now</button>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open mobile menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true">
+  <div class="mobile-nav-header">
+    <a href="/vD/home.php" class="mobile-nav-logo">THE TEA BUNGALOW</a>
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+  </div>
+
+  <ul class="mobile-nav-list">
+    <li><a href="/vD/home.php" class="<?= $page === 'home' ? 'active' : '' ?>">Home</a></li>
+    <li><a href="/vD/the-bungalow.php" class="<?= $page === 'the-bungalow' ? 'active' : '' ?>">The Bungalow</a></li>
+    <li><a href="/vD/pekoe-trail.php" class="<?= $page === 'pekoe-trail' ? 'active' : '' ?>">Pekoe Trail</a></li>
+    <li><a href="/vD/our-chambers.php" class="<?= $page === 'our-chambers' ? 'active' : '' ?>">Our Chambers</a></li>
+    <li><a href="/vD/the-entire-estate.php" class="<?= $page === 'the-entire-estate' ? 'active' : '' ?>">The Entire Estate</a></li>
+    <li><a href="/vD/experiences.php" class="<?= $page === 'experiences' ? 'active' : '' ?>">Experiences</a></li>
+    <li><a href="/vD/packages.php" class="<?= $page === 'packages' ? 'active' : '' ?>">Packages</a></li>
+    <li><a href="/vD/gallery.php" class="<?= $page === 'gallery' ? 'active' : '' ?>">Gallery</a></li>
+    <li><a href="/vD/about.php" class="<?= $page === 'about' ? 'active' : '' ?>">About Us</a></li>
+    <li><a href="/vD/privacy.php" class="<?= $page === 'privacy' ? 'active' : '' ?>">Privacy &amp; Data Policy</a></li>
+    <li><a href="/vD/contact.php" class="<?= $page === 'contact' ? 'active' : '' ?>">Contact &amp; Location</a></li>
+    <li><a href="/vD/chairmans-bungalow-2027.php" class="<?= $page === 'chairmans-bungalow-2027' ? 'active' : '' ?>">Chairman's Bungalow</a></li>
+  </ul>
+
+  <div class="mobile-nav-footer">
+    <button type="button" class="mobile-nav-cta tb-reserve-trigger" data-source="mobile_drawer" style="border:none; cursor:pointer; background:transparent; font-size:inherit; font-family:inherit; padding:inherit;">Enquire Now</button>
+    <div class="mobile-nav-contact">
+      <div>📞 <a href="tel:+94777874555">+94 (0)777 874 555</a></div>
+      <div style="margin-top: 4px;">✉️ <a href="mailto:stay@theteabungalow.com">stay@theteabungalow.com</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // 1. Mobile Navigation Drawer logic
+    const burger = document.getElementById('navHamburger');
+    const overlay = document.getElementById('mobileNavOverlay');
+    const closeBtn = document.getElementById('mobileNavClose');
+
+    if (burger && overlay) {
+      burger.addEventListener('click', function() {
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        burger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      });
+
+      function closeMenu() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+      overlay.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', closeMenu);
+      });
+    }
+
+    // 2. Preloader: src/layout/preloader.html (injected on every page by build_static.js)
+
+    // 3. Analytics Baseline: Track WhatsApp concierge conversions
+    document.querySelectorAll('a[href*="wa.me"], .whatsapp-float, #tbReserveWaOption').forEach(function(el) {
+      el.addEventListener('click', function() {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'whatsapp_concierge_click',
+          link_url: el.href || ''
+        });
+      });
+    });
+
+    // 4. PDPA / GDPR Privacy Consent Engine
+    const consentBanner = document.getElementById('tb-consent-banner');
+    const btnAccept = document.getElementById('tbConsentAccept');
+    const btnDecline = document.getElementById('tbConsentDecline');
+
+    if (consentBanner) {
+      let consentStatus = null;
+      try {
+        consentStatus = localStorage.getItem('tb_cookie_consent');
+      } catch (e) {}
+
+      function updateGtmConsent(granted) {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': granted ? 'granted' : 'denied',
+            'ad_storage': granted ? 'granted' : 'denied'
+          });
+        }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'consent_update',
+          consent_level: granted ? 'all' : 'essential'
+        });
+      }
+
+      function dismissConsent() {
+        document.body.classList.remove('tb-has-active-consent');
+        consentBanner.classList.remove('tb-consent-show');
+        setTimeout(function() {
+          if (consentBanner && consentBanner.parentNode) {
+            consentBanner.parentNode.removeChild(consentBanner);
+          }
+        }, 600);
+      }
+
+      if (!consentStatus) {
+        // Show banner smoothly ~1s after DOM load / preloader lifecycle
+        setTimeout(function() {
+          document.body.classList.add('tb-has-active-consent');
+          consentBanner.classList.add('tb-consent-show');
+        }, 1400);
+
+        if (btnAccept) {
+          btnAccept.addEventListener('click', function() {
+            try { localStorage.setItem('tb_cookie_consent', 'granted'); } catch (e) {}
+            updateGtmConsent(true);
+            dismissConsent();
+          });
+        }
+
+        if (btnDecline) {
+          btnDecline.addEventListener('click', function() {
+            try { localStorage.setItem('tb_cookie_consent', 'denied'); } catch (e) {}
+            updateGtmConsent(false);
+            dismissConsent();
+          });
+        }
+      } else {
+        // Preference already recorded in a previous session
+        document.body.classList.remove('tb-has-active-consent');
+        if (consentBanner.parentNode) {
+          consentBanner.parentNode.removeChild(consentBanner);
+        }
+        if (consentStatus === 'granted') {
+          updateGtmConsent(true);
+        }
+      }
+    }
+
+    // 5. Phase 2: Live Booking Engine, Stay Calculator & Scroll-Docking Bar
+    const reserveModal = document.getElementById('tb-reserve-modal');
+    const reserveClose = document.getElementById('tbReserveClose');
+    const floatingBar = document.getElementById('tb-floating-bar');
+
+    // Date defaults: tomorrow to 2 days later
+    const checkInInput = document.getElementById('tbCheckIn');
+    const checkOutInput = document.getElementById('tbCheckOut');
+    const roomSelect = document.getElementById('tbRoomSelect');
+    const guestsSelect = document.getElementById('tbGuestsCount');
+    const addonPekoe = document.getElementById('tbAddonPekoe');
+    const addonDining = document.getElementById('tbAddonDining');
+    const bookingForm = document.getElementById('tbBookingForm');
+    const bookingSuccess = document.getElementById('tbBookingSuccess');
+
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const dayAfter = new Date(today);
+    dayAfter.setDate(dayAfter.getDate() + 3);
+
+    function formatDateForInput(d) {
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return year + '-' + month + '-' + day;
+    }
+
+    if (checkInInput && checkOutInput) {
+      checkInInput.min = formatDateForInput(tomorrow);
+      checkInInput.value = formatDateForInput(tomorrow);
+      checkOutInput.min = formatDateForInput(dayAfter);
+      checkOutInput.value = formatDateForInput(dayAfter);
+    }
+
+    // Dynamic Live Stay Price Calculator
+    function updateStayQuote() {
+      if (!checkInInput || !checkOutInput || !roomSelect) return;
+
+      const d1 = new Date(checkInInput.value);
+      const d2 = new Date(checkOutInput.value);
+      let nights = 1;
+      if (d2 > d1) {
+        nights = Math.max(1, Math.round((d2 - d1) / (1000 * 60 * 60 * 24)));
+      }
+
+      const selectedOpt = roomSelect.options[roomSelect.selectedIndex];
+      const ratePerNight = selectedOpt ? parseInt(selectedOpt.getAttribute('data-rate'), 10) || 350 : 350;
+      const guests = guestsSelect ? parseInt(guestsSelect.value, 10) || 2 : 2;
+
+      const subtotal = nights * ratePerNight;
+      const tax = Math.round(subtotal * 0.10);
+
+      let addons = 0;
+      if (addonPekoe && addonPekoe.checked) addons += 60;
+      if (addonDining && addonDining.checked) addons += (45 * guests);
+
+      const totalUSD = subtotal + tax + addons;
+      const approxLKR = Math.round(totalUSD * 308).toLocaleString();
+
+      const nightsLabel = document.getElementById('tbSummaryNightsLabel');
+      const rateVal = document.getElementById('tbSummaryRateVal');
+      const taxVal = document.getElementById('tbSummaryTaxVal');
+      const addonsRow = document.getElementById('tbSummaryAddonsRow');
+      const addonsVal = document.getElementById('tbSummaryAddonsVal');
+      const totalVal = document.getElementById('tbSummaryTotalVal');
+
+      if (nightsLabel) nightsLabel.textContent = 'Chamber Rate (' + nights + ' ' + (nights === 1 ? 'Night' : 'Nights') + ')';
+      if (rateVal) rateVal.textContent = '$' + subtotal + ' USD';
+      if (taxVal) taxVal.textContent = '$' + tax + ' USD';
+
+      if (addonsRow && addonsVal) {
+        if (addons > 0) {
+          addonsRow.style.display = 'flex';
+          addonsVal.textContent = '$' + addons + ' USD';
+        } else {
+          addonsRow.style.display = 'none';
+        }
+      }
+
+      if (totalVal) {
+        totalVal.innerHTML = '$' + totalUSD + ' USD <small style="font-size: 11px; opacity: 0.75; font-family: \'EB Garamond\';">(approx. LKR ' + approxLKR + ')</small>';
+      }
+    }
+
+    [checkInInput, checkOutInput, roomSelect, guestsSelect, addonPekoe, addonDining].forEach(function(el) {
+      if (el) {
+        el.addEventListener('change', updateStayQuote);
+        el.addEventListener('input', updateStayQuote);
+      }
+    });
+    updateStayQuote();
+
+
+    // Modal Opening & Pre-selection
+    if (reserveModal) {
+      function openReserveModal(source, targetItem) {
+        reserveModal.classList.add('tb-modal-open');
+        reserveModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        const titleEl = document.getElementById('tbReserveTitle');
+        const tagEl = document.getElementById('tbReserveTag');
+
+        // Check if targetItem matches a chamber
+        if (targetItem && roomSelect) {
+          let matched = false;
+          for (let i = 0; i < roomSelect.options.length; i++) {
+            if (roomSelect.options[i].value.toLowerCase().includes(targetItem.toLowerCase()) ||
+                targetItem.toLowerCase().includes(roomSelect.options[i].value.toLowerCase())) {
+              roomSelect.selectedIndex = i;
+              matched = true;
+              break;
+            }
+          }
+          if (tagEl) tagEl.textContent = 'Galaha Estate · ' + targetItem;
+          if (titleEl) titleEl.textContent = 'Reserve ' + targetItem;
+        } else {
+          if (tagEl) tagEl.textContent = 'Galaha Estate · Old Ceylon';
+          if (titleEl) titleEl.textContent = 'Reserve Your Sanctuary';
+        }
+
+        updateStayQuote();
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'booking_widget_opened',
+          trigger_source: source || 'navbar',
+          selected_item: targetItem || 'general'
+        });
+      }
+
+      function closeReserveModal() {
+        reserveModal.classList.remove('tb-modal-open');
+        reserveModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      // Event Delegation
+      document.addEventListener('click', function(e) {
+        var btn = e.target.closest('.tb-reserve-trigger, [data-reserve-trigger], #navReserveBtn');
+        if (!btn) return;
+        e.preventDefault();
+        var item = btn.getAttribute('data-room') || btn.getAttribute('data-package') || '';
+        openReserveModal(
+          btn.getAttribute('data-source') || (item ? 'item_cta' : 'cta_button'),
+          item
+        );
+      });
+
+      if (reserveClose) reserveClose.addEventListener('click', closeReserveModal);
+      reserveModal.addEventListener('click', function(e) {
+        if (e.target === reserveModal) closeReserveModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && reserveModal.classList.contains('tb-modal-open')) {
+          closeReserveModal();
+        }
+      });
+
+      // WhatsApp Enquiry CTA — builds pre-filled message from form state
+      const btnSubmit = document.getElementById('tbBtnSubmitBooking');
+      const btnCloseSuccess = document.getElementById('tbBtnCloseSuccess');
+      if (btnSubmit) {
+        btnSubmit.addEventListener('click', function() {
+          var name = (document.getElementById('tbGuestName') || {}).value || '';
+          var phone = (document.getElementById('tbGuestPhone') || {}).value || '';
+          var room = roomSelect ? roomSelect.options[roomSelect.selectedIndex].text : '';
+          var checkIn = checkInInput ? checkInInput.value : '';
+          var checkOut = checkOutInput ? checkOutInput.value : '';
+          var guests = guestsSelect ? guestsSelect.value : '2';
+          var nights = 2;
+          if (checkIn && checkOut) {
+            var d1 = new Date(checkIn), d2 = new Date(checkOut);
+            if (!isNaN(d1) && !isNaN(d2)) nights = Math.max(1, Math.round((d2 - d1) / 86400000));
+          }
+          var totalEl = document.getElementById('tbSummaryTotalVal');
+          var totalText = totalEl ? totalEl.textContent.split('\n')[0].trim() : '';
+          var addons = [];
+          if (document.getElementById('tbAddonPekoe') && document.getElementById('tbAddonPekoe').checked) addons.push('Pekoe Trail Guided Trek');
+          if (document.getElementById('tbAddonDining') && document.getElementById('tbAddonDining').checked) addons.push('Private Chef Estate Dinner');
+
+          var msg = 'Hi, I\u2019d like to enquire about a stay at The Tea Bungalow.\n\n';
+          if (name) msg += '\u2022 Guest: ' + name + '\n';
+          msg += '\u2022 Chamber: ' + (room || 'To be confirmed') + '\n';
+          msg += '\u2022 Arrival: ' + (checkIn || 'TBC') + '\n';
+          msg += '\u2022 Departure: ' + (checkOut || 'TBC') + ' (' + nights + ' night' + (nights !== 1 ? 's' : '') + ')\n';
+          msg += '\u2022 Guests: ' + guests + '\n';
+          if (addons.length) msg += '\u2022 Experiences: ' + addons.join(', ') + '\n';
+          if (totalText) msg += '\u2022 Estimated Quote: ' + totalText + '\n';
+          if (phone) msg += '\u2022 Contact: ' + phone + '\n';
+          msg += '\nPlease confirm availability and share the deposit details. Thank you.';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'concierge_enquiry_sent', chamber: room, nights: nights });
+
+          // Open WhatsApp with prefilled message
+          window.open('https://wa.me/94777874555?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
+
+          // Show confirmation state
+          var form = document.getElementById('tbBookingForm');
+          var success = document.getElementById('tbBookingSuccess');
+          if (form && success) { form.style.display = 'none'; success.style.display = 'block'; }
+        });
+      }
+
+      if (btnCloseSuccess) {
+        btnCloseSuccess.addEventListener('click', function() {
+          closeReserveModal();
+        });
+      }
+
+      window.openReserveModal = openReserveModal;
+      window.closeReserveModal = closeReserveModal;
+      window.updateStayQuote = updateStayQuote;
+    }
+
+    // Scroll-Based Floating Bar — shows after 280px, hides near footer
+    if (floatingBar) {
+      var fbTimer = null;
+      function updateFloatingBar() {
+        var scrollY = window.scrollY || window.pageYOffset;
+        var docH = document.documentElement.scrollHeight;
+        var winH = window.innerHeight;
+        var nearBottom = (scrollY + winH) > (docH - 260);
+        if (scrollY > 280 && !nearBottom) {
+          floatingBar.classList.add('tb-bar-visible');
+          floatingBar.setAttribute('aria-hidden', 'false');
+        } else {
+          floatingBar.classList.remove('tb-bar-visible');
+          floatingBar.setAttribute('aria-hidden', 'true');
+        }
+      }
+      window.addEventListener('scroll', function() {
+        if (fbTimer) clearTimeout(fbTimer);
+        fbTimer = setTimeout(updateFloatingBar, 12);
+      }, { passive: true });
+      // Initial check in case page loads scrolled
+      updateFloatingBar();
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // GLOBAL SCROLL REVEAL ENGINE  (data-reveal attribute system)
+    // ─────────────────────────────────────────────────────────────
+    function initScrollReveal() {
+      var revealEls = document.querySelectorAll('[data-reveal]');
+      if (!revealEls.length) return;
+      if (!('IntersectionObserver' in window)) {
+        // Fallback: show everything immediately
+        revealEls.forEach(function(el) { el.classList.add('revealed'); });
+        return;
+      }
+
+      var revealObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var delay = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+          setTimeout(function() {
+            el.classList.add('revealed');
+          }, delay);
+          revealObs.unobserve(el);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+      revealEls.forEach(function(el) { revealObs.observe(el); });
+    }
+
+    window.initScrollReveal = initScrollReveal;
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initScrollReveal);
+    } else {
+      initScrollReveal();
+    }
+  })();
+</script>

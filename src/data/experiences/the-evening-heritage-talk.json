@@ -1,0 +1,17 @@
+{
+  "title": "The Evening Heritage Talk",
+  "category": "colonial-heritage",
+  "description": "A quiet fifteen-minute story on the verandah — the history of Galaha, James Taylor's 1867 experiment at Loolecondera, and how this bungalow became part of Ceylon Tea's beginnings.",
+  "duration": "~15 min",
+  "timing": "Pre-dinner",
+  "location": "Verandah",
+  "rate": "Complimentary",
+  "rate_unit": "Ask any staff member",
+  "availability": "year-round",
+  "featured": false,
+  "icon": "📖",
+  "image": "/images/house.jpeg",
+  "bookable": false,
+  "active": true,
+  "sort_order": 70
+}

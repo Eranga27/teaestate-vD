@@ -1,0 +1,23 @@
+{
+  "name": "The Slow Week",
+  "section": "heritage",
+  "layout": "card",
+  "accent": "none",
+  "duration": "5–7 Nights",
+  "tagline": "For those who want to stop rushing — a full week at the estate with nothing scheduled that you don't ask for.",
+  "inclusions": [
+    "5–7 nights in your chosen chamber",
+    "Daily breakfasts",
+    "3 dinners included (others optional)",
+    "Two guided tea estate walks",
+    "One Ayurvedic session included",
+    "Afternoon tea on two days",
+    "Full estate access throughout"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ couple · 5 nights",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 90
+}

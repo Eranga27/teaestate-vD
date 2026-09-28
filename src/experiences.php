@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiences · The Tea Bungalow · Galaha Estate</title>
+
+<link rel="icon" type="image/png" href="images/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Experiences · Tea, Walks & Culture · The Tea Bungalow">
+<meta property="og:description" content="Immersive experiences at The Tea Bungalow — factory tours, tasting sessions, planter's tiffin, stargazing, and guided estate walks.">
+<meta property="og:url" content="https://www.theteabungalow.com/experiences">
+<meta property="og:image" content="https://www.theteabungalow.com/images/tea-factory.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Experiences · Tea, Walks & Culture · The Tea Bungalow">
+<meta name="twitter:description" content="Immersive experiences at The Tea Bungalow — factory tours, tasting sessions, planter's tiffin, stargazing, and guided estate walks.">
+<link rel="canonical" href="https://www.theteabungalow.com/experiences">
+
+  <meta name="description" content="From fireside evenings to tea estate walks, packed trail lunches to heritage talks under the verandah. Curated estate experiences at The Tea Bungalow, Galaha.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════
+   ROOT
+═══════════════════════════════════════════════ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --green: #1E4D2B;
+      --green-mid: #2a6638;
+      --green-deep: #0f2e16;
+      --green-pale: #c8dece;
+      --green-ghost: #eaf2ec;
+      --gold: #C7A85E;
+      --gold-light: #dfc080;
+      --gold-pale: #f5edd4;
+      --gold-deep: #8a6a30;
+      --cream: #F5F1E9;
+      --cream-dark: #ede7db;
+      --ink: #1a1510;
+      --ink-mid: #3d3428;
+      --ink-light: #7a6e60;
+      --mist: #8a9e8f;
+      --white: #ffffff;
+      --shadow: rgba(30, 77, 43, 0.13);
+      --ember: #c46420;
+      --ember-glow: #dc8428;
+    }
+
+    body {
+      background: var(--cream);
+      font-family: 'EB Garamond', Georgia, serif;
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 72px;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(245, 241, 233, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(30, 77, 43, 0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav.scrolled .nav-logo {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--ink-mid);
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    nav.scrolled .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-links .active {
+      color: var(--gold) !important;
+    }
+
+    .nav-cta {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--green);
+      border: 1px solid var(--green);
+      padding: 9px 20px;
+      text-decoration: none;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════════════
+   HERO — editorial / menu style
+═══════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 120px 10vw 80px;
+      background:
+        linear-gradient(135deg,
+          rgba(10, 28, 15, 0.4) 0%,
+          rgba(15, 46, 22, 0.55) 50%,
+          rgba(8, 20, 12, 0.8) 100%),
+        radial-gradient(ellipse 110% 100% at 30% 40%, #2a6638 0%, #1a4a24 50%, #0a1e10 100%);
+    }
+
+    /* Atmospheric textures */
+    .hero-vines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        repeating-linear-gradient(172deg, transparent 0, transparent 40px, rgba(255, 255, 255, 0.02) 40px, rgba(255, 255, 255, 0.02) 41px);
+    }
+
+    /* Subtle warm glow (hint of fireplace) */
+    .hero-glow {
+      position: absolute;
+      bottom: -10%;
+      right: -5%;
+      width: 50%;
+      height: 60%;
+      background: radial-gradient(circle at center, rgba(196, 100, 32, 0.18) 0%, transparent 60%);
+      pointer-events: none;
+      animation: emberPulse 5s ease-in-out infinite;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      width: 100%;
+    }
+
+    .hero-breadcrumb {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.45em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .hero-breadcrumb a {
+      color: rgba(199, 168, 94, 0.55);
+      text-decoration: none;
+    }
+
+    .hero-breadcrumb a:hover {
+      color: var(--gold);
+    }
+
+    .hero-menu-label {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s ease forwards;
+    }
+
+    .hero-menu-label::before,
+    .hero-menu-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(48px, 8vw, 108px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: 0.005em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.55s ease forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+      font-weight: 400;
+    }
+
+    .hero-sub {
+      font-size: clamp(19px, 2.2vw, 26px);
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.55;
+      max-width: 680px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.75s ease forwards;
+    }
+
+    /* Experience quick-nav chips in hero */
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.95s ease forwards;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-decoration: none;
+      transition: all 0.25s;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-chip:hover {
+      color: var(--gold);
+      background: rgba(199, 168, 94, 0.12);
+      border-color: rgba(199, 168, 94, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .hero-chip-icon {
+      font-size: 13px;
+    }
+
+    /* ═══════════════════════════════════════════════
+   INTRO / OPENING STATEMENT
+═══════════════════════════════════════════════ */
+    .intro-section {
+      padding: 96px 10vw;
+      text-align: center;
+      background: var(--cream);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .intro-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+    }
+
+    .intro-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.45em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .intro-statement {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(22px, 2.8vw, 34px);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--green);
+      line-height: 1.5;
+      letter-spacing: -0.005em;
+    }
+
+    .intro-statement em {
+      font-style: normal;
+      color: var(--gold-deep);
+    }
+
+    /* ═══════════════════════════════════════════════
+   THE FIRESIDE — featured signature experience
+═══════════════════════════════════════════════ */
+    .signature-section {
+      background: var(--ink);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      min-height: 600px;
+    }
+
+    /* Fire visual panel */
+    .fire-panel {
+      position: relative;
+      overflow: hidden;
+      background: #0d0503;
+    }
+
+    .fire-panel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.55) saturate(1.1);
+      display: block;
+    }
+
+    .fire-glow-inner {
+      position: absolute;
+      bottom: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 80%;
+      background: radial-gradient(ellipse 60% 70% at 50% 100%,
+          rgba(220, 130, 40, 0.45) 0%,
+          rgba(196, 100, 32, 0.25) 30%,
+          rgba(140, 50, 10, 0.15) 55%,
+          transparent 75%);
+      animation: firePulse 3.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .fire-glow-2 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: radial-gradient(ellipse 70% 60% at 50% 100%,
+          rgba(255, 180, 80, 0.3) 0%, transparent 65%);
+      animation: firePulse 2.1s 0.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .fire-smoke {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 200px 300px at 20% 80%, rgba(255, 255, 255, 0.03), transparent 70%),
+        radial-gradient(ellipse 150px 250px at 70% 60%, rgba(255, 255, 255, 0.02), transparent 70%);
+      animation: smokeMove 10s ease-in-out infinite;
+    }
+
+    .fire-ember {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(220, 140, 40, 0.8);
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(220, 140, 40, 0.8);
+      animation: emberRise 4s infinite ease-in;
+    }
+
+    .fire-ember:nth-child(4) {
+      left: 30%;
+      bottom: 30%;
+      animation-delay: 0s;
+    }
+
+    .fire-ember:nth-child(5) {
+      left: 50%;
+      bottom: 20%;
+      animation-delay: 1.3s;
+    }
+
+    .fire-ember:nth-child(6) {
+      left: 65%;
+      bottom: 35%;
+      animation-delay: 2.4s;
+    }
+
+    .fire-ember:nth-child(7) {
+      left: 40%;
+      bottom: 25%;
+      animation-delay: 3s;
+    }
+
+    .fire-placeholder {
+      display: none !important;
+    }
+
+    .fire-emoji {
+      font-size: 80px;
+      animation: flicker 2.4s ease-in-out infinite;
+      filter: drop-shadow(0 0 24px rgba(220, 140, 40, 0.4));
+    }
+
+    .fire-ph-text {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .signature-content {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      background: radial-gradient(ellipse 80% 100% at 100% 50%,
+          rgba(199, 168, 94, 0.05), transparent 60%);
+    }
+
+    .sig-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: inline-block;
+      border-left: 2px solid var(--gold);
+      padding-left: 14px;
+    }
+
+    .sig-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(30px, 3.5vw, 48px);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: 0.01em;
+    }
+
+    .sig-title em {
+      color: var(--gold-light);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .sig-body {
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.75;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .sig-body strong {
+      color: var(--gold-light);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .sig-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin: 32px 0;
+      border-top: 1px solid rgba(199, 168, 94, 0.25);
+      border-bottom: 1px solid rgba(199, 168, 94, 0.25);
+    }
+
+    .sig-detail-item {
+      padding: 20px 0;
+      border-right: 1px solid rgba(199, 168, 94, 0.15);
+    }
+
+    .sig-detail-item:last-child {
+      border-right: none;
+      padding-left: 24px;
+    }
+
+    .sig-detail-label {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .sig-detail-value {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.85);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .sig-price-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .sig-price {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+
+    .sig-price-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-sig {
+      align-self: flex-start;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 16px 32px;
+      text-decoration: none;
+      border: 1px solid var(--gold);
+      transition: background 0.25s, color 0.25s, transform 0.2s;
+    }
+
+    .btn-sig:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════════
+   EXPERIENCE CATEGORIES — filterable
+═══════════════════════════════════════════════ */
+    .categories-section {
+      padding: 120px 10vw 40px;
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .cat-header {
+      margin-bottom: 48px;
+    }
+
+    .cat-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .cat-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 600;
+      color: var(--green);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .cat-sub {
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink-light);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    .cat-filter {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      border: 1px solid var(--green-pale);
+      background: var(--white);
+      max-width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .filter-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--green-pale);
+      color: var(--ink-light);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .filter-btn:last-child {
+      border-right: none;
+    }
+
+    .filter-btn:hover {
+      color: var(--green);
+      background: var(--green-ghost);
+    }
+
+    .filter-btn.active {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    /* ═══════════════════════════════════════════════
+   EXPERIENCE GRID
+═══════════════════════════════════════════════ */
+    .experiences-grid {
+      padding: 60px 10vw 120px;
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .exp-card {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-top: 3px solid transparent;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      cursor: default;
+    }
+
+    .exp-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px var(--shadow);
+      border-top-color: var(--gold);
+    }
+
+    .exp-visual {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exp-visual-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .exp-card:hover .exp-visual-bg {
+      transform: scale(1.06);
+    }
+
+    /* Per-experience gradient backgrounds */
+    .bg-tea {
+      background: url('images/front-view-woman-pouring-iced-tea.jpg') center/cover no-repeat;
+    }
+
+    .bg-tea-walk {
+      background: url('images/tea-estate.jpg') center/cover no-repeat;
+    }
+
+    .bg-lunch {
+      background: url('images/IMG_7639.jpeg') center/cover no-repeat;
+    }
+
+    .bg-dinner {
+      background: url('images/IMG_7651.jpeg') center/cover no-repeat;
+    }
+
+    .bg-talk {
+      background: url('images/IMG_7660.jpeg') center/cover no-repeat;
+    }
+
+    .bg-sundown {
+      background: url('images/hero-img2.jpg') center/cover no-repeat;
+    }
+
+    .bg-breakfast {
+      background: url('images/eating outdoor.jpg') center/cover no-repeat;
+    }
+
+    .bg-pool {
+      background: url('images/swimming-pool-resort.jpg') center/cover no-repeat;
+    }
+
+    .bg-trail-lunch {
+      background: url('images/IMG_7675.jpeg') center/cover no-repeat;
+    }
+
+    .bg-briefing {
+      background: url('images/Pekoe Trail access.jpg') center/cover no-repeat;
+    }
+
+    .bg-billiards {
+      background: url('images/Snooker evenings.jpg') center/cover no-repeat;
+    }
+
+    .bg-wellness {
+      background: url('images/garden.webp') center/cover no-repeat;
+    }
+
+    .exp-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    .exp-ph {
+      display: none !important;
+    }
+
+    .exp-ph-icon {
+      font-size: 36px;
+      opacity: 0.3;
+    }
+
+    .exp-ph-text {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: rgba(255, 255, 255, 0.25);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .exp-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 2;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      color: var(--white);
+      background: rgba(26, 21, 16, 0.7);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(199, 168, 94, 0.3);
+    }
+
+    .exp-tag.free {
+      background: rgba(30, 132, 73, 0.85);
+      border-color: rgba(30, 132, 73, 1);
+      color: var(--white);
+    }
+
+    .exp-tag.signature {
+      background: rgba(199, 168, 94, 0.9);
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    .exp-category {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      z-index: 2;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .exp-body {
+      padding: 28px 26px 26px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .exp-name {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--green);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: 0.015em;
+    }
+
+    .exp-desc {
+      font-size: 14.5px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .exp-meta {
+      display: flex;
+      gap: 0;
+      padding: 12px 0;
+      border-top: 1px solid var(--green-pale);
+      border-bottom: 1px solid var(--green-pale);
+      margin-bottom: 20px;
+    }
+
+    .exp-meta-item {
+      flex: 1;
+      text-align: center;
+      border-right: 1px solid var(--green-pale);
+      padding: 4px 0;
+    }
+
+    .exp-meta-item:last-child {
+      border-right: none;
+    }
+
+    .exp-meta-label {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      color: var(--mist);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .exp-meta-val {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .exp-price {
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      color: var(--gold-deep);
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .exp-price span {
+      font-size: 10px;
+      color: var(--mist);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .exp-price.complimentary {
+      color: var(--green);
+      font-style: italic;
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+    }
+
+    .exp-cta {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+      padding: 10px 0;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid var(--green-pale);
+      text-align: left;
+      transition: color 0.25s, border-color 0.25s;
+      align-self: flex-start;
+    }
+
+    .exp-cta:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .exp-cta::after {
+      content: ' →';
+      transition: margin-left 0.25s;
+    }
+
+    .exp-cta:hover::after {
+      margin-left: 4px;
+    }
+
+    /* ═══════════════════════════════════════════════
+   A DAY OF EXPERIENCES — narrative strip
+═══════════════════════════════════════════════ */
+    .day-section {
+      background: var(--green-deep);
+      padding: 120px 10vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .day-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(170deg,
+          transparent 0, transparent 32px,
+          rgba(255, 255, 255, 0.02) 32px, rgba(255, 255, 255, 0.02) 33px);
+    }
+
+    .day-header {
+      text-align: center;
+      margin-bottom: 72px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .day-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .day-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .day-sub {
+      font-size: 18px;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.65;
+    }
+
+    .day-ribbon {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .day-cell {
+      padding: 32px 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border-top: 2px solid rgba(199, 168, 94, 0.3);
+      transition: background 0.25s;
+    }
+
+    .day-cell:hover {
+      background: rgba(199, 168, 94, 0.06);
+    }
+
+    .day-time {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .day-activity {
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+    }
+
+    .day-note {
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════════
+   ADD-ONS & SPECIALS
+═══════════════════════════════════════════════ */
+    .addons-section {
+      padding: 120px 10vw;
+      background: var(--cream-dark);
+    }
+
+    .addons-header {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto 56px;
+    }
+
+    .addons-side .day-eyebrow {
+      color: var(--gold-deep);
+    }
+
+    .addons-side .day-title {
+      color: var(--green);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.15;
+    }
+
+    .addons-intro {}
+
+    .addons-intro p {
+      font-size: 17px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .addons-list {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--green-pale);
+    }
+
+    .addon-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 140px 160px;
+      gap: 24px;
+      padding: 20px 28px;
+      align-items: center;
+      border-bottom: 1px solid var(--green-pale);
+      transition: background 0.25s;
+    }
+
+    .addon-row:last-child {
+      border-bottom: none;
+    }
+
+    .addon-row:hover {
+      background: var(--green-ghost);
+    }
+
+    .addon-icon {
+      font-size: 22px;
+    }
+
+    .addon-info {}
+
+    .addon-name {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 3px;
+      letter-spacing: 0.04em;
+    }
+
+    .addon-desc {
+      font-size: 13.5px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.5;
+    }
+
+    .addon-timing {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--mist);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .addon-price {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      color: var(--gold-deep);
+      font-weight: 600;
+      text-align: right;
+      letter-spacing: 0.04em;
+    }
+
+    /* ═══════════════════════════════════════════════
+   HOW TO BOOK
+═══════════════════════════════════════════════ */
+    .booking-section {
+      padding: 120px 10vw;
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .booking-inner {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .booking-header {
+      margin-bottom: 56px;
+    }
+
+    .booking-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+
+    .step {
+      position: relative;
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      border: 2px solid var(--gold);
+    }
+
+    .step-title {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 14.5px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.65;
+    }
+
+    /* ═══════════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════════ */
+    .cta-section {
+      padding: 120px 10vw;
+      background: var(--ink);
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 50%,
+          rgba(199, 168, 94, 0.08), transparent 60%);
+    }
+
+    .cta-content {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cta-eyebrow::before,
+    .cta-eyebrow::after {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .cta-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+
+    .cta-title em {
+      color: var(--gold-light);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .cta-body {
+      font-size: 18px;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-large-gold {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 20px 44px;
+      text-decoration: none;
+      border: 1px solid var(--gold);
+      transition: background 0.25s, color 0.25s, transform 0.2s;
+    }
+
+    .btn-large-gold:hover {
+      background: var(--white);
+      color: var(--green);
+      transform: translateY(-2px);
+    }
+
+    .btn-large-outline {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--white);
+      padding: 20px 36px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    }
+
+    .btn-large-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════ */
+
+    footer {
+  background: var(--ink);
+  padding: 72px 10vw 40px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 32px;
+}
+.footer-brand {}
+.footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.footer-tagline {
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.footer-contact-item {
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-contact-item a { color: var(--gold); text-decoration: none; }
+
+.footer-col-title {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-copy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  font-style: italic;
+}
+.footer-collection {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+
+    /* ═══════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes emberPulse {
+
+      0%,
+      100% {
+        opacity: 0.7;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes firePulse {
+
+      0%,
+      100% {
+        opacity: 0.85;
+        transform: translateX(-50%) scaleY(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) scaleY(1.08);
+      }
+    }
+
+    @keyframes smokeMove {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes emberRise {
+      0% {
+        bottom: 20%;
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      100% {
+        bottom: 90%;
+        opacity: 0;
+        transform: translateX(20px);
+      }
+    }
+
+    @keyframes flicker {
+
+      0%,
+      90%,
+      100% {
+        transform: scale(1) rotate(-2deg);
+      }
+
+      45% {
+        transform: scale(1.06) rotate(2deg);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Filter hide */
+    .exp-card.filtered-out {
+      display: none;
+    }
+
+    /* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .signature-section {
+        grid-template-columns: 1fr;
+      }
+
+      .fire-panel {
+        min-height: 380px;
+      }
+
+      .signature-content {
+        padding: 64px 40px;
+      }
+
+      .experiences-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .day-ribbon {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .addons-header {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .addon-row {
+        grid-template-columns: 40px 1fr auto;
+        row-gap: 8px;
+      }
+
+      .addon-price {
+        grid-column: 2;
+        text-align: left;
+        padding-left: 0;
+      }
+
+      .addon-timing {
+        grid-column: 3;
+        text-align: right;
+      }
+
+      .booking-steps {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 100px 6vw 60px;
+      }
+
+      .hero-title {
+        font-size: clamp(44px, 12vw, 72px);
+      }
+
+      .experiences-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .day-ribbon {
+        grid-template-columns: 1fr;
+      }
+
+      .cat-filter {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .filter-btn {
+        flex: 1 0 45%;
+        border-bottom: 1px solid var(--green-pale);
+      }
+
+      .addon-row {
+        grid-template-columns: 40px 1fr;
+        gap: 12px;
+      }
+
+      .addon-timing,
+      .addon-price {
+        grid-column: 2;
+        text-align: left;
+      }
+
+      .sig-details {
+        grid-template-columns: 1fr;
+      }
+
+      .sig-detail-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(199, 168, 94, 0.15);
+        padding-left: 0 !important;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <?php include 'layout/navbar.php'; ?>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-vines"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-content">
+      <div class="hero-breadcrumb">
+        <a href="/vD/home.php">Home</a> &nbsp;/&nbsp; Experiences
+      </div>
+
+      <div class="hero-menu-label">A Menu of Slow Things</div>
+
+      <h1 class="hero-title">
+        The<br>
+        <em>Experiences.</em>
+      </h1>
+
+      <p class="hero-sub">
+        From fireside evenings to tea estate walks. From breakfast mist to lantern-lit dinners under the Tea Pavilion. A small menu of quiet things — most happening naturally, some arranged on request.
+      </p>
+
+      <div class="hero-chips">
+        <a href="#fireside" class="hero-chip"><span class="hero-chip-icon">🔥</span> Fireside</a>
+        <a href="#tea-experiences" class="hero-chip"><span class="hero-chip-icon">🍵</span> Tea Rituals</a>
+        <a href="#dining" class="hero-chip"><span class="hero-chip-icon">🍽️</span> Dining</a>
+        <a href="#estate" class="hero-chip"><span class="hero-chip-icon">🌿</span> Estate Walks</a>
+        <a href="#wellness" class="hero-chip"><span class="hero-chip-icon">💆</span> Wellness</a>
+        <a href="#trail" class="hero-chip"><span class="hero-chip-icon">🥾</span> Trail Support</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INTRO ═══ -->
+  <section class="intro-section">
+    <div class="intro-rule"></div>
+    <div class="intro-eyebrow">The Philosophy</div>
+    <p class="intro-statement">
+      "Most of our experiences happen without being asked for — tea service on the verandah, the fire lit at six-thirty, mist rising over the tea at six. <em>Others you arrange.</em> All of them move at the pace of the estate."
+    </p>
+  </section>
+
+  <!-- ═══ SIGNATURE — FIRESIDE ═══ -->
+  <section id="fireside" class="signature-section">
+
+    <div class="fire-panel">
+      <img src="images/img6.jpg" alt="Fireside evening at the Planter's Lounge, The Tea Bungalow" class="fire-panel-img">
+      <div class="fire-smoke"></div>
+      <div class="fire-glow-inner"></div>
+      <div class="fire-glow-2"></div>
+      <div class="fire-ember"></div>
+      <div class="fire-ember"></div>
+      <div class="fire-ember"></div>
+      <div class="fire-ember"></div>
+    </div>
+
+    <div class="signature-content">
+      <div class="sig-eyebrow">The Signature Experience</div>
+      <h2 class="sig-title">The Fire Is Lit at <em>Six-Thirty.</em></h2>
+      <p class="sig-body">
+        In the Planter's Lounge, at exactly <strong>six-thirty every evening</strong>, the original 1890 stone fireplace is lit. Leather armchairs worn soft by a century of use. A pot of estate tea. Ceylon arrack if you prefer. The mist settling outside. Conversations drift.
+      </p>
+      <p class="sig-body">
+        There is nothing to book. No menu. No timed session. The fire is simply there — for you, every evening, for as long as you want to sit by it.
+      </p>
+
+      <div class="sig-details">
+        <div class="sig-detail-item">
+          <div class="sig-detail-label">When</div>
+          <div class="sig-detail-value">From 6:30 PM, every evening</div>
+        </div>
+        <div class="sig-detail-item">
+          <div class="sig-detail-label">Where</div>
+          <div class="sig-detail-value">The Planter's Lounge · By the original hearth</div>
+        </div>
+      </div>
+
+      <div class="sig-price-row">
+        <span class="sig-price">Complimentary for all guests</span>
+        <span class="sig-price-tag">No booking needed</span>
+      </div>
+
+      <a href="#enquire" class="btn-sig">Reserve Your Stay</a>
+    </div>
+  </section>
+
+  <!-- ═══ CATEGORIES HEADER ═══ -->
+  <section class="categories-section">
+    <div class="cat-header">
+      <div class="cat-eyebrow">The Full Menu</div>
+      <h2 class="cat-title">Experiences at the Estate</h2>
+      <p class="cat-sub">Some complimentary, some arranged. Some daily, some by request. Filter to find what suits your stay.</p>
+    </div>
+
+    <div class="cat-filter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="tea">Tea Rituals</button>
+      <button class="filter-btn" data-filter="dining">Dining</button>
+      <button class="filter-btn" data-filter="estate">Estate</button>
+      <button class="filter-btn" data-filter="trail">Trail Support</button>
+      <button class="filter-btn" data-filter="wellness">Wellness</button>
+      <button class="filter-btn" data-filter="free">Complimentary</button>
+    </div>
+  </section>
+
+  <!-- ═══ EXPERIENCES GRID ═══ -->
+  <div class="experiences-grid" id="tea-experiences">
+
+    <!-- 1. PLANTER'S AFTERNOON TEA -->
+    <div class="exp-card" data-cat="tea">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-tea"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🍵</div>
+          <div class="exp-ph-text">Afternoon tea photograph</div>
+        </div>
+        <div class="exp-tag">Bookable</div>
+        <div class="exp-category">Tea Ritual</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">The Planter's Afternoon Tea</h3>
+        <p class="exp-desc">Three-tier tea service on the verandah — estate-fresh Ceylon tea tasting alongside savouries, scones, and small sweets. A proper afternoon ritual in the way planters once took it.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">3:30 PM</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">~1 hr</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Verandah</div>
+          </div>
+        </div>
+        <div class="exp-price">Price on request <span>per person</span></div>
+        <a href="#enquire" class="exp-cta">Book This Experience</a>
+      </div>
+    </div>
+
+    <!-- 2. MORNING TEA SERVICE -->
+    <div class="exp-card" data-cat="tea free">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-tea-walk"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">☀️</div>
+          <div class="exp-ph-text">Dawn tea · Morning Room</div>
+        </div>
+        <div class="exp-tag free">Included</div>
+        <div class="exp-category">Tea Ritual · Daily</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Early Morning Tea</h3>
+        <p class="exp-desc">A pot of estate-fresh tea, poured in the Morning Room as the light comes up. The day's first ritual — quiet, unhurried, no formality. The mist lifts over the tea fields outside.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">6:00 AM+</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">Anytime</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Morning Room</div>
+          </div>
+        </div>
+        <div class="exp-price complimentary">Complimentary · Included with your stay</div>
+        <a href="#enquire" class="exp-cta">Included Automatically</a>
+      </div>
+    </div>
+
+    <!-- 3. TEA ESTATE WALK -->
+    <div class="exp-card" id="estate" data-cat="estate">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-tea-walk"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🌿</div>
+          <div class="exp-ph-text">Estate walk · tea fields</div>
+        </div>
+        <div class="exp-tag">Bookable</div>
+        <div class="exp-category">Estate Experience</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Guided Tea Estate Walk</h3>
+        <p class="exp-desc">A guided hour through the working tea fields of Galaha Estate. Learn how tea is plucked, withered, and rolled. Understand why this land became the birthplace of Ceylon Tea in 1867.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">By arrangement</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">~1 hr</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Galaha Estate</div>
+          </div>
+        </div>
+        <div class="exp-price">Price on request <span>per person</span></div>
+        <a href="#enquire" class="exp-cta">Book This Experience</a>
+      </div>
+    </div>
+
+    <!-- 4. PRIVATE FIRESIDE DINNER -->
+    <div class="exp-card" data-cat="dining" id="dining">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-dinner"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🕯️</div>
+          <div class="exp-ph-text">Fireside dining · lantern light</div>
+        </div>
+        <div class="exp-tag signature">Signature</div>
+        <div class="exp-category">Dining · Private</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Private Fireside Dinner</h3>
+        <p class="exp-desc">Exclusive use of the Planter's Lounge for the evening. Three courses for two, served by the original 1890 hearth. Ceylon arrack, candlelight, the fire crackling beside you.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">7:30 PM</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">~2 hrs</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Planter's Lounge</div>
+          </div>
+        </div>
+        <div class="exp-price">Price on request <span>for two</span></div>
+        <a href="#enquire" class="exp-cta">Book This Experience</a>
+      </div>
+    </div>
+
+    <!-- 5. TEA PAVILION DINNER -->
+    <div class="exp-card" data-cat="dining">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-lunch"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🍽️</div>
+          <div class="exp-ph-text">Tea Pavilion · lantern dining</div>
+        </div>
+        <div class="exp-tag">Daily</div>
+        <div class="exp-category">Dining</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Dinner at the Tea Pavilion</h3>
+        <p class="exp-desc">Lantern-lit dinners under the covered outdoor pavilion. Live cooking in the open. Sri Lankan, continental, or curated multi-cuisine menus — tell us your preferences and dietary needs.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">7:30 PM</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">~2 hrs</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Tea Pavilion</div>
+          </div>
+        </div>
+        <div class="exp-price">Price on request <span>per person</span></div>
+        <a href="#enquire" class="exp-cta">Book This Experience</a>
+      </div>
+    </div>
+
+    <!-- 6. LONG TABLE BREAKFAST -->
+    <div class="exp-card" data-cat="dining free">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-breakfast"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🥐</div>
+          <div class="exp-ph-text">Long Table · breakfast</div>
+        </div>
+        <div class="exp-tag free">Included</div>
+        <div class="exp-category">Dining · Daily</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Breakfast at the Long Table</h3>
+        <p class="exp-desc">A proper estate breakfast served at the twelve-seat Long Table. Eggs, fresh local fruit, freshly baked breads, estate-fresh Ceylon tea. Hikers served from 6:30 AM — earlier on request.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">6:30 AM – 10:00 AM</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">Unhurried</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Long Table</div>
+          </div>
+        </div>
+        <div class="exp-price complimentary">Complimentary · Included with your stay</div>
+        <a href="#enquire" class="exp-cta">Included Automatically</a>
+      </div>
+    </div>
+
+    <!-- 7. HERITAGE TALK -->
+    <div class="exp-card" data-cat="estate free">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-talk"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">📖</div>
+          <div class="exp-ph-text">Heritage talk · verandah evening</div>
+        </div>
+        <div class="exp-tag free">Complimentary</div>
+        <div class="exp-category">Estate Experience</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">The Evening Heritage Talk</h3>
+        <p class="exp-desc">A quiet fifteen-minute story on the verandah — the history of Galaha, James Taylor's 1867 experiment at Loolecondera, and how this bungalow became part of Ceylon Tea's beginnings.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">Pre-dinner</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">~15 min</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Verandah</div>
+          </div>
+        </div>
+        <div class="exp-price complimentary">Complimentary · Ask any staff member</div>
+        <a href="#enquire" class="exp-cta">Request Talk</a>
+      </div>
+    </div>
+
+    <!-- 8. SUNSET SUNDOWNER -->
+    <div class="exp-card" data-cat="dining">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-sundown"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🌅</div>
+          <div class="exp-ph-text">Sundowner · garden bar</div>
+        </div>
+        <div class="exp-tag">Bookable</div>
+        <div class="exp-category">Dining · Evening</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Sunset Sundowner</h3>
+        <p class="exp-desc">Drinks and canapés served in the garden as the sun sets behind the hills. Ceylon arrack, G&amp;Ts, local snacks. A short ritual before dinner — perfect for groups.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">6:00 PM</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">~45 min</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Garden</div>
+          </div>
+        </div>
+        <div class="exp-price">Price on request <span>per person</span></div>
+        <a href="#enquire" class="exp-cta">Book This Experience</a>
+      </div>
+    </div>
+
+    <!-- 9. POOL & GARDEN -->
+    <div class="exp-card" data-cat="estate free">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-pool"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">💧</div>
+          <div class="exp-ph-text">Private pool · garden setting</div>
+        </div>
+        <div class="exp-tag free">Included</div>
+        <div class="exp-category">Estate · Daily</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">The Private Pool</h3>
+        <p class="exp-desc">Intimate stone-edged pool framed by tea borders and white jasmine. Morning swims, afternoon cool-offs, evening reflections under the upland sky. Lantern-lit after dark.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">All day</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">Your pace</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Garden</div>
+          </div>
+        </div>
+        <div class="exp-price complimentary">Complimentary · Always open</div>
+        <a href="#enquire" class="exp-cta">Enjoy the Pool</a>
+      </div>
+    </div>
+
+    <!-- 10. PACKED TRAIL LUNCH -->
+    <div class="exp-card" data-cat="trail" id="trail">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-trail-lunch"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🧺</div>
+          <div class="exp-ph-text">Packed lunch · trail basket</div>
+        </div>
+        <div class="exp-tag">For Hikers</div>
+        <div class="exp-category">Trail Support</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Packed Trail Lunch</h3>
+        <p class="exp-desc">Pre-ordered the night before. Sandwich or wrap, fresh fruit, energy snacks, water, estate tea in a thermos. Standard or premium options, vegetarian and vegan fully accommodated.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Order</div>
+            <div class="exp-meta-val">Night before</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Collect</div>
+            <div class="exp-meta-val">Breakfast</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">For</div>
+            <div class="exp-meta-val">Hikers</div>
+          </div>
+        </div>
+        <div class="exp-price">Price on request <span>per person</span></div>
+        <a href="/vD/pekoe-trail.php" class="exp-cta">Trail Details</a>
+      </div>
+    </div>
+
+    <!-- 11. MORNING TRAIL BRIEFING -->
+    <div class="exp-card" data-cat="trail free">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-briefing"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🗺️</div>
+          <div class="exp-ph-text">Morning trail briefing</div>
+        </div>
+        <div class="exp-tag free">Included</div>
+        <div class="exp-category">Trail Support</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Morning Trail Briefing</h3>
+        <p class="exp-desc">Daily weather check, current trail conditions, leech advisory, route overview, any closures or diversions, and gear recommendations — all before you leave the breakfast table.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">At breakfast</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">~10 min</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">For</div>
+            <div class="exp-meta-val">Trail guests</div>
+          </div>
+        </div>
+        <div class="exp-price complimentary">Complimentary · Every morning</div>
+        <a href="/vD/pekoe-trail.php" class="exp-cta">Trail Details</a>
+      </div>
+    </div>
+
+    <!-- 12. BILLIARDS & GAMES -->
+    <div class="exp-card" data-cat="estate free">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-billiards"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🎱</div>
+          <div class="exp-ph-text">Billiards Room</div>
+        </div>
+        <div class="exp-tag free">Included</div>
+        <div class="exp-category">Estate · Evening</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Snooker &amp; the Billiards Room</h3>
+        <p class="exp-desc">The former estate kitchen, now a place of relaxed evening play. Snooker during rainstorms. Easy company after dinner. Nothing formal — just a room that asks nothing of you but your time.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">Evenings</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">Your time</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Billiards Room</div>
+          </div>
+        </div>
+        <div class="exp-price complimentary">Complimentary · Always open</div>
+        <a href="#enquire" class="exp-cta">Play a Frame</a>
+      </div>
+    </div>
+
+    <!-- 13. FOOT SOAK -->
+    <div class="exp-card" data-cat="wellness trail free" id="wellness">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-wellness"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🦶</div>
+          <div class="exp-ph-text">Verandah foot soak</div>
+        </div>
+        <div class="exp-tag free">For Hikers</div>
+        <div class="exp-category">Wellness · Trail</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Verandah Foot Soak</h3>
+        <p class="exp-desc">Warm water, estate herbs, a quiet chair on the rear verandah. Set up for hikers arriving off the trail — no booking, no fuss. Just tell us when you're back and we'll prepare it.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">On arrival</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">Your pace</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">Verandah</div>
+          </div>
+        </div>
+        <div class="exp-price complimentary">Complimentary · For trail guests</div>
+        <a href="/vD/pekoe-trail.php" class="exp-cta">Trail Details</a>
+      </div>
+    </div>
+
+    <!-- 14. AYURVEDIC MASSAGE -->
+    <div class="exp-card" data-cat="wellness">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-wellness"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">💆</div>
+          <div class="exp-ph-text">Ayurvedic treatment</div>
+        </div>
+        <div class="exp-tag">By Arrangement</div>
+        <div class="exp-category">Wellness</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Ayurvedic Massage (On-Estate)</h3>
+        <p class="exp-desc">Arranged with a trusted local practitioner. Traditional Sri Lankan techniques, on-site in your chamber or in a quiet treatment space. Particularly welcome after hiking days. 48hr notice preferred.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">By request</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">60–90 min</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Where</div>
+            <div class="exp-meta-val">On-estate</div>
+          </div>
+        </div>
+        <div class="exp-price">Price on request <span>per session</span></div>
+        <a href="#enquire" class="exp-cta">Enquire</a>
+      </div>
+    </div>
+
+    <!-- 15. ESTATE GUIDE WALK TO LOOLECONDERA -->
+    <div class="exp-card" data-cat="estate trail">
+      <div class="exp-visual">
+        <div class="exp-visual-bg bg-tea-walk"></div>
+        <div class="exp-visual-overlay"></div>
+        <div class="exp-ph">
+          <div class="exp-ph-icon">🏛️</div>
+          <div class="exp-ph-text">Loolecondera · James Taylor's Estate</div>
+        </div>
+        <div class="exp-tag">Historical</div>
+        <div class="exp-category">Estate · Trail</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-name">Loolecondera Heritage Walk</h3>
+        <p class="exp-desc">A longer guided walk to Loolecondera Estate — the exact site where James Taylor planted Ceylon's first tea in 1867. The history is real, and it is right next door. 48hr notice for a dedicated guide.</p>
+        <div class="exp-meta">
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">When</div>
+            <div class="exp-meta-val">By arrangement</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Duration</div>
+            <div class="exp-meta-val">~3 hrs</div>
+          </div>
+          <div class="exp-meta-item">
+            <div class="exp-meta-label">Distance</div>
+            <div class="exp-meta-val">~5 km</div>
+          </div>
+        </div>
+        <div class="exp-price">Price on request <span>per guest</span></div>
+        <a href="#enquire" class="exp-cta">Book Guide</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ A DAY AT THE ESTATE ═══ -->
+  <section class="day-section">
+    <div class="day-header reveal">
+      <div class="day-eyebrow">An Unhurried Day</div>
+      <h2 class="day-title">The Rhythm of the Estate</h2>
+      <p class="day-sub">Experiences don't queue or compete — they simply unfold across the day. Here's what a typical one looks like, though yours will move to your own pace.</p>
+    </div>
+
+    <div class="day-ribbon reveal">
+      <div class="day-cell">
+        <div class="day-time">6:00–8:30 AM</div>
+        <div class="day-activity">Morning Tea &amp; Breakfast</div>
+        <div class="day-note">Mist lifts over the tea fields. Tea poured in the Morning Room. Breakfast at the Long Table.</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-time">Morning</div>
+        <div class="day-activity">The Day Begins</div>
+        <div class="day-note">Estate walk · trail hike with packed lunch · reading on the verandah · swimming in the pool.</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-time">3:30 PM</div>
+        <div class="day-activity">Planter's Afternoon Tea</div>
+        <div class="day-note">Three-tier tea service on the verandah. Estate-fresh Ceylon tea. Small savouries and sweets.</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-time">6:00 PM</div>
+        <div class="day-activity">Sundowner &amp; Fire</div>
+        <div class="day-note">Garden drinks before dinner. Fire lit at six-thirty in the Planter's Lounge. Heritage talk if you like.</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-time">7:30 PM</div>
+        <div class="day-activity">Dinner at the Pavilion</div>
+        <div class="day-note">Lantern-lit dinner under the Tea Pavilion. Long, slow, cooked in the open. Multiple courses in their own time.</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-time">9:00 PM</div>
+        <div class="day-activity">Fireside &amp; Snooker</div>
+        <div class="day-note">The Planter's Lounge. A game in the Billiards Room. Ceylon arrack. Mist heavy outside.</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-time">Bedtime</div>
+        <div class="day-activity">The Estate Sleeps</div>
+        <div class="day-note">Your chamber waiting. Fire crackling down. The hill country silent.</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-time">Repeat</div>
+        <div class="day-activity">— Slowly —</div>
+        <div class="day-note">Most guests stay 2–3 nights. By the second day, you stop checking the time. By the third, you stop wanting to leave.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ADD-ONS & SPECIALS TABLE ═══ -->
+  <section class="addons-section">
+    <div class="addons-header reveal">
+      <div class="addons-side">
+        <div class="day-eyebrow">Add-Ons &amp; Extras</div>
+        <h2 class="day-title">Small Touches, on Request</h2>
+      </div>
+      <div class="addons-intro">
+        <p>Beyond the main experiences, small things can be arranged — flowers in your chamber, a private picnic on the lawn, a cake for a quiet celebration, a particular Ceylon tea to take home.</p>
+        <p>Tell us what you have in mind. Most things we can arrange with a few hours' notice.</p>
+      </div>
+    </div>
+
+    <div class="addons-list reveal">
+
+      <div class="addon-row">
+        <div class="addon-icon">🌸</div>
+        <div class="addon-info">
+          <div class="addon-name">Flowers in Your Chamber</div>
+          <div class="addon-desc">Fresh estate flowers arranged in your room — jasmine, temple flowers, seasonal picks.</div>
+        </div>
+        <div class="addon-timing">On arrival</div>
+        <div class="addon-price">Price on request</div>
+      </div>
+
+      <div class="addon-row">
+        <div class="addon-icon">🎂</div>
+        <div class="addon-info">
+          <div class="addon-name">Celebration Cake</div>
+          <div class="addon-desc">Freshly baked cake for birthdays, anniversaries, or quiet milestones — tell us what to write.</div>
+        </div>
+        <div class="addon-timing">24hr notice</div>
+        <div class="addon-price">Price on request</div>
+      </div>
+
+      <div class="addon-row">
+        <div class="addon-icon">🧺</div>
+        <div class="addon-info">
+          <div class="addon-name">Private Garden Picnic</div>
+          <div class="addon-desc">Curated picnic basket set up in the garden or by the pool — linens, china, local food.</div>
+        </div>
+        <div class="addon-timing">Same day</div>
+        <div class="addon-price">Price on request · per couple</div>
+      </div>
+
+      <div class="addon-row">
+        <div class="addon-icon">🍷</div>
+        <div class="addon-info">
+          <div class="addon-name">Wine or Arrack Setup</div>
+          <div class="addon-desc">Bottles pre-arranged in your chamber or at dinner. Recommendations available.</div>
+        </div>
+        <div class="addon-timing">Anytime</div>
+        <div class="addon-price">Price on request · per bottle</div>
+      </div>
+
+      <div class="addon-row">
+        <div class="addon-icon">🫖</div>
+        <div class="addon-info">
+          <div class="addon-name">Estate Tea to Take Home</div>
+          <div class="addon-desc">A selection of the teas you enjoyed during your stay, packed to take home with you.</div>
+        </div>
+        <div class="addon-timing">On departure</div>
+        <div class="addon-price">Price on request · per box</div>
+      </div>
+
+      <div class="addon-row">
+        <div class="addon-icon">📸</div>
+        <div class="addon-info">
+          <div class="addon-name">Private Photography</div>
+          <div class="addon-desc">Local photographer for anniversaries, milestone visits, or family portraits on the estate.</div>
+        </div>
+        <div class="addon-timing">48hr notice</div>
+        <div class="addon-price">Price on request · per session</div>
+      </div>
+
+      <div class="addon-row">
+        <div class="addon-icon">🚐</div>
+        <div class="addon-info">
+          <div class="addon-name">Day Trip: Kandy &amp; Temple of the Tooth</div>
+          <div class="addon-desc">Private driver for a guided day into Kandy — Temple of the Tooth, lakefront, city markets.</div>
+        </div>
+        <div class="addon-timing">Same day</div>
+        <div class="addon-price">Price on request · per vehicle</div>
+      </div>
+
+      <div class="addon-row">
+        <div class="addon-icon">🎻</div>
+        <div class="addon-info">
+          <div class="addon-name">Live Music in the Evening</div>
+          <div class="addon-desc">A local musician — acoustic, traditional Sri Lankan, or something bespoke for your evening.</div>
+        </div>
+        <div class="addon-timing">72hr notice</div>
+        <div class="addon-price">Price on request · per set</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ HOW TO BOOK ═══ -->
+  <section class="booking-section">
+    <div class="booking-inner">
+      <div class="booking-header reveal">
+        <div class="cat-eyebrow">How It Works</div>
+        <h2 class="cat-title">Booking an Experience</h2>
+      </div>
+
+      <div class="booking-steps">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <div class="step-title">Tell Us Your Dates</div>
+          <div class="step-desc">Mention any experiences you want when enquiring about your stay. Or arrange things on arrival — most can be set up with a day's notice.</div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">2</div>
+          <div class="step-title">We Confirm the Details</div>
+          <div class="step-desc">Timing, dietary preferences, special requests. We respond within 24 hours with everything arranged for your stay.</div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">3</div>
+          <div class="step-title">Settle on Departure</div>
+          <div class="step-desc">Experiences and add-ons are added to your final bill. No need to pay upfront. Complimentary items stay complimentary.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section id="enquire" class="cta-section">
+    <div class="cta-content">
+      <div class="cta-eyebrow reveal">Plan Your Stay</div>
+      <h2 class="cta-title reveal">Arrange Your <em>Experiences</em></h2>
+      <p class="cta-body reveal">
+        Tell us which experiences interest you and we'll build them around your dates. Many are simply waiting for you on arrival — the fire, the pool, the morning tea, the Long Table. Others we arrange with a little notice.
+      </p>
+      <div class="cta-buttons reveal">
+        <a href="/vD/contact.php#enquiry-form" class="btn-large-gold">Enquire About Experiences</a>
+        <a href="https://wa.me/94777874555" class="btn-large-outline" target="_blank" rel="noopener noreferrer">WhatsApp Direct</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <?php include 'layout/footer.php'; ?>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, {
+      threshold: 0.08
+    });
+    reveals.forEach(el => obs.observe(el));
+
+    // Filter experiences
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        document.querySelectorAll('.exp-card').forEach(card => {
+          if (filter === 'all') {
+            card.classList.remove('filtered-out');
+          } else {
+            const cats = card.dataset.cat || '';
+            if (cats.includes(filter)) {
+              card.classList.remove('filtered-out');
+            } else {
+              card.classList.add('filtered-out');
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

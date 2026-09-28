@@ -1,0 +1,22 @@
+{
+  "name": "Family Retreat",
+  "section": "heritage",
+  "layout": "card",
+  "accent": "none",
+  "duration": "3–5 Nights",
+  "tagline": "The Highlands Suite + Pekoe Room family wing, or the Carriage House Cottage — for families who need their own space.",
+  "inclusions": [
+    "Family wing (Highlands Suite + Pekoe Room) or Cottage",
+    "Daily breakfasts — children's menu available",
+    "Private estate walk designed for families",
+    "Dedicated check-in assistance",
+    "Full garden & pool access",
+    "Cot available on request (no charge)"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ family · 3 nights",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 100
+}

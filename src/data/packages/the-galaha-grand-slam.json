@@ -1,0 +1,23 @@
+{
+  "name": "The Galaha Grand Slam",
+  "section": "trail",
+  "layout": "card",
+  "accent": "gold",
+  "duration": "2 Nights",
+  "badge": "★ Serious Trekker",
+  "tagline": "Two nights, two stages, one base. Everything arranged.",
+  "inclusions": [
+    "2 nights — Tea Bungalow Galaha",
+    "Stage 1 End pick-up + Stage 2 walk-out",
+    "Stage 2 End pick-up at Loolecondera",
+    "Stage 3 drop-off available next day",
+    "2 dinners, 2 breakfasts, 1 packed lunch",
+    "Daily trail briefings & weather updates"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ couple",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 30
+}

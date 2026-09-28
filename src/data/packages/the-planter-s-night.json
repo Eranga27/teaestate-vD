@@ -1,0 +1,22 @@
+{
+  "name": "The Planter's Night",
+  "section": "heritage",
+  "layout": "card",
+  "accent": "none",
+  "duration": "1 Night",
+  "tagline": "One perfect night at the estate, tea on arrival, dinner, the fire, breakfast before departure.",
+  "inclusions": [
+    "1 night in a heritage chamber",
+    "Welcome estate tea service on arrival",
+    "3-course dinner at the Long Table",
+    "Full estate breakfast",
+    "Fireside lounge access",
+    "Pool & garden access throughout"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ couple · 1 night",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 80
+}

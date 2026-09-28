@@ -1,0 +1,22 @@
+{
+  "name": "Private Celebration",
+  "section": "heritage",
+  "layout": "card",
+  "accent": "gold",
+  "duration": "2–4 Nights",
+  "tagline": "Anniversary, birthday, honeymoon — the estate arranged around your occasion.",
+  "inclusions": [
+    "Founder's Suite — most distinguished chamber",
+    "Private fireside dinner for two on arrival",
+    "Afternoon tea for two on a second day",
+    "Flowers & welcome arrangement on arrival",
+    "Sundowner cocktails in the garden",
+    "Bespoke additional arrangements available"
+  ],
+  "rate_prefix": "From",
+  "rate": "Price on request",
+  "rate_period": "/ couple · 2 nights",
+  "cta_label": "Enquire",
+  "active": true,
+  "sort_order": 110
+}

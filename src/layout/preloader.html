@@ -1,0 +1,435 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     PRELOADER — "Through the doorway"  (injected after <body> on every page by
+     scripts/build_static.js; plays once per browser session)
+
+     1. Threshold — a gold colonial arch draws itself, a lotus keystone above
+                    and a sandakada pahana (moonstone) at its foot.
+     2. Montage   — estate photographs cut through the arch while THE TEA and
+                    BUNGALOW rise either side; the year rolls from 1867 (Ceylon's
+                    first tea) to 1890 (the bungalow), under ආයුබෝවන්.
+     3. Step in   — the words part like doors, the photographs fall away and the
+                    arch opens past the screen edges onto the page beneath.
+
+     The darkness is the arch's own box-shadow, so its opening is a plain transform.
+     ~5s once the page has started up. Click / tap / Esc skips. Reduced-motion visitors never see it; the head
+     script (build_static.js) hides it before first paint once seen. Fires
+     tb:preloader-reveal as the arch opens and tb:preloader-done when it's gone.
+═══════════════════════════════════════════════════════════════════════════ -->
+<style>
+  html.tb-preloader-skip #tb-preloader { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { #tb-preloader { display: none !important; } }
+  html.tb-pl-lock, html.tb-pl-lock body { overflow: hidden !important; }
+
+  #tb-preloader {
+    --tb-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --tb-door-ease: cubic-bezier(0.76, 0, 0.24, 1);
+    --tb-gold: #C7A85E;
+    --tb-gold-light: #dfc080;
+    --tb-cream: #F5F1E9;
+    --tb-night: #040b07;
+    --tb-w: clamp(112px, min(19vw, 34vh), 300px);
+    position: fixed; inset: 0; z-index: 999999; overflow: hidden;
+    pointer-events: all; user-select: none; -webkit-user-select: none; cursor: default;
+    -webkit-tap-highlight-color: transparent;
+    /* CSS failsafe: if the script never runs, get out of the way */
+    animation: tbPlFailsafe 10s linear forwards;
+  }
+  @keyframes tbPlFailsafe { 0%, 96% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
+  #tb-preloader *, #tb-preloader *::before, #tb-preloader *::after { box-sizing: border-box; }
+
+  /* ── Composition: greeting / THE TEA [arch] BUNGALOW / year ────────── */
+  .tb-pl-stage {
+    position: absolute; inset: 0; display: grid; align-content: center; justify-items: center;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-areas: ". greet ." "left door right" ". year .";
+    column-gap: clamp(18px, 3vw, 52px); row-gap: clamp(14px, 2.4vh, 26px); padding: 64px 16px;
+  }
+  .tb-pl-stage > * { position: relative; z-index: 1; }
+
+  /* ── The doorway ────────────────────────────────────────────────────── */
+  .tb-pl-portal {
+    grid-area: door; z-index: 0; width: var(--tb-w); height: calc(var(--tb-w) * 1.42);
+    margin: calc(var(--tb-w) * 0.2) 0 calc(var(--tb-w) * 0.3); transform-origin: 50% 50%;
+  }
+  /* Everything around the arch is this element's shadow; the glow is drawn above it */
+  .tb-pl-door {
+    position: absolute; inset: 0; overflow: hidden; border-radius: 999px 999px 0 0;
+    box-shadow: 0 0 110px 14px rgba(199, 168, 94, 0.09), 0 0 0 150vmax var(--tb-night);
+  }
+  .tb-pl-fill { position: absolute; inset: 0; background: radial-gradient(130% 75% at 50% 0%, #1f3d28 0%, #0d1f13 58%, #07130c 100%); }
+  .tb-pl-shot {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+    clip-path: inset(100% 0 0 0); transform: scale(1.32); filter: brightness(0.9) saturate(0.95);
+  }
+  .tb-pl-shot.is-in {
+    clip-path: inset(0 0 0 0); transform: scale(1.04);
+    transition: clip-path 0.9s var(--tb-door-ease), transform 2.6s var(--tb-ease);
+  }
+  .tb-pl-door-content { position: absolute; inset: 0; }
+
+  /* Gold linework: arch, outer arch, lotus keystone, moonstone at the threshold */
+  .tb-pl-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; filter: drop-shadow(0 0 6px rgba(223, 192, 128, 0.35)); }
+  .tb-pl-lines path { fill: none; stroke: var(--tb-gold-light); stroke-width: 1.2; stroke-linecap: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .tb-pl-lines .tb-pl-soft { stroke: rgba(223, 192, 128, 0.42); stroke-width: 1; }
+  .tb-pl-lines .tb-pl-petal { fill: rgba(199, 168, 94, 0); }
+  #tb-preloader.is-on .tb-pl-lines path { stroke-dashoffset: 0; transition: stroke-dashoffset 1.5s cubic-bezier(0.65, 0, 0.35, 1) var(--d, 0s), fill 0.8s ease calc(var(--d, 0s) + 1s); }
+  #tb-preloader.is-on .tb-pl-lines .tb-pl-petal { fill: rgba(199, 168, 94, 0.55); }
+
+  /* ── Words either side (stacked above and below on phones) ─────────── */
+  .tb-pl-word {
+    display: flex; white-space: nowrap; font-family: 'Cinzel', Georgia, serif; font-weight: 400;
+    font-size: clamp(24px, 4.8vw, 82px); line-height: 1; letter-spacing: 0.06em; color: var(--tb-cream);
+    transition: transform 1.1s var(--tb-door-ease), opacity 0.8s ease, filter 0.8s ease;
+  }
+  .tb-pl-word-l { grid-area: left; justify-self: end; align-self: center; }
+  .tb-pl-word-r { grid-area: right; justify-self: start; align-self: center; }
+  .tb-pl-l { display: inline-block; overflow: hidden; padding: 0.06em 0.03em 0.1em; }
+  .tb-pl-l > span { display: inline-block; transform: translateY(115%); }
+  .tb-pl-sp { display: inline-block; width: 0.34em; }
+  #tb-preloader.is-words .tb-pl-l > span { transform: none; transition: transform 1.2s var(--tb-ease) calc(var(--i) * 0.05s); }
+  #tb-preloader.is-exit .tb-pl-word-l { transform: translateX(-22vw); opacity: 0; filter: blur(4px); }
+  #tb-preloader.is-exit .tb-pl-word-r { transform: translateX(22vw); opacity: 0; filter: blur(4px); }
+
+  /* ── Greeting and the rolling year ─────────────────────────────────── */
+  .tb-pl-greet { grid-area: greet; text-align: center; opacity: 0; transform: translateY(12px); transition: opacity 1s ease, transform 1.2s var(--tb-ease); }
+  .tb-pl-greet-si {
+    font-family: 'Noto Serif Sinhala', 'Iskoola Pota', 'Sinhala Sangam MN', 'Noto Sans Sinhala', 'Nirmala UI', serif;
+    font-size: clamp(22px, 2.3vw, 34px); line-height: 1.4;
+    background: linear-gradient(180deg, #f3dca4 0%, var(--tb-gold-light) 50%, var(--tb-gold) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .tb-pl-greet-en { font-family: 'Cinzel', Georgia, serif; font-size: 9.5px; letter-spacing: 0.34em; padding-left: 0.34em; text-transform: uppercase; color: rgba(245, 241, 233, 0.5); margin-top: 4px; }
+  #tb-preloader.is-greet .tb-pl-greet { opacity: 1; transform: none; }
+
+  .tb-pl-year { grid-area: year; display: grid; justify-items: center; gap: 6px; opacity: 0; transition: opacity 0.9s ease; }
+  #tb-preloader.is-montage .tb-pl-year { opacity: 1; }
+  .tb-pl-year-num { font-family: 'Cinzel', Georgia, serif; font-size: clamp(22px, 2.2vw, 32px); letter-spacing: 0.14em; padding-left: 0.14em; color: var(--tb-gold-light); font-variant-numeric: tabular-nums; line-height: 1; }
+  .tb-pl-caps { display: grid; }
+  .tb-pl-cap {
+    grid-area: 1 / 1; text-align: center; font-family: 'EB Garamond', Georgia, serif; font-style: italic;
+    font-size: clamp(14px, 1.15vw, 16px); color: rgba(245, 241, 233, 0.66); white-space: nowrap;
+    opacity: 0; transform: translateY(6px); transition: opacity 0.6s ease, transform 0.8s var(--tb-ease);
+  }
+  .tb-pl-cap.is-on { opacity: 1; transform: none; }
+
+  #tb-preloader.is-exit .tb-pl-greet, #tb-preloader.is-exit .tb-pl-year { opacity: 0; transform: translateY(-8px); filter: blur(4px); transition: opacity 0.45s ease, transform 0.6s ease, filter 0.45s ease; }
+
+  /* ── Frame: meta rows, progress, grain ─────────────────────────────── */
+  .tb-pl-veil { position: absolute; inset: 0; z-index: 2; pointer-events: none; transition: opacity 0.5s ease; }
+  .tb-pl-grain {
+    position: absolute; inset: -50%; opacity: 0.075; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: tbPlGrain 0.6s steps(4) infinite;
+  }
+  @keyframes tbPlGrain {
+    0% { transform: translate(0, 0); } 25% { transform: translate(-3%, 2%); }
+    50% { transform: translate(2%, -3%); } 75% { transform: translate(-1%, -2%); } 100% { transform: translate(3%, 1%); }
+  }
+  .tb-pl-vignette { position: absolute; inset: 0; background: radial-gradient(110% 85% at 50% 50%, transparent 50%, rgba(0, 0, 0, 0.5) 100%); }
+  #tb-preloader.is-exit .tb-pl-veil { opacity: 0; }
+
+  .tb-pl-bar {
+    position: absolute; left: 0; right: 0; z-index: 3; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 0 clamp(16px, 3vw, 36px); height: clamp(44px, 7vh, 64px);
+    font-family: 'Cinzel', Georgia, serif; font-size: clamp(8px, 0.75vw, 10px); letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(199, 168, 94, 0.72); white-space: nowrap; opacity: 0; transition: opacity 0.9s ease, transform 0.7s var(--tb-ease);
+  }
+  .tb-pl-bar-top { top: 0; }
+  .tb-pl-bar-bottom { bottom: 0; }
+  #tb-preloader.is-on .tb-pl-bar { opacity: 1; }
+  #tb-preloader.is-exit .tb-pl-bar-top { opacity: 0; transform: translateY(-100%); }
+  #tb-preloader.is-exit .tb-pl-bar-bottom { opacity: 0; transform: translateY(100%); }
+  .tb-pl-dim { color: rgba(245, 241, 233, 0.38); }
+  .tb-pl-progress { position: absolute; left: clamp(16px, 3vw, 36px); right: clamp(16px, 3vw, 36px); top: 0; height: 1px; background: rgba(199, 168, 94, 0.14); }
+  .tb-pl-progress::after { content: ''; position: absolute; inset: 0; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--tb-gold) 30%, var(--tb-gold-light)); }
+  #tb-preloader.is-go .tb-pl-progress::after { transform: scaleX(1); transition: transform 4.3s cubic-bezier(0.45, 0, 0.3, 1); }
+  .tb-pl-skip {
+    all: unset; margin-left: auto; cursor: pointer; font: inherit; letter-spacing: inherit; text-transform: inherit;
+    color: rgba(245, 241, 233, 0.45); transition: color 0.25s ease;
+  }
+  .tb-pl-skip:hover { color: var(--tb-cream); }
+
+  /* ── Opening: the photographs fall away and the arch grows past the screen ── */
+  #tb-preloader.is-open .tb-pl-door-content { opacity: 0; transition: opacity 0.55s ease 0.05s; }
+  #tb-preloader.is-open .tb-pl-lines { opacity: 0; transition: opacity 0.4s ease; }
+  #tb-preloader.is-open .tb-pl-portal { transform: scale(var(--tb-open, 12)); transition: transform 1.2s var(--tb-door-ease); }
+
+  @media (max-width: 640px) {
+    #tb-preloader { --tb-w: min(46vw, 29vh); }
+    .tb-pl-stage { grid-template-columns: 1fr; grid-template-areas: "greet" "left" "door" "right" "year"; row-gap: 12px; }
+    .tb-pl-word { font-size: clamp(26px, 9vw, 42px); }
+    .tb-pl-word-l, .tb-pl-word-r { justify-self: center; }
+    .tb-pl-portal { margin: calc(var(--tb-w) * 0.22) 0 calc(var(--tb-w) * 0.32); }
+    #tb-preloader.is-exit .tb-pl-word-l { transform: translateY(-14vh); }
+    #tb-preloader.is-exit .tb-pl-word-r { transform: translateY(14vh); }
+    .tb-pl-hide-sm { display: none; }
+  }
+</style>
+
+<div id="tb-preloader" aria-hidden="true">
+  <div class="tb-pl-stage">
+    <div class="tb-pl-greet">
+      <div class="tb-pl-greet-si" lang="si">ආයුබෝවන්</div>
+      <div class="tb-pl-greet-en">Ayubowan &middot; welcome</div>
+    </div>
+
+    <div class="tb-pl-word tb-pl-word-l">
+      <span class="tb-pl-l"><span style="--i:0">T</span></span><span class="tb-pl-l"><span style="--i:1">H</span></span><span class="tb-pl-l"><span style="--i:2">E</span></span><span class="tb-pl-sp"></span><span class="tb-pl-l"><span style="--i:3">T</span></span><span class="tb-pl-l"><span style="--i:4">E</span></span><span class="tb-pl-l"><span style="--i:5">A</span></span>
+    </div>
+
+    <div class="tb-pl-portal">
+      <div class="tb-pl-door">
+        <div class="tb-pl-door-content">
+          <div class="tb-pl-fill"></div>
+          <div class="tb-pl-shots"></div>
+        </div>
+      </div>
+      <!-- 100 × 142 units = the doorway; the keystone sits above it, the moonstone below -->
+      <svg class="tb-pl-lines" viewBox="0 0 100 142" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path pathLength="1" d="M0 142 V50 A50 50 0 0 1 100 50 V142"/>
+        <path class="tb-pl-soft" pathLength="1" style="--d:.25s" d="M-7 142 V50 A57 57 0 0 1 107 50 V142"/>
+        <path class="tb-pl-soft" pathLength="1" style="--d:.5s" d="M-20 142 H120"/>
+        <path class="tb-pl-petal" pathLength="1" style="--d:.9s" d="M50 -4 C46 -9 46 -15 50 -20 C54 -15 54 -9 50 -4 Z"/>
+        <path class="tb-pl-petal" pathLength="1" style="--d:1s" d="M50 -4 C44 -6 40 -11 39 -16 C45 -15 49 -10 50 -4 Z"/>
+        <path class="tb-pl-petal" pathLength="1" style="--d:1s" d="M50 -4 C56 -6 60 -11 61 -16 C55 -15 51 -10 50 -4 Z"/>
+        <!-- Sandakada pahana: concentric half-rings and a half-lotus at the threshold -->
+        <path class="tb-pl-soft" pathLength="1" style="--d:.6s" d="M20 142 A30 30 0 0 0 80 142"/>
+        <path class="tb-pl-soft" pathLength="1" style="--d:.7s" d="M26 142 A24 24 0 0 0 74 142"/>
+        <path class="tb-pl-soft" pathLength="1" style="--d:.8s" d="M32 142 A18 18 0 0 0 68 142"/>
+        <path pathLength="1" style="--d:.9s" d="M39 142 A11 11 0 0 0 61 142"/>
+      </svg>
+    </div>
+
+    <div class="tb-pl-word tb-pl-word-r">
+      <span class="tb-pl-l"><span style="--i:6">B</span></span><span class="tb-pl-l"><span style="--i:7">U</span></span><span class="tb-pl-l"><span style="--i:8">N</span></span><span class="tb-pl-l"><span style="--i:9">G</span></span><span class="tb-pl-l"><span style="--i:10">A</span></span><span class="tb-pl-l"><span style="--i:11">L</span></span><span class="tb-pl-l"><span style="--i:12">O</span></span><span class="tb-pl-l"><span style="--i:13">W</span></span>
+    </div>
+
+    <div class="tb-pl-year">
+      <span class="tb-pl-year-num">1867</span>
+      <span class="tb-pl-caps">
+        <span class="tb-pl-cap">Ceylon&rsquo;s first tea is planted</span>
+        <span class="tb-pl-cap">The bungalow is built</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="tb-pl-veil"><div class="tb-pl-grain"></div><div class="tb-pl-vignette"></div></div>
+
+  <div class="tb-pl-bar tb-pl-bar-top">
+    <span class="tb-pl-hide-sm">Galaha &middot; Central Province &middot; Sri Lanka</span>
+    <span class="tb-pl-dim">7.19&deg; N &middot; 80.66&deg; E</span>
+  </div>
+  <div class="tb-pl-bar tb-pl-bar-bottom">
+    <span class="tb-pl-progress"></span>
+    <span class="tb-pl-hide-sm">A heritage estate stay</span>
+    <button type="button" class="tb-pl-skip" tabindex="-1">Skip intro</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var preloader = document.getElementById('tb-preloader');
+    if (!preloader) return;
+    var root = document.documentElement;
+
+    var forcePreview = false;
+    try { forcePreview = /[?&]preview_preloader=1(&|$)/.test(window.location.search); } catch (e) {}
+    var alreadySeen = false;
+    try { alreadySeen = sessionStorage.getItem('tb_preloader_seen') === '1'; } catch (e) {}
+    var reducedMotion = false;
+    try { reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+    if ((alreadySeen && !forcePreview) || reducedMotion) {
+      if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      return;
+    }
+    // ?preview_preloader=1 replays it even after the head script marked it as seen
+    root.classList.remove('tb-preloader-skip');
+    root.classList.add('tb-pl-lock');
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'preloader_started' });
+
+    // Estate photographs for the montage (small portrait crops from src/media, ~35 KB each).
+    // The last one is the house, held for the step through the door.
+    // Full paths so scripts/verify_deploy.js can check each one exists.
+    var SHOTS = ['/media/pl-tea-factory.webp', '/media/pl-lounge-arches.webp', '/media/pl-afternoon-tea.webp', '/media/pl-chamber-pekoe.webp',
+      '/media/pl-trail-forest.webp', '/media/pl-lounge-red.webp', '/media/pl-chamber-galaha.webp', '/media/pl-estate-house.webp'];
+    var shotsBox = preloader.querySelector('.tb-pl-shots');
+    var shots = SHOTS.map(function (src) {
+      var img = new Image();
+      img.className = 'tb-pl-shot';
+      img.alt = '';
+      img.decoding = 'async';
+      img.src = src;
+      return img;
+    });
+
+    // ---- Timeline (ms from "go": once the page underneath has finished starting up) ----
+    var GREET_MS = 250, WORDS_MS = 550, MONTAGE_MS = 800, EXIT_MS = 4300;
+    var CUTS = [0, 480, 920, 1330, 1710, 2060, 2390, 2700];    // when each photograph wipes in, from MONTAGE_MS
+    var YEAR_FROM = 1867, YEAR_TO = 1890, YEAR_MS = 2100;      // the roll, from MONTAGE_MS
+    var SETTLE_CAP_MS = 2500;                                  // never wait longer than this for the page
+    var PARTING_MS = 150, OPEN_MS = 1200;
+
+    var timers = [];
+    var at = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
+    // Each phase is also a performance mark (tb-preloader:is-on …) for timing checks in DevTools
+    var phase = function (name) { preloader.classList.add(name); try { performance.mark('tb-preloader:' + name); } catch (e) {} };
+    var exiting = false, finished = false, completed = false, revealed = false;
+    var inerted = [];
+    var shown = -1;
+    var hardCap;
+
+    function start() {
+      // Restart the CSS failsafe from now (the page may have waited in a background tab);
+      // the forced reflow also gives the transitions below their start state
+      preloader.style.animation = 'none';
+      void preloader.offsetWidth;
+      preloader.style.animation = '';
+      phase('is-on'); // frame and linework draw straight away
+      hardCap = setTimeout(finish, 11000); // never hold the page longer than this
+      whenSettled(go);
+    }
+
+    // The page's own start-up (parsing, deferred scripts) blocks timers for a moment; starting the
+    // choreography after it keeps the greeting, words and montage from firing all at once
+    function whenSettled(cb) {
+      var done = false;
+      var run = function () {
+        if (done) return;
+        done = true;
+        requestAnimationFrame(function () { requestAnimationFrame(cb); });
+      };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run, { once: true });
+      else run();
+      setTimeout(run, SETTLE_CAP_MS);
+    }
+
+    function go() {
+      if (exiting) return;
+      phase('is-go');
+      at(GREET_MS, function () { phase('is-greet'); });
+      at(WORDS_MS, function () {
+        phase('is-words');
+        window.dataLayer.push({ event: 'preloader_welcome_shown' });
+      });
+      at(MONTAGE_MS, function () { phase('is-montage'); rollYear(); });
+      CUTS.forEach(function (ms, i) { at(MONTAGE_MS + ms, function () { cut(i); }); });
+      at(EXIT_MS, exit);
+    }
+
+    // Wipe in photograph i, or the next one that has arrived; the last cut always tries for the house
+    function cut(i) {
+      if (exiting) return;
+      var last = i === CUTS.length - 1;
+      for (var j = last ? shots.length - 1 : Math.max(i, shown + 1); j < shots.length; j++) {
+        var img = shots[j];
+        if (img.complete && img.naturalWidth) {
+          shotsBox.appendChild(img);
+          void img.offsetWidth;
+          img.classList.add('is-in');
+          shown = j;
+          return;
+        }
+        if (!last) return; // not loaded yet: wait for the next cut rather than skipping ahead
+      }
+    }
+
+    function rollYear() {
+      var num = preloader.querySelector('.tb-pl-year-num');
+      var caps = preloader.querySelectorAll('.tb-pl-cap');
+      if (caps[0]) caps[0].classList.add('is-on');
+      var t0 = null;
+      var frame = function (now) {
+        if (exiting) return;
+        if (t0 === null) t0 = now;
+        var p = Math.min(1, (now - t0) / YEAR_MS);
+        var eased = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+        num.textContent = String(Math.round(YEAR_FROM + (YEAR_TO - YEAR_FROM) * eased));
+        if (p < 1) { requestAnimationFrame(frame); return; }
+        if (caps[0]) caps[0].classList.remove('is-on');
+        if (caps[1]) caps[1].classList.add('is-on');
+      };
+      requestAnimationFrame(frame);
+    }
+
+    // Opened in a background tab: hold the intro until the guest actually looks at it
+    if (document.hidden) {
+      document.addEventListener('visibilitychange', function onVisible() {
+        if (document.hidden) return;
+        document.removeEventListener('visibilitychange', onVisible);
+        start();
+      });
+    } else {
+      start();
+    }
+
+    // Keep keyboard focus off the page underneath while the intro plays
+    document.addEventListener('DOMContentLoaded', function () {
+      if (finished) return;
+      Array.prototype.forEach.call(document.body.children, function (el) {
+        if (el !== preloader && el.tagName !== 'SCRIPT' && !el.inert) { el.inert = true; inerted.push(el); }
+      });
+    });
+
+    preloader.addEventListener('click', exit);
+    document.addEventListener('keydown', onKey);
+    function onKey(e) { if (e.key === 'Escape') exit(); }
+
+    function markComplete() {
+      if (completed) return;
+      completed = true;
+      try { sessionStorage.setItem('tb_preloader_seen', '1'); } catch (e) {}
+      window.dataLayer.push({ event: 'preloader_complete' });
+    }
+
+    // How far the arch must grow to clear every corner: its sides past the screen edges and
+    // the springing line of the arc above the top edge (the semicircle then covers both corners)
+    function openScale() {
+      var r = preloader.querySelector('.tb-pl-door').getBoundingClientRect();
+      var w = window.innerWidth, h = window.innerHeight;
+      if (!r.width) return 12;
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      var sides = 2 * Math.max(cx, w - cx) / r.width;
+      var floor = 2 * (h - cy) / r.height;
+      var arc = cy / (r.height / 2 - r.width / 2);
+      return Math.max(sides, floor, arc) * 1.06;
+    }
+
+    function exit() {
+      if (exiting) return;
+      exiting = true;
+      timers.forEach(clearTimeout);
+      markComplete();
+      preloader.style.setProperty('--tb-open', openScale().toFixed(3));
+      phase('is-exit');
+      setTimeout(function () {
+        if (finished) return;
+        phase('is-open');
+        reveal();
+        setTimeout(finish, OPEN_MS + 60);
+      }, PARTING_MS);
+    }
+
+    // The page starts its own entrance while the doorway is still opening
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      try { document.dispatchEvent(new CustomEvent('tb:preloader-reveal')); } catch (e) {}
+    }
+
+    function finish() {
+      if (finished) return;
+      finished = true;
+      clearTimeout(hardCap);
+      timers.forEach(clearTimeout);
+      markComplete();
+      reveal();
+      document.removeEventListener('keydown', onKey);
+      root.classList.remove('tb-pl-lock');
+      inerted.forEach(function (el) { el.inert = false; });
+      if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      try { document.dispatchEvent(new CustomEvent('tb:preloader-done')); } catch (e) {}
+    }
+  })();
+</script>
