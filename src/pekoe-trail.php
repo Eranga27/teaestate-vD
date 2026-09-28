@@ -1,2762 +1,372 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="ve-page">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pekoe Trail · Stages 1, 2 & 3 · The Tea Bungalow</title>
+  <meta name="description" content="The most strategically located base for the first three stages of Sri Lanka's Pekoe Trail. Walk Stage 1, sleep at the bungalow, walk Stage 2 from our door. Transfers, luggage, packed lunches and trail briefings handled.">
 
 <link rel="icon" type="image/png" href="images/favicon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Pekoe Trail Base · Stage 1, 2 & 3 · The Tea Bungalow">
-<meta property="og:description" content="The Tea Bungalow is the official Pekoe Trail Stage 1 accommodation partner. Book a Pekoe Trail package — stages, tiffin, and guided walks.">
+<meta property="og:title" content="Pekoe Trail Base · Stages 1, 2 & 3 · The Tea Bungalow">
+<meta property="og:description" content="Walk Stage 1, sleep at an 1890 planter's bungalow, walk Stage 2 from the door. Transfers, luggage, packed lunches and trail briefings, all from one base in Galaha, Sri Lanka.">
 <meta property="og:url" content="https://www.theteabungalow.com/pekoe-trail">
-<meta property="og:image" content="https://www.theteabungalow.com/images/tea-estate.jpg">
+<meta property="og:image" content="https://www.theteabungalow.com/media/trail-forest-1600.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Pekoe Trail Base · Stage 1, 2 & 3 · The Tea Bungalow">
-<meta name="twitter:description" content="The Tea Bungalow is the official Pekoe Trail Stage 1 accommodation partner. Book a Pekoe Trail package — stages, tiffin, and guided walks.">
+<meta name="twitter:title" content="Pekoe Trail Base · Stages 1, 2 & 3 · The Tea Bungalow">
+<meta name="twitter:description" content="Walk Stage 1, sleep at an 1890 planter's bungalow, walk Stage 2 from the door. Transfers, luggage, packed lunches and trail briefings, all from one base in Galaha, Sri Lanka.">
 <link rel="canonical" href="https://www.theteabungalow.com/pekoe-trail">
 
-  <meta name="description" content="The most strategically located base for the first three stages of Sri Lanka's Pekoe Trail. Accommodation, transfers, luggage handling and packed lunches in one seamless experience.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-  <style>
-    /* ════════════════════════════════════════════
-   ROOT
-════════════════════════════════════════════ */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    :root {
-      --green: #1E4D2B;
-      --green-mid: #2a6638;
-      --green-deep: #0f2e16;
-      --green-pale: #c8dece;
-      --green-ghost: #eaf2ec;
-      --gold: #C7A85E;
-      --gold-light: #dfc080;
-      --gold-pale: #f5edd4;
-      --gold-deep: #8a6a30;
-      --cream: #F5F1E9;
-      --cream-dark: #ede7db;
-      --ink: #1a1510;
-      --ink-mid: #3d3428;
-      --ink-light: #7a6e60;
-      --mist: #8a9e8f;
-      --white: #ffffff;
-      --easy: #1e8449;
-      --moderate: #d68910;
-      --difficult: #c0392b;
-      --shadow: rgba(30, 77, 43, 0.13);
-    }
-
-    body {
-      background: var(--cream);
-      font-family: 'EB Garamond', Georgia, serif;
-      color: var(--ink);
-      overflow-x: hidden;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* ════════════════════════════════════════════
-   NAV
-════════════════════════════════════════════ */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
-      height: 72px;
-      padding: 0 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.4s, box-shadow 0.4s;
-    }
-
-    nav.scrolled {
-      background: rgba(245, 241, 233, 0.96);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 rgba(30, 77, 43, 0.1);
-    }
-
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      color: var(--white);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    nav.scrolled .nav-logo {
-      color: var(--green);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-
-    nav.scrolled .nav-links a {
-      color: var(--ink-mid);
-    }
-
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
-    nav.scrolled .nav-links a:hover {
-      color: var(--green);
-    }
-
-    .nav-links .active {
-      color: var(--gold) !important;
-    }
-
-    .nav-cta {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--white);
-      background: var(--green);
-      border: 1px solid var(--green);
-      padding: 9px 20px;
-      text-decoration: none;
-      transition: background 0.25s, border-color 0.25s;
-    }
-
-    .nav-cta:hover {
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-
-    /* ════════════════════════════════════════════
-   HERO — trail-themed
-════════════════════════════════════════════ */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      overflow: hidden;
-    }
-
-    .hero-left {
-      background:
-        linear-gradient(135deg, rgba(8, 22, 12, 0.78) 0%, rgba(15, 46, 22, 0.65) 100%),
-        url('images/Pekoe Trail access.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 80px 64px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Topographic line texture */
-    .hero-topo {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.4;
-      background-image:
-        radial-gradient(ellipse 600px 400px at 70% 30%, transparent 60%, rgba(199, 168, 94, 0.04) 60.5%, transparent 61%),
-        radial-gradient(ellipse 500px 350px at 70% 30%, transparent 50%, rgba(199, 168, 94, 0.04) 50.5%, transparent 51%),
-        radial-gradient(ellipse 400px 280px at 70% 30%, transparent 40%, rgba(199, 168, 94, 0.04) 40.5%, transparent 41%),
-        radial-gradient(ellipse 300px 220px at 70% 30%, transparent 30%, rgba(199, 168, 94, 0.05) 30.5%, transparent 31%),
-        radial-gradient(ellipse 200px 150px at 70% 30%, transparent 20%, rgba(199, 168, 94, 0.06) 20.5%, transparent 21%);
-    }
-
-    .hero-breadcrumb {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.45em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s ease forwards;
-    }
-
-    .hero-breadcrumb a {
-      color: rgba(199, 168, 94, 0.55);
-      text-decoration: none;
-    }
-
-    .hero-breadcrumb a:hover {
-      color: var(--gold);
-    }
-
-    .hero-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 2;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 18px;
-      background: rgba(199, 168, 94, 0.1);
-      border: 1px solid rgba(199, 168, 94, 0.3);
-      align-self: flex-start;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.4s ease forwards;
-    }
-
-    .hero-eyebrow .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-      animation: pulseGold 2s ease-in-out infinite;
-    }
-
-    .hero-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(40px, 6.5vw, 84px);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 0.98;
-      letter-spacing: 0.005em;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.55s ease forwards;
-    }
-
-    .hero-title em {
-      display: block;
-      font-style: italic;
-      color: var(--gold-light);
-      font-weight: 400;
-    }
-
-    .hero-tagline {
-      font-size: clamp(18px, 2vw, 24px);
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.78);
-      line-height: 1.55;
-      max-width: 540px;
-      margin-bottom: 36px;
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.7s ease forwards;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.85s ease forwards;
-    }
-
-    .btn-gold {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: var(--gold);
-      color: var(--ink);
-      padding: 16px 32px;
-      text-decoration: none;
-      border: 1px solid var(--gold);
-      transition: background 0.25s, color 0.25s, transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-gold:hover {
-      background: var(--white);
-      color: var(--green);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--white);
-      padding: 16px 28px;
-      text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: border-color 0.25s, color 0.25s, transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-
-    /* Hero Right — Trail Map Visualization */
-    .hero-right {
-      background: var(--ink);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 48px;
-    }
-
-    .hero-map-bg {
-      position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(90deg, transparent 0, transparent 39px, rgba(199, 168, 94, 0.04) 40px),
-        repeating-linear-gradient(0deg, transparent 0, transparent 39px, rgba(199, 168, 94, 0.04) 40px);
-    }
-
-    .hero-map {
-      position: relative;
-      width: 100%;
-      max-width: 380px;
-      opacity: 0;
-      animation: fadeUp 1s 0.6s ease forwards;
-    }
-
-    .map-label {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.35em;
-      color: var(--gold);
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .map-route {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .map-stage {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 14px 0;
-    }
-
-    /* The dotted line connecting stages */
-    .map-stage::before {
-      content: '';
-      position: absolute;
-      left: 19px;
-      top: 100%;
-      width: 1px;
-      height: 16px;
-      border-left: 2px dashed rgba(199, 168, 94, 0.3);
-    }
-
-    .map-stage:last-child::before {
-      display: none;
-    }
-
-    .map-pin {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(199, 168, 94, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gold);
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .map-pin.you-are-here {
-      background: var(--gold);
-      color: var(--ink);
-      border-color: var(--gold);
-      box-shadow: 0 0 0 6px rgba(199, 168, 94, 0.2);
-      animation: pulseGold 2s ease-in-out infinite;
-    }
-
-    .map-info {
-      flex: 1;
-    }
-
-    .map-stage-name {
-      font-family: 'Cinzel', serif;
-      font-size: 13px;
-      color: var(--white);
-      letter-spacing: 0.06em;
-      margin-bottom: 3px;
-    }
-
-    .you-are-here+.map-info .map-stage-name {
-      color: var(--gold);
-      font-size: 14px;
-    }
-
-    .map-stage-detail {
-      font-size: 12px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .you-are-here+.map-info .map-stage-detail {
-      color: var(--gold-light);
-    }
-
-    .map-distance {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      color: rgba(255, 255, 255, 0.4);
-      font-weight: 500;
-      flex-shrink: 0;
-      white-space: nowrap;
-    }
-
-    /* ════════════════════════════════════════════
-   QUICK INFO STRIP
-════════════════════════════════════════════ */
-    .quick-info {
-      background: var(--green);
-      border-bottom: 2px solid var(--gold);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .quick-info-item {
-      padding: 24px 28px;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .quick-info-item:last-child {
-      border-right: none;
-    }
-
-    .quick-info-icon {
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-
-    .quick-info-text {
-      font-family: 'EB Garamond', serif;
-      font-size: 14px;
-      color: var(--white);
-      line-height: 1.4;
-    }
-
-    .quick-info-text strong {
-      display: block;
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      margin-bottom: 3px;
-      font-weight: 600;
-    }
-
-    /* ════════════════════════════════════════════
-   STRATEGIC LOCATION
-════════════════════════════════════════════ */
-    .location-section {
-      padding: 96px 10vw;
-      background: var(--cream);
-    }
-
-    .location-header {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 56px;
-      align-items: center;
-      margin-bottom: 64px;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .loc-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.45em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .loc-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.1;
-    }
-
-    .loc-title em {
-      color: var(--gold-deep);
-      font-style: italic;
-    }
-
-    .loc-intro p {
-      font-size: 17px;
-      line-height: 1.75;
-      color: var(--ink-mid);
-      margin-bottom: 16px;
-    }
-
-    .loc-intro p strong {
-      color: var(--green);
-      font-weight: 600;
-    }
-
-    .location-table {
-      background: var(--white);
-      max-width: 1100px;
-      margin: 0 auto;
-      border: 1px solid var(--green-pale);
-    }
-
-    .loc-row {
-      display: grid;
-      grid-template-columns: 60px 1fr 140px 160px;
-      gap: 0;
-      padding: 20px 28px;
-      border-bottom: 1px solid var(--green-pale);
-      align-items: center;
-      transition: background 0.2s;
-    }
-
-    .loc-row:last-child {
-      border-bottom: none;
-    }
-
-    .loc-row:hover {
-      background: var(--green-ghost);
-    }
-
-    .loc-row.highlight {
-      background: linear-gradient(90deg, rgba(199, 168, 94, 0.08), rgba(199, 168, 94, 0.04));
-      border-left: 3px solid var(--gold);
-      padding-left: 25px;
-    }
-
-    .loc-icon {
-      font-size: 20px;
-    }
-
-    .loc-info {}
-
-    .loc-name {
-      font-family: 'Cinzel', serif;
-      font-size: 13px;
-      color: var(--green);
-      letter-spacing: 0.04em;
-      margin-bottom: 3px;
-    }
-
-    .loc-row.highlight .loc-name {
-      color: var(--gold-deep);
-    }
-
-    .loc-detail {
-      font-size: 13px;
-      font-style: italic;
-      color: var(--ink-light);
-    }
-
-    .loc-time {
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--green);
-      letter-spacing: 0.05em;
-      text-align: center;
-    }
-
-    .loc-row.highlight .loc-time {
-      color: var(--gold-deep);
-    }
-
-    .loc-service {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--mist);
-      text-align: right;
-    }
-
-    .loc-row.highlight .loc-service {
-      color: var(--gold-deep);
-      font-weight: 600;
-    }
-
-    /* ════════════════════════════════════════════
-   THE STAGES
-════════════════════════════════════════════ */
-    .stages-section {
-      background: var(--ink);
-      padding: 120px 10vw;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stages-section::before {
-      content: 'STAGES 1 · 2 · 3';
-      position: absolute;
-      right: -2vw;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      font-family: 'Cinzel', serif;
-      font-size: 110px;
-      font-weight: 700;
-      color: rgba(199, 168, 94, 0.025);
-      letter-spacing: 0.15em;
-      white-space: nowrap;
-      pointer-events: none;
-      transform-origin: center;
-    }
-
-    .stages-header {
-      text-align: center;
-      margin-bottom: 80px;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .stages-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .stages-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 46px);
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-    .stages-sub {
-      font-size: 18px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.6;
-    }
-
-    .stages-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .stage-card {
-      background: rgba(255, 255, 255, 0.03);
-      border-top: 3px solid;
-      padding: 40px 32px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s, background 0.25s;
-    }
-
-    .stage-card:hover {
-      transform: translateY(-4px);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .stage-card.s1 {
-      border-top-color: var(--easy);
-    }
-
-    .stage-card.s2 {
-      border-top-color: var(--difficult);
-    }
-
-    .stage-card.s3 {
-      border-top-color: var(--moderate);
-    }
-
-    .stage-num {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    .stage-watermark {
-      position: absolute;
-      top: 24px;
-      right: 28px;
-      font-family: 'Cinzel', serif;
-      font-size: 88px;
-      font-weight: 700;
-      color: rgba(199, 168, 94, 0.08);
-      line-height: 1;
-    }
-
-    .stage-name {
-      font-family: 'Cinzel', serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--white);
-      margin: 14px 0 18px;
-      line-height: 1.15;
-      position: relative;
-      z-index: 1;
-    }
-
-    .stage-route {
-      font-size: 14px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 24px;
-      line-height: 1.6;
-    }
-
-    .stage-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding: 20px 0;
-      margin-bottom: 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .stage-stat {}
-
-    .stage-stat-label {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      color: rgba(255, 255, 255, 0.4);
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .stage-stat-val {
-      font-family: 'Cinzel', serif;
-      font-size: 18px;
-      color: var(--white);
-      font-weight: 600;
-      line-height: 1;
-    }
-
-    .stage-difficulty {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 2px;
-      margin-bottom: 24px;
-    }
-
-    .diff-easy {
-      background: rgba(30, 132, 73, 0.2);
-      color: #5dd58c;
-    }
-
-    .diff-difficult {
-      background: rgba(192, 57, 43, 0.2);
-      color: #f48274;
-    }
-
-    .diff-moderate {
-      background: rgba(214, 137, 16, 0.2);
-      color: #f5c469;
-    }
-
-    .stage-difficulty .diff-bar {
-      display: flex;
-      gap: 2px;
-    }
-
-    .stage-difficulty .diff-bar span {
-      width: 4px;
-      height: 8px;
-      background: currentColor;
-      display: block;
-      opacity: 0.3;
-    }
-
-    .stage-difficulty .diff-bar span.on {
-      opacity: 1;
-    }
-
-    .stage-highlights {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 28px;
-    }
-
-    .stage-highlight {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.65);
-      line-height: 1.5;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .stage-highlight::before {
-      content: '';
-      width: 16px;
-      height: 1px;
-      background: var(--gold);
-      flex-shrink: 0;
-      margin-top: 8px;
-    }
-
-    .stage-our-role {
-      padding: 16px 20px;
-      background: rgba(199, 168, 94, 0.06);
-      border: 1px solid rgba(199, 168, 94, 0.2);
-    }
-
-    .stage-role-label {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .stage-role-text {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.75);
-      line-height: 1.5;
-      font-style: italic;
-    }
-
-    /* ════════════════════════════════════════════
-   FULL TRAIL LOGISTICS
-════════════════════════════════════════════ */
-    .logistics-section {
-      background: var(--cream);
-      padding: 120px 10vw;
-    }
-
-    .log-header {
-      text-align: center;
-      margin-bottom: 64px;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .log-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .log-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 46px);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-    .log-title em {
-      color: var(--gold-deep);
-      font-style: italic;
-    }
-
-    .log-sub {
-      font-size: 18px;
-      font-style: italic;
-      color: var(--ink-light);
-      line-height: 1.65;
-    }
-
-    .logistics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .log-card {
-      background: var(--white);
-      padding: 36px 28px;
-      border-bottom: 3px solid transparent;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-      cursor: default;
-    }
-
-    .log-card:hover {
-      border-bottom-color: var(--gold);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px var(--shadow);
-    }
-
-    .log-card.featured {
-      background: var(--green);
-      color: var(--white);
-    }
-
-    .log-card.featured:hover {
-      border-bottom-color: var(--gold-light);
-    }
-
-    .log-icon {
-      font-size: 28px;
-      margin-bottom: 16px;
-    }
-
-    .log-name {
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--green);
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
-    }
-
-    .log-card.featured .log-name {
-      color: var(--white);
-    }
-
-    .log-desc {
-      font-size: 14.5px;
-      color: var(--ink-light);
-      line-height: 1.65;
-      font-style: italic;
-      margin-bottom: 18px;
-    }
-
-    .log-card.featured .log-desc {
-      color: rgba(255, 255, 255, 0.65);
-    }
-
-    .log-detail {
-      padding-top: 16px;
-      border-top: 1px solid var(--green-pale);
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      color: var(--gold-deep);
-      text-transform: uppercase;
-    }
-
-    .log-card.featured .log-detail {
-      border-top-color: rgba(255, 255, 255, 0.15);
-      color: var(--gold);
-    }
-
-    /* ════════════════════════════════════════════
-   THE PROMISE BANNER
-════════════════════════════════════════════ */
-    .promise-banner {
-      background: var(--ink);
-      padding: 80px 10vw;
-      text-align: center;
-      border-top: 1px solid rgba(199, 168, 94, 0.15);
-      border-bottom: 1px solid rgba(199, 168, 94, 0.15);
-    }
-
-    .promise-words {
-      font-family: 'EB Garamond', serif;
-      font-size: clamp(24px, 3.5vw, 44px);
-      font-style: italic;
-      color: var(--white);
-      line-height: 1.3;
-      max-width: 880px;
-      margin: 0 auto 24px;
-    }
-
-    .promise-words em {
-      font-style: normal;
-      color: var(--gold-light);
-      font-weight: 500;
-    }
-
-    .promise-tag {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.35em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    /* ════════════════════════════════════════════
-   PACKAGES
-════════════════════════════════════════════ */
-    .packages-section {
-      padding: 120px 10vw;
-      background: var(--cream-dark);
-    }
-
-    .pkg-header {
-      text-align: center;
-      margin-bottom: 72px;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .pkg-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .pkg-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 46px);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-    .pkg-sub {
-      font-size: 18px;
-      font-style: italic;
-      color: var(--ink-light);
-      line-height: 1.65;
-    }
-
-    .packages-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .pkg-card {
-      background: var(--white);
-      padding: 40px 32px 36px;
-      position: relative;
-      border-top: 3px solid var(--green);
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.25s, box-shadow 0.25s;
-      cursor: default;
-    }
-
-    .pkg-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px var(--shadow);
-    }
-
-    .pkg-card.featured {
-      border-top: 3px solid var(--gold);
-      background: linear-gradient(180deg, var(--white) 0%, var(--gold-pale) 100%);
-    }
-
-    .pkg-popular-tag {
-      position: absolute;
-      top: -3px;
-      right: 24px;
-      background: var(--gold);
-      color: var(--ink);
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-    }
-
-    .pkg-nights {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      color: var(--gold-deep);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .pkg-name {
-      font-family: 'Cinzel', serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.15;
-      margin-bottom: 12px;
-      letter-spacing: 0.02em;
-    }
-
-    .pkg-tagline {
-      font-size: 14px;
-      font-style: italic;
-      color: var(--ink-light);
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .pkg-includes {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 28px;
-      flex: 1;
-      padding-top: 20px;
-      border-top: 1px solid var(--green-pale);
-    }
-
-    .pkg-include {
-      font-size: 13px;
-      color: var(--ink-mid);
-      line-height: 1.5;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .pkg-include::before {
-      content: '✓';
-      color: var(--gold-deep);
-      font-weight: bold;
-      font-size: 11px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .pkg-rate {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 16px;
-      padding-top: 20px;
-      border-top: 1px solid var(--green-pale);
-    }
-
-    .pkg-rate-from {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      color: var(--mist);
-      text-transform: uppercase;
-    }
-
-    .pkg-rate-amount {
-      font-family: 'Cinzel', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--green);
-    }
-
-    .pkg-rate-period {
-      font-family: 'EB Garamond', serif;
-      font-size: 13px;
-      color: var(--ink-light);
-      font-style: italic;
-    }
-
-    .pkg-cta {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: var(--green);
-      color: var(--white);
-      padding: 14px 24px;
-      text-decoration: none;
-      border: 1px solid var(--green);
-      text-align: center;
-      transition: background 0.25s, color 0.25s;
-    }
-
-    .pkg-cta:hover {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--ink);
-    }
-
-    .pkg-card.featured .pkg-cta {
-      background: var(--gold);
-      color: var(--ink);
-      border-color: var(--gold);
-    }
-
-    .pkg-card.featured .pkg-cta:hover {
-      background: var(--green);
-      color: var(--white);
-      border-color: var(--green);
-    }
-
-    /* ════════════════════════════════════════════
-   HIKER AMENITIES
-════════════════════════════════════════════ */
-    .amenities-section {
-      padding: 120px 10vw;
-      background: var(--cream);
-    }
-
-    .amen-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 64px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .amen-side .pkg-eyebrow {
-      text-align: left;
-    }
-
-    .amen-side .loc-title {
-      text-align: left;
-      font-family: 'Cinzel', serif;
-      font-size: clamp(26px, 3vw, 38px);
-      color: var(--green);
-      line-height: 1.1;
-      margin-bottom: 24px;
-    }
-
-    .amen-side p {
-      font-size: 16px;
-      font-style: italic;
-      color: var(--ink-light);
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-
-    .amen-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .amen-item {
-      background: var(--white);
-      padding: 24px 20px;
-      border-left: 3px solid var(--gold);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .amen-icon {
-      font-size: 22px;
-      margin-bottom: 6px;
-    }
-
-    .amen-name {
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      color: var(--green);
-      font-weight: 600;
-    }
-
-    .amen-text {
-      font-size: 13.5px;
-      color: var(--ink-light);
-      line-height: 1.55;
-      font-style: italic;
-    }
-
-    /* ════════════════════════════════════════════
-   THE COMPLETE JOURNEY
-════════════════════════════════════════════ */
-    .journey-section {
-      background: var(--green-deep);
-      padding: 120px 10vw;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .journey-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(170deg, transparent 0, transparent 32px,
-          rgba(255, 255, 255, 0.018) 32px, rgba(255, 255, 255, 0.018) 33px);
-    }
-
-    .journey-header {
-      text-align: center;
-      margin-bottom: 80px;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .journey-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .journey-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 46px);
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-    .journey-sub {
-      font-size: 18px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.65;
-    }
-
-    .journey-flow {
-      max-width: 920px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .journey-step {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 32px;
-      padding: 28px 0;
-      border-bottom: 1px solid rgba(199, 168, 94, 0.15);
-      position: relative;
-    }
-
-    .journey-step:last-child {
-      border-bottom: none;
-    }
-
-    .journey-step-num {
-      font-family: 'Cinzel', serif;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-      text-align: center;
-    }
-
-    .journey-step-content {}
-
-    .journey-step-time {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      color: rgba(199, 168, 94, 0.7);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .journey-step-name {
-      font-family: 'Cinzel', serif;
-      font-size: 18px;
-      color: var(--white);
-      margin-bottom: 8px;
-      letter-spacing: 0.02em;
-    }
-
-    .journey-step-detail {
-      font-size: 15px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.65;
-    }
-
-    /* ════════════════════════════════════════════
-   FAQ
-════════════════════════════════════════════ */
-    .faq-section {
-      padding: 120px 10vw;
-      background: var(--cream);
-    }
-
-    .faq-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .faq-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
-    .faq-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .faq-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.1;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--green-pale);
-      cursor: pointer;
-    }
-
-    .faq-item:first-child {
-      border-top: 1px solid var(--green-pale);
-    }
-
-    .faq-q {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 0;
-      gap: 20px;
-    }
-
-    .faq-q-text {
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      color: var(--green);
-      letter-spacing: 0.04em;
-      line-height: 1.4;
-      font-weight: 600;
-    }
-
-    .faq-toggle {
-      width: 32px;
-      height: 32px;
-      border: 1px solid var(--green-pale);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: var(--green);
-      flex-shrink: 0;
-      transition: background 0.2s, transform 0.3s;
-    }
-
-    .faq-item.open .faq-toggle {
-      background: var(--gold);
-      color: var(--ink);
-      border-color: var(--gold);
-      transform: rotate(45deg);
-    }
-
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.4s ease;
-    }
-
-    .faq-item.open .faq-a {
-      max-height: 500px;
-      padding-bottom: 24px;
-    }
-
-    .faq-a p {
-      font-size: 16px;
-      line-height: 1.75;
-      color: var(--ink-mid);
-      font-style: italic;
-    }
-
-    /* ════════════════════════════════════════════
-   CTA
-════════════════════════════════════════════ */
-    .cta-section {
-      padding: 120px 10vw;
-      background: var(--ink);
-      color: var(--white);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(199, 168, 94, 0.08), transparent 60%);
-    }
-
-    .cta-content {
-      max-width: 700px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .cta-eyebrow::before,
-    .cta-eyebrow::after {
-      content: '';
-      width: 32px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .cta-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(30px, 4vw, 52px);
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 24px;
-      line-height: 1.1;
-    }
-
-    .cta-title em {
-      color: var(--gold-light);
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    .cta-body {
-      font-size: 18px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.65);
-      line-height: 1.7;
-      margin-bottom: 40px;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-large-gold {
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      background: var(--gold);
-      color: var(--ink);
-      padding: 20px 44px;
-      text-decoration: none;
-      border: 1px solid var(--gold);
-      transition: background 0.25s, color 0.25s, transform 0.2s;
-    }
-
-    .btn-large-gold:hover {
-      background: var(--white);
-      color: var(--green);
-      transform: translateY(-2px);
-    }
-
-    .btn-large-outline {
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--white);
-      padding: 20px 36px;
-      text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: border-color 0.25s, color 0.25s, transform 0.2s;
-    }
-
-    .btn-large-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-
-   /* ═══════════════════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════════════════ */
-footer {
-  background: var(--ink);
-  padding: 72px 10vw 40px;
-}
-.footer-top {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 56px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  margin-bottom: 32px;
-}
-.footer-brand {}
-.footer-logo {
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--white);
-  letter-spacing: 0.08em;
-  margin-bottom: 8px;
-}
-.footer-tagline {
-  font-size: 14px;
-  font-style: italic;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-.footer-contact-item {
-  font-size: 13.5px;
-  color: rgba(255,255,255,0.55);
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.footer-contact-item a { color: var(--gold); text-decoration: none; }
-
-.footer-col-title {
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
-  letter-spacing: 0.35em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.footer-links a {
-  font-size: 14px;
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--white); }
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.footer-copy {
-  font-size: 12px;
-  color: rgba(255,255,255,0.25);
-  font-style: italic;
-}
-.footer-collection {
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--gold);
-  text-transform: uppercase;
-  opacity: 0.6;
-}
-
-    /* ═══════════════════════════════════════════════════════════════
-   WHATSAPP FLOATING BUTTON
-═══════════════════════════════════════════════════════════════ */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 24px;
-      right: 20px;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #3d8050;
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      padding: 13px 20px 13px 16px;
-      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      animation: wa-pulse 2.8s ease-in-out 1.5s 3;
-    }
-
-    .whatsapp-float:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 8px 28px rgba(37, 211, 102, 0.55);
-    }
-
-    .whatsapp-float:active {
-      transform: scale(0.97);
-    }
-
-    .whatsapp-label {
-      white-space: nowrap;
-    }
-
-    @keyframes wa-pulse {
-      0% {
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
-      }
-
-      50% {
-        box-shadow: 0 4px 32px rgba(37, 211, 102, 0.75), 0 0 0 8px rgba(37, 211, 102, 0.12);
-      }
-
-      100% {
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
-      }
-    }
-
-    /* On very small screens, collapse to icon-only circle */
-    @media (max-width: 360px) {
-      .whatsapp-float {
-        padding: 14px;
-        border-radius: 50%;
-      }
-
-      .whatsapp-label {
-        display: none;
-      }
-    }
-
-
-    /* ════════════════════════════════════════════
-   ANIMATIONS
-════════════════════════════════════════════ */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes pulseGold {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 6px rgba(199, 168, 94, 0.2);
-      }
-
-      50% {
-        box-shadow: 0 0 0 12px rgba(199, 168, 94, 0.05);
-      }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ════════════════════════════════════════════
-   RESPONSIVE
-════════════════════════════════════════════ */
-    @media (max-width: 1100px) {
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .hero-left {
-        padding: 120px 48px 64px;
-      }
-
-      .hero-right {
-        padding: 64px 48px;
-        min-height: 60vh;
-      }
-
-      .quick-info {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .quick-info-item:nth-child(2) {
-        border-right: none;
-      }
-
-      .quick-info-item:nth-child(1),
-      .quick-info-item:nth-child(2) {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .location-header {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .stages-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .logistics-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .packages-grid {
-        grid-template-columns: 1fr;
-        max-width: 600px;
-      }
-
-      .amen-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 0 24px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .quick-info {
-        grid-template-columns: 1fr;
-      }
-
-      .quick-info-item {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .quick-info-item:last-child {
-        border-bottom: none;
-      }
-
-      .loc-row {
-        grid-template-columns: 40px 1fr;
-        row-gap: 8px;
-      }
-
-      .loc-time,
-      .loc-service {
-        grid-column: 2;
-        text-align: left;
-      }
-
-      .logistics-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .amen-list {
-        grid-template-columns: 1fr;
-      }
-
-      .journey-step {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+  <!-- tb:sinhala-font -->
+  <link rel="preload" as="image" href="/media/trail-forest-1600.webp" fetchpriority="high">
+  <link rel="stylesheet" href="/ve/ve.css">
+  <link rel="stylesheet" href="/ve/trail.css">
 </head>
 
-<body>
+<body class="ve ve-trailpage">
 
-  <!-- ═══════ NAV ═══════ -->
+  <!-- Shared: consent banner, reservation drawer, analytics hooks (legacy header stripped by the build on vE pages) -->
   <?php include 'layout/navbar.php'; ?>
+  <?php include 'layout/ve/header.html'; ?>
 
-  <!-- ═══════ HERO ═══════ -->
-  <section class="hero">
+  <!-- Line icons used on this page -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-car" viewBox="0 0 32 32"><path d="M4 22v-5l3.2-6.5h17.6L28 17v5H4z"/><path d="M7 17h18"/><circle cx="9.5" cy="22.5" r="2.6"/><circle cx="22.5" cy="22.5" r="2.6"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 32 32"><rect x="7" y="10" width="18" height="16" rx="2"/><path d="M12.5 10V6.5h7V10M12 14v8M20 14v8"/></symbol>
+    <symbol id="i-tiffin" viewBox="0 0 32 32"><path d="M9 11.5h14v4.5H9zM9 16h14v4.5H9zM9 20.5h14v4.5H9z"/><path d="M11 11.5V7.5h10v4M16 4.5v3"/></symbol>
+    <symbol id="i-sunrise" viewBox="0 0 32 32"><path d="M4 24h24M9 24a7 7 0 0 1 14 0M16 8.5v4M7.5 13.5l2.6 2.6M24.5 13.5l-2.6 2.6M4 19.5h3M25 19.5h3"/></symbol>
+    <symbol id="i-sock" viewBox="0 0 32 32"><path d="M12 4h8v11.5l4.6 4.7A3.8 3.8 0 0 1 22 26.6h-6.5A5.5 5.5 0 0 1 10 21.1V4z"/><path d="M12 9h8"/></symbol>
+    <symbol id="i-map" viewBox="0 0 32 32"><path d="M4 8.5l7.5-3 9 3 7.5-3v19l-7.5 3-9-3-7.5 3z"/><path d="M11.5 5.5v19M20.5 8.5v19"/></symbol>
+    <symbol id="i-ticket" viewBox="0 0 32 32"><path d="M4 10h24v4.2a2 2 0 0 0 0 3.6V22H4v-4.2a2 2 0 0 0 0-3.6z"/><path d="M19.5 11v2M19.5 15v2M19.5 19v2"/></symbol>
+    <symbol id="i-boot" viewBox="0 0 32 32"><path d="M9 4.5h7.5v10.5l7.4 2.8A3.4 3.4 0 0 1 26 21v3.5H6.5V16z"/><path d="M6.5 24.5h19.5M9.5 8.5h7M9.5 12h7"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 32 32"><circle cx="16" cy="16" r="11.5"/><path d="M20.5 11.5l-2.4 6.6-6.6 2.4 2.4-6.6z"/></symbol>
+    <symbol id="i-basin" viewBox="0 0 32 32"><path d="M5 16h22l-2.5 9.5h-17z"/><path d="M11 12c0-2 2-2 2-4.5M16 12c0-2 2-2 2-4.5M21 12c0-2 2-2 2-4.5"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 32 32"><path d="M16 4.5c5 7 8.5 11.3 8.5 15.5a8.5 8.5 0 0 1-17 0C7.5 15.8 11 11.5 16 4.5z"/><path d="M12 20a4 4 0 0 0 4 4"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 32 32"><path d="M4.5 13a16.5 16.5 0 0 1 23 0M8.8 17.2a10.5 10.5 0 0 1 14.4 0M13 21.3a4.5 4.5 0 0 1 6 0"/><circle cx="16" cy="25" r=".9"/></symbol>
+    <symbol id="i-fire" viewBox="0 0 32 32"><path d="M16 4c1 5 7.5 7.2 7.5 14.3a7.5 7.5 0 0 1-15 0c0-4.2 3-6.3 3-9.3 2 2 3 4 3 6.2 2.2-3 1.5-7.2 1.5-11.2z"/><path d="M8 28h16"/></symbol>
+    <symbol id="i-house" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h13V10M10 19.5v-5h4v5"/></symbol>
+  </svg>
 
-    <div class="hero-left">
-      <div class="hero-topo"></div>
+  <main id="main">
 
-      <div class="hero-breadcrumb">
-        <a href="/vD/home.php">Home</a> &nbsp;/&nbsp; Pekoe Trail
+    <!-- ═══ 1. HERO ═══════════════════════════════════════════════════════ -->
+    <section class="vt-hero" data-theme="dark" aria-labelledby="trailTitle">
+      <div class="vt-hero__bg" aria-hidden="true"><img src="/media/trail-forest-1600.webp" srcset="/media/trail-forest-900.webp 900w, /media/trail-forest-1600.webp 1600w, /media/trail-forest-2400.webp 2400w" sizes="100vw" alt="" decoding="async"></div>
+      <div class="vt-hero__shade" aria-hidden="true"></div>
+      <svg class="vt-hero__topo" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g></g></svg>
+      <div class="ve-grain" aria-hidden="true"></div>
+
+      <div class="ve-wrap vt-hero__inner">
+        <nav class="ve-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Pekoe Trail</span></nav>
+        <p class="ve-label ve-kicker vt-hero__kicker">Stages 1, 2 &amp; 3 &middot; One base <span class="ve-si" lang="si">මාවත</span></p>
+        <h1 class="vt-hero__title" id="trailTitle"><span class="vt-hero__line"><span>Walk from</span></span><span class="vt-hero__line"><em>our door.</em></span></h1>
+        <p class="vt-hero__lede">The most strategically placed base for the first three stages of Sri Lanka&rsquo;s Pekoe Trail. Walk Stage 1, sleep at the bungalow, walk Stage 2 from our front door, without ever changing rooms.</p>
+        <div class="vt-hero__cta">
+          <a class="ve-btn ve-btn--gold" href="#packages" data-magnetic><span>Hiker packages</span></a>
+          <button type="button" class="ve-link tb-reserve-trigger" data-source="trail_hero">Plan your walk with us <span aria-hidden="true">&rarr;</span></button>
+        </div>
       </div>
+      <dl class="ve-wrap vt-hero__stats">
+        <div><dt>300+ km</dt><dd>The whole Pekoe Trail, through the central highlands</dd></div>
+        <div><dt>3 stages</dt><dd>Walked from one base</dd></div>
+        <div><dt>0</dt><dd>Hotel changes along the way</dd></div>
+      </dl>
+    </section>
 
-      <div class="hero-eyebrow">
-        <span class="dot"></span>
-        Stages 1, 2 &amp; 3 covered
+    <!-- ═══ 2. YOUR POSITION ON THE TRAIL ═══════════════════════════════ -->
+    <section class="vt-line" data-theme="light" aria-labelledby="lineTitle">
+      <div class="ve-wrap">
+        <div class="vt-line__head">
+          <p class="ve-label ve-kicker">Your position on the trail</p>
+          <h2 class="ve-h2" id="lineTitle" data-split>Right between Stage 1<br><em>and Stage 2.</em></h2>
+          <p class="ve-lede" data-reveal="up">Most hikers compromise: close to one stage, an hour&rsquo;s drive from the next trail head, or a new hotel every night. The bungalow sits between Stage 1&rsquo;s end and Stage 2&rsquo;s start, twenty minutes from Stage 3. One booking. Three stages. Zero hotel changes.</p>
+        </div>
+
+        <ol class="vt-line__stops">
+          <li class="vt-stop"><span class="vt-stop__code">1A</span><span class="vt-stop__dot" aria-hidden="true"></span><b>Stage 1 start</b><span class="vt-stop__place">Hanthana &middot; Ceylon Tea Museum</span><span class="vt-stop__time">~20 min &middot; drop-off included</span></li>
+          <li class="vt-stop"><span class="vt-stop__code">1B</span><span class="vt-stop__dot" aria-hidden="true"></span><b>Stage 1 end</b><span class="vt-stop__place">Galaha Post Office</span><span class="vt-stop__time">5 min &middot; pickup included</span></li>
+          <li class="vt-stop vt-stop--home"><span class="vt-stop__code">&#9733;</span><span class="vt-stop__dot" aria-hidden="true"><svg class="ve-ico"><use href="#i-house"/></svg></span><b>The Tea Bungalow</b><span class="vt-stop__place">Galaha Estate &middot; you sleep here</span><span class="vt-stop__time">Your base</span></li>
+          <li class="vt-stop"><span class="vt-stop__code">2A</span><span class="vt-stop__dot" aria-hidden="true"></span><b>Stage 2 start</b><span class="vt-stop__place">Galaha</span><span class="vt-stop__time">Walk from your room</span></li>
+          <li class="vt-stop"><span class="vt-stop__code">2B &middot; 3A</span><span class="vt-stop__dot" aria-hidden="true"></span><b>Stage 2 end, Stage 3 start</b><span class="vt-stop__place">Loolecondera &middot; James Taylor&rsquo;s estate</span><span class="vt-stop__time">~20 min &middot; pickup &amp; drop-off</span></li>
+        </ol>
+
+        <div class="vt-line__foot">
+          <p class="vt-line__arrive"><span class="ve-label">Arriving by train or road</span> Peradeniya Railway Station and Kandy city or railway station are each about 45 minutes away, with pickups available.</p>
+          <ul class="vt-chips">
+            <li><svg class="ve-ico"><use href="#i-ticket"/></svg><span><b>Trail pass</b>Required &middot; we can arrange it</span></li>
+            <li><svg class="ve-ico"><use href="#i-car"/></svg><span><b>All transfers</b>Stages 1, 2 &amp; 3 covered</span></li>
+            <li><svg class="ve-ico"><use href="#i-bag"/></svg><span><b>Luggage handled</b>Hike with a daypack only</span></li>
+            <li><svg class="ve-ico"><use href="#i-tiffin"/></svg><span><b>Packed lunches</b>Pre-ordered &middot; estate-fresh</span></li>
+          </ul>
+        </div>
       </div>
+    </section>
 
-      <h1 class="hero-title">
-        Your Pekoe<br>
-        Trail <em>Base.</em>
-      </h1>
-
-      <p class="hero-tagline">
-        The most strategically located base for the first three stages of Sri Lanka's Pekoe Trail. Walk Stage 1, sleep at the bungalow, walk Stage 2 from our front door — without ever changing accommodation.
-      </p>
-
-      <div class="hero-cta-row">
-        <a href="#packages" class="btn-gold">View Hiker Packages</a>
-        <a href="#stages" class="btn-outline">The Stages</a>
-      </div>
-    </div>
-
-    <!-- Trail Map Visualization -->
-    <div class="hero-right">
-      <div class="hero-map-bg"></div>
-      <div class="hero-map">
-        <div class="map-label">— Your Position on the Trail —</div>
-
-        <div class="map-route">
-          <div class="map-stage">
-            <div class="map-pin">1A</div>
-            <div class="map-info">
-              <div class="map-stage-name">Stage 1 Start</div>
-              <div class="map-stage-detail">Hanthana · Ceylon Tea Museum</div>
+    <!-- ═══ 3. THE THREE STAGES: cards that stack as you scroll ═══════════ -->
+    <section class="vt-stages" id="stages" data-theme="dark" aria-labelledby="stagesTitle">
+      <div class="ve-wrap">
+        <div class="vt-stages__head">
+          <p class="ve-label ve-kicker">The three stages</p>
+          <h2 class="ve-h2" id="stagesTitle" data-split>The trail,<br><em>from our door.</em></h2>
+          <p class="ve-lede" data-reveal="up">Sri Lanka&rsquo;s long-distance route runs more than 300 km through the central highlands. We cover the first three stages from one base.</p>
+        </div>
+        <div class="vt-stages__list">
+          <article class="vt-stage" style="--n:0" aria-labelledby="stage1">
+            <div class="vt-stage__body">
+              <p class="ve-label vt-stage__label">Stage one <span>01</span></p>
+              <h3 class="vt-stage__name" id="stage1">Hanthana <span aria-hidden="true">&rarr;</span> Galaha</h3>
+              <p class="vt-stage__desc">Begins at the Ceylon Tea Museum and descends through tea fields and pine forest, finishing at the Galaha Post Office, minutes from our gate.</p>
+              <dl class="vt-stage__stats">
+                <div><dt>Distance</dt><dd>12.84 km</dd></div>
+                <div><dt>Time</dt><dd>~4 hours</dd></div>
+                <div><dt>Difficulty</dt><dd><span class="vt-meter" data-level="1" aria-hidden="true"><i></i><i></i><i></i></span>Easy</dd></div>
+              </dl>
+              <ul class="vt-stage__list">
+                <li>A gentle descent through working tea estates</li>
+                <li>The Ceylon Tea Museum at the start</li>
+                <li>Pine forest and panoramic valley views</li>
+                <li>The most popular introductory stage</li>
+              </ul>
+              <p class="vt-stage__role"><span class="ve-label">Our role</span> Drop-off at Hanthana in the morning, pickup from Galaha Post Office at the finish.</p>
             </div>
-            <div class="map-distance">~20 min</div>
-          </div>
-
-          <div class="map-stage">
-            <div class="map-pin">1B</div>
-            <div class="map-info">
-              <div class="map-stage-name">Stage 1 End</div>
-              <div class="map-stage-detail">Galaha Post Office</div>
+            <figure class="vt-stage__media"><img src="/media/trail-forest-1600.webp" srcset="/media/trail-forest-900.webp 900w, /media/trail-forest-1600.webp 1600w" sizes="(max-width: 900px) 90vw, 40vw" alt="A hiker with a walking stick among mossy tree roots on a forest trail" loading="lazy" decoding="async"></figure>
+          </article>
+          <article class="vt-stage" style="--n:1" aria-labelledby="stage2">
+            <div class="vt-stage__body">
+              <p class="ve-label vt-stage__label">Stage two <span>02</span></p>
+              <h3 class="vt-stage__name" id="stage2">Galaha <span aria-hidden="true">&rarr;</span> Loolecondera</h3>
+              <p class="vt-stage__desc">Begins at Galaha and climbs through tea estates, river crossings and pine forest to Loolecondera, where Ceylon tea was first planted in 1867.</p>
+              <dl class="vt-stage__stats">
+                <div><dt>Distance</dt><dd>14.7 km</dd></div>
+                <div><dt>Time</dt><dd>~5 hours</dd></div>
+                <div><dt>Difficulty</dt><dd><span class="vt-meter" data-level="3" aria-hidden="true"><i></i><i></i><i></i></span>Difficult</dd></div>
+              </dl>
+              <ul class="vt-stage__list">
+                <li>Walk from your room to the trail head</li>
+                <li>Through Deltota village</li>
+                <li>James Taylor&rsquo;s Seat and cottage at Loolecondera</li>
+                <li>The most historically significant stage on the route</li>
+              </ul>
+              <p class="vt-stage__role"><span class="ve-label">Our role</span> Walk from our front door with a packed lunch; we pick you up at Loolecondera.</p>
             </div>
-            <div class="map-distance">5 min</div>
-          </div>
-
-          <div class="map-stage">
-            <div class="map-pin you-are-here">★</div>
-            <div class="map-info">
-              <div class="map-stage-name">The Tea Bungalow</div>
-              <div class="map-stage-detail">Galaha Estate · Your Base</div>
+            <figure class="vt-stage__media"><img src="/media/trail-tea-960.webp" alt="Tea terraces climbing a hillside below a distant ridge" loading="lazy" decoding="async"></figure>
+          </article>
+          <article class="vt-stage" style="--n:2" aria-labelledby="stage3">
+            <div class="vt-stage__body">
+              <p class="ve-label vt-stage__label">Stage three <span>03</span></p>
+              <h3 class="vt-stage__name" id="stage3">Loolecondera <span aria-hidden="true">&rarr;</span> Uda Peradeniya</h3>
+              <p class="vt-stage__desc">Continues from Loolecondera through the highlands toward Uda Peradeniya, with sweeping estate views and varied terrain throughout.</p>
+              <dl class="vt-stage__stats">
+                <div><dt>Distance</dt><dd>~15 km</dd></div>
+                <div><dt>Time</dt><dd>~5&ndash;6 hours</dd></div>
+                <div><dt>Difficulty</dt><dd><span class="vt-meter" data-level="2" aria-hidden="true"><i></i><i></i><i></i></span>Moderate</dd></div>
+              </dl>
+              <ul class="vt-stage__list">
+                <li>Onwards from the historic Loolecondera estate</li>
+                <li>Mixed terrain: tea fields, forest and ridge views</li>
+                <li>Connects Galaha to the wider Pekoe network</li>
+                <li>An ideal third day for multi-stage hikers</li>
+              </ul>
+              <p class="vt-stage__role"><span class="ve-label">Our role</span> Drop-off at the Loolecondera trail head; pickup arranged at the finish.</p>
             </div>
-            <div class="map-distance" style="color: var(--gold);">YOU ARE HERE</div>
+            <figure class="vt-stage__media"><img src="/media/trail-highlands-920.webp" alt="Highland ridges under heavy cloud beyond tea country" loading="lazy" decoding="async"></figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 4. A DAY ON THE TRAIL: scroll and the day passes (sun, night, dawn) ═══ -->
+    <section class="vt-day" data-theme="dark" aria-labelledby="dayTitle">
+      <div class="vt-day__pin">
+        <div class="vt-day__sky" aria-hidden="true">
+          <div class="vt-day__stars"></div>
+          <svg class="vt-day__orbit" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMax meet" focusable="false">
+            <path class="vt-day__arc" d="M60 500 A440 440 0 0 1 940 500"/>
+            <g class="vt-day__sun"><circle r="60" class="vt-day__glow"/><circle r="22"/></g>
+            <g class="vt-day__moon"><circle r="18"/><circle r="16" cx="8" cy="-5" class="vt-day__moon-cut"/></g>
+          </svg>
+          <svg class="vt-day__hills" viewBox="0 0 1440 260" preserveAspectRatio="none" focusable="false">
+            <path class="vt-day__hill vt-day__hill--back" d="M0 150 C160 110 300 90 460 118 C620 146 720 96 880 84 C1040 72 1180 120 1300 112 C1380 106 1420 118 1440 124 V260 H0 Z"/>
+            <path class="vt-day__hill vt-day__hill--front" d="M0 200 C180 170 330 182 480 204 C640 228 780 186 930 168 C1080 150 1250 190 1440 176 V260 H0 Z"/>
+            <path class="vt-day__path" d="M-10 236 C200 214 360 222 520 232 C700 243 860 206 1000 196 C1160 184 1300 206 1450 196"/>
+            <g class="vt-day__house" transform="translate(1000 168)">
+              <path d="M-26 0 V-22 L0 -40 L26 -22 V0 Z"/>
+              <rect class="vt-day__window" x="-15" y="-18" width="8" height="9"/>
+              <rect class="vt-day__window" x="7" y="-18" width="8" height="9"/>
+              <path d="M-34 -18 L0 -46 L34 -18" class="vt-day__roof"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="ve-wrap vt-day__ui">
+          <div class="vt-day__head">
+            <p class="ve-label ve-kicker">A sample journey</p>
+            <h2 class="vt-day__title" id="dayTitle">Two nights, <em>two stages, one base.</em></h2>
+            <p class="vt-day__sub">How the Complete Stage 1 Journey usually unfolds, at your pace.</p>
           </div>
-
-          <div class="map-stage">
-            <div class="map-pin">2A</div>
-            <div class="map-info">
-              <div class="map-stage-name">Stage 2 Start</div>
-              <div class="map-stage-detail">Galaha · Walking distance</div>
-            </div>
-            <div class="map-distance">walk</div>
-          </div>
-
-          <div class="map-stage">
-            <div class="map-pin">2B</div>
-            <div class="map-info">
-              <div class="map-stage-name">Stage 2 End / Stage 3 Start</div>
-              <div class="map-stage-detail">Loolecondera · James Taylor's Estate</div>
-            </div>
-            <div class="map-distance">~20 min</div>
-          </div>
+          <p class="vt-day__clock" aria-hidden="true"><span class="vt-day__day">Day 1</span><span class="vt-day__time">3:30</span><span class="vt-day__ampm">PM</span></p>
+          <ol class="vt-day__steps">
+            <li class="vt-dstep" data-hour="15.5"><p class="ve-label">Day 1 &middot; Afternoon</p><h3>Arrive in Kandy, check in at Hantana</h3><p>Train into Kandy from Colombo, then a walk or transfer to the Hantana Cottage. A light evening and an early night: Stage 1 starts early.</p></li>
+            <li class="vt-dstep" data-hour="30.5"><p class="ve-label">Day 2 &middot; 6:30 AM</p><h3>Early breakfast, trail drop-off</h3><p>Hot breakfast at Hantana and a packed lunch in your daypack. Transfer to the Ceylon Tea Museum and Stage 1 begins, while your main luggage goes ahead to the bungalow.</p></li>
+            <li class="vt-dstep" data-hour="34"><p class="ve-label">Day 2 &middot; 7:30 AM &ndash; 12:30 PM</p><h3>Walk Stage 1, Hanthana to Galaha</h3><p>12.84 km of gentle descent through tea estates and pine forest, lunch on the way, mist lifting over the valley, and Galaha Post Office at the finish.</p></li>
+            <li class="vt-dstep" data-hour="37"><p class="ve-label">Day 2 &middot; 1:00 PM</p><h3>Pickup and recovery at the bungalow</h3><p>We collect you at Galaha Post Office: five minutes to the bungalow, your luggage already in your room, a foot soak on the verandah and tea.</p></li>
+            <li class="vt-dstep" data-hour="43.5"><p class="ve-label">Day 2 &middot; Evening</p><h3>Fireside dinner</h3><p>The Planter&rsquo;s Lounge fire is lit at 6:30 PM. Three courses at the Long Table, then an early night: Stage 2 starts at your door tomorrow.</p></li>
+            <li class="vt-dstep" data-hour="55"><p class="ve-label">Day 3 &middot; 7:00 AM</p><h3>Walk out to Stage 2</h3><p>Breakfast and a packed lunch, then walk from the bungalow to the Stage 2 trail head, with no transfer. 14.7 km on to Loolecondera, the birthplace of Ceylon tea.</p></li>
+            <li class="vt-dstep" data-hour="61.5"><p class="ve-label">Day 3 &middot; Early afternoon</p><h3>Loolecondera pickup, and onward</h3><p>We collect you at Loolecondera, with your luggage if you&rsquo;re continuing: on to Kandy, your next stay, or back to the bungalow for another night.</p></li>
+          </ol>
+          <div class="vt-day__ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
-    </div>
+    </section>
 
-  </section>
+    <!-- ═══ 5. THE PROMISE ═══════════════════════════════════════════════ -->
+    <section class="vt-promise" data-theme="light" aria-label="Our promise to Pekoe Trail hikers">
+      <div class="ve-wrap">
+        <p class="vt-promise__quote" data-words>Hike light. We move your bags. We pick you up. We feed you. We pour the arrack by the fire. <em>You just walk.</em></p>
+        <p class="ve-label vt-promise__by">The Tea Bungalow promise to Pekoe Trail hikers</p>
+      </div>
+    </section>
 
-  <!-- ═══════ QUICK INFO STRIP ═══════ -->
-  <div class="quick-info">
-    <div class="quick-info-item">
-      <div class="quick-info-icon">🥾</div>
-      <div class="quick-info-text">
-        <strong>Trail Pass</strong>
-        Required · we can arrange
-      </div>
-    </div>
-    <div class="quick-info-item">
-      <div class="quick-info-icon">🚗</div>
-      <div class="quick-info-text">
-        <strong>All Transfers</strong>
-        Stage 1, 2 &amp; 3 covered
-      </div>
-    </div>
-    <div class="quick-info-item">
-      <div class="quick-info-icon">🎒</div>
-      <div class="quick-info-text">
-        <strong>Luggage Handled</strong>
-        Hike with daypack only
-      </div>
-    </div>
-    <div class="quick-info-item">
-      <div class="quick-info-icon">🍱</div>
-      <div class="quick-info-text">
-        <strong>Packed Lunches</strong>
-        Pre-ordered · estate-fresh
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════ STRATEGIC LOCATION ═══════ -->
-  <section class="location-section">
-    <div class="location-header">
-      <div class="reveal">
-        <div class="loc-eyebrow">Strategic Location</div>
-        <h2 class="loc-title">Why Hikers Choose <em>This</em> Base</h2>
-      </div>
-      <div class="loc-intro reveal">
-        <p><strong>Most properties force hikers to compromise.</strong> Either you're close to one stage, or you're driving an hour to the trail head, or you're moving hotels every night.</p>
-        <p>The Tea Bungalow is the only heritage property that sits <strong>directly between Stage 1's end and Stage 2's start</strong> — and 20 minutes from Stage 3. One booking. Three stages. Zero hotel changes.</p>
-      </div>
-    </div>
-
-    <div class="location-table reveal">
-      <div class="loc-row">
-        <div class="loc-icon">🚂</div>
-        <div class="loc-info">
-          <div class="loc-name">Peradeniya Railway Station</div>
-          <div class="loc-detail">Train arrivals from Colombo · transfer included in packages</div>
+    <!-- ═══ 6. EVERYTHING HANDLED ═════════════════════════════════════════ -->
+    <section class="vt-care" data-theme="light" aria-labelledby="careTitle">
+      <div class="ve-wrap">
+        <div class="vt-care__head">
+          <p class="ve-label ve-kicker">Trail logistics</p>
+          <h2 class="ve-h2" id="careTitle" data-split>Everything handled,<br><em>so you just walk.</em></h2>
+          <p class="ve-lede" data-reveal="up">Transport, luggage, food and timing are the hard part of the Pekoe Trail. We handle all of it: one booking, one phone number, one team.</p>
         </div>
-        <div class="loc-time">~45 min</div>
-        <div class="loc-service">Pickup Available</div>
+        <ul class="vt-care__grid">
+          <li><svg class="ve-ico"><use href="#i-car"/></svg><h3>All trail transfers</h3><p>Drop-offs at every stage start, pickups at every stage end, and private transfers from Kandy or Peradeniya stations.</p><span class="vt-care__tag">Stages 1, 2 &amp; 3</span></li>
+          <li><svg class="ve-ico"><use href="#i-bag"/></svg><h3>Luggage transfer</h3><p>Leave your main bag with us and hike with a daypack. It moves between stages or waits safely in your room.</p><span class="vt-care__tag">Daypack hiking</span></li>
+          <li><svg class="ve-ico"><use href="#i-tiffin"/></svg><h3>Packed trail lunches</h3><p>Ordered the night before: sandwich or wrap, fruit, energy snacks, water and estate tea in a thermos. Vegetarian and vegan options.</p><span class="vt-care__tag">Standard or premium</span></li>
+          <li><svg class="ve-ico"><use href="#i-sunrise"/></svg><h3>Early breakfast</h3><p>Hot breakfast from 6:30 AM: eggs, fruit, local breads and estate Ceylon tea. Earlier on request, just tell us the night before.</p><span class="vt-care__tag">From 6:30 AM</span></li>
+          <li><svg class="ve-ico"><use href="#i-sock"/></svg><h3>Leech socks and gear</h3><p>Essential for Stage 2&rsquo;s forest sections. Leech socks to buy, plus salt and basic repellent, and we&rsquo;ll show you how to wear them.</p><span class="vt-care__tag">On site</span></li>
+          <li><svg class="ve-ico"><use href="#i-map"/></svg><h3>Trail briefing</h3><p>A daily weather check, leech and trail update, route briefing, and any closures or diversions you need to know about.</p><span class="vt-care__tag">Every morning</span></li>
+          <li><svg class="ve-ico"><use href="#i-ticket"/></svg><h3>Trail pass</h3><p>The mandatory Pekoe Trail pass, arranged by us, or we&rsquo;ll guide you through buying your own digital pass before you arrive.</p><span class="vt-care__tag">On request</span></li>
+          <li><svg class="ve-ico"><use href="#i-boot"/></svg><h3>Boot drying and storage</h3><p>Wet boots dried overnight, secure storage for gear between stages, and a foot soak on the verandah after long days.</p><span class="vt-care__tag">Always available</span></li>
+          <li><svg class="ve-ico"><use href="#i-compass"/></svg><h3>Local guides</h3><p>Knowledgeable local guides for any stage, especially recommended for Stage 2 and the James Taylor story.</p><span class="vt-care__tag">48 hours&rsquo; notice</span></li>
+        </ul>
       </div>
-      <div class="loc-row">
-        <div class="loc-icon">🏙️</div>
-        <div class="loc-info">
-          <div class="loc-name">Kandy City / Kandy Railway Station</div>
-          <div class="loc-detail">Cultural triangle access · arrivals & departures</div>
+    </section>
+
+    <!-- ═══ 7. HIKER PACKAGES (from the CMS) ═══════════════════════════════ -->
+    <section class="vt-packs" id="packages" data-theme="dark" aria-labelledby="packsTitle">
+      <div class="ve-wrap">
+        <div class="vt-packs__head">
+          <p class="ve-label ve-kicker">Built for hikers</p>
+          <h2 class="ve-h2" id="packsTitle" data-split>Trail <em>packages.</em></h2>
+          <p class="ve-lede" data-reveal="up">From a single recovery night to a full three-stage concierge. Every package can be shaped around your dates and pace.</p>
         </div>
-        <div class="loc-time">~45 min</div>
-        <div class="loc-service">Pickup Available</div>
+        <div class="vt-packs__grid">
+          <!-- tb:trail-packages -->
+        </div>
+        <p class="vt-packs__more"><a class="ve-link" href="/packages">All packages &amp; offers <span aria-hidden="true">&rarr;</span></a></p>
       </div>
-      <div class="loc-row">
-        <div class="loc-icon">🏛️</div>
-        <div class="loc-info">
-          <div class="loc-name">Stage 1 Start — Ceylon Tea Museum, Hanthana</div>
-          <div class="loc-detail">Trail head with full facilities · museum visit possible before hike</div>
-        </div>
-        <div class="loc-time">~20 min</div>
-        <div class="loc-service">Drop-off Included</div>
-      </div>
-      <div class="loc-row highlight">
-        <div class="loc-icon">🏁</div>
-        <div class="loc-info">
-          <div class="loc-name">Stage 1 End — Galaha Post Office</div>
-          <div class="loc-detail">Tired hikers picked up here at end of stage and brought to the bungalow</div>
-        </div>
-        <div class="loc-time">5 min</div>
-        <div class="loc-service">★ Pickup Included</div>
-      </div>
-      <div class="loc-row highlight">
-        <div class="loc-icon">🚪</div>
-        <div class="loc-info">
-          <div class="loc-name">Stage 2 Start — Galaha</div>
-          <div class="loc-detail">Walk from your room to the trail head · the most convenient start on the route</div>
-        </div>
-        <div class="loc-time">walking</div>
-        <div class="loc-service">★ At Our Door</div>
-      </div>
-      <div class="loc-row">
-        <div class="loc-icon">🍃</div>
-        <div class="loc-info">
-          <div class="loc-name">Stage 2 End / Stage 3 Start — Loolecondera Estate</div>
-          <div class="loc-detail">Birthplace of Ceylon Tea · James Taylor's original 1867 plantation</div>
-        </div>
-        <div class="loc-time">~20 min</div>
-        <div class="loc-service">Pickup &amp; Drop-off</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════ THE STAGES ═══════ -->
-  <section id="stages" class="stages-section">
-    <div class="stages-header reveal">
-      <div class="stages-eyebrow">The Three Stages</div>
-      <h2 class="stages-title">The Trail, From Our Door</h2>
-      <p class="stages-sub">Sri Lanka's iconic 300+ km long-distance route through the central highlands. We cover the first three stages from a single base.</p>
-    </div>
-
-    <div class="stages-grid">
-
-      <!-- STAGE 1 -->
-      <div class="stage-card s1 reveal">
-        <div class="stage-num">Stage One</div>
-        <div class="stage-watermark">01</div>
-        <h3 class="stage-name">Hanthana to Galaha</h3>
-        <p class="stage-route">Begins at the Ceylon Tea Museum and descends through tea fields and pine forest, finishing at the Galaha Post Office — minutes from our gate.</p>
-
-        <div class="stage-stats">
-          <div class="stage-stat">
-            <div class="stage-stat-label">Distance</div>
-            <div class="stage-stat-val">12.84 km</div>
-          </div>
-          <div class="stage-stat">
-            <div class="stage-stat-label">Duration</div>
-            <div class="stage-stat-val">~4 hours</div>
-          </div>
-        </div>
-
-        <div class="stage-difficulty diff-easy">
-          Easy
-          <div class="diff-bar">
-            <span class="on"></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-
-        <div class="stage-highlights">
-          <div class="stage-highlight">Gentle descent through working tea estates</div>
-          <div class="stage-highlight">Ceylon Tea Museum at the start point</div>
-          <div class="stage-highlight">Pine forest sections and panoramic valley views</div>
-          <div class="stage-highlight">Most popular introductory stage on the trail</div>
-        </div>
-
-        <div class="stage-our-role">
-          <div class="stage-role-label">Our role</div>
-          <div class="stage-role-text">Drop-off at Hanthana in the morning, pick-up from Galaha Post Office at the finish.</div>
+    <!-- ═══ 8. AT THE BUNGALOW ═══════════════════════════════════════════ -->
+    <section class="vt-home" data-theme="light" aria-labelledby="homeTitle">
+      <div class="ve-wrap vt-home__grid">
+        <figure class="vt-home__media" data-reveal="curtain"><img src="/media/lounge-evening-1600.webp" srcset="/media/lounge-evening-900.webp 900w, /media/lounge-evening-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 46vw" alt="The Planter's Lounge in the evening, lamps lit" loading="lazy" decoding="async"></figure>
+        <div class="vt-home__copy">
+          <p class="ve-label ve-kicker">At the bungalow</p>
+          <h2 class="ve-h2" id="homeTitle" data-split>A home for<br><em>tired hikers.</em></h2>
+          <p class="ve-lede" data-reveal="up">Boots dry by morning, the fire lit by evening, packed lunches waiting in the kitchen. The bungalow keeps the rhythm of trail life, so recovery feels as much a part of the journey as the walk.</p>
+          <ul class="vt-home__list">
+            <li><svg class="ve-ico"><use href="#i-basin"/></svg><span><b>Foot soak station</b>Warm water on the verandah after long days</span></li>
+            <li><svg class="ve-ico"><use href="#i-fire"/></svg><span><b>Fire lit nightly</b>The Planter&rsquo;s Lounge fireplace from 6:30 PM</span></li>
+            <li><svg class="ve-ico"><use href="#i-wifi"/></svg><span><b>Wi-Fi for maps</b>Download offline maps before you set off</span></li>
+            <li><svg class="ve-ico"><use href="#i-drop"/></svg><span><b>Filtered water</b>Refill stations throughout the bungalow</span></li>
+          </ul>
+          <a class="ve-link" href="/our-chambers">Choose your chamber <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
+    </section>
 
-      <!-- STAGE 2 -->
-      <div class="stage-card s2 reveal">
-        <div class="stage-num">Stage Two</div>
-        <div class="stage-watermark">02</div>
-        <h3 class="stage-name">Galaha to Loolecondera</h3>
-        <p class="stage-route">Begins at Galaha and climbs through tea estates, river crossings, and pine forest to Loolecondera — where Ceylon Tea was first planted in 1867.</p>
-
-        <div class="stage-stats">
-          <div class="stage-stat">
-            <div class="stage-stat-label">Distance</div>
-            <div class="stage-stat-val">14.7 km</div>
-          </div>
-          <div class="stage-stat">
-            <div class="stage-stat-label">Duration</div>
-            <div class="stage-stat-val">~5 hours</div>
-          </div>
+    <!-- ═══ 9. WHEN TO WALK ══════════════════════════════════════════════ -->
+    <section class="vt-seasons" data-theme="light" aria-labelledby="seasonTitle">
+      <div class="ve-wrap">
+        <div class="vt-seasons__head">
+          <p class="ve-label ve-kicker">When to walk</p>
+          <h2 class="ve-h2" id="seasonTitle" data-split>The trail&rsquo;s <em>year.</em></h2>
         </div>
+        <ol class="vt-months" aria-label="Walking conditions by month">
+          <li class="is-best" data-m="0"><b>Jan</b><span>Most settled</span></li>
+          <li class="is-best" data-m="1"><b>Feb</b><span>Most settled</span></li>
+          <li class="is-dry" data-m="2"><b>Mar</b><span>Dry season</span></li>
+          <li class="is-dry" data-m="3"><b>Apr</b><span>Dry season</span></li>
+          <li class="is-wet" data-m="4"><b>May</b><span>Monsoon</span></li>
+          <li class="is-wet" data-m="5"><b>Jun</b><span>Monsoon</span></li>
+          <li class="is-good" data-m="6"><b>Jul</b><span>Second window</span></li>
+          <li class="is-good" data-m="7"><b>Aug</b><span>Second window</span></li>
+          <li class="is-good" data-m="8"><b>Sep</b><span>Second window</span></li>
+          <li class="is-wet" data-m="9"><b>Oct</b><span>Monsoon</span></li>
+          <li class="is-wet" data-m="10"><b>Nov</b><span>Monsoon</span></li>
+          <li class="is-dry" data-m="11"><b>Dec</b><span>Dry season</span></li>
+        </ol>
+        <ul class="vt-months__key">
+          <li class="is-best">Most settled</li><li class="is-dry">Dry season</li><li class="is-good">Second window</li><li class="is-wet">Monsoon: slippery paths, more leeches</li>
+        </ul>
+        <p class="vt-seasons__note">We walk year-round. In the heavy monsoon months trails can be slippery, so we check conditions and brief you on the morning of every hike.</p>
+      </div>
+    </section>
 
-        <div class="stage-difficulty diff-difficult">
-          Difficult
-          <div class="diff-bar">
-            <span class="on"></span>
-            <span class="on"></span>
-            <span class="on"></span>
-          </div>
+    <!-- ═══ 10. FAQ ══════════════════════════════════════════════════════ -->
+    <section class="vt-faq" data-theme="light" aria-labelledby="faqTitle">
+      <div class="ve-wrap vt-faq__grid">
+        <div class="vt-faq__head">
+          <p class="ve-label ve-kicker">Trail FAQ</p>
+          <h2 class="ve-h2" id="faqTitle" data-split>Hiker questions,<br><em>honestly answered.</em></h2>
         </div>
-
-        <div class="stage-highlights">
-          <div class="stage-highlight">Walk from your room to the trail head</div>
-          <div class="stage-highlight">Deltota village pass-through</div>
-          <div class="stage-highlight">James Taylor's Seat &amp; Cottage at Loolecondera</div>
-          <div class="stage-highlight">The most historically significant stage on the route</div>
-        </div>
-
-        <div class="stage-our-role">
-          <div class="stage-role-label">Our role</div>
-          <div class="stage-role-text">Walk from our front door · packed lunch ready · pick-up at Loolecondera.</div>
+        <div class="ve-faq">
+          <details><summary>Do I need to be experienced to walk Stages 1, 2 and 3?</summary><div><p>Stage 1 (easy) suits any reasonably fit walker: gentle descents, well-marked paths, around 4 hours. Stage 2 (difficult) needs more endurance, with elevation changes and longer time on uneven ground. Stage 3 (moderate) is in between. We recommend Stages 1 and 3 for first-time long-distance hikers, and Stage 2 only with proper hiking shoes and a reasonable fitness baseline.</p></div></details>
+          <details><summary>Are leeches really a problem?</summary><div><p>On Stage 2&rsquo;s forest sections, yes, especially during or after rain. We sell leech socks (essential for that stage), provide salt, and show you how to wear them. Stages 1 and 3 are generally clear. They&rsquo;re a small, manageable part of hiking in the hill country.</p></div></details>
+          <details><summary>How does the luggage transfer work?</summary><div><p>Two main options. Leave your main bag at the bungalow during your stay and hike with a daypack. Or, on the Complete Stage 1 Journey, your luggage moves from the Hantana Cottage to the bungalow during your Stage 1 hike and is in your room when you arrive. From Stage 3 onwards we can send it to your next accommodation.</p></div></details>
+          <details><summary>Do I need a Pekoe Trail pass?</summary><div><p>Yes. A digital trail pass is mandatory and supports trail maintenance. Buy your own from the official Pekoe Trail website, or we can arrange it as part of your booking. Keep the confirmation on your phone for trail patrol checks.</p></div></details>
+          <details><summary>When is the best time of year to walk?</summary><div><p>The main dry season runs from December to April, with January and February the most settled. A second window runs from July to September. We walk year-round, but in the heavy monsoon months (May, June, October and November) trails can be slippery and leeches more active. We always check conditions and brief you on the morning of your hike.</p></div></details>
+          <details><summary>Can I walk with a guide?</summary><div><p>Yes. Local guides can be arranged for any stage with 48 hours&rsquo; notice, particularly recommended for Stage 2 if you want the story of James Taylor and Loolecondera. Solo and unguided walking is fine too; the trail is well marked.</p></div></details>
+          <details><summary>What if I&rsquo;m slower than the estimated times?</summary><div><p>The estimates are an average pace; many hikers finish faster, some slower. Our pickups are flexible: message us on WhatsApp 30 minutes before you reach the trail end and we&rsquo;ll be there. We never rush you.</p></div></details>
+          <details><summary>Are children welcome on the trail?</summary><div><p>Stage 1 suits confident older children (10+) with good walking experience. Stage 2 is too demanding for most children. The estate itself is very child-friendly, with a large garden, the pool, and the Carriage House Cottage for families. Younger children are best at the bungalow with one parent on the harder days.</p></div></details>
         </div>
       </div>
+    </section>
 
-      <!-- STAGE 3 -->
-      <div class="stage-card s3 reveal">
-        <div class="stage-num">Stage Three</div>
-        <div class="stage-watermark">03</div>
-        <h3 class="stage-name">Loolecondera to Uda Peradeniya</h3>
-        <p class="stage-route">Continues from Loolecondera through the highlands toward Uda Peradeniya, with sweeping estate views and varied terrain throughout.</p>
-
-        <div class="stage-stats">
-          <div class="stage-stat">
-            <div class="stage-stat-label">Distance</div>
-            <div class="stage-stat-val">~15 km</div>
-          </div>
-          <div class="stage-stat">
-            <div class="stage-stat-label">Duration</div>
-            <div class="stage-stat-val">~5–6 hours</div>
-          </div>
-        </div>
-
-        <div class="stage-difficulty diff-moderate">
-          Moderate
-          <div class="diff-bar">
-            <span class="on"></span>
-            <span class="on"></span>
-            <span></span>
-          </div>
-        </div>
-
-        <div class="stage-highlights">
-          <div class="stage-highlight">Continuation from the historic Loolecondera estate</div>
-          <div class="stage-highlight">Mixed terrain — tea fields, forest, ridge views</div>
-          <div class="stage-highlight">Connects Galaha region to the wider Pekoe network</div>
-          <div class="stage-highlight">Ideal third day for multi-stage hikers</div>
-        </div>
-
-        <div class="stage-our-role">
-          <div class="stage-role-label">Our role</div>
-          <div class="stage-role-text">Drop-off at Loolecondera trail head · pickup arranged at finish.</div>
+    <!-- ═══ 11. PLAN ═════════════════════════════════════════════════════ -->
+    <section class="vt-plan" id="enquire" data-theme="dark" aria-labelledby="planTitle">
+      <div class="vt-plan__bg" aria-hidden="true"><img src="/media/estate-house-1600.webp" srcset="/media/estate-house-900.webp 900w, /media/estate-house-1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async"></div>
+      <div class="ve-wrap vt-plan__inner">
+        <p class="ve-label ve-kicker">Plan your trail</p>
+        <h2 class="vt-plan__title" id="planTitle" data-split>Walk the<br><em>Pekoe Trail.</em></h2>
+        <p class="ve-lede">Tell us your dates, the stages you&rsquo;d like to walk and your fitness comfort level. We&rsquo;ll reply with the right package, current pricing and a clear plan.</p>
+        <div class="vt-plan__cta">
+          <button type="button" class="ve-btn ve-btn--gold tb-reserve-trigger" data-package="Pekoe Trail Experience" data-source="trail_enquire" data-magnetic><span>Enquire about packages</span></button>
+          <a class="ve-link" href="https://wa.me/94777874555" target="_blank" rel="noopener">WhatsApp us <span aria-hidden="true">&nearr;</span></a>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- ═══ NEXT CHAPTER ═════════════════════════════════════════════════ -->
+    <a class="ve-next" href="/our-chambers" data-theme="dark" data-cursor="Enter">
+      <span class="ve-next__bg" aria-hidden="true"><img src="/media/chamber-pekoe-1024.webp" alt="" loading="lazy" decoding="async"></span>
+      <span class="ve-next__label ve-label">Next chapter <span class="ve-si" lang="si">කාමර</span></span>
+      <span class="ve-next__title">Our Chambers</span>
+      <span class="ve-next__sub">Where you&rsquo;ll sleep between stages.</span>
+      <span class="ve-next__go" aria-hidden="true">&rarr;</span>
+    </a>
 
-  <!-- ═══════ FULL LOGISTICS ═══════ -->
-  <section class="logistics-section">
-    <div class="log-header reveal">
-      <div class="log-eyebrow">Trail Logistics</div>
-      <h2 class="log-title">Everything Handled, So You Just <em>Walk</em></h2>
-      <p class="log-sub">The biggest stress for Pekoe Trail hikers is the logistics — transport, luggage, food, timing. We handle all of it from one booking, one phone number, one team.</p>
-    </div>
+  </main>
 
-    <div class="logistics-grid">
+  <?php include 'layout/ve/footer.html'; ?>
 
-      <div class="log-card featured reveal">
-        <div class="log-icon">🚗</div>
-        <div class="log-name">All Trail Transfers</div>
-        <p class="log-desc">Drop-offs at every stage start. Pickups at every stage end. Private transfers from Kandy or Peradeniya stations on arrival and departure.</p>
-        <div class="log-detail">Stages 1, 2 &amp; 3 covered</div>
-      </div>
-
-      <div class="log-card reveal">
-        <div class="log-icon">🎒</div>
-        <div class="log-name">Luggage Transfer</div>
-        <p class="log-desc">Leave your main bag with us. Hike with only a daypack. Your luggage moves between stages or sits safely in your room — your choice.</p>
-        <div class="log-detail">Daypack hiking</div>
-      </div>
-
-      <div class="log-card reveal">
-        <div class="log-icon">🍱</div>
-        <div class="log-name">Packed Trail Lunches</div>
-        <p class="log-desc">Pre-ordered the night before. Sandwich or wrap, fresh fruit, energy snacks, water, estate tea in a thermos. Vegetarian and vegan options.</p>
-        <div class="log-detail">Standard or Premium</div>
-      </div>
-
-      <div class="log-card reveal">
-        <div class="log-icon">🌅</div>
-        <div class="log-name">Early Breakfast</div>
-        <p class="log-desc">Hot breakfast served from 6:30 AM. Eggs, fresh fruit, local breads, estate-fresh Ceylon tea. Earlier on request — just tell us the night before.</p>
-        <div class="log-detail">From 6:30 AM</div>
-      </div>
-
-      <div class="log-card reveal">
-        <div class="log-icon">🧦</div>
-        <div class="log-name">Leech Socks &amp; Gear</div>
-        <p class="log-desc">Essential for Stage 2's forest sections. Leech socks available for purchase, plus salt and basic repellent. We'll show you how to wear them properly.</p>
-        <div class="log-detail">Available on-site</div>
-      </div>
-
-      <div class="log-card reveal">
-        <div class="log-icon">🗺️</div>
-        <div class="log-name">Trail Briefing</div>
-        <p class="log-desc">Daily weather check, leech and trail condition update, route briefing, and any current trail closures or diversions you need to know.</p>
-        <div class="log-detail">Every morning</div>
-      </div>
-
-      <div class="log-card reveal">
-        <div class="log-icon">🎫</div>
-        <div class="log-name">Trail Pass Assistance</div>
-        <p class="log-desc">The mandatory Pekoe Trail pass can be arranged through us, or we'll guide you through purchasing your own digital pass before arrival.</p>
-        <div class="log-detail">Arranged on request</div>
-      </div>
-
-      <div class="log-card reveal">
-        <div class="log-icon">🥾</div>
-        <div class="log-name">Boot Drying &amp; Storage</div>
-        <p class="log-desc">Wet boots dried overnight. Secure storage for hiking gear between stages. Foot soak station on the verandah after long days.</p>
-        <div class="log-detail">Always available</div>
-      </div>
-
-      <div class="log-card reveal">
-        <div class="log-icon">🧭</div>
-        <div class="log-name">Local Guide Arrangement</div>
-        <p class="log-desc">Optional knowledgeable local guides for any stage — particularly recommended for Stage 2 with its James Taylor history. Bookable in advance.</p>
-        <div class="log-detail">48hr notice preferred</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════ THE PROMISE BANNER ═══════ -->
-  <div class="promise-banner">
-    <p class="promise-words reveal">
-      "Hike <em>light</em>. We move your bags. We pick you up. We feed you. We pour the arrack by the fire. <em>You just walk.</em>"
-    </p>
-    <div class="promise-tag reveal">— The Tea Bungalow promise to Pekoe Trail hikers</div>
-  </div>
-
-  <!-- ═══════ HIKER PACKAGES ═══════ -->
-  <section id="packages" class="packages-section">
-    <div class="pkg-header reveal">
-      <div class="pkg-eyebrow">Built for Hikers</div>
-      <h2 class="pkg-title">Trail Packages</h2>
-      <p class="pkg-sub">Choose the package that fits your itinerary — from a single recovery night to a full three-stage concierge.</p>
-    </div>
-
-    <div class="packages-grid">
-
-      <!-- STAGE 1 FINISHER -->
-      <div class="pkg-card reveal">
-        <div class="pkg-nights">1 Night</div>
-        <h3 class="pkg-name">Stage 1 Finisher</h3>
-        <p class="pkg-tagline">Arrive tired. Leave refreshed for Stage 2.</p>
-        <div class="pkg-includes">
-          <div class="pkg-include">1 night in a heritage chamber</div>
-          <div class="pkg-include">Pick-up from Galaha Post Office (Stage 1 End)</div>
-          <div class="pkg-include">Hearty 3-course dinner</div>
-          <div class="pkg-include">Early breakfast from 6:30 AM</div>
-          <div class="pkg-include">Packed lunch for Stage 2</div>
-          <div class="pkg-include">Walk-out start at Stage 2</div>
-        </div>
-        <div class="pkg-rate">
-          <span class="pkg-rate-from">From</span>
-          <span class="pkg-rate-amount">Price on request</span>
-          <span class="pkg-rate-period">/ couple</span>
-        </div>
-        <a href="/vD/contact.php#enquiry-form" class="pkg-cta">Enquire</a>
-      </div>
-
-      <!-- COMPLETE STAGE 1 JOURNEY (FEATURED) -->
-      <div class="pkg-card featured reveal">
-        <div class="pkg-popular-tag">★ Most Popular</div>
-        <div class="pkg-nights">2 Nights · Hantana + Galaha</div>
-        <h3 class="pkg-name">The Complete Stage 1 Journey</h3>
-        <p class="pkg-tagline">Pre-hike night in Kandy. Stage 1 hike. Recovery at the bungalow.</p>
-        <div class="pkg-includes">
-          <div class="pkg-include">1 night Hantana Cottage (pre-hike base)</div>
-          <div class="pkg-include">1 night Tea Bungalow Galaha (post-hike)</div>
-          <div class="pkg-include">All transfers — Kandy to Stage 1 start</div>
-          <div class="pkg-include">Luggage forwarded from Hantana to Galaha</div>
-          <div class="pkg-include">Stage 1 End pick-up included</div>
-          <div class="pkg-include">All breakfasts &amp; one full dinner</div>
-          <div class="pkg-include">Stage 2 drop-off the next morning</div>
-        </div>
-        <div class="pkg-rate">
-          <span class="pkg-rate-from">From</span>
-          <span class="pkg-rate-amount">Price on request</span>
-          <span class="pkg-rate-period">/ couple</span>
-        </div>
-        <a href="/vD/contact.php#enquiry-form" class="pkg-cta">Enquire</a>
-      </div>
-
-      <!-- GALAHA GRAND SLAM -->
-      <div class="pkg-card reveal">
-        <div class="pkg-nights">2 Nights</div>
-        <h3 class="pkg-name">The Galaha Grand Slam</h3>
-        <p class="pkg-tagline">Two nights, two stages, one base. The serious trekker's package.</p>
-        <div class="pkg-includes">
-          <div class="pkg-include">2 nights at the Tea Bungalow</div>
-          <div class="pkg-include">Stage 1 End pick-up + Stage 2 walk-out</div>
-          <div class="pkg-include">Stage 2 End pick-up at Loolecondera</div>
-          <div class="pkg-include">Stage 3 drop-off available next day</div>
-          <div class="pkg-include">2 dinners, 2 breakfasts, 1 packed lunch</div>
-          <div class="pkg-include">Trail briefings &amp; weather updates</div>
-        </div>
-        <div class="pkg-rate">
-          <span class="pkg-rate-from">From</span>
-          <span class="pkg-rate-amount">Price on request</span>
-          <span class="pkg-rate-period">/ couple</span>
-        </div>
-        <a href="/vD/contact.php#enquiry-form" class="pkg-cta">Enquire</a>
-      </div>
-
-      <!-- FULL PEKOE CONCIERGE -->
-      <div class="pkg-card reveal">
-        <div class="pkg-nights">3 Nights · Stages 1, 2 &amp; 3</div>
-        <h3 class="pkg-name">Full Pekoe Concierge</h3>
-        <p class="pkg-tagline">All three stages. Every transfer, every meal, every detail.</p>
-        <div class="pkg-includes">
-          <div class="pkg-include">3 nights combined accommodation</div>
-          <div class="pkg-include">All transfers for Stages 1, 2 &amp; 3</div>
-          <div class="pkg-include">Full luggage handling between stages</div>
-          <div class="pkg-include">3 breakfasts, 2 dinners, 2 packed lunches</div>
-          <div class="pkg-include">Trail pass arranged on your behalf</div>
-          <div class="pkg-include">Optional guide for any stage</div>
-        </div>
-        <div class="pkg-rate">
-          <span class="pkg-rate-from">From</span>
-          <span class="pkg-rate-amount">Price on request</span>
-          <span class="pkg-rate-period">/ couple</span>
-        </div>
-        <a href="/vD/contact.php#enquiry-form" class="pkg-cta">Enquire</a>
-      </div>
-
-      <!-- THE PLANTER'S TIFFIN -->
-      <div class="pkg-card reveal">
-        <div class="pkg-nights">Day Use · No Overnight</div>
-        <h3 class="pkg-name">The Planter's Tiffin Lunch</h3>
-        <p class="pkg-tagline">Day hikers welcome. A proper rest stop between Stages 1 and 2.</p>
-        <div class="pkg-includes">
-          <div class="pkg-include">Pick-up at Galaha Post Office (Stage 1 End)</div>
-          <div class="pkg-include">3-course lunch on the verandah</div>
-          <div class="pkg-include">Estate-fresh Ceylon tea service</div>
-          <div class="pkg-include">Drop-off at Stage 2 Start or back to Galaha town</div>
-          <div class="pkg-include">Pre-booked seating window: 12pm–2pm</div>
-        </div>
-        <div class="pkg-rate">
-          <span class="pkg-rate-from">From</span>
-          <span class="pkg-rate-amount">Price on request</span>
-          <span class="pkg-rate-period">/ person</span>
-        </div>
-        <a href="/vD/contact.php#enquiry-form" class="pkg-cta">Enquire</a>
-      </div>
-
-      <!-- GROUPS / BUYOUT -->
-      <div class="pkg-card reveal">
-        <div class="pkg-nights">Groups · Custom Stay</div>
-        <h3 class="pkg-name">Hiking Group Buyout</h3>
-        <p class="pkg-tagline">For hiking clubs &amp; party groups walking the trail together.</p>
-        <div class="pkg-includes">
-          <div class="pkg-include">Exclusive use of the entire bungalow</div>
-          <div class="pkg-include">Up to 12 guests across all rooms</div>
-          <div class="pkg-include">Private chef &amp; group meal arrangements</div>
-          <div class="pkg-include">Dedicated vehicle for group transfers</div>
-          <div class="pkg-include">Custom itinerary across multiple stages</div>
-        </div>
-        <div class="pkg-rate">
-          <span class="pkg-rate-from">From</span>
-          <span class="pkg-rate-amount">Price on request</span>
-          <span class="pkg-rate-period">/ night · estate</span>
-        </div>
-        <a href="/vD/the-entire-estate.php" class="pkg-cta">Estate Buyout →</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════ HIKER AMENITIES ═══════ -->
-  <section class="amenities-section">
-    <div class="amen-grid">
-      <div class="amen-side reveal">
-        <div class="pkg-eyebrow">At the Bungalow</div>
-        <h2 class="loc-title">A Home for Tired Hikers</h2>
-        <p>Everything a Pekoe Trail walker needs — boots dry by morning, fire lit by evening, packed lunches ready in the kitchen, foot soaks waiting on the verandah.</p>
-        <p>The bungalow has been quietly arranged around the rhythm of trail life. The result is a place where the practical and the atmospheric live together, and recovery feels as much a part of the journey as the walk itself.</p>
-      </div>
-
-      <div class="amen-list">
-        <div class="amen-item reveal">
-          <div class="amen-icon">🌅</div>
-          <div class="amen-name">Early Breakfast</div>
-          <div class="amen-text">Hot breakfast from 6:30 AM. Earlier on request.</div>
-        </div>
-        <div class="amen-item reveal">
-          <div class="amen-icon">🧺</div>
-          <div class="amen-name">Packed Lunches</div>
-          <div class="amen-text">Pre-ordered the night before. Standard &amp; premium tiers.</div>
-        </div>
-        <div class="amen-item reveal">
-          <div class="amen-icon">👞</div>
-          <div class="amen-name">Boot Drying</div>
-          <div class="amen-text">Wet boots dried overnight. Always available.</div>
-        </div>
-        <div class="amen-item reveal">
-          <div class="amen-icon">🦶</div>
-          <div class="amen-name">Foot Soak Station</div>
-          <div class="amen-text">Warm water on the verandah after long days.</div>
-        </div>
-        <div class="amen-item reveal">
-          <div class="amen-icon">💧</div>
-          <div class="amen-name">Filtered Water</div>
-          <div class="amen-text">Refill stations throughout the bungalow.</div>
-        </div>
-        <div class="amen-item reveal">
-          <div class="amen-icon">📡</div>
-          <div class="amen-name">Wi-Fi for Maps</div>
-          <div class="amen-text">Strong signal — download offline maps before departing.</div>
-        </div>
-        <div class="amen-item reveal">
-          <div class="amen-icon">🔥</div>
-          <div class="amen-name">Fire Lit Nightly</div>
-          <div class="amen-text">Planter's Lounge fireplace from 6:30 PM.</div>
-        </div>
-        <div class="amen-item reveal">
-          <div class="amen-icon">🛏️</div>
-          <div class="amen-name">Luggage Storage</div>
-          <div class="amen-text">Secure storage between stages or for day hikes.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ THE COMPLETE JOURNEY ═══════ -->
-  <section class="journey-section">
-    <div class="journey-header reveal">
-      <div class="journey-eyebrow">A Sample Itinerary</div>
-      <h2 class="journey-title">The Complete Stage 1 &amp; 2 Journey</h2>
-      <p class="journey-sub">Two nights, two stages, one base. Here's how a typical Complete Stage 1 Journey unfolds — adapted entirely to your pace.</p>
-    </div>
-
-    <div class="journey-flow">
-
-      <div class="journey-step reveal">
-        <div class="journey-step-num">01</div>
-        <div class="journey-step-content">
-          <div class="journey-step-time">Day 1 · Afternoon</div>
-          <div class="journey-step-name">Arrive Kandy &amp; Hantana Check-in</div>
-          <div class="journey-step-detail">Train into Kandy from Colombo. Walk or transfer to the Hantana Cottage. Light evening, early night — Stage 1 begins early.</div>
-        </div>
-      </div>
-
-      <div class="journey-step reveal">
-        <div class="journey-step-num">02</div>
-        <div class="journey-step-content">
-          <div class="journey-step-time">Day 2 · 6:30 AM</div>
-          <div class="journey-step-name">Early Breakfast &amp; Trail Drop-off</div>
-          <div class="journey-step-detail">Hot breakfast at Hantana. Packed lunch in your daypack. Transfer to the Ceylon Tea Museum at Hanthana — Stage 1 starts. Your main luggage forwarded to the Tea Bungalow in Galaha.</div>
-        </div>
-      </div>
-
-      <div class="journey-step reveal">
-        <div class="journey-step-num">03</div>
-        <div class="journey-step-content">
-          <div class="journey-step-time">Day 2 · 7:30 AM – 12:30 PM</div>
-          <div class="journey-step-name">Hike Stage 1 — Hanthana to Galaha</div>
-          <div class="journey-step-detail">12.84 km of gentle descent through tea estates and pine forest. Your packed lunch en route. Mist lifts over the valley. Galaha Post Office at the finish.</div>
-        </div>
-      </div>
-
-      <div class="journey-step reveal">
-        <div class="journey-step-num">04</div>
-        <div class="journey-step-content">
-          <div class="journey-step-time">Day 2 · 1:00 PM</div>
-          <div class="journey-step-name">Pickup &amp; Recovery at the Bungalow</div>
-          <div class="journey-step-detail">We collect you at Galaha Post Office. Five minutes to the bungalow. Your luggage already in your room. Foot soak on the verandah. Tea service.</div>
-        </div>
-      </div>
-
-      <div class="journey-step reveal">
-        <div class="journey-step-num">05</div>
-        <div class="journey-step-content">
-          <div class="journey-step-time">Day 2 · Evening</div>
-          <div class="journey-step-name">Fireside Dinner</div>
-          <div class="journey-step-detail">Fire lit at 6:30 PM in the Planter's Lounge. Three-course estate dinner at the Long Table. Early to bed — Stage 2 begins from your front door tomorrow.</div>
-        </div>
-      </div>
-
-      <div class="journey-step reveal">
-        <div class="journey-step-num">06</div>
-        <div class="journey-step-content">
-          <div class="journey-step-time">Day 3 · 7:00 AM</div>
-          <div class="journey-step-name">Walk Out to Stage 2</div>
-          <div class="journey-step-detail">Breakfast. Packed lunch ready. Walk from the bungalow to the Stage 2 trail head — no transfer needed. 14.7 km onwards to Loolecondera, the birthplace of Ceylon Tea.</div>
-        </div>
-      </div>
-
-      <div class="journey-step reveal">
-        <div class="journey-step-num">07</div>
-        <div class="journey-step-content">
-          <div class="journey-step-time">Day 3 · Early afternoon</div>
-          <div class="journey-step-name">Loolecondera Pickup &amp; Onward</div>
-          <div class="journey-step-detail">We collect you at Loolecondera with your luggage if you are continuing. Onward transfer to Kandy, your next accommodation, or back to the bungalow for an extra night.</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════ FAQ ═══════ -->
-  <section class="faq-section">
-    <div class="faq-inner">
-      <div class="faq-header reveal">
-        <div class="faq-eyebrow">Trail FAQ</div>
-        <h2 class="faq-title">Hiker Questions, Honestly Answered</h2>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">
-          <div class="faq-q-text">Do I need to be experienced to hike Stages 1, 2 and 3?</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
-          <p>Stage 1 (Easy) is suitable for any reasonably fit walker — gentle descents, well-marked paths, around 4 hours. Stage 2 (Difficult) requires more endurance, with elevation changes and longer time on uneven ground. Stage 3 (Moderate) is somewhere in between. We recommend Stages 1 and 3 for first-time long-distance hikers, and only attempting Stage 2 with proper hiking shoes and a reasonable fitness baseline.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">
-          <div class="faq-q-text">Are leeches really a problem?</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
-          <p>On Stage 2's forest sections, yes — particularly during or after rain. We sell leech socks (essential gear for that stage), provide salt, and brief you on how to wear them properly. Stages 1 and 3 are generally clear. Don't let the leeches put you off — they are a small, manageable part of hiking in Sri Lanka's hill country.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">
-          <div class="faq-q-text">How does the luggage transfer work?</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
-          <p>Two main options. (1) Leave your main bag at the bungalow during your stay and hike with only a daypack. (2) For the Complete Stage 1 Journey package, your luggage is moved from the Hantana Cottage to the Tea Bungalow Galaha during your Stage 1 hike — it is in your room when you arrive. For Stage 3 onwards, we can arrange transfer to your next accommodation.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">
-          <div class="faq-q-text">Do I need a Pekoe Trail pass?</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
-          <p>Yes — a digital trail pass is mandatory and supports trail maintenance. You can purchase your own from the official Pekoe Trail website, or we can arrange it on your behalf as part of your booking. Have the confirmation ready on your phone for trail patrol checks.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">
-          <div class="faq-q-text">What's the best time of year to hike?</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
-          <p>The primary dry season is December to April, with January and February the most settled. A secondary window is July to September. We hike year-round, but during heavy monsoon months (May, June, October, November) trails can be slippery and leech activity high. We always check current conditions and brief you the morning of your hike.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">
-          <div class="faq-q-text">Can I hike with a guide?</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
-          <p>Yes. Local knowledgeable guides can be arranged for any stage with 48 hours' notice — particularly recommended for Stage 2 if you want context on James Taylor and the history of Loolecondera. Solo and unguided hiking is also fine; the trail is well-marked.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">
-          <div class="faq-q-text">What if I'm slower than the estimated times?</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
-          <p>The estimates are average pace — many hikers finish faster, some slower. Our pickups are flexible. Just message us via WhatsApp 30 minutes before you reach the trail end and we will be there. We do not rush you.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">
-          <div class="faq-q-text">Are children welcome on the trail?</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
-          <p>Stage 1 is suitable for confident older children (10+) with good walking experience. Stage 2 is too demanding for most children. The estate itself is very child-friendly — large garden, pool, the Carriage House Cottage is well-suited for families. Younger children are best left at the bungalow with one parent for the harder hiking days.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ CTA ═══════ -->
-  <section id="enquire" class="cta-section">
-    <div class="cta-content">
-      <div class="cta-eyebrow reveal">Plan Your Trail</div>
-      <h2 class="cta-title reveal">Walk the <em>Pekoe Trail</em></h2>
-      <p class="cta-body reveal">
-        Tell us your dates, the stages you want to walk, and your fitness comfort level. We will respond with the right package, current pricing, and a clear plan for your trail experience.
-      </p>
-      <div class="cta-buttons reveal">
-        <a href="/vD/contact.php#enquiry-form" class="btn-large-gold">Enquire About Packages</a>
-        <a href="https://wa.me/94777874555" class="btn-large-outline" target="_blank" rel="noopener noreferrer">WhatsApp Direct</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ FOOTER ═══════ -->
-  <?php include 'layout/footer.php'; ?>
-
-  <script>
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, {
-      threshold: 0.08
-    });
-    reveals.forEach(el => obs.observe(el));
-
-    // FAQ toggle
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.querySelector('.faq-q').addEventListener('click', () => {
-        item.classList.toggle('open');
-      });
-    });
-  </script>
-
+  <script src="/js/vendor/gsap.min.js" defer></script>
+  <script src="/js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/js/vendor/lenis.min.js" defer></script>
+  <script src="/ve/ve.js" defer></script>
+  <script src="/ve/trail.js" defer></script>
 </body>
 
 </html>
