@@ -2,7 +2,7 @@
 
 Luxury heritage stay: restored 1890s planter's bungalow in Galaha, Sri Lanka (base for Pekoe Trail Stages 1 & 2). 7 keys (6 chambers + Carriage House Cottage). Full roadmap and phase status: [docs/bungalow-ledger.md](docs/bungalow-ledger.md).
 
-- Production = `main` (merged 2026-09-28, PR #2), auto-deployed to teabungalow.vercel.app. The public address https://teaestate.vercel.app must be attached to the project (Vercel → teabungalow → Settings → Domains) so it follows every production deploy; otherwise it stays a manually pinned alias (`vercel alias set <deployment-url> teaestate.vercel.app`) and CMS edits won't show there. Domain changes need the owner's go-ahead.
+- Production = `main`, auto-deployed to both https://teaestate.vercel.app and https://teabungalow.vercel.app (both attached to the project's Production domains on 2026-09-28, so every merge and CMS save goes live on both). At launch, attach theteabungalow.com the same way (Vercel → teabungalow → Settings → Domains); domain changes are the owner's to make.
 - Previews: every pushed branch gets https://teabungalow-git-<branch>-eranga-bowatte.vercel.app. `feature/platform-integrations` is retired (fully merged).
 - Repo: github.com/Eranga27/teaestate-vD · Vercel project: `eranga-bowatte/teabungalow`
 
