@@ -36,6 +36,7 @@ Drafted 15 Sept 2026 · Owner: Eranga · Repo: teaestate-vD
 13. Indicative cost envelope
 14. Open decisions before Phase 2
 15. Handoff brief for Antigravity
+16. vE — UI/UX enhancement phase
 
 ---
 
@@ -391,6 +392,36 @@ point at the production GA4 property in the PR that merges to main.
 ### What's not ready to hand off yet
 
 PMS/booking-engine, payments, channel manager and CRM briefs need real vendor material — the actual embed snippet, API keys, or webhook docs from whichever of Little Hotelier or Beds24 gets chosen after a demo. Feeding Antigravity a fabricated widget snippet would just mean re-doing the work later. Once that demo has happened and the vendor's developer docs are in hand, bring them back to Claude and the next brief can be written for real.
+
+---
+
+## 16. vE — UI/UX enhancement phase
+
+Started 28 Sept 2026 on branch `ve/homepage`. Goal: an award-level, cinematic scrolling experience with a distinctly Sri Lankan feel, page by page, starting with the homepage.
+
+**References:** the NAXIS build (scroll-driven storytelling), White Desert (giant place-name hero), and Awwwards-style patterns: pinned sideways galleries, word-by-word statements, pointer-following imagery, self-drawing routes and maps.
+
+**Sri Lankan layer:** palapethi (lotus-petal) bands, a sandakada pahana (moonstone) scroll indicator, and Sinhala accents: ගලහ (Galaha), වත්ත (estate), කාමර (chambers), තේ (tea), ආයුබෝවන් (welcome).
+
+**Homepage, in scroll order:**
+1. Hero film under a giant GALAHA; on scroll the film pulls back into a framed window.
+2. Estate statement lit word by word, with a gold ring drawn round "1890".
+3. Two ways to stay: an estate chamber or the entire estate.
+4. The seven chambers in a pinned sideways gallery (native swipe on phones).
+5. The Pekoe Trail: the route draws itself past Stages 1–3, and "You are here" pulses.
+6. Heritage numbers count up: 1867, c.1890, 7 keys, 3 stages.
+7. Life on the estate: experiences from the CMS, with a photo that follows the pointer.
+8. Estate journal: the latest three stories from the CMS.
+9. Getting here: a Sri Lanka map traces the road from Colombo via Kandy to Galaha.
+10. Ayubowan closing: "Stay awhile", the introductory offer, then Reserve and WhatsApp.
+
+**Shared with every future vE page:** Lenis smooth scroll, a header that hides and re-themes per section, a full-screen menu with photo previews, a custom cursor, reveals, and a new footer.
+
+**Stack:** GSAP 3 + ScrollTrigger and Lenis, self-hosted. Photos are optimised to WebP (the whole media set is 12 MB, down from the originals' tens of MB). The hero film is 4.3 MB on desktop and 2.3 MB on phones. On reduced motion or Save-Data, the hero shows the poster only.
+
+**QA:** headless Chrome captures at 1440/768/390, reduced motion and the preloader hand-off. Also checked: no horizontal overflow and no console errors. `npm test` passes.
+
+**Next:** roll vE out to Our Chambers, Pekoe Trail, Experiences, The Entire Estate, Packages, Gallery, About and Contact. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
 
 ---
 
