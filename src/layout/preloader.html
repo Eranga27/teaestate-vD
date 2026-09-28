@@ -10,7 +10,7 @@
      4. Open      — a gold tea-leaf outline draws at centre and opens out past the
                     screen edges onto the page.
 
-     ~3.8s. Click / tap / Esc skips. Reduced-motion visitors never see it; the
+     ~5.9s. Click / tap / Esc skips. Reduced-motion visitors never see it; the
      head script (build_static.js) hides it before first paint once seen.
 ═══════════════════════════════════════════════════════════════════════════ -->
 <style>
@@ -27,7 +27,7 @@
     pointer-events: all; user-select: none; -webkit-user-select: none; cursor: default;
     -webkit-tap-highlight-color: transparent;
     /* CSS failsafe: if the script never runs, get out of the way */
-    animation: tbPlFailsafe 7s linear forwards;
+    animation: tbPlFailsafe 10s linear forwards;
   }
   @keyframes tbPlFailsafe { 0%, 96% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
   #tb-preloader *, #tb-preloader *::before, #tb-preloader *::after { box-sizing: border-box; }
@@ -43,7 +43,7 @@
     transform: translate(-50%, -44%) scale(0.85); opacity: 0;
     background: radial-gradient(closest-side, rgba(240, 196, 124, 0.5), rgba(199, 168, 94, 0.2) 34%, rgba(150, 119, 56, 0.07) 60%, transparent 78%);
   }
-  #tb-preloader.is-on .tb-pl-dawn { animation: tbPlDawn 2.8s cubic-bezier(0.33, 0, 0.2, 1) forwards; }
+  #tb-preloader.is-on .tb-pl-dawn { animation: tbPlDawn 4s cubic-bezier(0.33, 0, 0.2, 1) forwards; }
   @keyframes tbPlDawn { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
 
   .tb-pl-stars {
@@ -53,19 +53,19 @@
       84vw 12vh rgba(245,241,233,.7), 92vw 30vh rgba(245,241,233,.45), 15vw 34vh rgba(245,241,233,.35),
       64vw 36vh rgba(245,241,233,.3), 39vw 29vh rgba(245,241,233,.4), 77vw 4vh rgba(245,241,233,.6);
   }
-  #tb-preloader.is-on .tb-pl-stars { animation: tbPlFadeOut 2.2s ease-in 0.5s forwards; }
+  #tb-preloader.is-on .tb-pl-stars { animation: tbPlFadeOut 3.2s ease-in 0.6s forwards; }
   @keyframes tbPlFadeOut { to { opacity: 0; } }
 
   /* ── Hills (SVG, anchored to the bottom edge) ───────────────────────── */
   .tb-pl-hills { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .tb-pl-hill { opacity: 0; transform: translateY(46px); }
-  #tb-preloader.is-on .tb-pl-hill { animation: tbPlRise 1.5s var(--tb-ease) forwards; }
+  #tb-preloader.is-on .tb-pl-hill { animation: tbPlRise 1.9s var(--tb-ease) forwards; }
   #tb-preloader.is-on .tb-pl-hill-far { animation-delay: 0.05s; }
   #tb-preloader.is-on .tb-pl-hill-mid { animation-delay: 0.2s; }
   #tb-preloader.is-on .tb-pl-hill-near { animation-delay: 0.35s; }
   @keyframes tbPlRise { to { opacity: 1; transform: none; } }
   .tb-pl-sun { opacity: 0; transform: translateY(70px); }
-  #tb-preloader.is-on .tb-pl-sun { animation: tbPlSun 2.9s cubic-bezier(0.25, 0.8, 0.3, 1) 0.2s forwards; }
+  #tb-preloader.is-on .tb-pl-sun { animation: tbPlSun 4s cubic-bezier(0.25, 0.8, 0.3, 1) 0.2s forwards; }
   @keyframes tbPlSun { to { opacity: 1; transform: none; } }
   .tb-pl-rows { stroke-dasharray: 1.5 7; stroke-linecap: round; }
 
@@ -84,7 +84,7 @@
 
   .tb-pl-birds { position: absolute; left: 14%; top: 27%; width: clamp(46px, 5vw, 70px); opacity: 0; overflow: visible; }
   .tb-pl-birds path { fill: none; stroke: rgba(245, 241, 233, 0.55); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-  #tb-preloader.is-on .tb-pl-birds { animation: tbPlBirds 4.2s linear 0.6s forwards; }
+  #tb-preloader.is-on .tb-pl-birds { animation: tbPlBirds 6s linear 0.6s forwards; }
   @keyframes tbPlBirds {
     0% { opacity: 0; transform: translate(0, 0); }
     20% { opacity: 0.8; }
@@ -127,7 +127,7 @@
     opacity: 0; transform: translateY(8px); transition: opacity 0.8s ease 0.15s, transform 1s var(--tb-ease) 0.15s;
   }
   #tb-preloader.is-greet .tb-pl-greet-si, #tb-preloader.is-greet .tb-pl-greet-en { opacity: 1; transform: none; }
-  .tb-pl-greet { transition: opacity 0.35s ease-in, filter 0.35s ease-in, transform 0.35s ease-in; }
+  .tb-pl-greet { transition: opacity 0.45s ease-in, filter 0.45s ease-in, transform 0.45s ease-in; }
   #tb-preloader.is-greet-out .tb-pl-greet { opacity: 0; filter: blur(8px); transform: translateY(-10px); }
 
   .tb-pl-bud { display: block; width: clamp(40px, 4.6vw, 56px); height: auto; margin: 0 auto 16px; overflow: visible; filter: drop-shadow(0 0 10px rgba(223, 192, 128, 0.35)); }
@@ -153,7 +153,7 @@
       background-position: calc(var(--tb-w, 600px) * -1.7 - var(--tb-x, 0px)) 0;
       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
-    #tb-preloader.is-brand .tb-pl-l > span { animation: tbPlSweep 1.15s cubic-bezier(0.45, 0, 0.2, 1) 0.9s both; }
+    #tb-preloader.is-brand .tb-pl-l > span { animation: tbPlSweep 1.2s cubic-bezier(0.45, 0, 0.2, 1) 1s both; }
     @keyframes tbPlSweep {
       from { background-position: calc(var(--tb-w, 600px) * -1.7 - var(--tb-x, 0px)) 0; }
       to { background-position: calc(var(--tb-w, 600px) * -0.3 - var(--tb-x, 0px)) 0; }
@@ -166,7 +166,7 @@
   .tb-pl-rule-r { background: linear-gradient(270deg, transparent, var(--tb-gold)); transform-origin: left; }
   #tb-preloader.is-brand .tb-pl-rule { transform: scaleX(1); transition: transform 1.1s var(--tb-ease) 0.5s; }
   .tb-pl-tag-text {
-    font-family: 'Cinzel', Georgia, serif; font-size: clamp(8.5px, 0.95vw, 11px); text-transform: uppercase;
+    font-family: 'Cinzel', Georgia, serif; font-size: clamp(9.5px, 1.05vw, 12px); text-transform: uppercase;
     color: var(--tb-gold-light); white-space: nowrap; letter-spacing: 0.9em; padding-left: 0.9em; opacity: 0;
   }
   #tb-preloader.is-brand .tb-pl-tag-text {
@@ -188,7 +188,7 @@
   #tb-preloader.is-exit .tb-pl-bar-bottom { transform: translateY(100%); transition-duration: 0.5s; }
   .tb-pl-dim { color: rgba(245, 241, 233, 0.38); }
   .tb-pl-progress { position: absolute; left: 0; top: 0; width: 100%; height: 1px; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--tb-gold) 30%, var(--tb-gold-light)); }
-  #tb-preloader.is-on .tb-pl-progress { transform: scaleX(1); transition: transform 2.45s linear; }
+  #tb-preloader.is-on .tb-pl-progress { transform: scaleX(1); transition: transform 4.1s linear; }
   .tb-pl-skip {
     all: unset; margin-left: auto; cursor: pointer; font: inherit; letter-spacing: inherit; text-transform: inherit;
     color: rgba(245, 241, 233, 0.45); transition: color 0.25s ease;
@@ -200,8 +200,8 @@
   .tb-pl-window { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; filter: drop-shadow(0 0 7px rgba(223, 192, 128, 0.55)); }
   .tb-pl-edge { fill: none; stroke: var(--tb-gold-light); stroke-width: 1.6; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
   .tb-pl-cover { fill: #07130E; opacity: 0; }
-  .tb-pl-window.is-drawn .tb-pl-edge { stroke-dashoffset: 0; transition: stroke-dashoffset 0.32s cubic-bezier(0.65, 0, 0.35, 1); }
-  .tb-pl-window.is-drawn .tb-pl-cover { opacity: 0.94; transition: opacity 0.32s ease; }
+  .tb-pl-window.is-drawn .tb-pl-edge { stroke-dashoffset: 0; transition: stroke-dashoffset 0.38s cubic-bezier(0.65, 0, 0.35, 1); }
+  .tb-pl-window.is-drawn .tb-pl-cover { opacity: 0.94; transition: opacity 0.38s ease; }
   .tb-pl-window.is-lit .tb-pl-cover { opacity: 0; transition: opacity 0.26s ease-out; }
 </style>
 
@@ -341,8 +341,8 @@
     window.dataLayer.push({ event: 'preloader_started' });
 
     // ---- Timeline (ms) ----
-    var GREET_MS = 250, GREET_OUT_MS = 1000, BRAND_MS = 1100, EXIT_MS = 2450;
-    var LOCKUP_OUT_MS = 180, OUTLINE_MS = 320, LIT_MS = 200, OPEN_MS = 850;
+    var GREET_MS = 300, GREET_OUT_MS = 1750, BRAND_MS = 1950, EXIT_MS = 4100;
+    var LOCKUP_OUT_MS = 220, OUTLINE_MS = 380, LIT_MS = 220, OPEN_MS = 950;
 
     var timers = [];
     var at = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
@@ -366,9 +366,9 @@
         phase('is-brand');
         window.dataLayer.push({ event: 'preloader_welcome_shown' });
       });
-      at(BRAND_MS + 850, measureWord); // again just before the sweep, in case the webfont swapped in
+      at(BRAND_MS + 900, measureWord); // again just before the sweep, in case the webfont swapped in
       at(EXIT_MS, exit);
-      hardCap = setTimeout(finish, 6500); // never hold the page longer than this
+      hardCap = setTimeout(finish, 9000); // never hold the page longer than this
     }
 
     // Opened in a background tab: hold the intro until the guest actually looks at it
