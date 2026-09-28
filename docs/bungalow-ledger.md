@@ -421,6 +421,12 @@ Started 28 Sept 2026 on branch `ve/homepage`. Goal: an award-level, cinematic sc
 
 **Hero film quality:** re-encoded from the source at native 1080p/29.97fps (VMAF 87 against the source, up from 65 for the first web cut), 12 MB. Phones held upright get a dedicated 720×1080 portrait cut around the house (5 MB) instead of an upscaled slice of the landscape film.
 
+**Released:** merged to `main` on 28 Sept 2026 (PR #2). The admin panel now saves to `main`, so content edits publish to the live site.
+
+**Pekoe Trail, "the walk":** the section pins and a glowing walker crosses layered tea-country ridges (tea rows, silver oaks, drifting mist) that pan at different speeds. The km count runs 0 → 12.8 → 27.5 → 42.5, the heading lines light in turn ("Walk Stage 1." / "Sleep here." while it pauses at the bungalow / "Walk Stage 2 from our door."), and the stage card and background photo change at each stop.
+
+**Getting here, "the flight in":** a chart of the island with a lat/long grid, sea names and a lotus compass. The coast draws itself, the road runs in from the airport as a travelling light, then the camera flies from the whole island into the hills around Galaha, where gold contour lines, Peradeniya, Kandy and Loolecondera appear. A live scale bar (50 km → 5 km) and coordinates follow the camera, and each travel time in the list lights up as its place appears.
+
 **Stack:** GSAP 3 + ScrollTrigger and Lenis, self-hosted. Photos are optimised to WebP. On reduced motion or Save-Data, the hero shows the poster only.
 
 **QA:** headless Chrome captures at 1440/768/390, reduced motion and the preloader hand-off. Also checked: no horizontal overflow and no console errors. `npm test` passes.

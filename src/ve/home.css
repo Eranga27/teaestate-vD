@@ -150,47 +150,113 @@ html.ve-motion .vh-ring path { stroke-dashoffset: 1; }
   .vh-room--end { width: 60vw; }
 }
 
-/* ── 5. Pekoe Trail ───────────────────────────────────────────────────── */
-.vh-trail { position: relative; background: var(--ve-forest-deep); color: var(--ve-cream); padding: clamp(110px, 17vh, 200px) 0; overflow: hidden; isolation: isolate; }
-.vh-trail__bg { position: absolute; inset: 0; z-index: -1; }
-.vh-trail__bg img { width: 100%; height: 124%; object-fit: cover; margin-top: -12%; }
-.vh-trail__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4, 12, 8, .95) 0%, rgba(4, 12, 8, .88) 42%, rgba(4, 12, 8, .6) 100%); }
-.vh-trail__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 110px); }
-.vh-trail__copy { align-self: start; position: sticky; top: 18vh; }
-.vh-trail__copy .ve-kicker { color: var(--ve-gold); }
-.vh-trail__copy .ve-h2 { font-size: clamp(32px, 4.2vw, 64px); margin-bottom: 28px; }
-.vh-trail__copy .ve-h2 em { color: var(--ve-gold-light); }
-.vh-trail__hooks { list-style: none; margin: 28px 0 36px; padding: 0; display: grid; gap: 10px; font-size: 16px; color: rgba(245, 241, 233, .78); }
-.vh-trail__hooks li { display: flex; gap: 14px; }
+/* ── 5. Pekoe Trail: the walk ─────────────────────────────────────────────
+   Static by default (reduced motion / no JS): heading, all four stages, the
+   whole route drawn. With motion (html.ve-motion) the section pins, the land
+   pans under a walker and one stage shows at a time (home.js). */
+.vh-trail { position: relative; background: var(--ve-forest-deep); color: var(--ve-cream); }
+.vh-trail__pin { position: relative; overflow: hidden; isolation: isolate; padding-top: clamp(100px, 15vh, 170px); --land-h: calc(100vw / 8.8889); }
+.vh-trail__scenes { position: absolute; inset: 0; z-index: -2; }
+.vh-trail__scene { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.1); transition: opacity 1.3s ease, transform 7s var(--ve-ease); }
+.vh-trail__scene.is-on { opacity: 1; transform: scale(1.02); }
+.vh-trail__shade { position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(4, 12, 8, .9) 0%, rgba(4, 12, 8, .62) 36%, rgba(4, 12, 8, .38) 62%, rgba(4, 12, 8, .55) 100%), linear-gradient(90deg, rgba(4, 12, 8, .55), transparent 65%); }
+.vh-trail__top { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); gap: 30px 50px; align-items: start; }
+.vh-trail__head .ve-kicker { color: var(--ve-gold); }
+.vh-trail__title { font-size: clamp(30px, 3.7vw, 58px); }
+.vh-trail__line { display: block; transition: opacity .8s ease, transform .8s var(--ve-ease); }
+em.vh-trail__line { color: var(--ve-gold-light); }
+.vh-trail__hud { justify-self: end; width: min(100%, 400px); }
+.vh-trail__odo { margin: 0 0 14px; display: flex; align-items: baseline; gap: 14px; }
+.vh-trail__km { font-family: var(--ve-display); font-size: clamp(46px, 5.2vw, 80px); line-height: .9; color: var(--ve-gold-light); font-variant-numeric: tabular-nums; min-width: 3.3ch; }
+.vh-trail__odo .ve-label { font-size: 9.5px; line-height: 1.7; max-width: 15em; color: rgba(245, 241, 233, .7); }
+.vh-trail__bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 24px; }
+.vh-trail__bar i { position: relative; height: 2px; overflow: hidden; background: rgba(245, 241, 233, .18); }
+.vh-trail__bar i::after { content: ''; position: absolute; inset: 0; background: var(--ve-gold); transform: scaleX(var(--f, 1)); transform-origin: left; }
+.vh-trail__stages { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.vh-tstage .ve-num { margin: 0; color: var(--ve-gold-light); }
+.vh-tstage h3 { margin: 6px 0 8px; font-family: var(--ve-display); font-weight: 400; font-size: clamp(20px, 1.8vw, 28px); line-height: 1.15; }
+.vh-tstage p:last-child { margin: 0; font-size: 16px; line-height: 1.5; color: rgba(245, 241, 233, .76); }
+.vh-tstage--home h3 { color: var(--ve-gold-light); }
+
+/* The land: three ridges in one 3600 × 405 drawing, each layer panned at its own speed */
+.vh-walk { position: relative; z-index: 1; height: var(--land-h); margin-top: 40px; }
+.vh-walk__layer { position: absolute; left: 0; bottom: 0; height: 100%; width: calc(var(--land-h) * 8.8889); }
+.vh-walk__layer svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.vh-walk__ridge-back { fill: url(#vhRidgeBack); stroke: rgba(236, 201, 140, .16); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.vh-walk__ridge-mid { fill: url(#vhRidgeMid); stroke: rgba(236, 201, 140, .2); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.vh-walk__trees { fill: #0b1e12; }
+.vh-walk__ridge-front { fill: url(#vhRidgeFront); }
+.vh-walk__rows path { fill: none; stroke: rgba(199, 168, 94, .16); stroke-width: 3; stroke-dasharray: 1.5 9; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.vh-walk__rows--mid path { stroke: rgba(199, 168, 94, .09); }
+.vh-walk__rim { fill: none; stroke: rgba(236, 201, 140, .32); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.vh-walk__track { fill: none; stroke: rgba(245, 241, 233, .3); stroke-width: 1.4; stroke-dasharray: 2 7; vector-effect: non-scaling-stroke; }
+.vh-walk__trail { fill: none; stroke: var(--ve-gold-light); stroke-width: 2.8; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; filter: drop-shadow(0 0 6px rgba(223, 192, 128, .65)); }
+.vh-walk__mist { position: absolute; left: -20%; width: 140%; pointer-events: none; border-radius: 50%; background: radial-gradient(closest-side, rgba(226, 218, 200, .14), rgba(226, 218, 200, .05) 55%, transparent); animation: vhMist 22s ease-in-out infinite alternate; }
+.vh-walk__mist--a { bottom: 46%; height: 55%; }
+.vh-walk__mist--b { bottom: 14%; height: 40%; animation-duration: 28s; animation-direction: alternate-reverse; }
+@keyframes vhMist { from { transform: translateX(-4%); } to { transform: translateX(5%); } }
+@keyframes vhPulse { from { transform: scale(.8); opacity: .9; } to { transform: scale(2.4); opacity: 0; } }
+
+.vh-walk__stop { position: absolute; z-index: 1; width: 0; height: 0; }
+.vh-walk__stop i { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--ve-gold); background: var(--ve-forest-deep); transition: background-color .5s, box-shadow .5s, transform .6s var(--ve-ease); }
+.vh-walk__stop b { position: absolute; left: 0; bottom: 16px; transform: translateX(-50%); white-space: nowrap; font-family: var(--ve-display); font-weight: 400; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: rgba(245, 241, 233, .72); transition: color .5s; }
+.vh-walk__stop.is-reached i { background: var(--ve-gold); box-shadow: 0 0 0 6px rgba(199, 168, 94, .18); }
+.vh-walk__stop.is-reached b { color: var(--ve-gold-light); }
+.vh-walk__stop--home i { left: -17px; top: -17px; width: 34px; height: 34px; display: grid; place-items: center; }
+.vh-walk__stop--home svg { width: 17px; height: 17px; fill: none; stroke: var(--ve-gold-light); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: stroke .5s; }
+.vh-walk__stop--home b { bottom: 26px; font-size: 11px; color: var(--ve-gold-light); }
+.vh-walk__stop--home.is-reached svg { stroke: var(--ve-forest-deep); }
+.vh-walk__stop--home.is-here i::after { content: ''; position: absolute; inset: -8px; border-radius: 50%; border: 1px solid var(--ve-gold); animation: vhPulse 2.2s ease-out infinite; }
+.vh-walk__walker { display: none; position: absolute; left: 0; top: 0; z-index: 2; width: 0; height: 0; will-change: transform; }
+.vh-walk__walker i { position: absolute; left: -10px; top: -10px; width: 20px; height: 20px; border-radius: 50%;
+  background: radial-gradient(circle, #fff7e0 0 28%, var(--ve-gold-light) 42%, rgba(223, 192, 128, 0) 72%); box-shadow: 0 0 26px 8px rgba(223, 192, 128, .42); }
+.vh-walk__walker::after { content: ''; position: absolute; left: -16px; top: -16px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(223, 192, 128, .7); animation: vhPulse 1.8s ease-out infinite; }
+
+.vh-trail__after { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px 70px; align-items: start; padding-top: clamp(60px, 9vh, 100px); padding-bottom: clamp(90px, 13vh, 150px); }
+.vh-trail__after .ve-lede { margin: 0; }
+.vh-trail__hooks { grid-column: 2; grid-row: 1 / span 2; list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-size: 16px; color: rgba(245, 241, 233, .78); }
+.vh-trail__hooks li { display: flex; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--ve-line-light); }
 .vh-trail__hooks li::before { content: ''; flex: none; width: 18px; height: 1px; background: var(--ve-gold); margin-top: .8em; }
 .vh-trail__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 30px; }
 .vh-trail__cta .ve-btn--gold { color: var(--ve-forest-deep); }
 .vh-trail__cta .ve-link { color: var(--ve-gold-light); }
-.vh-route { position: relative; padding: 4vh 0; }
-.vh-route__line { position: absolute; left: 0; top: 0; bottom: 0; width: 64px; height: 100%; overflow: visible; }
-.vh-route__line path { fill: none; stroke-linecap: round; vector-effect: non-scaling-stroke; }
-.vh-route__track { stroke: rgba(245, 241, 233, .16); stroke-width: 1.4; stroke-dasharray: 2 7; }
-.vh-route__draw { stroke: var(--ve-gold); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: 0; }
-html.ve-motion .vh-route__draw { stroke-dashoffset: 1; }
-.vh-route__stops { list-style: none; margin: 0; padding: 0 0 0 96px; display: flex; flex-direction: column; gap: clamp(90px, 16vh, 170px); }
-.vh-stop { position: relative; max-width: 30em; transition: opacity .8s ease, transform .8s var(--ve-ease); }
-html.ve-motion .vh-stop { opacity: .28; transform: translateX(16px); }
-html.ve-motion .vh-stop.is-active { opacity: 1; transform: none; }
-.vh-stop__dot { position: absolute; left: -71px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--ve-forest-deep); border: 1.5px solid var(--ve-gold); }
-.vh-stop h3 { margin: 6px 0 8px; font-family: var(--ve-display); font-weight: 400; font-size: clamp(22px, 2vw, 30px); line-height: 1.15; }
-.vh-stop p:last-child { margin: 0; color: rgba(245, 241, 233, .72); font-size: 16px; }
-.vh-stop .ve-num { color: var(--ve-gold-light); }
-.vh-stop--home .vh-stop__dot { left: -75px; top: 2px; width: 22px; height: 22px; background: var(--ve-gold); box-shadow: 0 0 0 6px rgba(199, 168, 94, .18); }
-.vh-stop--home .vh-stop__dot::after { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid var(--ve-gold); animation: vhPulse 2.4s ease-out infinite; }
-@keyframes vhPulse { from { transform: scale(.8); opacity: .9; } to { transform: scale(2.4); opacity: 0; } }
-.vh-stop--home h3 { color: var(--ve-gold-light); }
+
+/* Motion: one screen, pinned; the walk plays out as you scroll */
+html.ve-motion .vh-trail__pin { box-sizing: border-box; height: 100vh; height: 100svh; min-height: 600px; padding-top: calc(var(--ve-header-h) + 4vh); --land-h: min(28vw, 44vh); }
+html.ve-motion .vh-walk { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; }
+html.ve-motion .vh-walk__layer { will-change: transform; }
+html.ve-motion .vh-walk__walker { display: block; }
+html.ve-motion .vh-walk__trail { stroke-dashoffset: 1; }
+html.ve-motion .vh-trail__line { opacity: .26; }
+html.ve-motion .vh-trail__line.is-on { opacity: 1; }
+html.ve-motion .vh-trail__bar i::after { transform: scaleX(var(--f, 0)); }
+html.ve-motion .vh-trail__stages { gap: 0; }
+html.ve-motion .vh-tstage { grid-area: 1 / 1; opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .8s var(--ve-ease); }
+html.ve-motion .vh-tstage.is-on { opacity: 1; transform: none; }
+/* Without motion: heading, then all four stages across; no odometer */
+html:not(.ve-motion) .vh-trail__top { grid-template-columns: 1fr; }
+html:not(.ve-motion) .vh-trail__hud { justify-self: stretch; width: auto; }
+html:not(.ve-motion) .vh-trail__odo, html:not(.ve-motion) .vh-trail__bar { display: none; }
+html:not(.ve-motion) .vh-trail__stages { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px; }
+@media (max-width: 1100px) { html:not(.ve-motion) .vh-trail__stages { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
 @media (max-width: 900px) {
-  .vh-trail__grid { grid-template-columns: 1fr; }
-  .vh-trail__copy { position: static; }
-  .vh-route__stops { padding-left: 72px; }
-  .vh-stop__dot { left: -47px; }
-  .vh-stop--home .vh-stop__dot { left: -51px; }
-  .vh-route__line { width: 40px; }
+  .vh-trail__top { grid-template-columns: 1fr; gap: 18px; }
+  .vh-trail__hud { justify-self: start; }
+  .vh-trail__after { grid-template-columns: 1fr; }
+  .vh-trail__hooks { grid-column: 1; grid-row: auto; }
+  html:not(.ve-motion) .vh-trail__stages { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  html.ve-motion .vh-trail__pin { --land-h: min(62vw, 30vh); padding-top: calc(var(--ve-header-h) + 2vh); }
+  .vh-trail__title { font-size: clamp(26px, 7.4vw, 34px); }
+  .vh-trail__odo { margin-bottom: 10px; }
+  .vh-trail__km { font-size: 42px; }
+  .vh-trail__bar { margin-bottom: 14px; }
+  .vh-tstage h3 { font-size: 20px; margin: 4px 0 6px; }
+  .vh-tstage p:last-child { font-size: 14.5px; }
+  .vh-walk__stop b { font-size: 9px; letter-spacing: .16em; }
 }
 
 /* ── 6. Numbers ───────────────────────────────────────────────────────── */
@@ -257,34 +323,94 @@ html.ve-motion .vh-stop.is-active { opacity: 1; transform: none; }
   .vh-story__media { aspect-ratio: 16 / 11; }
 }
 
-/* ── 9. Location ──────────────────────────────────────────────────────── */
-.vh-where { background: var(--ve-forest); color: var(--ve-cream); padding: clamp(110px, 16vh, 190px) 0; position: relative; overflow: hidden; }
-.vh-where::before { content: ''; position: absolute; inset: 0; background: radial-gradient(80% 70% at 75% 50%, rgba(199, 168, 94, .12), transparent 70%); pointer-events: none; }
-.vh-where__grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 110px); align-items: center; }
+/* ── 9. Location: the flight in ─────────────────────────────────────────
+   A chart of the island; with motion the coast draws, the road runs in from
+   the airport and the camera (the SVG viewBox) zooms into the hills (home.js).
+   Labels and pins live in .vh-chart__k groups that JS keeps at screen size. */
+.vh-where { position: relative; overflow: hidden; background: var(--ve-forest); color: var(--ve-cream); }
+.vh-where::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(80% 70% at 75% 50%, rgba(199, 168, 94, .12), transparent 70%); }
+.vh-where__pin { position: relative; padding: clamp(110px, 16vh, 190px) 0; }
+.vh-where__grid { position: relative; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(40px, 5vw, 96px); align-items: center; width: 100%; }
 .vh-where__copy .ve-kicker { color: var(--ve-gold-light); }
 .vh-where__copy .ve-h2 em { color: var(--ve-gold-light); }
 .vh-where__copy .ve-lede { margin: 28px 0; }
 .vh-where__list { list-style: none; margin: 0 0 34px; padding: 0; font-size: 17px; }
-.vh-where__list li { display: flex; align-items: baseline; gap: 12px; padding: 10px 0; }
+.vh-where__list li { position: relative; display: flex; align-items: baseline; gap: 12px; padding: 10px 0; transition: opacity .6s ease; }
 .vh-where__list li::after { content: ''; order: 1; flex: 1; border-bottom: 1px dotted rgba(245, 241, 233, .3); }
 .vh-where__list span { order: 0; }
 .vh-where__list em { order: 2; font-family: var(--ve-display); font-style: normal; font-size: 12px; letter-spacing: .14em; color: var(--ve-gold-light); }
+.vh-where__list li::before { content: ''; position: absolute; left: -18px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--ve-gold); transform: scale(0); transition: transform .5s var(--ve-ease); }
 .vh-where__copy .ve-link { color: var(--ve-gold-light); }
-.vh-map { margin: 0; justify-self: center; width: min(100%, 420px); }
-.vh-map svg { width: 100%; height: auto; overflow: visible; }
-.vh-map__land { fill: rgba(245, 241, 233, .05); stroke: rgba(223, 192, 128, .75); stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: 0; }
-html.ve-motion .vh-map__land { stroke-dashoffset: 1; fill-opacity: 0; }
-.vh-map__route { fill: none; stroke: var(--ve-gold-light); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
-html.ve-motion .vh-map__route { stroke-dashoffset: 1; }
-.vh-map__pin circle { fill: var(--ve-cream); }
-.vh-map__pin text { font-family: var(--ve-display); font-size: 10px; letter-spacing: .14em; fill: rgba(245, 241, 233, .75); text-transform: uppercase; }
-.vh-map__pin--home circle { fill: var(--ve-gold); }
-.vh-map__pin--home text { fill: var(--ve-gold-light); font-size: 12px; }
-.vh-map__pulse { fill: none !important; stroke: var(--ve-gold); stroke-width: 1; transform-box: fill-box; transform-origin: center; animation: vhPulse 2.4s ease-out infinite; }
-html.ve-motion .vh-map__pin { opacity: 0; }
-.vh-map figcaption { text-align: center; margin-top: 16px; color: rgba(245, 241, 233, .6); font-size: 10px; }
-.vh-map figcaption .ve-si { font-size: 14px; color: var(--ve-gold-light); }
-@media (max-width: 900px) { .vh-where__grid { grid-template-columns: 1fr; } .vh-map { width: min(80%, 360px); } }
+
+.vh-chart { margin: 0; justify-self: end; width: 100%; }
+.vh-chart__frame {
+  position: relative; width: min(100%, 560px); aspect-ratio: 4 / 5; margin-left: auto; overflow: hidden;
+  border: 1px solid rgba(223, 192, 128, .24); background: radial-gradient(120% 90% at 55% 45%, #276039 0%, #1b442b 50%, #0f2819 100%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, .35), 0 30px 80px rgba(0, 0, 0, .25);
+}
+.vh-chart__frame::before, .vh-chart__frame::after { content: ''; position: absolute; z-index: 2; width: 18px; height: 18px; border: 1px solid rgba(223, 192, 128, .6); pointer-events: none; }
+.vh-chart__frame::before { left: 8px; top: 8px; border-right: 0; border-bottom: 0; }
+.vh-chart__frame::after { right: 8px; bottom: 8px; border-left: 0; border-top: 0; }
+.vh-chart__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.vh-chart__grat path { fill: none; stroke: rgba(223, 192, 128, .17); stroke-width: 1; stroke-dasharray: 2 5; vector-effect: non-scaling-stroke; }
+.vh-chart__grat--fine { opacity: 0; }
+.vh-chart__grat--fine path { stroke: rgba(223, 192, 128, .22); stroke-dasharray: 1 4; }
+.vh-chart__land { fill: rgba(245, 241, 233, .055); }
+.vh-chart__topo path { fill: none; stroke: rgba(223, 192, 128, .26); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.vh-chart__topo path.is-major { stroke: rgba(223, 192, 128, .5); }
+/* Dash-drawn lines keep user-unit widths (pathLength dashes and non-scaling strokes don't mix); home.js rescales them as the camera zooms */
+.vh-chart__coast { fill: none; stroke: rgba(223, 192, 128, .85); stroke-width: .75; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.vh-chart__road-bed { fill: none; stroke: rgba(245, 241, 233, .12); stroke-width: 2.2; stroke-linecap: round; }
+.vh-chart__road { fill: none; stroke: var(--ve-gold-light); stroke-width: 1.25; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; filter: drop-shadow(0 0 3px rgba(223, 192, 128, .75)); }
+.vh-chart__comet { fill: #fff6dc; filter: drop-shadow(0 0 4px #f3d49a); opacity: 0; }
+.vh-chart__k text { font-family: var(--ve-display); font-size: 7px; letter-spacing: .16em; text-transform: uppercase; fill: rgba(245, 241, 233, .82); }
+.vh-chart__k .vh-chart__deg { font-size: 5.4px; letter-spacing: .08em; fill: rgba(223, 192, 128, .62); }
+.vh-chart__k .vh-chart__sea { font-family: var(--ve-serif); font-style: italic; font-size: 8.5px; letter-spacing: .14em; text-transform: none; fill: rgba(245, 241, 233, .34); }
+.vh-chart__fine { opacity: 0; }
+.vh-chart__pin circle { fill: var(--ve-cream); }
+.vh-chart__pin--home circle { fill: var(--ve-gold); }
+.vh-chart__pin--home text { fill: var(--ve-gold-light); font-size: 9px; }
+.vh-chart__pulse { fill: none !important; stroke: var(--ve-gold); stroke-width: .7; transform-box: fill-box; transform-origin: center; animation: vhPulse 2.4s ease-out infinite; }
+.vh-chart__halo { fill: rgba(199, 168, 94, .16) !important; }
+.vh-chart__compass { position: absolute; top: 16px; right: 16px; z-index: 1; width: clamp(56px, 5.4vw, 78px); height: auto; overflow: visible; }
+.vh-chart__compass circle { fill: none; stroke: rgba(223, 192, 128, .32); stroke-width: 1; }
+.vh-chart__compass-star { fill: rgba(223, 192, 128, .14); stroke: rgba(223, 192, 128, .72); stroke-width: 1; stroke-linejoin: round; }
+.vh-chart__compass-star--minor { fill: none; stroke: rgba(223, 192, 128, .36); }
+.vh-chart__compass-lotus { fill: var(--ve-gold); }
+.vh-chart__compass text { font-family: var(--ve-display); font-size: 9px; fill: var(--ve-gold-light); }
+.vh-chart__hud { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; pointer-events: none; font-family: var(--ve-display); font-size: 10px; letter-spacing: .18em; color: rgba(245, 241, 233, .72); }
+.vh-chart__coords { font-variant-numeric: tabular-nums; }
+.vh-chart__scale { display: grid; justify-items: end; gap: 6px; }
+.vh-chart__scale i { display: block; width: var(--bar, 60px); height: 6px; border: 1px solid rgba(223, 192, 128, .75); border-top: 0; }
+.vh-chart__scale b { font-weight: 400; }
+.vh-chart__here { position: absolute; left: 20px; top: 18px; z-index: 1; margin: 0; display: grid; gap: 4px; }
+.vh-chart__here .ve-label { font-size: 9.5px; color: var(--ve-gold); }
+.vh-chart__here-name { font-family: var(--ve-display); font-size: clamp(18px, 1.6vw, 24px); color: var(--ve-gold-light); }
+.vh-chart__here-at { font-style: italic; font-size: 14px; color: rgba(245, 241, 233, .7); }
+.vh-chart figcaption { margin-top: 14px; text-align: right; font-size: 9.5px; color: rgba(245, 241, 233, .55); }
+.vh-chart figcaption .ve-si { font-size: 14px; color: var(--ve-gold-light); }
+html:not(.ve-motion) .vh-chart__pin--near text { display: none; }
+
+/* Motion start states (home.js takes over from here) */
+html.ve-motion .vh-chart__coast, html.ve-motion .vh-chart__road { stroke-dashoffset: 1; }
+html.ve-motion .vh-chart__pin, html.ve-motion .vh-chart__seas, html.ve-motion .vh-chart__grat, html.ve-motion .vh-chart__coarse, html.ve-motion .vh-chart__topo { opacity: 0; }
+html.ve-motion .vh-chart__land { fill-opacity: 0; }
+html.ve-motion .vh-chart__here { opacity: 0; transform: translateY(8px); transition: opacity .6s ease, transform .8s var(--ve-ease); }
+html.ve-motion .vh-chart__here.is-on { opacity: 1; transform: none; }
+html.ve-motion .vh-where__list li { opacity: .36; }
+html.ve-motion .vh-where__list li.is-lit { opacity: 1; }
+html.ve-motion .vh-where__list li.is-lit::before { transform: scale(1); }
+
+@media (min-width: 901px) {
+  html.ve-motion .vh-where__pin { box-sizing: border-box; min-height: 100vh; display: flex; align-items: center; padding: calc(var(--ve-header-h) + 3vh) 0 5vh; }
+  .vh-chart__frame { width: min(100%, 560px, calc((100vh - var(--ve-header-h) - 16vh) * .8)); }
+}
+@media (max-width: 900px) {
+  .vh-where__grid { grid-template-columns: 1fr; }
+  .vh-chart { order: -1; justify-self: stretch; }
+  .vh-chart__frame { width: 100%; margin: 0; }
+  .vh-where__list li::before { left: -12px; }
+}
 
 /* ── 10. Closing ──────────────────────────────────────────────────────── */
 .vh-close { position: relative; min-height: 100vh; display: grid; place-items: center; color: var(--ve-cream); text-align: center; overflow: hidden; isolation: isolate; padding: 18vh 0; }
@@ -303,6 +429,6 @@ html.ve-motion .vh-map__pin { opacity: 0; }
 
 /* Reduced motion: final states, no scroll-linked hiding */
 @media (prefers-reduced-motion: reduce) {
-  .vh-hero__scroll-line::after, .vh-stop--home .vh-stop__dot::after, .vh-map__pulse { animation: none; }
+  .vh-hero__scroll-line::after, .vh-walk__stop--home i::after, .vh-walk__walker::after, .vh-walk__mist, .vh-chart__pulse { animation: none; }
   .vh-hero__video { transform: none; }
 }

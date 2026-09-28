@@ -2,8 +2,8 @@
 
 Luxury heritage stay: restored 1890s planter's bungalow in Galaha, Sri Lanka (base for Pekoe Trail Stages 1 & 2). 7 keys (6 chambers + Carriage House Cottage). Full roadmap and phase status: [docs/bungalow-ledger.md](docs/bungalow-ledger.md).
 
-- Live site: https://teaestate.vercel.app — a **manually pinned alias**, not the project's production domain. Since 2026-09-28 it points to the `live/enquiry-fix` deployment (the original site from commit ae7a17e + the enquiry-email fix). Merging to `main` does NOT change it: `main` builds go to teabungalow.vercel.app, and `main` also contains the first preloader version (349f861) that was never shown live. Re-point with `vercel alias set <deployment-url> teaestate.vercel.app` (previous target: deploy-nwe9vh0jf-eranga-bowatte.vercel.app). At launch, attach the real domain to the project's Production instead.
-- Preview (`feature/platform-integrations`): https://teabungalow-git-feature-platform-integrations-eranga-bowatte.vercel.app — the older `deploy-git-…` alias is frozen at a September build; don't use it.
+- Production = `main` (merged 2026-09-28, PR #2), auto-deployed to teabungalow.vercel.app. The public address https://teaestate.vercel.app must be attached to the project (Vercel → teabungalow → Settings → Domains) so it follows every production deploy; otherwise it stays a manually pinned alias (`vercel alias set <deployment-url> teaestate.vercel.app`) and CMS edits won't show there. Domain changes need the owner's go-ahead.
+- Previews: every pushed branch gets https://teabungalow-git-<branch>-eranga-bowatte.vercel.app. `feature/platform-integrations` is retired (fully merged).
 - Repo: github.com/Eranga27/teaestate-vD · Vercel project: `eranga-bowatte/teabungalow`
 
 ## Layout
@@ -33,17 +33,19 @@ node scripts/optimize_media.js            # regenerate src/media (sharp + ffmpeg
 node scripts/visual_check.mjs <cfg.json>  # headless Chrome screenshots (see header of the file)
 ```
 
-Estate staff commit content through the CMS on this same branch, so `git pull` before starting work. Commit `src/`, `api/`, `scripts/` changes only. Vercel runs `npm run build` on every push and serves `public/` (see `vercel.json`).
+The CMS commits content straight to `main` (the live site), so branch from a freshly pulled `main` and merge `main` into long-running branches. Commit `src/`, `api/`, `scripts/` changes only. Vercel runs `npm run build` on every push and serves `public/` (see `vercel.json`).
 
 ## vE — the UI/UX phase
 
-Branch `ve/homepage` (from `feature/platform-integrations`). The homepage is the first vE page; the rest still use the legacy templates.
+The homepage is the first vE page (live since PR #2); the rest still use the legacy templates. Work continues on `ve/<topic>` branches from `main`.
 
 - A page opts in with `ve: true` in the `pages` list of `build_static.js`. The build then strips the legacy nav/drawer/booking bar from `navbar.php` (consent banner, reservation modal and GTM stay), resolves `layout/ve/*.html` includes, fills the CMS markers (`<!-- tb:announcement -->`, `<!-- tb:experiences -->`, `<!-- tb:stories -->`, `data-cms-rate`) and adds `?v=<hash>` to `/ve/` and `/js/vendor/` URLs.
 - GSAP/ScrollTrigger/Lenis come from `node_modules` and are copied to `public/js/vendor/` at build time — no CDN.
 - Motion code runs inside `VE.ready(fn)` (after the preloader). GSAP gotchas: when CSS sets a translate start state, `gsap.set(el, { y: 0, yPercent: N })`; never tween the same property from an entrance and a scroll timeline (use a wrapper); call `ScrollTrigger.sort()` after creating pins out of page order.
 - `html.ve-motion` is added only when motion runs; hidden start states hang off it, so reduced motion and a failed script both leave everything visible.
 - QA with `scripts/visual_check.mjs` rather than the browser pane (it stops painting when hidden). Check 1440×900, 768 and 390×844 (mobile), reduced motion, and `"intro": true` for the preloader hand-off (`"exact": true` shots + a `"probe"` of the `tb-preloader:*` marks give real timings; normal shots add ~0.7 s each).
+- Pekoe Trail (`.vh-trail`): pinned "walk". Three ridge layers (one 3600×405 drawing, generated once and inlined; `.vh-walk__layer` width = `--land-h` × 8.889) pan at 0.45/0.72/1× under a walker that follows `.vh-walk__trail`; `home.js` maps scroll to distance with holds at the bungalow and Loolecondera and drives the km count, stage card, background scene and heading line. Without motion it's a static route diagram with all four stages.
+- Getting here (`.vh-chart`): the camera is the SVG `viewBox` (whole island → the hills round Galaha, geometric zoom). Chart units: x = (lon − 79.2473) × 103.6, y = (10.0049 − lat) × 104. Anything in a `.vh-chart__k` group is rescaled per frame to stay screen-sized; dash-drawn lines (coast, road, trail) must not use `vector-effect: non-scaling-stroke` (it breaks `pathLength` dashes), so `home.js` sets their widths instead. Contour rings are generated at runtime (seeded). Loolecondera's pin is approximate (no published coordinates), hence the "Approximate locations" caption.
 - Hero film: `hero-estate-1080.mp4` (native 1080p, 2-pass H.264 4.5 Mbps, ~12 MB) for landscape screens and `hero-estate-portrait.mp4` (720×1080 cut around the house, 2 Mbps, ~5 MB) for upright ones, chosen in `home.js` by aspect ratio. The footage is grainy: don't go back to heavy CRF/denoise (the old 1600px cut scored VMAF 65 vs 87 now). Media URLs are cached immutably, so re-encodes get new file names.
 
 ## CMS (`/admin`)
@@ -52,7 +54,7 @@ Decap CMS with one shared estate login — editors don't need GitHub accounts.
 
 - `src/admin/index.html`: branded sign-in form → `api/cms-login.js` checks the password server-side and sets a 12-hour HttpOnly session cookie, then Decap loads with a placeholder user.
 - Decap's GitHub backend talks to `/api/github/*` (rewritten to `api/cms-github.js`), which checks the session and calls GitHub with the server-side token. It only allows reads of this repo plus the save sequence (blob → tree → commit → non-forced branch update), and trees may only contain regular files under `src/data/` or `src/images/cms/` — the CMS can never change code. `npm test` covers these rules (`scripts/test_cms_auth.js`).
-- Vercel env vars: `CMS_ADMIN_PASSWORD`, `CMS_GITHUB_TOKEN` (fine-grained token, this repo only, Contents read & write), optional `CMS_ADMIN_USERNAME` (default `estate-admin`). Changing the password or token signs everyone out.
+- Vercel env vars (Production and Preview): `CMS_ADMIN_PASSWORD`, `CMS_GITHUB_TOKEN` (fine-grained token, this repo only, Contents read & write), optional `CMS_ADMIN_USERNAME` (default `estate-admin`). Changing the password or token signs everyone out. Saves go to `main`, i.e. straight to the live site.
 - Saves commit to the branch in `config.yml` as the token's owner; Vercel rebuilds (~30 s). Image uploads are capped at 3 MB per field (Vercel's 4.5 MB request limit).
 - Config lives only in `config.yml`; `index.html` just sets `api_root` to this origin.
 - One JSON file per entry in folder collections. Never put an array of entries in one file — the CMS would treat it as a single entry and overwrite it. Order comes from `sort_order`.
@@ -71,7 +73,7 @@ Decap CMS with one shared estate login — editors don't need GitHub accounts.
 
 ## Rules
 
-- Work on `feature/platform-integrations`; never commit to `main` (production at teaestate.vercel.app). Promotion is a reviewed PR.
+- Never push to `main` (production). Work on a branch from `main`, check its Vercel preview, and open a PR that the owner merges.
 - Site-wide changes belong in `src/layout/*.php`, not in individual pages.
 - Every page must keep: exactly one once-per-session preloader (skippable; hidden for reduced motion; waits for a background tab to become visible), PDPA consent banner wired to Google Consent Mode v2, GTM snippet (when `GTM_ID` is set), reservation modal. `npm test` enforces this.
 - vE pages: Sinhala accents use Noto Serif Sinhala loaded with a `&text=` subset — add any new Sinhala characters to that URL. Photos go through `src/media/` (never link multi-MB originals).
