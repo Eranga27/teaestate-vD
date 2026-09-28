@@ -433,11 +433,13 @@ Started 28 Sept 2026 on branch `ve/homepage`. Goal: an award-level, cinematic sc
 
 **Pekoe Trail (vE):** gold contour lines survey the forest in the hero; a "you are here" line diagram of stage starts and ends with drive times; stage cards that stack as you scroll; "A day on the trail", where scrolling runs the clock through the sample itinerary so the sun crosses the sky, night falls with the bungalow's windows lit, and dawn comes again; the hiker's promise lit word by word; logistics; trail packages from the admin; a month-by-month walking calendar (with this month marked); and the FAQ.
 
+**The Entire Estate (vE):** "The gates close behind you". You arrive at a pair of gold iron estate gates (pillars, spear-tipped bars, a lotus medallion where the leaves meet) with the house seen through the bars; scrolling swings them open into the estate and the estate's promise appears. Then: the house in numbers; an inventory set out as an old estate ledger that writes itself line by line; a walk-through where each shared room opens through an arched doorway you walk into (the Long Table drawn for twelve); services; party types as tabs; "A day at the estate" on a moonstone-style 24-hour clock whose hand sweeps through the day; the rate card and the enquiry. The photos paired with the Morning Room, Evening Salon, Verandah, Tea Pavilion, Billiards Room and Planter's Lounge are best guesses from the estate's lounge photographs, to be confirmed by the owner.
+
 **Stack:** GSAP 3 + ScrollTrigger and Lenis, self-hosted. Photos are optimised to WebP. On reduced motion or Save-Data, the hero shows the poster only.
 
 **QA:** headless Chrome captures at 1440/768/390, reduced motion and the preloader hand-off. Also checked: no horizontal overflow and no console errors. `npm test` passes.
 
-**Next:** roll vE out to Experiences, The Entire Estate, Packages, Gallery, About and Contact. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
+**Next:** roll vE out to Experiences, Packages, The Bungalow, About, Gallery and Contact. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
 
 ---
 
