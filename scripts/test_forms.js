@@ -51,6 +51,10 @@ const guest = { first: 'Ada', last: 'Lovelace', email: 'Ada@Example.com', phone:
   assert.ok(mail.body.textContent.includes('Guests: 2 adults\n')); // "0 children" left out
   await post(enquiry, { ...guest, adults: '1', children: '1' });
   assert.ok(calls[0].body.textContent.includes('Guests: 1 adult, 1 child\n'));
+  await post(enquiry, { ...guest, 'enquiry-type': 'pekoe', 'pekoe-stages': 'Stage 1 & 2' });
+  assert.equal(calls[0].body.subject, 'New enquiry — Ada Lovelace · Pekoe Trail Package · arriving 2026-12-20');
+  assert.ok(calls[0].body.textContent.includes('Enquiry type: Pekoe Trail Package\nPekoe Trail stages: Stage 1 & 2\n'));
+  assert.ok(calls[0].body.htmlContent.includes('Stage 1 &amp; 2'));
   assert.equal(contact.url, 'https://api.brevo.com/v3/contacts');
   assert.deepEqual(contact.body, { email: 'ada@example.com', updateEnabled: true, listIds: [7], attributes: { FIRSTNAME: 'Ada', LASTNAME: 'Lovelace', ARRIVAL_DATE: '2026-12-20', DEPARTURE_DATE: '2026-12-23' } });
   console.log('✓ enquiry emails every estate address (guest as Reply-To, HTML escaped) and adds guest to list 7 with stay dates');

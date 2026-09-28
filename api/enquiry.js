@@ -5,6 +5,19 @@ const { brevoConfig, line, paragraph, isEmail, isoDate, notifyEstate, upsertCont
  * Brevo enquiry list, whose automations can use ARRIVAL_DATE / DEPARTURE_DATE for
  * pre-arrival and post-stay emails. See api/_brevo.js for the env vars.
  */
+// Option values of the contact form's "enquiry-type" select
+const ENQUIRY_TYPES = {
+  room: 'Individual Room / Chamber',
+  pekoe: 'Pekoe Trail Package',
+  buyout: 'Estate Buyout (Entire Bungalow)',
+  celebration: 'Private Celebration / Anniversary',
+  family: 'Family Stay',
+  tiffin: "Planter's Tiffin Lunch (Day Visit)",
+  group: 'Group Booking (6+ people)',
+  experience: 'Experiences Only',
+  other: 'General Question'
+};
+
 // "1 adult, 2 children"; zero or empty counts are left out
 const count = (n, singular, plural) => (n && n !== '0' ? `${n} ${n === '1' ? singular : plural}` : '');
 
@@ -31,9 +44,12 @@ module.exports = async (req, res) => {
     departure: isoDate(line(body.departure, 10)),
     adults: line(body.adults, 10),
     children: line(body.children, 10),
+    type: line(body['enquiry-type'], 40),
+    stages: line(body['pekoe-stages'], 80),
     how: line(body.how, 120),
     message: paragraph(body.message)
   };
+  const typeLabel = ENQUIRY_TYPES[enquiry.type] || enquiry.type;
 
   if (!enquiry.first || !isEmail(enquiry.email) || !enquiry.message) {
     return res.status(400).json({ ok: false, message: 'Please add your name, a valid email address and a message.' });
@@ -49,11 +65,12 @@ module.exports = async (req, res) => {
 
   try {
     await notifyEstate(cfg, {
-      subject: `New enquiry — ${name}${enquiry.arrival ? ` · arriving ${enquiry.arrival}` : ''}`,
+      subject: `New enquiry — ${name}${typeLabel ? ` · ${typeLabel}` : ''}${enquiry.arrival ? ` · arriving ${enquiry.arrival}` : ''}`,
       replyTo: { email: enquiry.email, name },
       tag: 'website-enquiry',
       rows: [
         ['Name', name], ['Email', enquiry.email], ['Phone', enquiry.phone],
+        ['Enquiry type', typeLabel], ['Pekoe Trail stages', enquiry.stages],
         ['Arrival', enquiry.arrival], ['Departure', enquiry.departure],
         ['Guests', [count(enquiry.adults, 'adult', 'adults'), count(enquiry.children, 'child', 'children')].filter(Boolean).join(', ')],
         ['Heard about us', enquiry.how], ['Message', enquiry.message]
