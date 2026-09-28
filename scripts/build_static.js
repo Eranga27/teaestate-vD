@@ -36,7 +36,7 @@ const pages = [
   { phpFile: 'the-bungalow.php', htmlFile: 'the-bungalow.html', pageName: 'the-bungalow' },
   { phpFile: 'the-entire-estate.php', htmlFile: 'the-entire-estate.html', pageName: 'the-entire-estate', ve: true },
   { phpFile: 'pekoe-trail.php', htmlFile: 'pekoe-trail.html', pageName: 'pekoe-trail', ve: true },
-  { phpFile: 'experiences.php', htmlFile: 'experiences.html', pageName: 'experiences' },
+  { phpFile: 'experiences.php', htmlFile: 'experiences.html', pageName: 'experiences', ve: true },
   { phpFile: 'packages.php', htmlFile: 'packages.html', pageName: 'packages' },
   { phpFile: 'gallery.php', htmlFile: 'gallery.html', pageName: 'gallery' },
   { phpFile: 'contact.php', htmlFile: 'contact.html', pageName: 'contact' },
@@ -269,6 +269,42 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const formatDate = d => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); return m ? `${+m[3]} ${MONTHS[+m[2] - 1]} ${m[1]}` : (d || ''); };
 const labelFor = s => String(s || '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
+// Experiences (vE): the tasting table. Each experience is a cup, in time-of-day order, its tea steeping
+// from pale morning gold to dark evening liquor. A photo uploaded in the CMS always wins; until the
+// estate photographs each experience, these are the closest estate photos (the CMS defaults are stock).
+const EXPERIENCE_PHOTOS = {
+  'early-morning-tea': 'lounge-windows', 'breakfast-at-the-long-table': 'lounge-main', 'packed-trail-lunch': 'trail-forest',
+  'guided-tea-estate-walk': 'tea-factory', 'the-private-pool': 'garden', 'the-planter-s-afternoon-tea': 'afternoon-tea',
+  'sunset-sundowner': 'estate-house', 'the-evening-heritage-talk': 'lounge-red', 'private-fireside-dinner': 'lounge-evening',
+  'dinner-at-the-tea-pavilion': 'dining-outdoor',
+};
+const experiencePhoto = e => (/^\/images\/cms\//.test(e.image || '') ? encodeURI(e.image)
+  : EXPERIENCE_PHOTOS[e._slug] ? `/media/${EXPERIENCE_PHOTOS[e._slug]}-900.webp` : imageFor(e.image, e.category));
+// The hour an experience happens, from its "timing" text ("7:30 PM", "Collect at breakfast", "By arrangement")
+function experienceHour(e) {
+  const t = String(e.timing || '').toLowerCase();
+  const m = /(\d{1,2})(?::(\d{2}))?\s*(am|pm)/.exec(t);
+  if (m) return (+m[1] % 12) + (m[3] === 'pm' ? 12 : 0) + (+m[2] || 0) / 60;
+  if (/breakfast|morning|dawn|sunrise/.test(t)) return 7;
+  if (/lunch|midday|noon/.test(t)) return 12.5;
+  if (/afternoon/.test(t)) return 15;
+  if (/pre-dinner|sundown|sunset|dusk/.test(t)) return 18.5;
+  if (/dinner|evening|night/.test(t)) return 19.5;
+  return { 'pekoe-trail': 7.5, 'tea-estate': 10, 'tea-heritage': 10, wellness: 12, culinary: 15, 'colonial-heritage': 18.5, 'estate-life': 18.5, dining: 19.5 }[e.category] ?? 12;
+}
+// Tea liquor by hour: pale gold at dawn → amber → copper → near-black by the fire
+const LIQUOR = [[6, [220, 185, 110]], [9, [201, 154, 69]], [12, [181, 122, 44]], [15.5, [156, 90, 29]], [18, [122, 58, 20]], [19.5, [78, 33, 13]], [21, [44, 18, 8]]];
+function liquorAt(h) {
+  let a = LIQUOR[0], b = LIQUOR[LIQUOR.length - 1];
+  for (let i = 1; i < LIQUOR.length; i++) if (h <= LIQUOR[i][0]) { a = LIQUOR[i - 1]; b = LIQUOR[i]; break; }
+  const t = h <= a[0] ? 0 : h >= b[0] ? 1 : (h - a[0]) / (b[0] - a[0]);
+  return '#' + a[1].map((v, c) => Math.round(v + (b[1][c] - v) * t).toString(16).padStart(2, '0')).join('');
+}
+const activeExperiences = () => cmsExperiences.filter(e => e.active !== false)
+  .map(e => ({ e, h: experienceHour(e) }))
+  .sort((a, b) => a.h - b.h || (a.e.sort_order ?? 9999) - (b.e.sort_order ?? 9999));
+const isComplimentary = e => /complimentary|included/i.test(e.rate || '');
+
 // <!-- tb:announcement -->, <!-- tb:experiences -->, <!-- tb:stories --> and data-cms-rate="Chamber"
 function renderVeMarkers(content) {
   if (content.includes('<!-- tb:announcement -->')) {
@@ -281,7 +317,7 @@ function renderVeMarkers(content) {
     const rows = cmsExperiences.filter(e => e.active !== false)
       .sort((a, b) => (a.sort_order ?? 9999) - (b.sort_order ?? 9999)).slice(0, 6)
       .map((e, i) => {
-        const img = imageFor(e.image, e.category);
+        const img = experiencePhoto(e);
         const meta = [e.timing, e.location].filter(Boolean).join(' · ');
         return `<li class="vh-exp__row"><a href="/experiences" data-img="${img}"><span class="ve-num">${String(i + 1).padStart(2, '0')}</span>` +
           `<span class="vh-exp__title">${escapeHtml(e.title)}</span><span class="vh-exp__meta">${escapeHtml(meta)}</span>` +
@@ -310,6 +346,35 @@ function renderVeMarkers(content) {
         </div>
       </div>
     </section>` : ''));
+  }
+  if (content.includes('<!-- tb:exp-table -->')) {
+    const items = activeExperiences().map(({ e, h }, i) => {
+      const free = isComplimentary(e);
+      const when = [e.timing, e.location].filter(Boolean).map(escapeHtml).join(' &middot; ');
+      const price = free ? `<span class="xp-tag xp-tag--free">Complimentary</span><span>${escapeHtml(e.rate_unit || 'Part of every stay')}</span>`
+        : `<span class="xp-tag">${escapeHtml(e.rate || 'Price on request')}</span><span>${escapeHtml([e.rate_unit, e.duration].filter(Boolean).join(' · '))}</span>`;
+      const action = free ? '<p class="xp-item__free">Waiting for you, nothing to book</p>'
+        : `<button type="button" class="xp-add" data-add="${escapeHtml(e.title)}" aria-pressed="false"><span class="xp-add__icon" aria-hidden="true"></span><span class="xp-add__label">Add to my stay</span></button>`;
+      return `<li class="xp-item${free ? ' is-free' : ''}" style="--liq: ${liquorAt(h)}" data-hour="${h.toFixed(2)}">
+            <figure class="xp-item__cup" aria-hidden="true"><span class="xp-item__handle"></span><span class="xp-item__liquor"><img src="${experiencePhoto(e)}" alt="" loading="lazy" decoding="async"></span></figure>
+            <p class="xp-item__when"><span class="ve-num">${String(i + 1).padStart(2, '0')}</span>${when}</p>
+            <h3 class="xp-item__title">${escapeHtml(e.title)}</h3>
+            <p class="xp-item__desc">${escapeHtml(e.description || '')}</p>
+            <p class="xp-item__meta">${price}</p>
+            ${action}
+          </li>`;
+    }).join('\n          ');
+    content = content.replace('<!-- tb:exp-table -->', () => items);
+  }
+  if (content.includes('<!-- tb:exp-count -->')) {
+    const n = activeExperiences().length;
+    const words = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
+    content = content.split('<!-- tb:exp-count -->').join(words[n] || String(n));
+  }
+  if (content.includes('<!-- tb:exp-free -->')) {
+    const names = activeExperiences().filter(({ e }) => isComplimentary(e)).map(({ e }) => escapeHtml(e.title.replace(/^The /, 'the ')));
+    const list = names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : (names[0] || '');
+    content = content.replace('<!-- tb:exp-free -->', () => list);
   }
   if (content.includes('<!-- tb:trail-packages -->')) {
     const packs = cmsPackages.filter(p => p.section === 'trail' && p.active !== false)
@@ -369,7 +434,7 @@ for (const page of pages) {
   content = cleanUrlRewrites(content);
 
   // ── CMS Content Ingestion Bridge ──────────────────────────────────────────
-  if (page.pageName === 'experiences' && cmsExperiences.length > 0) {
+  if (page.pageName === 'experiences' && !page.ve && cmsExperiences.length > 0) {
     const activeExperiences = cmsExperiences
       .filter(e => e.active !== false)
       .sort((a, b) => (a.sort_order ?? 9999) - (b.sort_order ?? 9999));
