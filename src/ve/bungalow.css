@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   vE · The Bungalow (motion in /ve/bungalow.js).
+   The photograph of the house with its drawing's title block → the house on
+   paper: an illustrative plan the camera walks through room by room → the
+   story of the house, one year at a time → dusk → accessibility and the close.
+═══════════════════════════════════════════════════════════════════════════ */
+.ve-bh { --bh-paper: #f4efe4; --bh-ink: #1E4D2B; --bh-night: #08140e; }
+
+/* ── 1. The house ──────────────────────────────────────────────────── */
+.bh-hero { position: relative; height: 100vh; height: 100svh; min-height: 660px; overflow: hidden; isolation: isolate; background: var(--bh-night); color: var(--ve-cream); }
+.bh-hero__photo { position: absolute; inset: 0; z-index: -3; }
+.bh-hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; filter: saturate(.85) brightness(.78); transform-origin: 50% 60%; }
+.bh-hero__grade { position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgba(8, 20, 14, .6) 0%, rgba(8, 20, 14, .1) 30%, rgba(8, 20, 14, .2) 55%, rgba(8, 20, 14, .82) 88%, var(--bh-night) 100%); }
+/* Paper rises over the photograph (scrolled in by bungalow.js): the house becomes its drawing */
+.bh-hero__paper { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; height: 150%; pointer-events: none; transform: translateY(100%);
+  background: linear-gradient(180deg, rgba(244, 239, 228, 0) 0%, rgba(244, 239, 228, .6) 14%, var(--bh-paper) 33%); }
+html:not(.ve-motion) .bh-hero__paper { display: none; }
+.bh-hero__inner { position: relative; height: 100%; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: end; gap: clamp(30px, 5vw, 80px); padding-bottom: 9vh; }
+.bh-hero__text { text-shadow: 0 2px 30px rgba(0, 0, 0, .45); }
+.bh-hero__text .ve-kicker { color: var(--ve-gold-light); }
+.bh-hero__title { margin: 0; font-family: var(--ve-display); font-weight: 400; font-size: clamp(52px, 8vw, 128px); line-height: .95; }
+.bh-hero__title em { font-family: var(--ve-serif); font-style: italic; color: var(--ve-gold-light); }
+.bh-hero__line { display: block; overflow: hidden; padding-bottom: .08em; }
+.bh-hero__line > * { display: block; }
+.bh-hero__sub { margin: 24px 0 0; max-width: 29em; font-size: clamp(17.5px, 1.35vw, 21px); line-height: 1.55; color: rgba(245, 241, 233, .88); }
+.bh-hero__hint { display: none; align-items: center; gap: 14px; margin-top: 30px; font-size: 10px; color: rgba(245, 241, 233, .72); }
+.bh-hero__hint-line { position: relative; width: 50px; height: 1px; overflow: hidden; background: rgba(245, 241, 233, .3); }
+.bh-hero__hint-line::after { content: ''; position: absolute; inset: 0; background: var(--ve-gold-light); animation: bhHint 2.2s var(--ve-ease-in-out) infinite; }
+@keyframes bhHint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+/* The drawing's title block, carrying the facts */
+.bh-block { justify-self: end; width: min(100%, 420px); margin: 0; border: 1px solid rgba(223, 192, 128, .55); background: rgba(8, 20, 14, .55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.bh-block div { display: grid; grid-template-columns: 96px minmax(0, 1fr); border-top: 1px solid rgba(223, 192, 128, .3); }
+.bh-block div:first-child { border-top: 0; }
+.bh-block dt, .bh-block dd { margin: 0; padding: 11px 16px; }
+.bh-block dt { border-right: 1px solid rgba(223, 192, 128, .3); font-family: var(--ve-display); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--ve-gold-light); }
+.bh-block dd { font-size: 15.5px; line-height: 1.4; color: rgba(245, 241, 233, .9); }
+.bh-block .bh-block__head dd { font-family: var(--ve-display); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+html.ve-motion .bh-hero__hint { display: flex; }
+html.ve-motion .bh-hero__line > * { transform: translateY(110%); }
+html.ve-motion .bh-hero__text .ve-crumbs, html.ve-motion .bh-hero__text .ve-kicker, html.ve-motion .bh-hero__sub, html.ve-motion .bh-hero__hint, html.ve-motion .bh-block { opacity: 0; }
+
+/* ── 2. The house on paper ─────────────────────────────────────────── */
+.bh-plan { position: relative; background: var(--bh-paper); color: var(--ve-forest-deep); }
+.bh-plan__pin { position: relative; display: grid; grid-template-columns: minmax(0, 60fr) minmax(0, 40fr); height: 100vh; height: 100svh; min-height: 640px; overflow: hidden; }
+.bh-plan__sheet { position: relative; margin: 0; overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 50%, #f8f4ea, #efe8da 100%); border-right: 1px solid rgba(30, 77, 43, .14); }
+/* a faint drafting grid */
+.bh-plan__sheet::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: linear-gradient(rgba(30, 77, 43, .06) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 77, 43, .06) 1px, transparent 1px); background-size: 28px 28px; }
+.bh-plan__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
+.bh-plan__note { position: absolute; left: 24px; bottom: 18px; font-style: italic; font-size: 14px; color: var(--ve-muted); }
+.bp-site path { fill: none; stroke: rgba(30, 77, 43, .28); stroke-width: 1.1; vector-effect: non-scaling-stroke; }
+.bp-room { fill: #fbf8f1; stroke: var(--bh-ink); stroke-width: 1.4; vector-effect: non-scaling-stroke; transition: fill .6s ease; }
+.bp-room--open { fill: rgba(251, 248, 241, .5); stroke-dasharray: 4 3; }
+.bp-room--water { fill: rgba(120, 160, 150, .2); }
+.bp-room.is-on { fill: rgba(199, 168, 94, .32); }
+.bp-walls path { fill: none; stroke: var(--bh-ink); stroke-width: 3.4; vector-effect: non-scaling-stroke; }
+.bp-detail path { fill: none; stroke: rgba(30, 77, 43, .75); stroke-width: 1.1; vector-effect: non-scaling-stroke; }
+.bp-soft path { fill: none; stroke: rgba(30, 77, 43, .4); stroke-width: .9; vector-effect: non-scaling-stroke; }
+.bp-posts rect { fill: var(--bh-ink); }
+.bp-label { font-family: var(--ve-display); font-size: 8.6px; letter-spacing: .8px; text-anchor: middle; fill: var(--ve-forest-deep); text-transform: uppercase; transition: fill .5s; }
+.bp-label.is-on { fill: var(--ve-gold-deep); font-weight: 600; }
+.bp-compass circle { fill: none; stroke: var(--ve-gold-deep); vector-effect: non-scaling-stroke; }
+.bp-compass path { fill: var(--ve-gold-deep); }
+.bp-compass .bp-compass__s { fill: none; stroke: var(--ve-gold-deep); vector-effect: non-scaling-stroke; }
+.bp-compass text { font-family: var(--ve-display); font-size: 11px; text-anchor: middle; fill: var(--ve-gold-deep); }
+.bp-title rect, .bp-title path { fill: none; stroke: var(--bh-ink); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.bp-title text { font-family: var(--ve-display); font-size: 9px; letter-spacing: 1px; text-anchor: middle; fill: var(--bh-ink); text-transform: uppercase; }
+.bp-title .bp-title__main { font-size: 11px; }
+
+.bh-plan__side { position: relative; display: grid; align-items: center; padding: calc(var(--ve-header-h) + 3vh) var(--ve-gutter) 8vh clamp(28px, 3.4vw, 60px); }
+.bh-steps { list-style: none; margin: 0; padding: 0; display: grid; }
+.bh-step { grid-area: 1 / 1; align-self: center; }
+.bh-step .ve-kicker { color: var(--ve-gold-deep); }
+.bh-step__photo { margin: 0 0 24px; width: min(100%, 300px); aspect-ratio: 4 / 3; overflow: hidden; border-radius: 999px 999px 0 0; }
+.bh-step__photo img { width: 100%; height: 100%; object-fit: cover; }
+.bh-step__no { margin: 0 0 10px; font-family: var(--ve-display); font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--ve-gold-deep); }
+.bh-step__title { margin: 0 0 16px; font-family: var(--ve-display); font-weight: 400; font-size: clamp(26px, 2.6vw, 42px); line-height: 1.08; }
+.bh-step__title em { font-family: var(--ve-serif); font-style: italic; color: var(--ve-gold-deep); }
+.bh-step > p:not([class]) { margin: 0 0 18px; max-width: 30em; font-size: clamp(16.5px, 1.2vw, 18.5px); line-height: 1.6; color: var(--ve-muted); }
+.bh-step__tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
+.bh-step__tags li { padding: 6px 12px; border: 1px solid rgba(150, 119, 56, .45); font-family: var(--ve-display); font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--ve-gold-deep); }
+.bh-step__link { color: var(--ve-forest); }
+.bh-plan__count { position: absolute; right: var(--ve-gutter); bottom: 5vh; margin: 0; font-family: var(--ve-display); font-size: 12px; letter-spacing: .2em; color: var(--ve-muted); }
+.bh-plan__now { font-size: 22px; color: var(--ve-gold-deep); }
+html.ve-motion .bh-step { opacity: 0; visibility: hidden; transform: translateY(16px); transition: opacity .55s ease, transform .8s var(--ve-ease), visibility .55s; }
+html.ve-motion .bh-step.is-on { opacity: 1; visibility: visible; transform: none; }
+/* Without motion: the plan, then every room as a list */
+html:not(.ve-motion) .bh-plan__pin { height: auto; min-height: 0; grid-template-columns: 1fr; }
+html:not(.ve-motion) .bh-plan__sheet { aspect-ratio: 10 / 7; border-right: 0; }
+html:not(.ve-motion) .bh-steps { gap: 60px; }
+html:not(.ve-motion) .bh-step { grid-area: auto; }
+html:not(.ve-motion) .bh-plan__count { display: none; }
+html:not(.ve-motion) .bh-plan__side { padding-top: 60px; padding-bottom: 80px; }
+
+/* ── 3. The story of this house ────────────────────────────────────── */
+.bh-story { background: var(--bh-paper); color: var(--ve-forest-deep); padding: clamp(100px, 15vh, 170px) 0 clamp(80px, 12vh, 140px); }
+.bh-story__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(40px, 7vw, 120px); align-items: start; }
+.bh-story__stick { position: sticky; top: calc(var(--ve-header-h) + 8vh); }
+.bh-story__stick .ve-kicker { color: var(--ve-gold-deep); }
+.bh-story__year { position: relative; margin: 36px 0 0; height: 1em; overflow: hidden; font-family: var(--ve-display); font-size: clamp(80px, 11vw, 190px); line-height: 1; color: var(--ve-gold-deep); }
+.bh-story__year span { display: block; }
+.bh-story__list { list-style: none; position: relative; margin: 0; padding: 0 0 0 38px; }
+.bh-story__list::before { content: ''; position: absolute; left: 6px; top: 12px; bottom: 12px; width: 1px; background: var(--ve-line); }
+.bh-story__list::after { content: ''; position: absolute; left: 6px; top: 12px; width: 1px; height: calc((100% - 24px) * var(--p, 0)); background: var(--ve-gold-deep); }
+.bh-story__list li { position: relative; padding: 0 0 clamp(50px, 9vh, 90px); }
+.bh-story__list li:last-child { padding-bottom: 0; }
+.bh-story__list li::before { content: ''; position: absolute; left: -38px; top: 8px; width: 13px; height: 13px; border-radius: 50%; background: var(--bh-paper); border: 1.5px solid var(--ve-gold-deep); transition: background-color .5s; }
+.bh-story__list li.is-on::before { background: var(--ve-gold-deep); }
+.bh-story__when { margin: 0 0 8px; font-family: var(--ve-display); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--ve-gold-deep); }
+.bh-story__list h3 { margin: 0 0 12px; font-family: var(--ve-display); font-weight: 400; font-size: clamp(22px, 2vw, 30px); line-height: 1.15; }
+.bh-story__list li p:not(.bh-story__when) { margin: 0; max-width: 34em; font-size: clamp(16.5px, 1.2vw, 18.5px); line-height: 1.65; color: var(--ve-muted); }
+html:not(.ve-motion) .bh-story__year { display: none; }
+
+/* ── Dusk, then night ──────────────────────────────────────────────── */
+.bh-dusk { height: 40vh; min-height: 260px; background: linear-gradient(180deg, var(--bh-paper) 0%, #c7b493 34%, #56604a 70%, var(--bh-night) 100%); }
+.bh-night { background: var(--bh-night); color: var(--ve-cream); }
+.bh-access { padding: clamp(40px, 7vh, 80px) 0 clamp(80px, 12vh, 130px); }
+.bh-access__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 100px); align-items: center; }
+.bh-access .ve-kicker { color: var(--ve-gold); }
+.bh-access .ve-h2 em { color: var(--ve-gold-light); }
+.bh-access .ve-lede { margin-top: 24px; }
+.bh-access__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; }
+.bh-access__list li { display: flex; align-items: center; gap: 14px; padding: 18px 0; border-top: 1px solid var(--ve-line-light); font-size: 17px; }
+.bh-access__list .ve-ico { width: 26px; height: 26px; color: var(--ve-gold-light); }
+
+.bh-close { position: relative; overflow: hidden; isolation: isolate; padding: clamp(110px, 17vh, 190px) 0; text-align: center; }
+.bh-close__bg { position: absolute; inset: 0; z-index: -1; }
+.bh-close__bg img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.7) brightness(.4); }
+.bh-close__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bh-night) 0%, rgba(8, 20, 14, .35) 30%, rgba(8, 20, 14, .45) 70%, var(--bh-night) 100%); }
+.bh-close__inner { display: grid; justify-items: center; }
+.bh-close .ve-kicker { justify-content: center; color: var(--ve-gold-light); }
+.bh-close__title { margin: 0 0 24px; max-width: 13em; font-family: var(--ve-display); font-weight: 400; font-size: clamp(40px, 5.6vw, 90px); line-height: 1.02; text-shadow: 0 2px 30px rgba(0, 0, 0, .4); }
+.bh-close__title em { display: block; font-family: var(--ve-serif); font-style: italic; color: var(--ve-gold-light); }
+.bh-close .ve-lede { margin: 0 auto 34px; color: rgba(245, 241, 233, .8); }
+.bh-close__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.bh-close__cta .ve-btn--gold { color: var(--ve-forest-deep); }
+.bh-close__cta .ve-btn:not(.ve-btn--gold) { color: var(--ve-cream); border-color: rgba(245, 241, 233, .5); }
+.bh-close__more { margin: 30px 0 0; }
+.bh-close__more .ve-link { color: var(--ve-gold-light); }
+
+/* ── Smaller screens ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .bh-hero__inner { grid-template-columns: 1fr; align-content: end; gap: 26px; padding-bottom: 6vh; }
+  .bh-block { justify-self: start; }
+  .bh-block div:nth-child(n + 4) { display: none; }
+  /* The plan above, the room below */
+  .bh-plan__pin { grid-template-columns: 1fr; grid-template-rows: 46% 54%; }
+  .bh-plan__sheet { border-right: 0; border-bottom: 1px solid rgba(30, 77, 43, .14); }
+  .bh-plan__note { font-size: 12px; left: 14px; bottom: 10px; }
+  .bh-plan__side { align-items: start; padding: 22px var(--ve-gutter) 40px; }
+  .bh-step__photo { display: none; }
+  .bh-step__title { font-size: 25px; margin-bottom: 10px; }
+  .bh-step > p:not([class]) { font-size: 15.5px; line-height: 1.55; margin-bottom: 12px; }
+  .bh-plan__count { bottom: 16px; }
+  html:not(.ve-motion) .bh-plan__pin { grid-template-rows: auto; }
+  html:not(.ve-motion) .bh-step__photo { display: block; }
+  .bh-story__grid, .bh-access__grid { grid-template-columns: 1fr; }
+  .bh-story__stick { position: relative; top: auto; }
+  .bh-story__year { display: none; }
+  .bh-access__list { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .bh-block { width: 100%; }
+  .bh-block div { grid-template-columns: 82px minmax(0, 1fr); }
+  .bh-hero__text .ve-crumbs { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bh-hero__hint-line::after { animation: none; }
+  .bp-room, .bp-label { transition: none; }
+}
