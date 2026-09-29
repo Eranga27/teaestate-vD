@@ -445,11 +445,13 @@ Started 28 Sept 2026 on branch `ve/homepage`. Goal: an award-level, cinematic sc
 
 **Gallery (vE):** "The house, in pictures". One photograph of the bungalow fills the screen, and scrolling steps back until it is one tile in a wall of nine. Then the collection: 22 photographs from the CMS in an editorial grid (filters: Inside the house, Chambers, Outdoors), each opening in a full-screen viewer with captions, arrows, Escape and swipe; the estate film plays when it comes on screen; and "Photographs only go so far." The gallery's CMS entries were fixed as part of this: four placeholder stock images (a conical-hat tea picker, a resort pool, an AI-drawn cottage, a picnic on a strawberry farm) were replaced with the estate's own photographs, two mislabelled photos were recaptioned, and the real rooms and all seven chambers were added.
 
+**Contact (vE):** "Write to the house". The hero sets out the ways to reach the estate (WhatsApp first, then email and both phone lines) with a live line such as "Good afternoon from Galaha: it's 4:32 PM here". The enquiry form is a letter on ruled paper under an estate-red lotus wax seal: "Dear Tea Bungalow, my name is ___, and I'd like to ask about ___…", with a Pekoe Trail line that appears for trail enquiries, a signature that writes itself from your name, and a "Your stay" line when the guest has shortlisted experiences or add-ons. It posts to /api/enquiry exactly as before. Beside it: reply times, the address and useful links; then dusk into "Find us in the hills" (by train, from Colombo airport, from Kandy, from the Pekoe Trail, with the map) and the quick answers. Next chapter: the Chairman's Bungalow, opening 2027.
+
 **Stack:** GSAP 3 + ScrollTrigger and Lenis, self-hosted. Photos are optimised to WebP. On reduced motion or Save-Data, the hero shows the poster only.
 
 **QA:** headless Chrome captures at 1440/768/390, reduced motion and the preloader hand-off. Also checked: no horizontal overflow and no console errors. `npm test` passes.
 
-**Next:** roll vE out to Contact, then the Chairman's Bungalow and Privacy pages. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
+**Next:** roll vE out to the Chairman's Bungalow and Privacy pages. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
 
 ---
 

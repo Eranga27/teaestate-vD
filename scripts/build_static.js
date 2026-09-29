@@ -39,7 +39,7 @@ const pages = [
   { phpFile: 'experiences.php', htmlFile: 'experiences.html', pageName: 'experiences', ve: true },
   { phpFile: 'packages.php', htmlFile: 'packages.html', pageName: 'packages', ve: true },
   { phpFile: 'gallery.php', htmlFile: 'gallery.html', pageName: 'gallery', ve: true },
-  { phpFile: 'contact.php', htmlFile: 'contact.html', pageName: 'contact' },
+  { phpFile: 'contact.php', htmlFile: 'contact.html', pageName: 'contact', ve: true },
   { phpFile: 'privacy.php', htmlFile: 'privacy.html', pageName: 'privacy' },
   { phpFile: 'chairmans-bungalow-2027.php', htmlFile: 'chairmans-bungalow-2027.html', pageName: 'chairmans-bungalow-2027' }
 ];
