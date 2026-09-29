@@ -441,11 +441,13 @@ Started 28 Sept 2026 on branch `ve/homepage`. Goal: an award-level, cinematic sc
 
 **The Bungalow (vE):** the house itself. The hero is the photograph of the bungalow with an architect's title block for the facts (built circa 1890, six chambers and the cottage, Galaha, 5 km from Loolecondera, up to 12 guests); scrolling on, paper rises over the photograph and the house becomes its drawing. "A house opened to a few": an illustrative plan of the ground floor, in ink on cream paper with a lotus compass and a title block, where the camera walks room by room, from the car porch and Morning Room through the Evening Salon, the Long Table, the verandah and Tea Pavilion, the Planter's Lounge and billiards, the six chambers and the pool to the Carriage House Cottage, each room lit in gold with its story and a photo where there is one. Then "The story of this house" from 1867 to 2026, a gold line drawing down the list while a large year rolls to each entry, dusk, accessibility ("Step-free, where it matters") and "Stay in the house. Walk the trail." The plan is illustrative and not to scale; the owner should confirm the room layout, or send the real plan to redraw from.
 
+**About the Estate (vE):** "Where Ceylon tea began". A cream hero with the Galaha tea slopes opening in an arch and 1867 drawn faintly behind; "Why we opened" lit word by word; the story as an editorial long read (drop cap, pull quote) with the picture beside it changing with the paragraph; then dusk into "Galaha, Ceylon tea & this bungalow", a pinned sequence of figures over the hills that count up one at a time (aged 17 in 1852, 21 acres in 1867, 23 pounds in 1873, 20,000 tons around 1890, 5 km in 1892, the JEDB in 1976, and 6:30 today) along a year rail. After it: the Old Ceylon Heritage Collection (The Tea Bungalow, Hantana Cottage, the Chairman's Bungalow; the two without photos have a drawn bungalow in their arch), six principles, sustainability and "A house is understood by staying in it."
+
 **Stack:** GSAP 3 + ScrollTrigger and Lenis, self-hosted. Photos are optimised to WebP. On reduced motion or Save-Data, the hero shows the poster only.
 
 **QA:** headless Chrome captures at 1440/768/390, reduced motion and the preloader hand-off. Also checked: no horizontal overflow and no console errors. `npm test` passes.
 
-**Next:** roll vE out to About, Gallery and Contact. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
+**Next:** roll vE out to Gallery and Contact. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
 
 ---
 

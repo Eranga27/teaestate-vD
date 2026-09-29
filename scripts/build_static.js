@@ -31,7 +31,7 @@ console.log(`Copied ${fs.readdirSync(OUT_IMAGES_DIR).length} image/media entries
 const pages = [
   // ve: true = vE design (src/ve/*, src/layout/ve/*); the legacy header chrome is stripped
   { phpFile: 'home.php', htmlFile: 'index.html', pageName: 'home', ve: true },
-  { phpFile: 'about.php', htmlFile: 'about.html', pageName: 'about' },
+  { phpFile: 'about.php', htmlFile: 'about.html', pageName: 'about', ve: true },
   { phpFile: 'our-chambers.php', htmlFile: 'our-chambers.html', pageName: 'our-chambers', ve: true },
   { phpFile: 'the-bungalow.php', htmlFile: 'the-bungalow.html', pageName: 'the-bungalow', ve: true },
   { phpFile: 'the-entire-estate.php', htmlFile: 'the-entire-estate.html', pageName: 'the-entire-estate', ve: true },
