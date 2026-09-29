@@ -1,42 +1,42 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   vE · Packages & Offers. The chooser ↔ chest highlight works without motion;
-   the chests' arrival, the section nav, the route (you walk, your bag rides
-   ahead) and the rest run through VE.ready. "Your stay" is the shared list
-   in ve.js.
+   vE · Packages & Offers. The hero's panels open without motion too; the
+   entrance, the section nav, the route (you walk, we carry the rest) and the
+   rest run through VE.ready. "Your stay" is the shared list in ve.js.
 ═══════════════════════════════════════════════════════════════════════════ */
 (function () {
   if (!window.VE) return;
   var q = function (s, el) { return (el || document).querySelector(s); };
   var qa = function (s, el) { return [].slice.call((el || document).querySelectorAll(s)); };
 
-  /* ── Pointing at a way to come lifts its chest, and the other way round ── */
-  var hot = function (key, on) {
-    qa('[data-chest="' + key + '"]').forEach(function (el) { el.classList.toggle('is-hot', on); });
-  };
-  qa('[data-chest]').forEach(function (el) {
-    var key = el.getAttribute('data-chest');
-    el.addEventListener('pointerenter', function () { hot(key, true); });
-    el.addEventListener('pointerleave', function () { hot(key, false); });
-    el.addEventListener('focus', function () { hot(key, true); });
-    el.addEventListener('blur', function () { hot(key, false); });
+  /* ── The three stays: the one you point at (or tab to) opens and lists its packages; the first starts open ── */
+  var panels = qa('.pk-panel');
+  var open = function (panel) { panels.forEach(function (p) { p.classList.toggle('is-open', p === panel); }); };
+  panels.forEach(function (p) {
+    p.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') open(p); });
+    p.addEventListener('focus', function () { open(p); });
   });
+  if (panels.length) open(panels[0]);
 
   if (VE.reduce) return;
 
   VE.ready(function () {
-    /* ── Arrival: the title rises, the chests are set down one by one, then the offer is stamped ── */
+    /* ── Arrival: the three stays rise into place like curtains, then the title and the offer ── */
     gsap.set('.pk-hero__line > *', { y: 0, yPercent: 110 });
     gsap.timeline({ defaults: { ease: 'expo.out' } })
-      .to('.pk-hero__line > *', { yPercent: 0, duration: 1.5, stagger: 0.12 }, 0.1)
-      .to(['.pk-hero__text .ve-crumbs', '.pk-hero__text .ve-kicker', '.pk-hero__sub'], { opacity: 1, duration: 1.2, stagger: 0.08 }, 0.3)
-      .fromTo('.pk-choose li', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1, stagger: 0.08 }, 0.55)
-      .fromTo(['.pk-chest--trail', '.pk-chest--heritage', '.pk-chest--estate'], { opacity: 0, y: -90 }, { opacity: 1, y: 0, duration: 1.1, ease: 'back.out(1.3)', stagger: 0.22 }, 0.25)
-      .fromTo('.pk-chest__stencil', { opacity: 0 }, { opacity: 0.82, duration: 0.8, ease: 'power1.out', stagger: 0.22 }, 1)
-      .fromTo('.pk-stamp', { opacity: 0, scale: 1.7 }, { opacity: 1, scale: 1, duration: 0.55, ease: 'power4.in', clearProps: 'transform' }, 1.7)
-      .to('.pk-hero__facts li', { opacity: 1, duration: 1, stagger: 0.08 }, 1);
-    gsap.to('.pk-stack', { yPercent: -8, ease: 'none', scrollTrigger: { trigger: '.pk-hero', start: 'top top', end: 'bottom top', scrub: true } });
+      .fromTo('.pk-panel', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'expo.inOut', stagger: 0.14 }, 0)
+      .fromTo('.pk-panel__media img', { scale: 1.3 }, { scale: 1.08, duration: 2.4, stagger: 0.14, clearProps: 'transform' }, 0)
+      .to('.pk-hero__line > *', { yPercent: 0, duration: 1.5, stagger: 0.12 }, 0.35)
+      .to(['.pk-hero__side .ve-crumbs', '.pk-hero__side .ve-kicker', '.pk-hero__sub'], { opacity: 1, duration: 1.2, stagger: 0.08 }, 0.55)
+      .fromTo('.pk-deal', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.2 }, 0.8)
+      .to('.pk-hero__facts li', { opacity: 1, duration: 1, stagger: 0.08 }, 1)
+      .fromTo('.pk-panel__body', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.12 }, 1)
+      .set('.pk-panel', { clearProps: 'clipPath' });
+    // Scrolling away, the stays drift up behind the next section
+    gsap.matchMedia().add('(min-width: 901px)', function () {
+      gsap.to('.pk-hero__panels', { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.pk-hero', start: 'top top', end: 'bottom top', scrub: true } });
+    });
 
-    /* ── The section nav: after the chests; dark over the night; tucked under the header when it's out ── */
+    /* ── The section nav: after the hero; dark over the night; tucked under the header when it's out ── */
     var nav = q('.pk-nav'), header = document.getElementById('veHeader');
     if (nav) {
       ScrollTrigger.create({ trigger: '#trail', start: 'top 60%', endTrigger: '.pk-night', end: 'bottom 40%',

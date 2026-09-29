@@ -21,8 +21,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap">
-  <!-- The stencil of the tea chests and shipping marks: only the capitals, figures and marks it prints -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@400;700&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789%C2%B7.%24%26-%20">
   <!-- tb:sinhala-font -->
   <link rel="stylesheet" href="/ve/ve.css">
   <link rel="stylesheet" href="/ve/packages.css">
@@ -34,13 +32,8 @@
   <?php include 'layout/navbar.php'; ?>
   <?php include 'layout/ve/header.html'; ?>
 
-  <!-- Wood, the stencil's rough edge, the estate mark and line icons used on this page -->
+  <!-- Line icons used on this page -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <linearGradient id="pkFront" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#e2c79c"/><stop offset="1" stop-color="#c9a472"/></linearGradient>
-    <linearGradient id="pkTop" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#eed9b2"/><stop offset="1" stop-color="#e2c696"/></linearGradient>
-    <linearGradient id="pkSide" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b98f5e"/><stop offset="1" stop-color="#9c7447"/></linearGradient>
-    <filter id="pkRough"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter>
-    <symbol id="pk-mark" viewBox="0 0 40 40"><path d="M20 3 37 20 20 37 3 20Z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 8.5 31.5 20 20 31.5 8.5 20Z" fill="none" stroke="currentColor" stroke-width=".8" opacity=".6"/><text x="20" y="23.6" text-anchor="middle" font-size="10" font-family="'Stardos Stencil', serif" font-weight="700" fill="currentColor">T&#183;B</text></symbol>
     <symbol id="x-cup" viewBox="0 0 32 32"><path d="M6 12h16v5a8 8 0 0 1-16 0zM22 13.5h2.5a3 3 0 0 1 0 6H21.3M4 28h20M11 4.5c0 2 2 2 2 4M16 4.5c0 2 2 2 2 4"/></symbol>
     <symbol id="x-fire" viewBox="0 0 32 32"><path d="M16 28c-5 0-8-3.4-8-7.6 0-4.6 4-6.6 4.4-11.4 2.8 1.8 4.2 4.4 4.2 6.6 1.2-1 1.9-2.6 1.9-4.4 3.2 2.4 5.5 5.6 5.5 9.2 0 4.2-3 7.6-8 7.6zM13 28c-1.4-1-2-2.3-2-3.8 0-2.3 2-3.4 2.6-5.6 2.4 1.6 3.4 3.3 3.4 5 .8-.4 1.3-1.2 1.4-2.1 1.3 1.1 2.1 2.4 2.1 3.6"/></symbol>
     <symbol id="x-book" viewBox="0 0 32 32"><path d="M16 8.5c-3-2-7.5-2.5-11-1.5v17c3.5-1 8-.5 11 1.5 3-2 7.5-2.5 11-1.5V7c-3.5-1-8-.5-11 1.5zM16 8.5v17"/></symbol>
@@ -53,90 +46,57 @@
 
   <main id="main">
 
-    <!-- ═══ 1. PACKED AT GALAHA: three tea chests, three ways to come ═══ -->
-    <section class="pk-hero" data-theme="light" aria-labelledby="pkTitle">
-      <div class="ve-wrap pk-hero__grid">
-        <div class="pk-hero__text">
-          <nav class="ve-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Packages &amp; Offers</span></nav>
-          <p class="ve-label ve-kicker">Packed at Galaha</p>
-          <h1 class="pk-hero__title" id="pkTitle"><span class="pk-hero__line"><span>Packages</span></span><span class="pk-hero__line"><em>&amp; Offers.</em></span></h1>
-          <p class="pk-hero__sub">Every way to stay, packed and ready: a recovery night between trail stages, a slow week of heritage days, or the whole house for your party. Direct rates, and any package tailored to your dates.</p>
-          <ol class="pk-choose">
-            <li><a href="#trail" data-chest="trail"><span class="ve-num">No. 1</span><span class="pk-choose__name">Walking the Pekoe Trail</span><span class="pk-choose__n"><!-- tb:pk-count:trail --> packages</span><span class="pk-choose__go" aria-hidden="true">&rarr;</span></a></li>
-            <li><a href="#heritage" data-chest="heritage"><span class="ve-num">No. 2</span><span class="pk-choose__name">Heritage stays</span><span class="pk-choose__n"><!-- tb:pk-count:heritage --> packages</span><span class="pk-choose__go" aria-hidden="true">&rarr;</span></a></li>
-            <li><a href="#estate" data-chest="estate"><span class="ve-num">No. 3</span><span class="pk-choose__name">The whole estate</span><span class="pk-choose__n">Up to 12 guests</span><span class="pk-choose__go" aria-hidden="true">&rarr;</span></a></li>
-          </ol>
-        </div>
-
-        <div class="pk-stack">
-          <a class="pk-chest pk-chest--trail" href="#trail" data-chest="trail" aria-label="Pekoe Trail packages">
-            <svg class="pk-chest__art" viewBox="0 0 360 360" aria-hidden="true" focusable="false">
-                <path class="pk-chest__shadow" d="M28.0 336.0 L254.0 336.0 L356.0 256.0 L320.0 278.0 Z"/>
-                <path class="pk-chest__top" d="M22.0 112.0 L114.0 28.0 L340.0 28.0 L248.0 112.0 Z"/>
-                <path class="pk-chest__side" d="M248.0 112.0 L340.0 28.0 L340.0 248.0 L248.0 332.0 Z"/>
-                <path class="pk-chest__front" d="M22.0 112.0 L248.0 112.0 L248.0 332.0 L22.0 332.0 Z"/>
-                <path class="pk-chest__grain" d="M22.0 138.1 Q135.4 139.6 248.0 138.1 M22.0 157.3 Q134.7 156.2 248.0 157.3 M22.0 182.5 Q135.6 184.4 248.0 182.5 M22.0 211.7 Q134.4 209.9 248.0 211.7 M22.0 235.2 Q134.7 234.1 248.0 235.2 M22.0 256.0 Q135.6 258.2 248.0 256.0 M22.0 283.3 Q135.2 284.1 248.0 283.3 M22.0 311.9 Q135.5 313.5 248.0 311.9 M96.2 44.2 Q208.7 42.5 322.2 44.2 M75.6 63.1 Q188.4 62.4 301.6 63.1 M58.2 78.9 Q170.8 77.5 284.2 78.9 M38.7 96.8 Q151.6 96.3 264.7 96.8 M248.0 140.8 Q294.7 101.2 340.0 56.8 M248.0 165.2 Q293.3 120.8 340.0 81.2 M248.0 192.1 Q294.5 151.7 340.0 108.1 M248.0 219.3 Q293.7 176.3 340.0 135.3 M248.0 252.2 Q293.7 209.2 340.0 168.2 M248.0 278.0 Q294.6 238.1 340.0 194.0 M248.0 308.5 Q294.0 266.6 340.0 224.5"/>
-                <g class="pk-chest__stencil">
-                <path class="pk-chest__diamond" d="M135 146 L177 186 L135 226 L93 186 Z"/>
-                <text x="135" y="195" class="pk-chest__mono">T&#183;B</text>
-                <text x="135" y="262" class="pk-chest__l1" textLength="176" lengthAdjust="spacingAndGlyphs">PEKOE TRAIL</text>
-                <text x="135" y="287" class="pk-chest__l2"><!-- tb:pk-count:trail --> PACKAGES</text>
-                <text x="135" y="310" class="pk-chest__l3">FOR THE WALKERS</text>
-              </g>
-                <path class="pk-chest__tin" d="M22.0 112.0 L248.0 112.0 M248.0 112.0 L248.0 332.0 M248.0 332.0 L22.0 332.0 M22.0 332.0 L22.0 112.0 M22.0 112.0 L114.0 28.0 M114.0 28.0 L340.0 28.0 M340.0 28.0 L248.0 112.0 M340.0 28.0 L340.0 248.0 M340.0 248.0 L248.0 332.0"/>
-                <path class="pk-chest__tin-hi" d="M22.0 112.0 L248.0 112.0 M248.0 112.0 L248.0 332.0 M248.0 332.0 L22.0 332.0 M22.0 332.0 L22.0 112.0 M22.0 112.0 L114.0 28.0 M114.0 28.0 L340.0 28.0 M340.0 28.0 L248.0 112.0 M340.0 28.0 L340.0 248.0 M340.0 248.0 L248.0 332.0"/>
-                <g class="pk-chest__rivets"><circle cx="54.3" cy="112.0" r="2.6"/><circle cx="86.6" cy="112.0" r="2.6"/><circle cx="118.9" cy="112.0" r="2.6"/><circle cx="151.1" cy="112.0" r="2.6"/><circle cx="183.4" cy="112.0" r="2.6"/><circle cx="215.7" cy="112.0" r="2.6"/><circle cx="54.3" cy="332.0" r="2.6"/><circle cx="86.6" cy="332.0" r="2.6"/><circle cx="118.9" cy="332.0" r="2.6"/><circle cx="151.1" cy="332.0" r="2.6"/><circle cx="183.4" cy="332.0" r="2.6"/><circle cx="215.7" cy="332.0" r="2.6"/><circle cx="22.0" cy="148.7" r="2.6"/><circle cx="22.0" cy="185.3" r="2.6"/><circle cx="22.0" cy="222.0" r="2.6"/><circle cx="22.0" cy="258.7" r="2.6"/><circle cx="22.0" cy="295.3" r="2.6"/><circle cx="248.0" cy="148.7" r="2.6"/><circle cx="248.0" cy="185.3" r="2.6"/><circle cx="248.0" cy="222.0" r="2.6"/><circle cx="248.0" cy="258.7" r="2.6"/><circle cx="248.0" cy="295.3" r="2.6"/><circle cx="146.3" cy="28.0" r="2.6"/><circle cx="178.6" cy="28.0" r="2.6"/><circle cx="210.9" cy="28.0" r="2.6"/><circle cx="243.1" cy="28.0" r="2.6"/><circle cx="275.4" cy="28.0" r="2.6"/><circle cx="307.7" cy="28.0" r="2.6"/><circle cx="340.0" cy="64.7" r="2.6"/><circle cx="340.0" cy="101.3" r="2.6"/><circle cx="340.0" cy="138.0" r="2.6"/><circle cx="340.0" cy="174.7" r="2.6"/><circle cx="340.0" cy="211.3" r="2.6"/></g>
-              </svg>
-          </a>
-          <a class="pk-chest pk-chest--heritage" href="#heritage" data-chest="heritage" aria-label="Heritage stay packages">
-            <svg class="pk-chest__art" viewBox="0 0 360 360" aria-hidden="true" focusable="false">
-                <path class="pk-chest__shadow" d="M28.0 336.0 L254.0 336.0 L356.0 256.0 L320.0 278.0 Z"/>
-                <path class="pk-chest__top" d="M22.0 112.0 L114.0 28.0 L340.0 28.0 L248.0 112.0 Z"/>
-                <path class="pk-chest__side" d="M248.0 112.0 L340.0 28.0 L340.0 248.0 L248.0 332.0 Z"/>
-                <path class="pk-chest__front" d="M22.0 112.0 L248.0 112.0 L248.0 332.0 L22.0 332.0 Z"/>
-                <path class="pk-chest__grain" d="M22.0 139.2 Q134.5 137.7 248.0 139.2 M22.0 160.7 Q135.8 163.5 248.0 160.7 M22.0 181.0 Q134.1 178.1 248.0 181.0 M22.0 208.1 Q135.5 209.8 248.0 208.1 M22.0 230.0 Q134.6 228.6 248.0 230.0 M22.0 262.7 Q135.7 265.1 248.0 262.7 M22.0 280.9 Q135.8 283.7 248.0 280.9 M22.0 304.0 Q135.3 305.0 248.0 304.0 M96.2 44.2 Q208.7 42.5 322.2 44.2 M75.6 63.1 Q188.4 62.4 301.6 63.1 M58.2 78.9 Q170.8 77.5 284.2 78.9 M38.7 96.8 Q151.6 96.3 264.7 96.8 M248.0 140.8 Q294.7 101.2 340.0 56.8 M248.0 165.2 Q293.3 120.8 340.0 81.2 M248.0 192.1 Q294.5 151.7 340.0 108.1 M248.0 219.3 Q293.7 176.3 340.0 135.3 M248.0 252.2 Q293.7 209.2 340.0 168.2 M248.0 278.0 Q294.6 238.1 340.0 194.0 M248.0 308.5 Q294.0 266.6 340.0 224.5"/>
-                <g class="pk-chest__stencil">
-                <path class="pk-chest__diamond" d="M135 146 L177 186 L135 226 L93 186 Z"/>
-                <text x="135" y="195" class="pk-chest__mono">T&#183;B</text>
-                <text x="135" y="262" class="pk-chest__l1" textLength="192" lengthAdjust="spacingAndGlyphs">HERITAGE STAYS</text>
-                <text x="135" y="287" class="pk-chest__l2"><!-- tb:pk-count:heritage --> PACKAGES</text>
-                <text x="135" y="310" class="pk-chest__l3">FOR SLOW DAYS</text>
-              </g>
-                <path class="pk-chest__tin" d="M22.0 112.0 L248.0 112.0 M248.0 112.0 L248.0 332.0 M248.0 332.0 L22.0 332.0 M22.0 332.0 L22.0 112.0 M22.0 112.0 L114.0 28.0 M114.0 28.0 L340.0 28.0 M340.0 28.0 L248.0 112.0 M340.0 28.0 L340.0 248.0 M340.0 248.0 L248.0 332.0"/>
-                <path class="pk-chest__tin-hi" d="M22.0 112.0 L248.0 112.0 M248.0 112.0 L248.0 332.0 M248.0 332.0 L22.0 332.0 M22.0 332.0 L22.0 112.0 M22.0 112.0 L114.0 28.0 M114.0 28.0 L340.0 28.0 M340.0 28.0 L248.0 112.0 M340.0 28.0 L340.0 248.0 M340.0 248.0 L248.0 332.0"/>
-                <g class="pk-chest__rivets"><circle cx="54.3" cy="112.0" r="2.6"/><circle cx="86.6" cy="112.0" r="2.6"/><circle cx="118.9" cy="112.0" r="2.6"/><circle cx="151.1" cy="112.0" r="2.6"/><circle cx="183.4" cy="112.0" r="2.6"/><circle cx="215.7" cy="112.0" r="2.6"/><circle cx="54.3" cy="332.0" r="2.6"/><circle cx="86.6" cy="332.0" r="2.6"/><circle cx="118.9" cy="332.0" r="2.6"/><circle cx="151.1" cy="332.0" r="2.6"/><circle cx="183.4" cy="332.0" r="2.6"/><circle cx="215.7" cy="332.0" r="2.6"/><circle cx="22.0" cy="148.7" r="2.6"/><circle cx="22.0" cy="185.3" r="2.6"/><circle cx="22.0" cy="222.0" r="2.6"/><circle cx="22.0" cy="258.7" r="2.6"/><circle cx="22.0" cy="295.3" r="2.6"/><circle cx="248.0" cy="148.7" r="2.6"/><circle cx="248.0" cy="185.3" r="2.6"/><circle cx="248.0" cy="222.0" r="2.6"/><circle cx="248.0" cy="258.7" r="2.6"/><circle cx="248.0" cy="295.3" r="2.6"/><circle cx="146.3" cy="28.0" r="2.6"/><circle cx="178.6" cy="28.0" r="2.6"/><circle cx="210.9" cy="28.0" r="2.6"/><circle cx="243.1" cy="28.0" r="2.6"/><circle cx="275.4" cy="28.0" r="2.6"/><circle cx="307.7" cy="28.0" r="2.6"/><circle cx="340.0" cy="64.7" r="2.6"/><circle cx="340.0" cy="101.3" r="2.6"/><circle cx="340.0" cy="138.0" r="2.6"/><circle cx="340.0" cy="174.7" r="2.6"/><circle cx="340.0" cy="211.3" r="2.6"/></g>
-              </svg>
-          </a>
-          <a class="pk-chest pk-chest--estate" href="#estate" data-chest="estate" aria-label="The whole estate">
-            <svg class="pk-chest__art" viewBox="0 0 360 360" aria-hidden="true" focusable="false">
-                <path class="pk-chest__shadow" d="M28.0 336.0 L254.0 336.0 L356.0 256.0 L320.0 278.0 Z"/>
-                <path class="pk-chest__top" d="M22.0 112.0 L114.0 28.0 L340.0 28.0 L248.0 112.0 Z"/>
-                <path class="pk-chest__side" d="M248.0 112.0 L340.0 28.0 L340.0 248.0 L248.0 332.0 Z"/>
-                <path class="pk-chest__front" d="M22.0 112.0 L248.0 112.0 L248.0 332.0 L22.0 332.0 Z"/>
-                <path class="pk-chest__grain" d="M22.0 138.5 Q135.1 138.9 248.0 138.5 M22.0 164.3 Q135.1 164.5 248.0 164.3 M22.0 182.0 Q135.7 184.3 248.0 182.0 M22.0 207.6 Q134.2 204.9 248.0 207.6 M22.0 233.4 Q134.6 232.2 248.0 233.4 M22.0 261.2 Q135.7 263.4 248.0 261.2 M22.0 279.6 Q135.4 281.0 248.0 279.6 M22.0 309.3 Q134.2 306.7 248.0 309.3 M96.2 44.2 Q208.7 42.5 322.2 44.2 M75.6 63.1 Q188.4 62.4 301.6 63.1 M58.2 78.9 Q170.8 77.5 284.2 78.9 M38.7 96.8 Q151.6 96.3 264.7 96.8 M248.0 140.8 Q294.7 101.2 340.0 56.8 M248.0 165.2 Q293.3 120.8 340.0 81.2 M248.0 192.1 Q294.5 151.7 340.0 108.1 M248.0 219.3 Q293.7 176.3 340.0 135.3 M248.0 252.2 Q293.7 209.2 340.0 168.2 M248.0 278.0 Q294.6 238.1 340.0 194.0 M248.0 308.5 Q294.0 266.6 340.0 224.5"/>
-                <g class="pk-chest__stencil">
-                <path class="pk-chest__diamond" d="M135 146 L177 186 L135 226 L93 186 Z"/>
-                <text x="135" y="195" class="pk-chest__mono">T&#183;B</text>
-                <text x="135" y="262" class="pk-chest__l1" textLength="192" lengthAdjust="spacingAndGlyphs">WHOLE ESTATE</text>
-                <text x="135" y="287" class="pk-chest__l2">UP TO 12 GUESTS</text>
-                <text x="135" y="310" class="pk-chest__l3">EXCLUSIVE USE</text>
-              </g>
-                <path class="pk-chest__tin" d="M22.0 112.0 L248.0 112.0 M248.0 112.0 L248.0 332.0 M248.0 332.0 L22.0 332.0 M22.0 332.0 L22.0 112.0 M22.0 112.0 L114.0 28.0 M114.0 28.0 L340.0 28.0 M340.0 28.0 L248.0 112.0 M340.0 28.0 L340.0 248.0 M340.0 248.0 L248.0 332.0"/>
-                <path class="pk-chest__tin-hi" d="M22.0 112.0 L248.0 112.0 M248.0 112.0 L248.0 332.0 M248.0 332.0 L22.0 332.0 M22.0 332.0 L22.0 112.0 M22.0 112.0 L114.0 28.0 M114.0 28.0 L340.0 28.0 M340.0 28.0 L248.0 112.0 M340.0 28.0 L340.0 248.0 M340.0 248.0 L248.0 332.0"/>
-                <g class="pk-chest__rivets"><circle cx="54.3" cy="112.0" r="2.6"/><circle cx="86.6" cy="112.0" r="2.6"/><circle cx="118.9" cy="112.0" r="2.6"/><circle cx="151.1" cy="112.0" r="2.6"/><circle cx="183.4" cy="112.0" r="2.6"/><circle cx="215.7" cy="112.0" r="2.6"/><circle cx="54.3" cy="332.0" r="2.6"/><circle cx="86.6" cy="332.0" r="2.6"/><circle cx="118.9" cy="332.0" r="2.6"/><circle cx="151.1" cy="332.0" r="2.6"/><circle cx="183.4" cy="332.0" r="2.6"/><circle cx="215.7" cy="332.0" r="2.6"/><circle cx="22.0" cy="148.7" r="2.6"/><circle cx="22.0" cy="185.3" r="2.6"/><circle cx="22.0" cy="222.0" r="2.6"/><circle cx="22.0" cy="258.7" r="2.6"/><circle cx="22.0" cy="295.3" r="2.6"/><circle cx="248.0" cy="148.7" r="2.6"/><circle cx="248.0" cy="185.3" r="2.6"/><circle cx="248.0" cy="222.0" r="2.6"/><circle cx="248.0" cy="258.7" r="2.6"/><circle cx="248.0" cy="295.3" r="2.6"/><circle cx="146.3" cy="28.0" r="2.6"/><circle cx="178.6" cy="28.0" r="2.6"/><circle cx="210.9" cy="28.0" r="2.6"/><circle cx="243.1" cy="28.0" r="2.6"/><circle cx="275.4" cy="28.0" r="2.6"/><circle cx="307.7" cy="28.0" r="2.6"/><circle cx="340.0" cy="64.7" r="2.6"/><circle cx="340.0" cy="101.3" r="2.6"/><circle cx="340.0" cy="138.0" r="2.6"/><circle cx="340.0" cy="174.7" r="2.6"/><circle cx="340.0" cy="211.3" r="2.6"/></g>
-              </svg>
-          </a>
-          <p class="pk-stamp"><span>Introductory offer</span><b>Double BB from $75</b></p>
-        </div>
+    <!-- ═══ 1. THREE WAYS TO STAY: the offer on the left; three stays on the right, each opening to show its packages ═══ -->
+    <section class="pk-hero" data-theme="dark" aria-labelledby="pkTitle">
+      <div class="pk-hero__side">
+        <nav class="ve-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Packages &amp; Offers</span></nav>
+        <p class="ve-label ve-kicker">Stay packages &middot; direct rates</p>
+        <h1 class="pk-hero__title" id="pkTitle"><span class="pk-hero__line"><span>Packages</span></span><span class="pk-hero__line"><em>&amp; Offers.</em></span></h1>
+        <p class="pk-hero__sub">Your stay and everything around it, priced as one: trail nights with transfers and packed lunches, heritage escapes with dinners and the fire, or the whole estate for your party.</p>
+        <aside class="pk-deal" aria-label="Introductory offer">
+          <p class="ve-label">Introductory offer</p>
+          <p class="pk-deal__deal">Double BB from $75</p>
+          <p class="pk-deal__note">Enquire for availability, packages and direct booking inclusions.</p>
+          <button type="button" class="ve-btn ve-btn--gold ve-btn--sm tb-reserve-trigger" data-source="packages_intro_offer"><span>Enquire</span></button>
+        </aside>
+        <ul class="pk-hero__facts" aria-label="At a glance">
+          <li><b><!-- tb:pk-count:all --></b> packages, plus the whole estate</li>
+          <li><b>Direct</b> rates on request</li>
+          <li><b>Free</b> cancellation up to 7 days before arrival on packages</li>
+        </ul>
       </div>
-      <ul class="ve-wrap pk-hero__facts">
-        <li><b><!-- tb:pk-count:all --></b> packages, plus the whole estate</li>
-        <li><b>Direct</b> rates on request</li>
-        <li><b>Free</b> cancellation: 72 hours for rooms, 7 days for packages</li>
-      </ul>
+      <div class="pk-hero__panels">
+        <a class="pk-panel" href="#trail" data-panel="trail">
+          <span class="pk-panel__media" aria-hidden="true"><img src="/media/trail-forest-1600.webp" srcset="/media/trail-forest-900.webp 900w, /media/trail-forest-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="" decoding="async" fetchpriority="high"></span>
+          <span class="pk-panel__body">
+            <span class="pk-panel__no">01</span>
+            <span class="pk-panel__title">Walking the <em>Pekoe Trail</em></span>
+            <span class="pk-panel__count"><!-- tb:pk-count:trail --> packages &middot; transfers, luggage and trail lunches</span>
+            <span class="pk-panel__more"><span class="pk-panel__list"><!-- tb:pk-names:trail --></span><span class="pk-panel__go">See the trail packages <span aria-hidden="true">&rarr;</span></span></span>
+          </span>
+        </a>
+        <a class="pk-panel" href="#heritage" data-panel="heritage">
+          <span class="pk-panel__media" aria-hidden="true"><img src="/media/lounge-arches-1600.webp" srcset="/media/lounge-arches-900.webp 900w, /media/lounge-arches-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="" decoding="async"></span>
+          <span class="pk-panel__body">
+            <span class="pk-panel__no">02</span>
+            <span class="pk-panel__title">Heritage <em>stays</em></span>
+            <span class="pk-panel__count"><!-- tb:pk-count:heritage --> packages &middot; dinners, tea, the fire and estate walks</span>
+            <span class="pk-panel__more"><span class="pk-panel__list"><!-- tb:pk-names:heritage --></span><span class="pk-panel__go">See the heritage stays <span aria-hidden="true">&rarr;</span></span></span>
+          </span>
+        </a>
+        <a class="pk-panel" href="#estate" data-panel="estate">
+          <span class="pk-panel__media" aria-hidden="true"><img src="/media/estate-house-1600.webp" srcset="/media/estate-house-900.webp 900w, /media/estate-house-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="" decoding="async"></span>
+          <span class="pk-panel__body">
+            <span class="pk-panel__no">03</span>
+            <span class="pk-panel__title">The whole <em>estate</em></span>
+            <span class="pk-panel__count">Exclusive use &middot; up to 12 guests</span>
+            <span class="pk-panel__more"><span class="pk-panel__list"><span class="pk-panel__item"><span>Midweek buyout</span><em>Sunday to Thursday</em></span><span class="pk-panel__item"><span>The full estate, one complete week</span><em>7 nights</em></span></span><span class="pk-panel__go">See the whole estate <span aria-hidden="true">&rarr;</span></span></span>
+          </span>
+        </a>
+      </div>
     </section>
 
-    <!-- Where you are on a long page: shown after the chests, tucked under the header when it's out -->
+    <!-- Where you are on a long page: shown after the hero, tucked under the header when it's out -->
     <nav class="pk-nav" aria-label="Packages sections">
       <div class="ve-wrap pk-nav__inner">
         <a href="#trail" data-nav="trail">Pekoe Trail</a><a href="#heritage" data-nav="heritage">Heritage stays</a><a href="#estate" data-nav="estate">The whole estate</a><a href="#build" data-nav="build">Build your own</a><a href="#terms" data-nav="terms">Good to know</a>
@@ -148,8 +108,8 @@
     <section class="pk-trail" id="trail" data-theme="light" aria-labelledby="trailTitle">
       <div class="ve-wrap">
         <div class="pk-head">
-          <p class="ve-label ve-kicker">No. 1 &middot; Walking the Pekoe Trail <span class="ve-si" lang="si">මාවත</span></p>
-          <h2 class="ve-h2" id="trailTitle" data-split>Packed for <em>the trail.</em></h2>
+          <p class="ve-label ve-kicker">01 &middot; Pekoe Trail packages <span class="ve-si" lang="si">මාවත</span></p>
+          <h2 class="ve-h2" id="trailTitle" data-split>You walk. <em>We carry the rest.</em></h2>
           <p class="ve-lede" data-reveal="up">The bungalow sits where Stage 1 ends and Stage 2 begins. Depending on the package we meet you at the stage ends, send your luggage ahead by road, pack your lunch and brief you on the morning&rsquo;s weather.</p>
         </div>
 
@@ -180,7 +140,7 @@
             <li><b>Loolecondera</b><span>Stage 2, 14.7 km from our door; we collect you at the end.</span></li>
             <li><b>Onward</b><span>Stage 3, 15 km, with a drop-off the next morning.</span></li>
           </ol>
-          <figcaption id="journeyCap"><b>You walk. <em>Your bag rides ahead.</em></b> Transfers to and from every stage end, luggage moved by car, and one bed to come back to.</figcaption>
+          <figcaption id="journeyCap"><b>Your bag <em>rides ahead.</em></b> Transfers to and from every stage end, luggage moved by car, and one bed to come back to.</figcaption>
         </figure>
 
         <!-- tb:pk-featured -->
@@ -195,8 +155,8 @@
     <section class="pk-heritage" id="heritage" data-theme="light" aria-labelledby="heritageTitle">
       <div class="ve-wrap">
         <div class="pk-head">
-          <p class="ve-label ve-kicker">No. 2 &middot; Heritage stays <span class="ve-si" lang="si">නිවස</span></p>
-          <h2 class="ve-h2" id="heritageTitle" data-split>Slow days, <em>well packed.</em></h2>
+          <p class="ve-label ve-kicker">02 &middot; Heritage stay packages <span class="ve-si" lang="si">නිවස</span></p>
+          <h2 class="ve-h2" id="heritageTitle" data-split>Stay a while, <em>everything arranged.</em></h2>
           <p class="ve-lede" data-reveal="up">For couples, families and anyone staying for the house itself: tea and the fire, estate walks, long dinners, and as much or as little as you like in between.</p>
         </div>
         <div class="pk-grid">
@@ -215,13 +175,13 @@
         <div class="pk-estate__bg" aria-hidden="true"><img src="/media/estate-house-1600.webp" srcset="/media/estate-house-900.webp 900w, /media/estate-house-1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async"></div>
         <div class="ve-wrap">
           <div class="pk-head pk-head--light">
-            <p class="ve-label ve-kicker">No. 3 &middot; Exclusive use <span class="ve-si" lang="si">වත්ත</span></p>
+            <p class="ve-label ve-kicker">03 &middot; Exclusive use <span class="ve-si" lang="si">වත්ත</span></p>
             <h2 class="ve-h2" id="estateTitle" data-split>The whole estate, <em>yours.</em></h2>
             <p class="ve-lede" data-reveal="up">The bungalow and the Carriage House Cottage for your party alone: no other guests, your own schedule and the full estate team, for up to 12 guests.</p>
           </div>
           <div class="pk-offers">
             <article class="pk-offer" data-reveal="up">
-              <p class="pk-card__mark"><svg class="pk-mark" aria-hidden="true" focusable="false"><use href="#pk-mark"/></svg><span>Exclusive use</span><span class="pk-card__no">Sunday to Thursday</span></p>
+              <p class="pk-card__top"><span class="pk-card__no">Exclusive use</span><span class="pk-card__dur">Sunday to Thursday</span></p>
               <h3 class="pk-offer__name">Midweek buyout</h3>
               <p class="pk-offer__tag">Exclusive use of all seven bedrooms, every shared room, the pool and the garden. Minimum two nights midweek.</p>
               <ul class="pk-offer__list"><li>All six bungalow chambers and the Carriage House Cottage</li><li>Morning Room, Evening Salon, Long Table and verandah</li><li>Tea Pavilion, Planter&rsquo;s Lounge and Billiards Room</li><li>Private pool and gardens</li><li>Daily breakfast for all guests</li><li>A dedicated estate team throughout</li></ul>
@@ -229,7 +189,7 @@
               <a class="ve-btn ve-btn--gold" href="/the-entire-estate" data-magnetic><span>See the whole estate</span></a>
             </article>
             <article class="pk-offer pk-offer--week" data-reveal="up" data-delay=".12">
-              <p class="pk-card__mark"><svg class="pk-mark" aria-hidden="true" focusable="false"><use href="#pk-mark"/></svg><span>&#9733; Full week rate</span><span class="pk-card__no">7 nights</span></p>
+              <p class="pk-card__top"><span class="pk-card__no">&#9733; Full week rate</span><span class="pk-card__dur">7 nights</span></p>
               <h3 class="pk-offer__name">The full estate, one complete week</h3>
               <p class="pk-offer__tag">The most immersive way to know the estate: a full week, a private chef, no other guests, the house entirely yours from arrival to departure.</p>
               <ul class="pk-offer__list"><li>Everything in the standard buyout</li><li>Private chef for all meals (breakfast daily and five dinners)</li><li>Five experience add-ons included, your choice</li><li>A dedicated estate manager for the week</li><li>All transfers from Kandy or the airport</li><li>A preferential weekly rate, a saving on the nightly</li></ul>
@@ -343,8 +303,8 @@
 
   </main>
 
-  <!-- Your stay, one tap away (shown between the chests and the close) -->
-  <button type="button" class="pk-sticky" data-stay-pill aria-controls="build"><span class="pk-sticky__dot" aria-hidden="true"></span><span data-stay-pill-text data-empty-text="Build your package">Build your package</span><em data-stay-pill-count hidden></em></button>
+  <!-- Your stay, one tap away (shown between the hero and the close) -->
+  <button type="button" class="pk-sticky" data-stay-pill aria-controls="build"><span class="pk-sticky__dot" aria-hidden="true"></span><span data-stay-pill-text data-empty-text="Build your own package">Build your own package</span><em data-stay-pill-count hidden></em></button>
 
   <?php include 'layout/ve/footer.html'; ?>
 

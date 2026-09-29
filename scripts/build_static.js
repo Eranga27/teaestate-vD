@@ -376,7 +376,7 @@ function renderVeMarkers(content) {
     const list = names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : (names[0] || '');
     content = content.replace('<!-- tb:exp-free -->', () => list);
   }
-  // Packages (vE): every package as a card carrying the estate's shipping mark. Rates are shown exactly
+  // Packages (vE): the stay packages as cards, and their names in the hero's panels. Rates are shown exactly
   // as entered in the CMS (prefix, rate, period); never computed or rewritten here.
   if (content.includes('<!-- tb:pk-')) {
     const packs = section => cmsPackages.filter(p => p.active !== false && (p.section || 'heritage') === section)
@@ -387,8 +387,7 @@ function renderVeMarkers(content) {
       const tone = p.accent === 'gold' ? ' pk-card--gold' : p.accent === 'ink' ? ' pk-card--ink' : '';
       const items = (p.inclusions || []).map(x => `<li>${escapeHtml(x)}</li>`).join('');
       return `<article class="pk-card${tone}" data-reveal="up" data-delay="${((i % 3) * 0.08).toFixed(2)}">
-            <p class="pk-card__mark"><svg class="pk-mark" aria-hidden="true" focusable="false"><use href="#pk-mark"/></svg><span>Packed at Galaha</span><span class="pk-card__no">No. ${String(i + 1).padStart(2, '0')}</span></p>
-            <p class="pk-card__dur">${escapeHtml(p.duration || '')}</p>
+            <p class="pk-card__top"><span class="pk-card__no">${String(i + 1).padStart(2, '0')}</span><span class="pk-card__dur">${escapeHtml(p.duration || '')}</span></p>
             <h3 class="pk-card__name">${escapeHtml(p.name)}</h3>
             ${p.badge ? `<p class="pk-card__badge">${escapeHtml(p.badge)}</p>` : ''}
             <p class="pk-card__tag">${escapeHtml(p.tagline || '')}</p>
@@ -400,6 +399,7 @@ function renderVeMarkers(content) {
     for (const section of ['trail', 'heritage']) {
       const list = packs(section);
       content = content.split(`<!-- tb:pk-count:${section} -->`).join(words[list.length] || String(list.length));
+      content = content.replace(`<!-- tb:pk-names:${section} -->`, () => list.map(p => `<span class="pk-panel__item"><span>${escapeHtml(p.name)}</span><em>${escapeHtml(p.duration || '')}</em></span>`).join(''));
       content = content.replace(`<!-- tb:pk-cards:${section} -->`, () => list.filter(p => p.layout !== 'featured').map(card).join('\n          '));
     }
     const all = cmsPackages.filter(p => p.active !== false).length;
