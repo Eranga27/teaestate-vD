@@ -31,17 +31,17 @@ console.log(`Copied ${fs.readdirSync(OUT_IMAGES_DIR).length} image/media entries
 const pages = [
   // ve: true = vE design (src/ve/*, src/layout/ve/*); the legacy header chrome is stripped
   { phpFile: 'home.php', htmlFile: 'index.html', pageName: 'home', ve: true },
-  { phpFile: 'about.php', htmlFile: 'about.html', pageName: 'about' },
+  { phpFile: 'about.php', htmlFile: 'about.html', pageName: 'about', ve: true },
   { phpFile: 'our-chambers.php', htmlFile: 'our-chambers.html', pageName: 'our-chambers', ve: true },
-  { phpFile: 'the-bungalow.php', htmlFile: 'the-bungalow.html', pageName: 'the-bungalow' },
+  { phpFile: 'the-bungalow.php', htmlFile: 'the-bungalow.html', pageName: 'the-bungalow', ve: true },
   { phpFile: 'the-entire-estate.php', htmlFile: 'the-entire-estate.html', pageName: 'the-entire-estate', ve: true },
   { phpFile: 'pekoe-trail.php', htmlFile: 'pekoe-trail.html', pageName: 'pekoe-trail', ve: true },
   { phpFile: 'experiences.php', htmlFile: 'experiences.html', pageName: 'experiences', ve: true },
-  { phpFile: 'packages.php', htmlFile: 'packages.html', pageName: 'packages' },
-  { phpFile: 'gallery.php', htmlFile: 'gallery.html', pageName: 'gallery' },
-  { phpFile: 'contact.php', htmlFile: 'contact.html', pageName: 'contact' },
-  { phpFile: 'privacy.php', htmlFile: 'privacy.html', pageName: 'privacy' },
-  { phpFile: 'chairmans-bungalow-2027.php', htmlFile: 'chairmans-bungalow-2027.html', pageName: 'chairmans-bungalow-2027' }
+  { phpFile: 'packages.php', htmlFile: 'packages.html', pageName: 'packages', ve: true },
+  { phpFile: 'gallery.php', htmlFile: 'gallery.html', pageName: 'gallery', ve: true },
+  { phpFile: 'contact.php', htmlFile: 'contact.html', pageName: 'contact', ve: true },
+  { phpFile: 'privacy.php', htmlFile: 'privacy.html', pageName: 'privacy', ve: true },
+  { phpFile: 'chairmans-bungalow-2027.php', htmlFile: 'chairmans-bungalow-2027.html', pageName: 'chairmans-bungalow-2027', ve: true }
 ];
 
 const navbarTpl = fs.readFileSync(path.join(SOURCE_DIR, 'layout', 'navbar.php'), 'utf8');
@@ -300,6 +300,27 @@ function liquorAt(h) {
   const t = h <= a[0] ? 0 : h >= b[0] ? 1 : (h - a[0]) / (b[0] - a[0]);
   return '#' + a[1].map((v, c) => Math.round(v + (b[1][c] - v) * t).toString(16).padStart(2, '0')).join('');
 }
+// Gallery (vE): a photo shows only if it resolves to a web-sized image: a CMS upload, a /media file, or an
+// original in src/images that optimize_media.js has turned into WebP (multi-MB originals never go on the page).
+function galleryPhoto(image) {
+  const img = String(image || '');
+  if (/^\/images\/cms\//.test(img)) return { thumb: encodeURI(img), large: encodeURI(img) };
+  const m = /^\/media\/([a-z0-9-]+?)-(\d+)\.webp$/.exec(img);
+  if (m) {
+    const sizes = fs.readdirSync(MEDIA_SRC).map(f => new RegExp(`^${m[1]}-(\\d+)\\.webp$`).exec(f)).filter(Boolean).map(x => +x[1]).sort((a, b) => a - b);
+    if (!sizes.length) return null;
+    const thumb = sizes.find(w => w >= 900) || sizes[sizes.length - 1];
+    return { thumb: `/media/${m[1]}-${thumb}.webp`, large: `/media/${m[1]}-${sizes[sizes.length - 1]}.webp` };
+  }
+  const thumb = mediaFor(img, 900), large = mediaFor(img, 1600);
+  return thumb ? { thumb, large: large || thumb } : null;
+}
+// The CMS's six categories, shown as three filters
+const GALLERY_GROUP = { fire: 'inside', dining: 'inside', chambers: 'chambers', estate: 'outside', garden: 'outside', trail: 'outside' };
+const GALLERY_LABELS = { inside: 'Inside the house', chambers: 'Chambers', outside: 'Outdoors' };
+const galleryItems = () => [...cmsGallery].sort((a, b) => (a.sort_order ?? 99) - (b.sort_order ?? 99))
+  .map(item => ({ item, photo: galleryPhoto(item.image) })).filter(x => x.photo);
+
 const activeExperiences = () => cmsExperiences.filter(e => e.active !== false)
   .map(e => ({ e, h: experienceHour(e) }))
   .sort((a, b) => a.h - b.h || (a.e.sort_order ?? 9999) - (b.e.sort_order ?? 9999));
@@ -354,7 +375,7 @@ function renderVeMarkers(content) {
       const price = free ? `<span class="xp-tag xp-tag--free">Complimentary</span><span>${escapeHtml(e.rate_unit || 'Part of every stay')}</span>`
         : `<span class="xp-tag">${escapeHtml(e.rate || 'Price on request')}</span><span>${escapeHtml([e.rate_unit, e.duration].filter(Boolean).join(' · '))}</span>`;
       const action = free ? '<p class="xp-item__free">Waiting for you, nothing to book</p>'
-        : `<button type="button" class="xp-add" data-add="${escapeHtml(e.title)}" aria-pressed="false"><span class="xp-add__icon" aria-hidden="true"></span><span class="xp-add__label">Add to my stay</span></button>`;
+        : `<button type="button" class="xp-add" data-add="${escapeHtml(e.title)}" data-label-off="Add to my stay" data-label-on="Added to your stay" aria-pressed="false"><span class="xp-add__icon" aria-hidden="true"></span><span class="xp-add__label" data-add-label>Add to my stay</span></button>`;
       return `<li class="xp-item${free ? ' is-free' : ''}" style="--liq: ${liquorAt(h)}" data-hour="${h.toFixed(2)}">
             <figure class="xp-item__cup" aria-hidden="true"><span class="xp-item__handle"></span><span class="xp-item__liquor"><img src="${experiencePhoto(e)}" alt="" loading="lazy" decoding="async"></span></figure>
             <p class="xp-item__when"><span class="ve-num">${String(i + 1).padStart(2, '0')}</span>${when}</p>
@@ -375,6 +396,73 @@ function renderVeMarkers(content) {
     const names = activeExperiences().filter(({ e }) => isComplimentary(e)).map(({ e }) => escapeHtml(e.title.replace(/^The /, 'the ')));
     const list = names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : (names[0] || '');
     content = content.replace('<!-- tb:exp-free -->', () => list);
+  }
+  // Packages (vE): the stay packages as cards, and their names in the hero's panels. Rates are shown exactly
+  // as entered in the CMS (prefix, rate, period); never computed or rewritten here.
+  if (content.includes('<!-- tb:pk-')) {
+    const packs = section => cmsPackages.filter(p => p.active !== false && (p.section || 'heritage') === section)
+      .sort((a, b) => (a.sort_order ?? 9999) - (b.sort_order ?? 9999));
+    const words = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen'];
+    const rateHtml = (p, cls) => `<p class="${cls}">${p.rate_prefix ? `<span>${escapeHtml(p.rate_prefix)}</span> ` : ''}<b>${escapeHtml(p.rate || 'Price on request')}</b>${p.rate_period ? ` <em>${escapeHtml(p.rate_period)}</em>` : ''}</p>`;
+    const card = (p, i) => {
+      const tone = p.accent === 'gold' ? ' pk-card--gold' : p.accent === 'ink' ? ' pk-card--ink' : '';
+      const items = (p.inclusions || []).map(x => `<li>${escapeHtml(x)}</li>`).join('');
+      return `<article class="pk-card${tone}" data-reveal="up" data-delay="${((i % 3) * 0.08).toFixed(2)}">
+            <p class="pk-card__top"><span class="pk-card__no">${String(i + 1).padStart(2, '0')}</span><span class="pk-card__dur">${escapeHtml(p.duration || '')}</span></p>
+            <h3 class="pk-card__name">${escapeHtml(p.name)}</h3>
+            ${p.badge ? `<p class="pk-card__badge">${escapeHtml(p.badge)}</p>` : ''}
+            <p class="pk-card__tag">${escapeHtml(p.tagline || '')}</p>
+            ${items ? `<ul class="pk-card__list">${items}</ul>` : ''}
+            ${rateHtml(p, 'pk-card__rate')}
+            <button type="button" class="ve-btn ve-btn--sm tb-reserve-trigger" data-package="${escapeHtml(p.enquiry_name || p.name)}" data-source="package_card"><span>${escapeHtml(p.cta_label || 'Enquire')}</span></button>
+          </article>`;
+    };
+    for (const section of ['trail', 'heritage']) {
+      const list = packs(section);
+      content = content.split(`<!-- tb:pk-count:${section} -->`).join(words[list.length] || String(list.length));
+      content = content.replace(`<!-- tb:pk-names:${section} -->`, () => list.map(p => `<span class="pk-panel__item"><span>${escapeHtml(p.name)}</span><em>${escapeHtml(p.duration || '')}</em></span>`).join(''));
+      content = content.replace(`<!-- tb:pk-cards:${section} -->`, () => list.filter(p => p.layout !== 'featured').map(card).join('\n          '));
+    }
+    const all = cmsPackages.filter(p => p.active !== false).length;
+    content = content.split('<!-- tb:pk-count:all -->').join(String(all));
+    const f = cmsPackages.filter(p => p.active !== false && p.layout === 'featured')
+      .sort((a, b) => (a.sort_order ?? 9999) - (b.sort_order ?? 9999))[0];
+    content = content.replace('<!-- tb:pk-featured -->', () => {
+      if (!f) return '';
+      const items = (f.inclusions || []).map(x => `<li>${escapeHtml(x)}</li>`).join('');
+      const meta = [['Duration', f.duration], ['Stages', f.stages_covered], ['Rate', f.rate], ['Solo', f.solo_rate]].filter(([, v]) => v)
+        .map(([k, v]) => `<div><dt>${k}</dt><dd>${escapeHtml(v)}</dd></div>`).join('');
+      return `<article class="pk-feature" data-reveal="up">
+            <figure class="pk-feature__media"><img src="/media/trail-forest-1600.webp" srcset="/media/trail-forest-900.webp 900w, /media/trail-forest-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 44vw" alt="A hiker on a forest section of the Pekoe Trail" loading="lazy" decoding="async">
+              <figcaption>${f.hero_nights ? `<span class="pk-feature__nights">${escapeHtml(f.hero_nights)}</span>` : ''}${f.hero_label ? `<span class="pk-feature__label">${escapeHtml(f.hero_label)}</span>` : ''}</figcaption></figure>
+            <div class="pk-feature__body">
+              ${f.badge ? `<p class="pk-feature__badge">${escapeHtml(f.badge)}</p>` : ''}
+              <h3 class="pk-feature__name">${escapeHtml(f.name)}</h3>
+              <p class="pk-feature__tag">${escapeHtml(f.tagline || '')}</p>
+              ${items ? `<ul class="pk-feature__list">${items}</ul>` : ''}
+              <dl class="pk-feature__meta">${meta}</dl>
+              <button type="button" class="ve-btn ve-btn--gold tb-reserve-trigger" data-package="${escapeHtml(f.enquiry_name || f.name)}" data-source="package_featured" data-magnetic><span>${escapeHtml(f.cta_label || 'Enquire About This Package')}</span></button>
+            </div>
+          </article>`;
+    });
+  }
+  if (content.includes('<!-- tb:gallery -->')) {
+    const items = galleryItems();
+    const tiles = items.map(({ item, photo }, i) => {
+      const cat = GALLERY_GROUP[item.category] || 'outside';
+      return `<li class="gl-tile ${escapeHtml(item.span || 'span-4')} ${escapeHtml(item.height || 'h-sm')}" data-cat="${cat}">
+            <a class="gl-tile__link" href="${photo.large}" data-index="${i}" data-title="${escapeHtml(item.caption || '')}" data-sub="${escapeHtml(item.subcaption || '')}" aria-label="${escapeHtml(item.caption || 'Photo')}, open larger">
+              <img src="${photo.thumb}" alt="${escapeHtml(item.alt || item.caption || '')}" loading="lazy" decoding="async">
+              <span class="gl-tile__cap"><b>${escapeHtml(item.caption || '')}</b>${item.subcaption ? `<em>${escapeHtml(item.subcaption)}</em>` : ''}</span>
+            </a>
+          </li>`;
+    }).join('\n          ');
+    const counts = {};
+    items.forEach(({ item }) => { const c = GALLERY_GROUP[item.category] || 'outside'; counts[c] = (counts[c] || 0) + 1; });
+    const chips = [`<button type="button" class="gl-chip is-on" data-filter="all" aria-pressed="true">All <span>${items.length}</span></button>`]
+      .concat(Object.keys(GALLERY_LABELS).filter(c => counts[c]).map(c => `<button type="button" class="gl-chip" data-filter="${c}" aria-pressed="false">${GALLERY_LABELS[c]} <span>${counts[c]}</span></button>`)).join('');
+    content = content.replace('<!-- tb:gallery -->', () => tiles).replace('<!-- tb:gallery-filters -->', () => chips)
+      .split('<!-- tb:gallery-count -->').join(String(items.length));
   }
   if (content.includes('<!-- tb:trail-packages -->')) {
     const packs = cmsPackages.filter(p => p.section === 'trail' && p.active !== false)
@@ -492,7 +580,7 @@ for (const page of pages) {
     );
   }
 
-  if (page.pageName === 'packages' && cmsPackages.length > 0) {
+  if (page.pageName === 'packages' && !page.ve && cmsPackages.length > 0) {
     // Pekoe Trail and Heritage grids come from CMS packages (buyout rates stay in the template)
     for (const section of ['trail', 'heritage']) {
       const sectionPackages = cmsPackages
@@ -509,7 +597,7 @@ for (const page of pages) {
     }
   }
 
-  if (page.pageName === 'gallery' && cmsGallery.length > 0) {
+  if (page.pageName === 'gallery' && !page.ve && cmsGallery.length > 0) {
     const gallerySorted = [...cmsGallery].sort((a, b) => (a.sort_order || 10) - (b.sort_order || 10));
     const galleryHtml = gallerySorted.map(item => `
     <div class="photo-tile ${item.span || 'span-4'} ${item.height || 'h-sm'}" data-category="${item.category || 'estate'}" data-title="${item.caption}" data-sub="${item.subcaption || ''}" data-img="${item.image}">

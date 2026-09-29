@@ -1,11 +1,11 @@
 {
-  "image": "/images/tea-estate.jpg",
+  "image": "/media/trail-tea-960.webp",
   "caption": "The Tea Fields",
-  "subcaption": "Working estate · Morning mist",
-  "alt": "Lush green rolling tea fields across Galaha Estate",
+  "subcaption": "A working estate · the slopes below the house",
+  "alt": "Tea bushes running down the Galaha hillside under a grey sky",
   "category": "estate",
   "featured": true,
   "span": "span-4",
-  "height": "h-sm",
-  "sort_order": 3
+  "height": "h-xl",
+  "sort_order": 2
 }

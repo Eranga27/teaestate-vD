@@ -1,0 +1,179 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   vE · About the Estate (motion in /ve/about.js).
+   Where Ceylon tea began (cream) → why we opened → the story as a long read
+   with its picture changing beside it → dusk → Ceylon tea in numbers, one
+   figure at a time over the hills → the collection → how we approach this →
+   a house on a working estate → come and see.
+═══════════════════════════════════════════════════════════════════════════ */
+.ve-ab { --ab-cream: #f3eee4; --ab-night: #08140e; }
+
+/* ── 1. Where Ceylon tea began ─────────────────────────────────────── */
+.ab-hero { position: relative; overflow: hidden; isolation: isolate; background: var(--ab-cream); color: var(--ve-forest-deep); padding: calc(var(--ve-header-h) + 6vh) 0 0; }
+.ab-hero::before { content: ''; position: absolute; inset: -12%; z-index: -2; pointer-events: none; filter: blur(40px);
+  background: linear-gradient(118deg, transparent 0 38%, rgba(255, 252, 244, .9) 38% 48%, transparent 48% 52%, rgba(255, 252, 244, .7) 52% 64%, transparent 64%); }
+/* The year it began, drawn faintly behind everything */
+.ab-hero__mark { position: absolute; right: -2vw; top: 6vh; z-index: -1; font-family: var(--ve-display); font-size: clamp(160px, 30vw, 460px); line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(150, 119, 56, .22); pointer-events: none; user-select: none; }
+.ab-hero__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(30px, 6vw, 100px); align-items: center; min-height: calc(100vh - var(--ve-header-h) - 6vh - 120px); }
+.ab-hero__text .ve-kicker { color: var(--ve-gold-deep); }
+.ab-hero__title { margin: 0; font-family: var(--ve-display); font-weight: 400; font-size: clamp(48px, 7vw, 112px); line-height: .98; }
+.ab-hero__title em { font-family: var(--ve-serif); font-style: italic; color: var(--ve-gold-deep); }
+.ab-hero__line { display: block; overflow: hidden; padding-bottom: .08em; }
+.ab-hero__line > * { display: block; }
+.ab-hero__sub { margin: 28px 0 0; max-width: 27em; font-size: clamp(18px, 1.45vw, 22px); line-height: 1.55; color: var(--ve-muted); }
+.ab-hero__arch { position: relative; margin: 0; justify-self: end; width: min(100%, calc((100vh - var(--ve-header-h) - 30vh) * .8)); aspect-ratio: 4 / 5; overflow: hidden; border-radius: 999px 999px 0 0; }
+.ab-hero__arch::after { content: ''; position: absolute; inset: 14px 14px 0; border: 1px solid rgba(245, 241, 233, .6); border-bottom: 0; border-radius: 999px 999px 0 0; }
+.ab-hero__arch img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
+.ab-hero__facts { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px clamp(20px, 4vw, 60px); margin: 0 auto; padding-top: 28px; padding-bottom: 34px; border-top: 1px solid var(--ve-line); }
+.ab-hero__facts li { display: grid; gap: 6px; }
+.ab-hero__facts b { font-family: var(--ve-display); font-weight: 400; font-size: clamp(24px, 2.2vw, 34px); color: var(--ve-gold-deep); }
+.ab-hero__facts span { font-size: 15.5px; line-height: 1.5; color: var(--ve-muted); max-width: 22em; }
+html.ve-motion .ab-hero__line > * { transform: translateY(110%); }
+html.ve-motion .ab-hero__text .ve-crumbs, html.ve-motion .ab-hero__text .ve-kicker, html.ve-motion .ab-hero__sub, html.ve-motion .ab-hero__facts li { opacity: 0; }
+html.ve-motion .ab-hero__arch { clip-path: inset(100% 0 0 0 round 999px 999px 0 0); }
+
+/* ── 2. Why we opened ──────────────────────────────────────────────── */
+.ab-why { background: var(--ab-cream); color: var(--ve-forest-deep); padding: clamp(80px, 13vh, 150px) 0 clamp(60px, 10vh, 110px); text-align: center; }
+.ab-why__kicker { justify-content: center; color: var(--ve-gold-deep); }
+.ab-why__quote { margin: 0 auto; }
+.ab-why__quote p { margin: 0 auto; max-width: 18em; font-family: var(--ve-serif); font-size: clamp(30px, 4.1vw, 64px); line-height: 1.2; }
+.ab-why__quote em { color: var(--ve-gold-deep); }
+.ab-why__quote .w { display: inline; }
+html.ve-motion .ab-why__quote .w { opacity: .14; }
+.ab-why__quote footer { margin-top: 34px; font-family: var(--ve-display); font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--ve-muted); }
+.ab-why__quote footer::before { content: ''; display: inline-block; width: 36px; height: 1px; margin-right: 14px; vertical-align: middle; background: var(--ve-gold); }
+
+/* ── 3. The story ──────────────────────────────────────────────────── */
+.ab-story { background: var(--ab-cream); color: var(--ve-forest-deep); padding: clamp(60px, 9vh, 110px) 0 clamp(100px, 15vh, 170px); }
+.ab-story__grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(40px, 7vw, 120px); align-items: start; }
+.ab-story__stick { position: sticky; top: calc(var(--ve-header-h) + 6vh); }
+.ab-story__arch { position: relative; margin: 0; width: min(100%, calc((100vh - var(--ve-header-h) - 16vh) * .78)); aspect-ratio: 4 / 5; overflow: hidden; border-radius: 999px 999px 0 0; background: var(--ve-paper); }
+.ab-story__arch::after { content: ''; position: absolute; inset: 12px 12px 0; border: 1px solid rgba(245, 241, 233, .55); border-bottom: 0; border-radius: 999px 999px 0 0; }
+.ab-story__arch img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.08); transition: opacity .9s ease, transform 1.8s var(--ve-ease); }
+.ab-story__arch img.is-on { opacity: 1; transform: none; }
+.ab-story__read .ve-kicker { color: var(--ve-gold-deep); }
+.ab-story__read .ve-h2 { margin-bottom: 40px; }
+.ab-story__p { margin: 0 0 26px; max-width: 34em; font-size: clamp(18px, 1.4vw, 21px); line-height: 1.72; color: #3d372e; }
+.ab-story__p em { color: var(--ve-gold-deep); }
+.ab-story__p--first::first-letter { float: left; margin: .06em .12em 0 0; font-family: var(--ve-display); font-size: 3.6em; line-height: .82; color: var(--ve-gold-deep); }
+.ab-story__pull { margin: 46px 0 46px; padding: 6px 0 6px 28px; max-width: 22em; border-left: 2px solid var(--ve-gold); font-family: var(--ve-serif); font-size: clamp(24px, 2.3vw, 34px); line-height: 1.3; color: var(--ve-forest-deep); }
+.ab-story__pull em { color: var(--ve-gold-deep); }
+
+/* ── Dusk, then night ──────────────────────────────────────────────── */
+.ab-dusk { height: 40vh; min-height: 260px; background: linear-gradient(180deg, var(--ab-cream) 0%, #c7b493 34%, #56604a 70%, var(--ab-night) 100%); }
+.ab-night { background: var(--ab-night); color: var(--ve-cream); }
+.ab-head { max-width: 760px; margin-bottom: clamp(44px, 7vh, 70px); }
+.ab-head .ve-kicker { color: var(--ve-gold); }
+.ab-head .ve-h2 em { color: var(--ve-gold-light); }
+.ab-head .ve-lede { margin-top: 24px; }
+.ab-head--center { margin-left: auto; margin-right: auto; text-align: center; }
+.ab-head--center .ve-kicker { justify-content: center; }
+
+/* ── 4. Ceylon tea in numbers ──────────────────────────────────────── */
+.ab-numbers__pin { position: relative; height: 100vh; height: 100svh; min-height: 640px; overflow: hidden; isolation: isolate; }
+.ab-numbers__bg { position: absolute; inset: -6% 0; z-index: -2; }
+.ab-numbers__bg img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.7) brightness(.5); }
+.ab-numbers__shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--ab-night) 0%, rgba(8, 20, 14, .45) 22%, rgba(8, 20, 14, .55) 70%, var(--ab-night) 100%), linear-gradient(90deg, rgba(8, 20, 14, .75), rgba(8, 20, 14, .1) 70%); }
+.ab-numbers__inner { position: relative; height: 100%; display: grid; grid-template-rows: auto 1fr auto; padding-top: calc(var(--ve-header-h) + 5vh); padding-bottom: 6vh; }
+.ab-numbers__head .ve-kicker { color: var(--ve-gold); }
+.ab-numbers__title { margin: 0; font-family: var(--ve-display); font-weight: 400; font-size: clamp(26px, 2.6vw, 40px); line-height: 1.1; }
+.ab-numbers__title em { font-family: var(--ve-serif); font-style: italic; color: var(--ve-gold-light); }
+.ab-facts { list-style: none; margin: 0; padding: 0; display: grid; align-items: center; }
+.ab-fact { grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: end; gap: 12px clamp(30px, 5vw, 80px); }
+.ab-fact__year { grid-column: 1 / -1; margin: 0; font-family: var(--ve-display); font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--ve-gold-light); }
+.ab-fact__num { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 22px; }
+.ab-fact__n { font-family: var(--ve-display); font-size: clamp(90px, 15vw, 240px); line-height: .9; color: var(--ve-gold-light); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.ab-fact__n--word { font-size: clamp(76px, 12vw, 190px); }
+.ab-fact__unit { font-family: var(--ve-serif); font-style: italic; font-size: clamp(22px, 2.2vw, 34px); color: rgba(245, 241, 233, .8); }
+.ab-fact__text { margin: 0 0 1.2em; max-width: 24em; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.6; color: rgba(245, 241, 233, .84); }
+.ab-rail { list-style: none; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; font-family: var(--ve-display); font-size: 10px; letter-spacing: .2em; color: rgba(245, 241, 233, .45); }
+.ab-rail li { position: relative; padding-top: 16px; border-top: 1px solid rgba(223, 192, 128, .25); transition: color .4s; }
+.ab-rail li::before { content: ''; position: absolute; left: 0; top: -1px; height: 1px; width: 100%; background: var(--ve-gold); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ve-ease); }
+.ab-rail li.is-past::before, .ab-rail li.is-on::before { transform: none; }
+.ab-rail li.is-on { color: var(--ve-gold-light); }
+html.ve-motion .ab-fact { opacity: 0; visibility: hidden; transition: opacity .5s ease, visibility .5s; }
+html.ve-motion .ab-fact.is-on { opacity: 1; visibility: visible; }
+html.ve-motion .ab-fact .ab-fact__text, html.ve-motion .ab-fact .ab-fact__unit { transform: translateY(14px); transition: transform .8s var(--ve-ease); }
+html.ve-motion .ab-fact.is-on .ab-fact__text, html.ve-motion .ab-fact.is-on .ab-fact__unit { transform: none; }
+/* Without motion: the figures as a list */
+html:not(.ve-motion) .ab-numbers__pin { height: auto; min-height: 0; }
+html:not(.ve-motion) .ab-numbers__inner { display: block; padding-bottom: 10vh; }
+html:not(.ve-motion) .ab-facts { gap: 60px; margin-top: 60px; }
+html:not(.ve-motion) .ab-fact { grid-area: auto; }
+html:not(.ve-motion) .ab-rail { display: none; }
+
+/* ── 5. The collection ─────────────────────────────────────────────── */
+.ab-collection { padding: clamp(100px, 15vh, 170px) 0 clamp(60px, 9vh, 100px); }
+.ab-houses { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(22px, 2.6vw, 40px); }
+.ab-house { display: flex; flex-direction: column; align-items: flex-start; }
+.ab-house__media { position: relative; width: 100%; margin: 0 0 24px; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 999px 999px 0 0; }
+.ab-house__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.6s var(--ve-ease); }
+.ab-house:hover .ab-house__media img { transform: scale(1.05); }
+.ab-house__media::after { content: ''; position: absolute; inset: 12px 12px 0; border: 1px solid rgba(223, 192, 128, .5); border-bottom: 0; border-radius: 999px 999px 0 0; pointer-events: none; }
+/* Houses not yet photographed: a drawn arch with the name of the place */
+.ab-house__media--drawn { display: grid; place-items: center; background: radial-gradient(80% 60% at 50% 40%, rgba(30, 77, 43, .5), rgba(8, 20, 14, .2)); border: 1px solid rgba(223, 192, 128, .25); border-bottom: 0; }
+.ab-house__media--drawn { align-content: center; gap: 18px; }
+.ab-house__media--drawn svg { width: 46%; height: auto; fill: none; stroke: rgba(223, 192, 128, .55); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.ab-house__media--drawn span { font-family: var(--ve-serif); font-style: italic; font-size: clamp(30px, 3vw, 48px); color: rgba(223, 192, 128, .6); }
+.ab-house__status { margin: 0 0 10px; padding: 5px 12px; border: 1px solid rgba(223, 192, 128, .45); font-family: var(--ve-display); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--ve-gold-light); }
+.ab-house--open .ab-house__status { background: var(--ve-gold); border-color: var(--ve-gold); color: var(--ve-forest-deep); }
+.ab-house__name { margin: 0 0 6px; font-family: var(--ve-display); font-weight: 400; font-size: clamp(22px, 1.9vw, 28px); }
+.ab-house__where { margin: 0 0 14px; font-style: italic; font-size: 15.5px; color: rgba(245, 241, 233, .6); }
+.ab-house__text { margin: 0 0 20px; font-size: 16px; line-height: 1.6; color: rgba(245, 241, 233, .76); }
+.ab-house .ve-link { margin-top: auto; color: var(--ve-gold-light); }
+
+/* ── 6. How we approach this ───────────────────────────────────────── */
+.ab-values { padding: clamp(80px, 12vh, 140px) 0; }
+.ab-values__grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(40px, 6vw, 110px); align-items: start; }
+.ab-values__head { position: sticky; top: calc(var(--ve-header-h) + 8vh); }
+.ab-values__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ve-line-light); }
+.ab-values__list li { display: grid; grid-template-columns: 56px minmax(0, 1fr); padding: 28px 0; border-bottom: 1px solid var(--ve-line-light); }
+.ab-values__list .ve-num { color: var(--ve-gold-light); padding-top: 5px; }
+.ab-values__list h3 { margin: 0 0 8px; font-family: var(--ve-display); font-weight: 400; font-size: clamp(19px, 1.6vw, 23px); }
+.ab-values__list p { margin: 0; max-width: 36em; font-size: 16.5px; line-height: 1.6; color: rgba(245, 241, 233, .72); }
+
+/* ── 7. A house on a working estate ────────────────────────────────── */
+.ab-care { padding: clamp(60px, 10vh, 110px) 0 clamp(80px, 12vh, 130px); }
+.ab-care__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 30px clamp(20px, 2.4vw, 36px); }
+.ab-care__list li { display: grid; align-content: start; gap: 16px; padding-top: 26px; border-top: 1px solid rgba(223, 192, 128, .3); }
+.ab-care__list .ve-ico { width: 34px; height: 34px; color: var(--ve-gold-light); }
+.ab-care__list p { margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(245, 241, 233, .76); }
+
+/* ── 8. Come and see ───────────────────────────────────────────────── */
+.ab-close { position: relative; overflow: hidden; isolation: isolate; padding: clamp(110px, 17vh, 190px) 0; text-align: center; }
+.ab-close__bg { position: absolute; inset: 0; z-index: -1; }
+.ab-close__bg img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.7) brightness(.4); }
+.ab-close__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, var(--ab-night) 0%, rgba(8, 20, 14, .35) 30%, rgba(8, 20, 14, .45) 70%, var(--ab-night) 100%); }
+.ab-close__inner { display: grid; justify-items: center; }
+.ab-close .ve-kicker { justify-content: center; color: var(--ve-gold-light); }
+.ab-close__title { margin: 0 0 24px; max-width: 14em; font-family: var(--ve-display); font-weight: 400; font-size: clamp(38px, 5.2vw, 84px); line-height: 1.04; text-shadow: 0 2px 30px rgba(0, 0, 0, .4); }
+.ab-close__title em { display: block; font-family: var(--ve-serif); font-style: italic; color: var(--ve-gold-light); }
+.ab-close .ve-lede { margin: 0 auto 34px; color: rgba(245, 241, 233, .8); }
+.ab-close__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.ab-close__cta .ve-btn--gold { color: var(--ve-forest-deep); }
+.ab-close__cta .ve-btn:not(.ve-btn--gold) { color: var(--ve-cream); border-color: rgba(245, 241, 233, .5); }
+
+/* ── Smaller screens ───────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .ab-care__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .ab-hero__grid { grid-template-columns: 1fr; min-height: 0; gap: 36px; }
+  .ab-hero__arch { grid-row: 1; justify-self: start; width: min(78%, 340px); }
+  .ab-hero__facts { grid-template-columns: 1fr; gap: 14px; }
+  .ab-story__grid, .ab-values__grid { grid-template-columns: 1fr; }
+  .ab-story__stick { position: relative; top: auto; }
+  .ab-story__arch { width: min(100%, 360px); }
+  .ab-values__head { position: relative; top: auto; }
+  .ab-houses { grid-template-columns: 1fr; }
+  .ab-house__media { max-width: 380px; }
+  .ab-fact { grid-template-columns: 1fr; }
+  .ab-fact__text { margin-bottom: 0; }
+  .ab-rail { grid-template-columns: repeat(7, auto); justify-content: space-between; font-size: 8.5px; letter-spacing: .1em; }
+  .ab-rail li { padding-right: 4px; }
+}
+@media (max-width: 600px) {
+  .ab-care__list { grid-template-columns: 1fr; }
+  .ab-care__list li { grid-template-columns: 40px minmax(0, 1fr); align-items: start; }
+  .ab-hero__text .ve-crumbs { display: none; }
+  .ab-hero__mark { top: auto; bottom: 20vh; }
+}

@@ -1,2751 +1,318 @@
-﻿<!DOCTYPE html> 
+<!DOCTYPE html>
+<html lang="en" class="ve-page">
 
-<html lang="en"> 
-
-<head> 
-
-<meta charset="UTF-8"> 
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-
-<title>Packages & Pricing · The Tea Bungalow · Galaha Estate</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Packages &amp; Offers · Pekoe Trail, Heritage Stays &amp; Estate Buyouts · The Tea Bungalow</title>
+  <meta name="description" content="All packages at The Tea Bungalow: Pekoe Trail hiker packages, heritage estate stays, whole-estate buyouts and bookable add-ons. Direct rates on request.">
 
 <link rel="icon" type="image/png" href="images/favicon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Stay Packages · The Tea Bungalow · Galaha">
-<meta property="og:description" content="Curated stay packages at The Tea Bungalow — Pekoe Trail, honeymoon, family, and full estate packages. Price on request.">
+<meta property="og:title" content="Packages &amp; Offers · The Tea Bungalow · Galaha">
+<meta property="og:description" content="Pekoe Trail packages, heritage stays and whole-estate buyouts at an 1890 planter's bungalow in Galaha, Sri Lanka. Direct rates on request.">
 <meta property="og:url" content="https://www.theteabungalow.com/packages">
-<meta property="og:image" content="https://www.theteabungalow.com/images/heroimg-1.jpeg">
+<meta property="og:image" content="https://www.theteabungalow.com/media/trail-forest-1600.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Stay Packages · The Tea Bungalow · Galaha">
-<meta name="twitter:description" content="Curated stay packages at The Tea Bungalow — Pekoe Trail, honeymoon, family, and full estate packages. Price on request.">
+<meta name="twitter:title" content="Packages &amp; Offers · The Tea Bungalow · Galaha">
+<meta name="twitter:description" content="Pekoe Trail packages, heritage stays and whole-estate buyouts at an 1890 planter's bungalow in Galaha, Sri Lanka. Direct rates on request.">
 <link rel="canonical" href="https://www.theteabungalow.com/packages">
- 
 
-<meta name="description" content="All packages at The Tea Bungalow — Pekoe Trail hiker packages, heritage estate escapes, and full bungalow buyout rates. Current rates available on request."> 
-
-<link rel="preconnect" href="https://fonts.googleapis.com"> 
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"> 
-
-<style> 
-
-/* ════════════════════════════════════════ 
-
-   ROOT 
-
-════════════════════════════════════════ */ 
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; } 
-
-html { scroll-behavior: smooth; } 
-
- 
-
-:root { 
-
-  --green:       #1E4D2B; 
-
-  --green-mid:   #2a6638; 
-
-  --green-deep:  #0f2e16; 
-
-  --green-pale:  #c8dece; 
-
-  --green-ghost: #eaf2ec; 
-
-  --gold:        #C7A85E; 
-
-  --gold-light:  #dfc080; 
-
-  --gold-pale:   #f5edd4; 
-
-  --gold-deep:   #8a6a30; 
-
-  --cream:       #F5F1E9; 
-
-  --cream-dark:  #ede7db; 
-
-  --ink:         #1a1510; 
-
-  --ink-mid:     #3d3428; 
-
-  --ink-light:   #7a6e60; 
-
-  --mist:        #8a9e8f; 
-
-  --white:       #ffffff; 
-
-  --shadow:      rgba(30,77,43,0.13); 
-
-} 
-
- 
-
-body { 
-
-  background: var(--cream); 
-
-  font-family: 'EB Garamond', Georgia, serif; 
-
-  color: var(--ink); overflow-x: hidden; 
-
-} 
-
-body::after { 
-
-  content: ''; position: fixed; inset: 0; 
-
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); 
-
-  pointer-events: none; z-index: 9999; 
-
-} 
-
- 
-
-/* NAV */ 
-
-nav { 
-
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200; 
-
-  height: 72px; padding: 0 48px; 
-
-  display: flex; align-items: center; justify-content: space-between; 
-
-  transition: background 0.4s, box-shadow 0.4s; 
-
-} 
-
-nav.scrolled { 
-
-  background: rgba(245,241,233,0.96); 
-
-  backdrop-filter: blur(12px); 
-
-  box-shadow: 0 1px 0 rgba(30,77,43,0.1); 
-
-} 
-
-.nav-logo { 
-
-  font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600; 
-
-  letter-spacing: 0.12em; color: var(--white); text-decoration: none; 
-
-  transition: color 0.3s; 
-
-} 
-
-nav.scrolled .nav-logo { color: var(--green); } 
-
-.nav-links { display: flex; gap: 32px; list-style: none; } 
-
-.nav-links a { 
-
-  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.16em; 
-
-  text-transform: uppercase; color: rgba(255,255,255,0.8); 
-
-  text-decoration: none; transition: color 0.25s; 
-
-} 
-
-nav.scrolled .nav-links a { color: var(--ink-mid); } 
-
-.nav-links a:hover { color: var(--gold); } 
-
-nav.scrolled .nav-links a:hover { color: var(--green); } 
-
-.nav-links .active { color: var(--gold) !important; } 
-
-.nav-cta { 
-
-  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.18em; 
-
-  text-transform: uppercase; color: var(--white); background: var(--green); 
-
-  border: 1px solid var(--green); padding: 9px 20px; text-decoration: none; 
-
-  transition: background 0.25s, border-color 0.25s; 
-
-} 
-
-.nav-cta:hover { background: var(--gold); border-color: var(--gold); } 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   HERO 
-
-════════════════════════════════════════ */ 
-
-.hero { 
-
-  position: relative; 
-
-  min-height: 70vh; 
-
-  display: flex; align-items: flex-end; 
-
-  overflow: hidden; 
-
-  background: 
-
-    linear-gradient(180deg, rgba(10,25,14,0.45) 0%, rgba(10,25,14,0.65) 55%, rgba(10,25,14,0.95) 100%), 
-
-    url('images/tea-estate.jpg') center/cover no-repeat; 
-
-} 
-
-.hero-texture { 
-
-  position: absolute; inset: 0; pointer-events: none; 
-
-  background-image: repeating-linear-gradient(168deg, transparent 0, transparent 30px, rgba(255,255,255,0.022) 30px, rgba(255,255,255,0.022) 31px); 
-
-} 
-
-.hero-content { 
-
-  position: relative; z-index: 2; 
-
-  padding: 0 10vw 80px; width: 100%; 
-
-  display: grid; grid-template-columns: 1fr 1fr; 
-
-  gap: 64px; align-items: end; 
-
-} 
-
-.hero-left {} 
-
-.hero-breadcrumb { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.45em; 
-
-  color: var(--gold); text-transform: uppercase; margin-bottom: 24px; 
-
-  opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards; 
-
-} 
-
-.hero-breadcrumb a { color: rgba(199,168,94,0.55); text-decoration: none; } 
-
-.hero-breadcrumb a:hover { color: var(--gold); } 
-
-.hero-title { 
-
-  font-family: 'Cinzel', serif; font-size: clamp(44px, 7vw, 92px); 
-
-  font-weight: 700; color: var(--white); line-height: 0.95; 
-
-  letter-spacing: 0.01em; margin-bottom: 24px; 
-
-  opacity: 0; animation: fadeUp 0.9s 0.4s ease forwards; 
-
-} 
-
-.hero-title em { font-style: italic; color: var(--gold-light); font-weight: 400; display: block; } 
-
-.hero-sub { 
-
-  font-size: clamp(17px, 1.8vw, 22px); font-style: italic; 
-
-  color: rgba(255,255,255,0.72); line-height: 1.55; max-width: 480px; 
-
-  opacity: 0; animation: fadeUp 0.9s 0.6s ease forwards; 
-
-} 
-
- 
-
-/* Hero right — package count bubbles */ 
-
-.hero-counts { 
-
-  display: flex; gap: 20px; justify-content: flex-end; 
-
-  flex-wrap: wrap; 
-
-  opacity: 0; animation: fadeUp 0.9s 0.7s ease forwards; 
-
-} 
-
-.hero-count-pill { 
-
-  text-align: center; padding: 24px 28px; 
-
-  border: 1px solid rgba(199,168,94,0.35); 
-
-  backdrop-filter: blur(8px); 
-
-  background: rgba(255,255,255,0.04); 
-
-  min-width: 110px; 
-
-} 
-
-.hc-num { 
-
-  font-family: 'Cinzel', serif; font-size: 30px; font-weight: 700; 
-
-  color: var(--gold); line-height: 1; margin-bottom: 6px; 
-
-} 
-
-.hc-label { 
-
-  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.25em; 
-
-  color: rgba(255,255,255,0.5); text-transform: uppercase; 
-
-} 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   SOFT OPENING BANNER 
-
-════════════════════════════════════════ */ 
-
-.soft-banner { 
-
-  background: var(--gold); 
-
-  padding: 18px 10vw; 
-
-  display: flex; align-items: center; 
-
-  justify-content: center; gap: 20px; flex-wrap: wrap; 
-
-} 
-
-.soft-icon { font-size: 20px; } 
-
-.soft-text { 
-
-  font-family: 'Cinzel', serif; font-size: 11px; 
-
-  letter-spacing: 0.18em; color: var(--ink); 
-
-  text-transform: uppercase; 
-
-} 
-
-.soft-text strong { font-weight: 700; } 
-
-.soft-cta { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; 
-
-  letter-spacing: 0.2em; text-transform: uppercase; 
-
-  color: var(--ink); border: 1px solid var(--ink); 
-
-  padding: 8px 18px; text-decoration: none; 
-
-  transition: background 0.2s, color 0.2s; 
-
-} 
-
-.soft-cta:hover { background: var(--ink); color: var(--gold); } 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   SECTION NAV (JUMP LINKS) 
-
-════════════════════════════════════════ */ 
-
-.section-nav { 
-
-  background: var(--ink); border-bottom: 2px solid var(--gold); 
-
-  position: sticky; top: 72px; z-index: 100; 
-
-  display: flex; align-items: center; overflow-x: auto; 
-
-} 
-
-.sn-item { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; 
-
-  letter-spacing: 0.22em; text-transform: uppercase; 
-
-  color: rgba(255,255,255,0.5); padding: 18px 28px; 
-
-  text-decoration: none; white-space: nowrap; 
-
-  border-right: 1px solid rgba(255,255,255,0.08); 
-
-  transition: color 0.2s, background 0.2s; 
-
-  display: flex; align-items: center; gap: 8px; 
-
-} 
-
-.sn-item:last-child { border-right: none; } 
-
-.sn-item:hover { color: var(--gold); background: rgba(255,255,255,0.04); } 
-
-.sn-item.active { color: var(--gold); background: rgba(199,168,94,0.1); } 
-
-.sn-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; } 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   SHARED SECTION HEADERS 
-
-════════════════════════════════════════ */ 
-
-.section-header { 
-
-  text-align: center; margin-bottom: 64px; 
-
-  max-width: 720px; margin-left: auto; margin-right: auto; 
-
-} 
-
-.s-eyebrow { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; 
-
-  letter-spacing: 0.5em; color: var(--gold); 
-
-  text-transform: uppercase; margin-bottom: 18px; 
-
-} 
-
-.s-title { 
-
-  font-family: 'Cinzel', serif; font-size: clamp(28px, 3.5vw, 46px); 
-
-  font-weight: 600; color: var(--green); line-height: 1.1; margin-bottom: 18px; 
-
-} 
-
-.s-title-light { color: var(--white); } 
-
-.s-sub { 
-
-  font-size: 18px; font-style: italic; color: var(--ink-light); line-height: 1.65; 
-
-} 
-
-.s-sub-light { color: rgba(255,255,255,0.55); } 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   PEKOE TRAIL PACKAGES — section 1 
-
-════════════════════════════════════════ */ 
-
-.trail-pkgs-section { 
-
-  padding: 120px 10vw; 
-
-  background: var(--cream); 
-
-} 
-
- 
-
-.trail-pkgs-grid { 
-
-  display: grid; 
-
-  grid-template-columns: repeat(3, 1fr); 
-
-  gap: 24px; max-width: 1300px; margin: 0 auto; 
-
-} 
-
- 
-
-/* Full-width featured card */ 
-
-.pkg-hero-card { 
-
-  background: var(--ink); 
-
-  grid-column: 1 / -1; 
-
-  display: grid; grid-template-columns: 1fr 1fr; 
-
-  overflow: hidden; position: relative; 
-
-  border-top: 3px solid var(--gold); 
-
-  transition: transform 0.3s; 
-
-} 
-
-.pkg-hero-card:hover { transform: scale(1.005); } 
-
- 
-
-.pkg-hero-visual { 
-
-  background: linear-gradient(155deg, #1a4a24 0%, #2d7038 35%, #1a3d22 70%, #0d2015 100%); 
-
-  position: relative; min-height: 340px; overflow: hidden; 
-
-  display: flex; flex-direction: column; justify-content: flex-end; 
-
-  padding: 40px; 
-
-} 
-
-.pkg-hero-visual::after { 
-
-  content: ''; 
-
-  position: absolute; inset: 0; 
-
-  background-image: repeating-linear-gradient(165deg, transparent 0, transparent 28px, rgba(255,255,255,0.025) 28px, rgba(255,255,255,0.025) 29px); 
-
-} 
-
-.phv-nights { 
-
-  font-family: 'Cinzel', serif; font-size: 80px; font-weight: 700; 
-
-  color: rgba(199,168,94,0.15); line-height: 1; 
-
-  position: absolute; top: 28px; right: 32px; 
-
-} 
-
-.phv-label { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.4em; 
-
-  color: var(--gold); text-transform: uppercase; margin-bottom: 12px; 
-
-  position: relative; z-index: 1; 
-
-} 
-
-.phv-title { 
-
-  font-family: 'Cinzel', serif; font-size: clamp(22px, 2.8vw, 34px); 
-
-  font-weight: 700; color: var(--white); line-height: 1.1; 
-
-  position: relative; z-index: 1; 
-
-} 
-
- 
-
-.pkg-hero-detail { 
-
-  padding: 48px 52px; display: flex; flex-direction: column; justify-content: center; 
-
-} 
-
-.phd-popular { 
-
-  display: inline-block; font-family: 'Cinzel', serif; font-size: 9px; 
-
-  letter-spacing: 0.3em; text-transform: uppercase; 
-
-  padding: 6px 14px; background: var(--gold); color: var(--ink); 
-
-  margin-bottom: 20px; align-self: flex-start; 
-
-} 
-
-.phd-tagline { 
-
-  font-size: 17px; font-style: italic; color: rgba(255,255,255,0.65); 
-
-  line-height: 1.65; margin-bottom: 24px; 
-
-} 
-
-.phd-includes { 
-
-  display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; 
-
-  padding-top: 20px; border-top: 1px solid rgba(199,168,94,0.2); 
-
-} 
-
-.phd-include { 
-
-  font-size: 13.5px; color: rgba(255,255,255,0.72); 
-
-  display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; 
-
-} 
-
-.phd-include::before { content: '✓'; color: var(--gold); font-size: 11px; flex-shrink: 0; margin-top: 2px; } 
-
-.phd-meta { 
-
-  display: grid; grid-template-columns: 1fr 1fr; 
-
-  gap: 16px; padding: 18px 0; margin: 10px 0; 
-
-  border-top: 1px solid rgba(199,168,94,0.2); 
-
-  border-bottom: 1px solid rgba(199,168,94,0.2); 
-
-} 
-
-.phd-meta-label { 
-
-  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.25em; 
-
-  color: var(--gold); text-transform: uppercase; margin-bottom: 4px; 
-
-} 
-
-.phd-meta-val { 
-
-  font-family: 'Cinzel', serif; font-size: 16px; color: var(--white); font-weight: 600; 
-
-} 
-
-.phd-cta { 
-
-  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.2em; 
-
-  text-transform: uppercase; background: var(--gold); color: var(--ink); 
-
-  padding: 16px 32px; text-decoration: none; border: 1px solid var(--gold); 
-
-  transition: background 0.25s, color 0.25s, transform 0.2s; display: inline-block; 
-
-  align-self: flex-start; margin-top: 12px; 
-
-} 
-
-.phd-cta:hover { background: var(--white); color: var(--green); transform: translateY(-2px); } 
-
- 
-
-/* Standard package cards */ 
-
-.pkg-card { 
-
-  background: var(--white); padding: 36px 28px 28px; 
-
-  display: flex; flex-direction: column; position: relative; 
-
-  border-top: 3px solid var(--green); 
-
-  transition: transform 0.25s, box-shadow 0.25s; 
-
-} 
-
-.pkg-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px var(--shadow); } 
-
-.pkg-card.gold-top { border-top-color: var(--gold); } 
-
-.pkg-card.ink-top  { border-top-color: var(--ink); } 
-
- 
-
-.pkg-pop-tag { 
-
-  position: absolute; top: -3px; right: 20px; 
-
-  font-family: 'Cinzel', serif; font-size: 9px; 
-
-  letter-spacing: 0.22em; text-transform: uppercase; 
-
-  background: var(--gold); color: var(--ink); padding: 5px 12px; 
-
-} 
-
-.pkg-duration { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.3em; 
-
-  color: var(--gold-deep); text-transform: uppercase; margin-bottom: 12px; 
-
-} 
-
-.pkg-name { 
-
-  font-family: 'Cinzel', serif; font-size: 20px; font-weight: 600; 
-
-  color: var(--green); line-height: 1.15; margin-bottom: 10px; letter-spacing: 0.02em; 
-
-} 
-
-.pkg-tagline { 
-
-  font-size: 14px; font-style: italic; color: var(--ink-light); line-height: 1.6; 
-
-  margin-bottom: 20px; 
-
-} 
-
-.pkg-includes { 
-
-  display: flex; flex-direction: column; gap: 7px; flex: 1; 
-
-  padding-top: 16px; border-top: 1px solid var(--green-pale); 
-
-  margin-bottom: 20px; 
-
-} 
-
-.pkg-include { 
-
-  font-size: 13px; color: var(--ink-mid); display: flex; 
-
-  align-items: flex-start; gap: 9px; line-height: 1.4; 
-
-} 
-
-.pkg-include::before { content: '✓'; color: var(--gold-deep); font-weight: bold; font-size: 11px; flex-shrink: 0; margin-top: 2px; } 
-
-.pkg-rate { 
-
-  display: flex; align-items: baseline; gap: 8px; 
-
-  padding: 14px 0; margin: 4px 0; 
-
-  border-top: 1px solid var(--green-pale); 
-
-  border-bottom: 1px solid var(--green-pale); 
-
-} 
-
-.pkg-rate-from { 
-
-  font-family: 'Cinzel', serif; font-size: 9px; 
-
-  letter-spacing: 0.25em; color: var(--mist); text-transform: uppercase; 
-
-} 
-
-.pkg-rate-amount { 
-
-  font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; color: var(--green); 
-
-} 
-
-.pkg-rate-period { 
-
-  font-family: 'EB Garamond', serif; font-size: 13px; color: var(--ink-light); font-style: italic; 
-
-} 
-
-.pkg-cta { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em; 
-
-  text-transform: uppercase; background: var(--green); color: var(--white); 
-
-  padding: 13px 24px; text-decoration: none; border: 1px solid var(--green); 
-
-  text-align: center; transition: background 0.25s, color 0.25s; 
-
-  display: block; margin-top: 14px; 
-
-} 
-
-.pkg-cta:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); } 
-
-.pkg-card.gold-top .pkg-cta { background: var(--gold); border-color: var(--gold); color: var(--ink); } 
-
-.pkg-card.gold-top .pkg-cta:hover { background: var(--green); border-color: var(--green); color: var(--white); } 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   HERITAGE STAY PACKAGES — section 2 
-
-════════════════════════════════════════ */ 
-
-.heritage-pkgs-section { 
-
-  padding: 120px 10vw; 
-
-  background: var(--cream-dark); 
-
-} 
-
- 
-
-.heritage-pkgs-grid { 
-
-  display: grid; 
-
-  grid-template-columns: repeat(3, 1fr); 
-
-  gap: 24px; max-width: 1300px; margin: 0 auto; 
-
-} 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   ESTATE BUYOUT RATES — section 3 
-
-════════════════════════════════════════ */ 
-
-.buyout-section { 
-
-  padding: 120px 10vw; 
-
-  background: var(--ink); 
-
-  position: relative; overflow: hidden; 
-
-} 
-
-.buyout-section::before { 
-
-  content: 'EXCLUSIVE'; 
-
-  position: absolute; right: -2vw; top: 50%; 
-
-  transform: translateY(-50%); 
-
-  font-family: 'Cinzel', serif; font-size: clamp(100px, 14vw, 220px); font-weight: 700; 
-
-  color: rgba(199,168,94,0.025); letter-spacing: 0.1em; 
-
-  white-space: nowrap; pointer-events: none; line-height: 0.8; 
-
-} 
-
- 
-
-.buyout-grid { 
-
-  display: grid; 
-
-  grid-template-columns: 1fr 1fr; 
-
-  gap: 24px; max-width: 1100px; margin: 0 auto; 
-
-} 
-
-.buyout-card { 
-
-  border: 1px solid rgba(199,168,94,0.25); 
-
-  padding: 44px 40px; position: relative; 
-
-  transition: border-color 0.3s, background 0.3s; 
-
-} 
-
-.buyout-card:hover { border-color: rgba(199,168,94,0.6); background: rgba(255,255,255,0.02); } 
-
-.buyout-card.featured { border-color: var(--gold); background: rgba(199,168,94,0.05); } 
-
- 
-
-.bc-crown { 
-
-  position: absolute; top: -1px; right: 24px; 
-
-  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.25em; 
-
-  text-transform: uppercase; background: var(--gold); color: var(--ink); 
-
-  padding: 5px 12px; 
-
-} 
-
-.bc-eyebrow { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.4em; 
-
-  color: var(--gold); text-transform: uppercase; margin-bottom: 14px; 
-
-} 
-
-.bc-name { 
-
-  font-family: 'Cinzel', serif; font-size: clamp(22px, 2.8vw, 32px); 
-
-  font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: 20px; 
-
-} 
-
-.bc-desc { 
-
-  font-size: 15px; font-style: italic; color: rgba(255,255,255,0.6); 
-
-  line-height: 1.7; margin-bottom: 24px; 
-
-} 
-
-.bc-includes { 
-
-  display: flex; flex-direction: column; gap: 8px; 
-
-  padding: 20px 0; margin-bottom: 20px; 
-
-  border-top: 1px solid rgba(199,168,94,0.2); 
-
-  border-bottom: 1px solid rgba(199,168,94,0.2); 
-
-} 
-
-.bc-include { 
-
-  font-size: 13.5px; color: rgba(255,255,255,0.7); 
-
-  display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; 
-
-} 
-
-.bc-include::before { content: '—'; color: var(--gold); font-family: 'Cinzel', serif; flex-shrink: 0; } 
-
-.bc-rate { margin-bottom: 20px; } 
-
-.bc-rate-from { 
-
-  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.25em; 
-
-  color: rgba(255,255,255,0.45); text-transform: uppercase; display: block; margin-bottom: 4px; 
-
-} 
-
-.bc-rate-amount { 
-
-  font-family: 'Cinzel', serif; font-size: 28px; font-weight: 700; color: var(--gold); line-height: 1; 
-
-} 
-
-.bc-rate-period { 
-
-  font-family: 'EB Garamond', serif; font-size: 14px; color: rgba(255,255,255,0.5); font-style: italic; 
-
-} 
-
-.bc-cta { 
-
-  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.2em; 
-
-  text-transform: uppercase; color: var(--gold); padding: 14px 28px; 
-
-  text-decoration: none; border: 1px solid rgba(199,168,94,0.5); 
-
-  display: inline-block; transition: background 0.25s, color 0.25s; 
-
-} 
-
-.bc-cta:hover { background: var(--gold); color: var(--ink); } 
-
-.buyout-card.featured .bc-cta { background: var(--gold); color: var(--ink); border-color: var(--gold); } 
-
-.buyout-card.featured .bc-cta:hover { background: var(--white); color: var(--green); border-color: var(--white); } 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   EXPERIENCE ADD-ONS 
-
-════════════════════════════════════════ */ 
-
-.addons-section { 
-
-  padding: 120px 10vw; 
-
-  background: var(--cream); 
-
-} 
-
-.addons-intro { 
-
-  display: grid; grid-template-columns: 1fr 2fr; 
-
-  gap: 64px; align-items: center; 
-
-  max-width: 1200px; margin: 0 auto 60px; 
-
-} 
-
-.addon-intro-left {} 
-
-.addon-intro-eyebrow { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em; 
-
-  color: var(--gold); text-transform: uppercase; margin-bottom: 18px; 
-
-} 
-
-.addon-intro-title { 
-
-  font-family: 'Cinzel', serif; font-size: clamp(26px, 3vw, 40px); 
-
-  font-weight: 600; color: var(--green); line-height: 1.1; 
-
-} 
-
-.addon-intro-body p { 
-
-  font-size: 16px; font-style: italic; color: var(--ink-light); line-height: 1.75; margin-bottom: 14px; 
-
-} 
-
- 
-
-.addons-table { 
-
-  max-width: 1200px; margin: 0 auto; 
-
-  background: var(--white); 
-
-} 
-
-.addon-row { 
-
-  display: grid; 
-
-  grid-template-columns: 2fr 3fr 1fr 1fr; 
-
-  gap: 0; padding: 18px 28px; 
-
-  border-bottom: 1px solid var(--green-pale); 
-
-  align-items: center; transition: background 0.2s; 
-
-} 
-
-.addon-row:last-child { border-bottom: none; } 
-
-.addon-row:hover { background: var(--green-ghost); } 
-
-.addon-row.header-row { 
-
-  background: var(--green); border-bottom: 2px solid var(--gold); 
-
-} 
-
-.addon-row.header-row .addon-col { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.25em; 
-
-  text-transform: uppercase; color: var(--white); font-weight: 600; 
-
-} 
-
-.addon-name { 
-
-  font-family: 'Cinzel', serif; font-size: 13px; color: var(--green); 
-
-  letter-spacing: 0.04em; font-weight: 600; 
-
-} 
-
-.addon-desc { 
-
-  font-size: 13px; color: var(--ink-light); font-style: italic; line-height: 1.5; 
-
-} 
-
-.addon-notice { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.1em; 
-
-  color: var(--mist); text-transform: uppercase; 
-
-} 
-
-.addon-price { 
-
-  font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; 
-
-  color: var(--gold-deep); letter-spacing: 0.04em; text-align: right; 
-
-} 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   WHAT'S ALWAYS INCLUDED 
-
-════════════════════════════════════════ */ 
-
-.always-section { 
-
-  background: var(--green); 
-
-  padding: 80px 10vw; 
-
-  position: relative; overflow: hidden; 
-
-} 
-
-.always-section::before { 
-
-  content: ''; 
-
-  position: absolute; inset: 0; 
-
-  background-image: repeating-linear-gradient(170deg, transparent 0, transparent 30px, rgba(255,255,255,0.02) 30px, rgba(255,255,255,0.02) 31px); 
-
-} 
-
-.always-inner { 
-
-  max-width: 1200px; margin: 0 auto; 
-
-  position: relative; z-index: 1; 
-
-} 
-
-.always-header { text-align: center; margin-bottom: 48px; } 
-
-.always-eyebrow { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em; 
-
-  color: var(--gold); text-transform: uppercase; margin-bottom: 16px; 
-
-} 
-
-.always-title { 
-
-  font-family: 'Cinzel', serif; font-size: clamp(24px, 3vw, 38px); 
-
-  font-weight: 600; color: var(--white); line-height: 1.1; 
-
-} 
-
-.always-grid { 
-
-  display: grid; grid-template-columns: repeat(4, 1fr); 
-
-  gap: 2px; 
-
-} 
-
-.always-item { 
-
-  background: rgba(255,255,255,0.05); padding: 24px 20px; 
-
-  border-top: 2px solid rgba(199,168,94,0.3); 
-
-  transition: background 0.25s, border-color 0.25s; 
-
-} 
-
-.always-item:hover { background: rgba(255,255,255,0.08); border-top-color: var(--gold); } 
-
-.always-icon { font-size: 22px; margin-bottom: 12px; display: block; } 
-
-.always-name { 
-
-  font-family: 'Cinzel', serif; font-size: 12px; color: var(--white); 
-
-  letter-spacing: 0.06em; font-weight: 600; margin-bottom: 6px; 
-
-} 
-
-.always-detail { 
-
-  font-size: 13px; color: rgba(255,255,255,0.55); font-style: italic; line-height: 1.5; 
-
-} 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   BOOKING CONDITIONS 
-
-════════════════════════════════════════ */ 
-
-.conditions-section { 
-
-  padding: 96px 10vw; 
-
-  background: var(--cream-dark); 
-
-} 
-
-.conditions-inner { 
-
-  max-width: 1100px; margin: 0 auto; 
-
-  display: grid; grid-template-columns: 1fr 1fr; 
-
-  gap: 48px; 
-
-} 
-
-.conditions-block {} 
-
-.cond-title { 
-
-  font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; 
-
-  color: var(--green); letter-spacing: 0.06em; margin-bottom: 20px; 
-
-  padding-bottom: 12px; border-bottom: 1px solid var(--green-pale); 
-
-} 
-
-.cond-list { display: flex; flex-direction: column; gap: 12px; } 
-
-.cond-item { 
-
-  display: flex; align-items: flex-start; gap: 12px; 
-
-  font-size: 14px; color: var(--ink-mid); line-height: 1.6; 
-
-} 
-
-.cond-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; } 
-
- 
-
-/* ════════════════════════════════════════ 
-
-   CUSTOM PACKAGE CTA 
-
-════════════════════════════════════════ */ 
-
-.custom-section { 
-
-  background: var(--ink); padding: 100px 10vw; 
-
-  text-align: center; position: relative; overflow: hidden; 
-
-} 
-
-.custom-section::before { 
-
-  content: ''; 
-
-  position: absolute; inset: 0; 
-
-  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(199,168,94,0.08), transparent 60%); 
-
-} 
-
-.custom-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; } 
-
-.custom-eyebrow { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em; 
-
-  color: var(--gold); text-transform: uppercase; margin-bottom: 24px; 
-
-  display: inline-flex; align-items: center; gap: 14px; 
-
-} 
-
-.custom-eyebrow::before, .custom-eyebrow::after { 
-
-  content: ''; width: 32px; height: 1px; background: var(--gold); 
-
-} 
-
-.custom-title { 
-
-  font-family: 'Cinzel', serif; font-size: clamp(30px, 4vw, 52px); 
-
-  font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: 24px; 
-
-} 
-
-.custom-title em { color: var(--gold-light); font-style: italic; font-weight: 400; } 
-
-.custom-body { 
-
-  font-size: 18px; font-style: italic; color: rgba(255,255,255,0.65); 
-
-  line-height: 1.7; margin-bottom: 16px; 
-
-} 
-
-.custom-points { 
-
-  display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: center; 
-
-  margin-bottom: 40px; 
-
-} 
-
-.custom-point { 
-
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em; 
-
-  color: var(--gold); text-transform: uppercase; 
-
-  display: flex; align-items: center; gap: 8px; 
-
-} 
-
-.custom-point::before { content: '✦'; font-size: 10px; } 
-
-.custom-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; } 
-
-.btn-large-gold { 
-
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.22em; 
-
-  text-transform: uppercase; background: var(--gold); color: var(--ink); 
-
-  padding: 20px 44px; text-decoration: none; border: 1px solid var(--gold); 
-
-  transition: background 0.25s, color 0.25s, transform 0.2s; 
-
-} 
-
-.btn-large-gold:hover { background: var(--white); color: var(--green); transform: translateY(-2px); } 
-
-.btn-large-outline { 
-
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.22em; 
-
-  text-transform: uppercase; background: transparent; color: var(--white); 
-
-  padding: 20px 36px; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); 
-
-  transition: border-color 0.25s, color 0.25s, transform 0.2s; 
-
-} 
-
-.btn-large-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); } 
-
- 
-
-/* FOOTER */ 
-
-footer { background: #0d0a07; padding: 72px 10vw 40px; } 
-
-.footer-top { 
-
-  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; 
-
-  gap: 48px; padding-bottom: 56px; 
-
-  border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 32px; 
-
-} 
-
-.footer-logo { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; color: var(--white); letter-spacing: 0.08em; margin-bottom: 8px; } 
-
-.footer-tagline { font-size: 14px; font-style: italic; color: rgba(255,255,255,0.3); line-height: 1.5; margin-bottom: 20px; } 
-
-.footer-contact { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 6px; } 
-
-.footer-contact a { color: var(--gold); text-decoration: none; } 
-
-.footer-col-title { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; } 
-
-.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; } 
-
-.footer-links a { font-size: 14px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; } 
-
-.footer-links a:hover { color: var(--white); } 
-
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; } 
-
-.footer-copy { font-size: 12px; color: rgba(255,255,255,0.18); font-style: italic; } 
-
-.footer-collection { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.3em; color: var(--gold); opacity: 0.55; text-transform: uppercase; } 
-
- 
-
-/* ANIMATIONS */ 
-
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } } 
-
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; } 
-
-.reveal.visible { opacity: 1; transform: translateY(0); } 
-
-.d1 { transition-delay: 0.08s; } 
-
-.d2 { transition-delay: 0.16s; } 
-
-.d3 { transition-delay: 0.24s; } 
-
- 
-
-/* RESPONSIVE */ 
-
-@media (max-width: 1200px) { 
-
-  .trail-pkgs-grid { grid-template-columns: 1fr 1fr; } 
-
-  .pkg-hero-card { grid-column: 1 / -1; } 
-
-  .heritage-pkgs-grid { grid-template-columns: 1fr 1fr; } 
-
-  .always-grid { grid-template-columns: repeat(2, 1fr); } 
-
-  .addon-row { grid-template-columns: 2fr 3fr 1fr; } 
-
-  .addon-price { grid-column: auto; } 
-
-} 
-
-@media (max-width: 1024px) { 
-
-  .hero-content { grid-template-columns: 1fr; gap: 40px; } 
-
-  .hero-counts { justify-content: flex-start; } 
-
-  .pkg-hero-card { grid-template-columns: 1fr; } 
-
-  .buyout-grid { grid-template-columns: 1fr; } 
-
-  .addons-intro { grid-template-columns: 1fr; gap: 24px; } 
-
-  .conditions-inner { grid-template-columns: 1fr; } 
-
-  .footer-top { grid-template-columns: 1fr 1fr; } 
-
-} 
-
-@media (max-width: 768px) { 
-
-  nav { padding: 0 24px; } 
-
-  .nav-links { display: none; } 
-
-  .trail-pkgs-grid { grid-template-columns: 1fr; } 
-
-  .heritage-pkgs-grid { grid-template-columns: 1fr; } 
-
-  .always-grid { grid-template-columns: 1fr 1fr; } 
-
-  .addon-row { grid-template-columns: 1fr; gap: 6px; } 
-
-  .addon-row.header-row { display: none; } 
-
-  .footer-top { grid-template-columns: 1fr; } 
-
-} 
-
-</style> 
-
-</head> 
-
-<body> 
-
- 
-
-<!-- NAV --> 
-
-<?php include 'layout/navbar.php'; ?> 
-
- 
-
-<!-- HERO --> 
-
-<section class="hero"> 
-
-  <div class="hero-texture"></div> 
-
-  <div class="hero-content"> 
-
-    <div class="hero-left"> 
-
-      <div class="hero-breadcrumb"><a href="/vD/home.php">Home</a> &nbsp;/&nbsp; Packages &amp; Pricing</div> 
-
-      <h1 class="hero-title">Packages<br>&amp; <em>Pricing</em></h1> 
-
-      <p class="hero-sub">Every package at the estate in one place — from a single hiker recovery night to a full three-stage Pekoe Trail concierge and whole-estate buyouts.</p> 
-
-    </div> 
-
-    <div class="hero-counts"> 
-
-      <div class="hero-count-pill"> 
-
-        <div class="hc-num">14</div> 
-
-        <div class="hc-label">Packages</div> 
-
-      </div> 
-
-      <div class="hero-count-pill"> 
-
-        <div class="hc-num">Direct</div> 
-
-        <div class="hc-label">Rates on Request</div> 
-
-      </div> 
-
-      <div class="hero-count-pill"> 
-
-        <div class="hc-num">72h</div> 
-
-        <div class="hc-label">Free Cancel</div> 
-
-      </div> 
-
-    </div> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- SOFT OPENING BANNER --> 
-
-<div class="soft-banner"> 
-
-  <span class="soft-icon">🌿</span> 
-
-  <span class="soft-text"><strong>Introductory Offer: Double BB from $75</strong> — Enquire for packages &amp; direct booking inclusions</span> 
-
-  <a href="/vD/contact.php#enquiry-form" class="soft-cta">Enquire Now</a> 
-
-</div> 
-
- 
-
-<!-- SECTION NAV --> 
-
-<div class="section-nav"> 
-
-  <a href="#trail" class="sn-item active"><span class="sn-dot"></span>Pekoe Trail</a> 
-
-  <a href="#heritage" class="sn-item"><span class="sn-dot"></span>Heritage Stays</a> 
-
-  <a href="#buyout" class="sn-item"><span class="sn-dot"></span>Estate Buyout</a> 
-
-  <a href="#addons" class="sn-item"><span class="sn-dot"></span>Add-Ons</a> 
-
-  <a href="#included" class="sn-item"><span class="sn-dot"></span>Always Included</a> 
-
-  <a href="#conditions" class="sn-item"><span class="sn-dot"></span>Booking Terms</a> 
-
-  <a href="/vD/contact.php#enquiry-form" class="sn-item"><span class="sn-dot"></span>Enquire</a> 
-
-</div> 
-
- 
-
-<!-- ════ PEKOE TRAIL PACKAGES ════ --> 
-
-<section id="trail" class="trail-pkgs-section"> 
-
-  <div class="section-header reveal"> 
-
-    <div class="s-eyebrow">For Hikers</div> 
-
-    <h2 class="s-title">Pekoe Trail Packages</h2> 
-
-    <p class="s-sub">From a single recovery night after Stage 1 to a full three-stage concierge with luggage, transfers and packed lunches throughout.</p> 
-
-  </div> 
-
- 
-
-  <div class="trail-pkgs-grid"> 
-
- 
-
-    <!-- HERO CARD: Complete Stage 1 Journey --> 
-
-    <div class="pkg-hero-card reveal"> 
-
-      <div class="pkg-hero-visual"> 
-
-        <div class="phv-nights">2N</div> 
-
-        <div class="phv-label">★ Most Popular · Hantana + Galaha</div> 
-
-        <div class="phv-title">The Complete Stage 1 Journey</div> 
-
-      </div> 
-
-      <div class="pkg-hero-detail"> 
-
-        <span class="phd-popular">★ Most Booked Package</span> 
-
-        <p class="phd-tagline">Pre-hike night at Hantana Cottage. Stage 1 hike with luggage forwarded. Recovery at the Tea Bungalow. Stage 2 from our front door the next morning.</p> 
-
-        <div class="phd-includes"> 
-
-          <div class="phd-include">1 night — Hantana Cottage (pre-hike Kandy base)</div> 
-
-          <div class="phd-include">1 night — Tea Bungalow Galaha (post-hike recovery)</div> 
-
-          <div class="phd-include">All transfers: Kandy → Stage 1 Start → Stage 1 End → Stage 2 Start</div> 
-
-          <div class="phd-include">Luggage forwarded from Hantana to Galaha during your hike</div> 
-
-          <div class="phd-include">2 breakfasts, 1 hearty dinner, 1 packed trail lunch</div> 
-
-          <div class="phd-include">Trail briefing, leech socks, weather update</div> 
-
-        </div> 
-
-        <div class="phd-meta"> 
-
-          <div><div class="phd-meta-label">Duration</div><div class="phd-meta-val">2 Nights</div></div> 
-
-          <div><div class="phd-meta-label">Stages Covered</div><div class="phd-meta-val">Stage 1 &amp; 2</div></div> 
-
-          <div><div class="phd-meta-label">Rate</div><div class="phd-meta-val">$75 / couple &middot; Introductory</div></div> 
-
-          <div><div class="phd-meta-label">Solo Rate</div><div class="phd-meta-val">Price on request / person</div></div> 
-
-        </div> 
-
-        <a href="#" class="phd-cta tb-reserve-trigger" data-package="Pekoe Trail Experience" data-source="package_cta">Enquire About This Package</a> 
-
-      </div> 
-
-    </div> 
-
- 
-
-    <!-- Stage 1 Finisher --> 
-
-    <div class="pkg-card reveal"> 
-
-      <div class="pkg-duration">1 Night</div> 
-
-      <div class="pkg-name">Stage 1 Finisher</div> 
-
-      <p class="pkg-tagline">Arrive tired from Stage 1. Leave refreshed for Stage 2.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">1 night — Tea Bungalow Galaha</div> 
-
-        <div class="pkg-include">Pick-up from Galaha Post Office (Stage 1 End)</div> 
-
-        <div class="pkg-include">3-course estate dinner</div> 
-
-        <div class="pkg-include">Early breakfast from 6:30 AM</div> 
-
-        <div class="pkg-include">Packed lunch for Stage 2</div> 
-
-        <div class="pkg-include">Walk-out start at Stage 2</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ couple</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Stage 1 Finisher" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-    <!-- Galaha Grand Slam --> 
-
-    <div class="pkg-card gold-top reveal d1"> 
-
-      <span class="pkg-pop-tag">★ Serious Trekker</span> 
-
-      <div class="pkg-duration">2 Nights</div> 
-
-      <div class="pkg-name">The Galaha Grand Slam</div> 
-
-      <p class="pkg-tagline">Two nights, two stages, one base. Everything arranged.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">2 nights — Tea Bungalow Galaha</div> 
-
-        <div class="pkg-include">Stage 1 End pick-up + Stage 2 walk-out</div> 
-
-        <div class="pkg-include">Stage 2 End pick-up at Loolecondera</div> 
-
-        <div class="pkg-include">Stage 3 drop-off available next day</div> 
-
-        <div class="pkg-include">2 dinners, 2 breakfasts, 1 packed lunch</div> 
-
-        <div class="pkg-include">Daily trail briefings &amp; weather updates</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ couple</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="The Galaha Grand Slam" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-    <!-- Full Pekoe Concierge --> 
-
-    <div class="pkg-card reveal d2"> 
-
-      <div class="pkg-duration">3 Nights · Stages 1, 2 &amp; 3</div> 
-
-      <div class="pkg-name">Full Pekoe Concierge</div> 
-
-      <p class="pkg-tagline">Every transfer, every stage, every detail handled.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">3 nights combined accommodation</div> 
-
-        <div class="pkg-include">All transfers for Stages 1, 2 &amp; 3</div> 
-
-        <div class="pkg-include">Full luggage handling between all stages</div> 
-
-        <div class="pkg-include">3 breakfasts, 2 dinners, 2 packed lunches</div> 
-
-        <div class="pkg-include">Trail pass arranged on your behalf</div> 
-
-        <div class="pkg-include">Optional local guide for any stage</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ couple</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Full Pekoe Concierge" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-    <!-- Planter's Tiffin --> 
-
-    <div class="pkg-card reveal d1"> 
-
-      <div class="pkg-duration">Day Use — No Overnight</div> 
-
-      <div class="pkg-name">The Planter's Tiffin Lunch</div> 
-
-      <p class="pkg-tagline">A proper rest between Stage 1 and Stage 2 — without staying the night.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">Pick-up at Galaha Post Office (Stage 1 End)</div> 
-
-        <div class="pkg-include">3-course verandah lunch</div> 
-
-        <div class="pkg-include">Estate-fresh Ceylon tea service</div> 
-
-        <div class="pkg-include">Drop-off at Stage 2 start or Galaha town</div> 
-
-        <div class="pkg-include">Seating window: 12:00 PM – 2:30 PM</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ person</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="The Planter's Tiffin Lunch" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-    <!-- Group Buyout Hiker --> 
-
-    <div class="pkg-card ink-top reveal d2"> 
-
-      <div class="pkg-duration">Groups &amp; Custom Stays</div> 
-
-      <div class="pkg-name">Hiking Group Buyout</div> 
-
-      <p class="pkg-tagline">For hiking clubs and group parties walking the trail together.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">Exclusive estate — all rooms, all spaces</div> 
-
-        <div class="pkg-include">Up to 12 guests</div> 
-
-        <div class="pkg-include">Private chef &amp; group meal arrangements</div> 
-
-        <div class="pkg-include">Dedicated vehicle for all stage transfers</div> 
-
-        <div class="pkg-include">Custom itinerary across Stages 1–3</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ night · estate</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Hiking Group Buyout" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- ════ HERITAGE STAY PACKAGES ════ --> 
-
-<section id="heritage" class="heritage-pkgs-section"> 
-
-  <div class="section-header reveal"> 
-
-    <div class="s-eyebrow">For Leisure Guests</div> 
-
-    <h2 class="s-title">Heritage Estate Packages</h2> 
-
-    <p class="s-sub">For couples, families, and guests seeking the quiet luxury of a private colonial estate — without a hiking trail in sight.</p> 
-
-  </div> 
-
- 
-
-  <div class="heritage-pkgs-grid"> 
-
- 
-
-    <!-- Tea Country Escape --> 
-
-    <div class="pkg-card gold-top reveal"> 
-
-      <span class="pkg-pop-tag">★ For Couples</span> 
-
-      <div class="pkg-duration">2 Nights</div> 
-
-      <div class="pkg-name">Tea Country Escape</div> 
-
-      <p class="pkg-tagline">Two nights of estate life — mornings, afternoons, and fireside evenings in full.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">2 nights in a heritage chamber</div> 
-
-        <div class="pkg-include">2 estate-fresh breakfasts</div> 
-
-        <div class="pkg-include">Planter's Afternoon Tea for two</div> 
-
-        <div class="pkg-include">1 evening dinner at the Long Table or verandah</div> 
-
-        <div class="pkg-include">Guided tea estate walk</div> 
-
-        <div class="pkg-include">Evening Heritage Talk by the fire</div> 
-
-        <div class="pkg-include">Complimentary welcome arrack sundowner</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ couple · 2 nights</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Tea Country Escape" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-    <!-- One Night Immersion --> 
-
-    <div class="pkg-card reveal d1"> 
-
-      <div class="pkg-duration">1 Night</div> 
-
-      <div class="pkg-name">The Planter's Night</div> 
-
-      <p class="pkg-tagline">One perfect night at the estate, tea on arrival, dinner, the fire, breakfast before departure.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">1 night in a heritage chamber</div> 
-
-        <div class="pkg-include">Welcome estate tea service on arrival</div> 
-
-        <div class="pkg-include">3-course dinner at the Long Table</div> 
-
-        <div class="pkg-include">Full estate breakfast</div> 
-
-        <div class="pkg-include">Fireside lounge access</div> 
-
-        <div class="pkg-include">Pool &amp; garden access throughout</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ couple · 1 night</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="The Planter's Night" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-    <!-- Slow Week --> 
-
-    <div class="pkg-card reveal d2"> 
-
-      <div class="pkg-duration">5–7 Nights</div> 
-
-      <div class="pkg-name">The Slow Week</div> 
-
-      <p class="pkg-tagline">For those who want to stop rushing — a full week at the estate with nothing scheduled that you don't ask for.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">5–7 nights in your chosen chamber</div> 
-
-        <div class="pkg-include">Daily breakfasts</div> 
-
-        <div class="pkg-include">3 dinners included (others optional)</div> 
-
-        <div class="pkg-include">Two guided tea estate walks</div> 
-
-        <div class="pkg-include">One Ayurvedic session included</div> 
-
-        <div class="pkg-include">Afternoon tea on two days</div> 
-
-        <div class="pkg-include">Full estate access throughout</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ couple · 5 nights</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="The Slow Week" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-    <!-- Family Retreat --> 
-
-    <div class="pkg-card reveal"> 
-
-      <div class="pkg-duration">3–5 Nights</div> 
-
-      <div class="pkg-name">Family Retreat</div> 
-
-      <p class="pkg-tagline">The Highlands Suite + Pekoe Room family wing, or the Carriage House Cottage — for families who need their own space.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">Family wing (Highlands Suite + Pekoe Room) or Cottage</div> 
-
-        <div class="pkg-include">Daily breakfasts — children's menu available</div> 
-
-        <div class="pkg-include">Private estate walk designed for families</div> 
-
-        <div class="pkg-include">Dedicated check-in assistance</div> 
-
-        <div class="pkg-include">Full garden &amp; pool access</div> 
-
-        <div class="pkg-include">Cot available on request (no charge)</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ family · 3 nights</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Family Retreat" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-    <!-- Celebration --> 
-
-    <div class="pkg-card gold-top reveal d1"> 
-
-      <div class="pkg-duration">2–4 Nights</div> 
-
-      <div class="pkg-name">Private Celebration</div> 
-
-      <p class="pkg-tagline">Anniversary, birthday, honeymoon — the estate arranged around your occasion.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">Founder's Suite — most distinguished chamber</div> 
-
-        <div class="pkg-include">Private fireside dinner for two on arrival</div> 
-
-        <div class="pkg-include">Afternoon tea for two on a second day</div> 
-
-        <div class="pkg-include">Flowers &amp; welcome arrangement on arrival</div> 
-
-        <div class="pkg-include">Sundowner cocktails in the garden</div> 
-
-        <div class="pkg-include">Bespoke additional arrangements available</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ couple · 2 nights</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Private Celebration" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-    <!-- Wellness Retreat --> 
-
-    <div class="pkg-card reveal d2"> 
-
-      <div class="pkg-duration">3 Nights</div> 
-
-      <div class="pkg-name">Estate Wellness Retreat</div> 
-
-      <p class="pkg-tagline">Three days of Ayurveda, estate walks, slow meals, and deep rest in the hill country air.</p> 
-
-      <div class="pkg-includes"> 
-
-        <div class="pkg-include">3 nights — Camellia or Highlands Suite</div> 
-
-        <div class="pkg-include">Daily breakfasts &amp; two dinners</div> 
-
-        <div class="pkg-include">2 Ayurvedic massage sessions</div> 
-
-        <div class="pkg-include">Morning estate walk each day</div> 
-
-        <div class="pkg-include">Afternoon tea on two days</div> 
-
-        <div class="pkg-include">Post-hike foot soaks as required</div> 
-
-      </div> 
-
-      <div class="pkg-rate"> 
-
-        <span class="pkg-rate-from">From</span> 
-
-        <span class="pkg-rate-amount">Price on request</span> 
-
-        <span class="pkg-rate-period">/ person · 3 nights</span> 
-
-      </div> 
-
-      <a href="#" class="pkg-cta tb-reserve-trigger" data-package="Estate Wellness Retreat" data-source="package_cta">Enquire</a> 
-
-    </div> 
-
- 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- ════ ESTATE BUYOUT RATES ════ --> 
-
-<section id="buyout" class="buyout-section"> 
-
-  <div class="section-header reveal" style="margin-bottom: 64px;"> 
-
-    <div class="s-eyebrow" style="color: var(--gold);">Exclusive Use</div> 
-
-    <h2 class="s-title s-title-light">Estate Buyout Rates</h2> 
-
-    <p class="s-sub s-sub-light">Reserve the entire bungalow and cottage — no other guests, your own schedule, full staff.</p> 
-
-  </div> 
-
- 
-
-  <div class="buyout-grid"> 
-
- 
-
-    <div class="buyout-card reveal"> 
-
-      <div class="bc-eyebrow">Midweek Buyout</div> 
-
-      <div class="bc-name">Full Estate —<br>Sunday to Thursday</div> 
-
-      <p class="bc-desc">Exclusive use of all 7 bedrooms, all shared spaces, pool, and garden. Minimum 2-night stay midweek.</p> 
-
-      <div class="bc-includes"> 
-
-        <div class="bc-include">All 6 bungalow chambers + Carriage House Cottage</div> 
-
-        <div class="bc-include">Morning Room, Evening Salon, Long Table, Verandah</div> 
-
-        <div class="bc-include">Tea Pavilion, Planter's Lounge, Billiards Room</div> 
-
-        <div class="bc-include">Private pool &amp; gardens</div> 
-
-        <div class="bc-include">Daily breakfast for all guests</div> 
-
-        <div class="bc-include">Dedicated estate team throughout</div> 
-
-      </div> 
-
-      <div class="bc-rate"> 
-
-        <span class="bc-rate-from">From</span><br> 
-
-        <span class="bc-rate-amount">Price on request</span> 
-
-        <span class="bc-rate-period"> / night (up to 12 guests)</span> 
-
-      </div> 
-
-      <a href="/vD/the-entire-estate.php" class="bc-cta">View Estate Buyout →</a> 
-
-    </div> 
-
- 
-
-    <div class="buyout-card featured reveal"> 
-
-      <span class="bc-crown">★ Full Week Rate</span> 
-
-      <div class="bc-eyebrow">7-Night Exclusive Stay</div> 
-
-      <div class="bc-name">The Full Estate —<br>One Complete Week</div> 
-
-      <p class="bc-desc">The most immersive way to experience the estate. A full week, a private chef, no other guests — the house entirely yours from arrival to departure.</p> 
-
-      <div class="bc-includes"> 
-
-        <div class="bc-include">Everything in the standard buyout</div> 
-
-        <div class="bc-include">Private chef for all meals (breakfast daily + 5 dinners)</div> 
-
-        <div class="bc-include">5 experience add-ons included (choose your own)</div> 
-
-        <div class="bc-include">Dedicated estate manager for the week</div> 
-
-        <div class="bc-include">All transfers from Kandy / airport</div> 
-
-        <div class="bc-include">Preferential weekly rate — saving vs nightly</div> 
-
-      </div> 
-
-      <div class="bc-rate"> 
-
-        <span class="bc-rate-from">From</span><br> 
-
-        <span class="bc-rate-amount">Price on request</span> 
-
-        <span class="bc-rate-period"> / week (up to 12 guests)</span> 
-
-      </div> 
-
-      <a href="#" class="bc-cta tb-reserve-trigger" data-package="Estate Buyout Week" data-source="package_cta">Enquire About a Week</a> 
-
-    </div> 
-
- 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- ════ ADD-ONS ════ --> 
-
-<section id="addons" class="addons-section"> 
-
-  <div class="addons-intro"> 
-
-    <div class="addon-intro-left reveal"> 
-
-      <div class="addon-intro-eyebrow">Bookable Add-Ons</div> 
-
-      <h2 class="addon-intro-title">Build Your Own Package</h2> 
-
-    </div> 
-
-    <div class="addon-intro-body reveal"> 
-
-      <p>Every package above can be enhanced with additional experiences, transfers, and services. All add-ons are priced transparently, added to your bill at checkout.</p> 
-
-      <p>Simply mention what interests you when enquiring — we'll incorporate it into your proposal.</p> 
-
-    </div> 
-
-  </div> 
-
- 
-
-  <div class="addons-table reveal"> 
-
-    <div class="addon-row header-row"> 
-
-      <div class="addon-col">Add-On</div> 
-
-      <div class="addon-col">Description</div> 
-
-      <div class="addon-col">Notice Required</div> 
-
-      <div class="addon-col" style="text-align: right;">Price</div> 
-
-    </div> 
-
- 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Planter's Afternoon Tea</div> 
-
-      <div class="addon-desc">Three-tier service on the verandah — savouries, scones, sweets &amp; tea flight</div> 
-
-      <div class="addon-notice">24 hours</div> 
-
-      <div class="addon-price">Price on request / pp</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Private Fireside Dinner</div> 
-
-      <div class="addon-desc">Exclusive Planter's Lounge — three courses for two by firelight, one seating per evening</div> 
-
-      <div class="addon-notice">48 hours</div> 
-
-      <div class="addon-price">Price on request / two</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Tea Estate Walk &amp; Talk</div> 
-
-      <div class="addon-desc">Guided 60-min walk through Galaha Estate with tea history narration</div> 
-
-      <div class="addon-notice">24 hours</div> 
-
-      <div class="addon-price">Price on request / pp</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Sunset Sundowner</div> 
-
-      <div class="addon-desc">Garden drinks — arrack, gin or toddy — with cashews as mist settles</div> 
-
-      <div class="addon-notice">Walk-in fine</div> 
-
-      <div class="addon-price">Price on request / pp</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Verandah Long Lunch</div> 
-
-      <div class="addon-desc">Slow Sri Lankan rice &amp; curry lunch on the estate verandah</div> 
-
-      <div class="addon-notice">24 hours</div> 
-
-      <div class="addon-price">Price on request / pp</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Ayurvedic Massage</div> 
-
-      <div class="addon-desc">Local practitioner — 60 or 90-min session in-room or on verandah</div> 
-
-      <div class="addon-notice">48 hours</div> 
-
-      <div class="addon-price">Price on request / session</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Packed Trail Lunch (Standard)</div> 
-
-      <div class="addon-desc">Sandwich, fruit, energy snack, water &amp; estate tea flask</div> 
-
-      <div class="addon-notice">Night before</div> 
-
-      <div class="addon-price">Price on request / pp</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Packed Trail Lunch (Premium)</div> 
-
-      <div class="addon-desc">As standard + upgrade wrap, local sweets &amp; better fruit</div> 
-
-      <div class="addon-notice">Night before</div> 
-
-      <div class="addon-price">Price on request / pp</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Transfer — Kandy or Peradeniya Station</div> 
-
-      <div class="addon-desc">Private car pickup or drop-off — one way</div> 
-
-      <div class="addon-notice">24 hours</div> 
-
-      <div class="addon-price">Price on request</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Stage Start / End Transfer</div> 
-
-      <div class="addon-desc">Drop-off at any Pekoe Trail stage start or pickup at any stage end</div> 
-
-      <div class="addon-notice">24 hours</div> 
-
-      <div class="addon-price">Price on request</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Luggage Transfer (Stage to Stage)</div> 
-
-      <div class="addon-desc">Your main bag moved between the bungalow and your next accommodation</div> 
-
-      <div class="addon-notice">24 hours</div> 
-
-      <div class="addon-price">Price on request</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Pekoe Trail Pass</div> 
-
-      <div class="addon-desc">Mandatory digital pass arranged on your behalf</div> 
-
-      <div class="addon-notice">48 hours</div> 
-
-      <div class="addon-price">Official rate</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Local Trail Guide</div> 
-
-      <div class="addon-desc">Knowledgeable local guide for any Pekoe Trail stage — history and terrain knowledge</div> 
-
-      <div class="addon-notice">48 hours</div> 
-
-      <div class="addon-price">Price on request / stage</div> 
-
-    </div> 
-
-    <div class="addon-row"> 
-
-      <div class="addon-name">Leech Socks</div> 
-
-      <div class="addon-desc">Essential for Stage 2 forest sections — available for purchase at the estate</div> 
-
-      <div class="addon-notice">On arrival</div> 
-
-      <div class="addon-price">Price on request / pair</div> 
-
-    </div> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- ════ ALWAYS INCLUDED ════ --> 
-
-<section id="included" class="always-section"> 
-
-  <div class="always-inner"> 
-
-    <div class="always-header reveal"> 
-
-      <div class="always-eyebrow">In Every Stay</div> 
-
-      <h2 class="always-title">Always Included — No Extras</h2> 
-
-    </div> 
-
-    <div class="always-grid"> 
-
-      <div class="always-item reveal"> 
-
-        <span class="always-icon">☀️</span> 
-
-        <div class="always-name">Morning Tea</div> 
-
-        <div class="always-detail">Estate-fresh Ceylon tea from 6:00 AM in the Morning Room</div> 
-
-      </div> 
-
-      <div class="always-item reveal d1"> 
-
-        <span class="always-icon">🔥</span> 
-
-        <div class="always-name">Fireside Evenings</div> 
-
-        <div class="always-detail">Planter's Lounge fire lit nightly at 6:30 PM — no booking required</div> 
-
-      </div> 
-
-      <div class="always-item reveal d2"> 
-
-        <span class="always-icon">📖</span> 
-
-        <div class="always-name">Heritage Talk</div> 
-
-        <div class="always-detail">15-min evening story of the house and Ceylon Tea's origins</div> 
-
-      </div> 
-
-      <div class="always-item reveal d3"> 
-
-        <span class="always-icon">🎱</span> 
-
-        <div class="always-name">Billiards Room</div> 
-
-        <div class="always-detail">Open to all guests at any time — snooker, rain, conversation</div> 
-
-      </div> 
-
-      <div class="always-item reveal"> 
-
-        <span class="always-icon">💧</span> 
-
-        <div class="always-name">Filtered Water</div> 
-
-        <div class="always-detail">Refill stations throughout — bring your own bottle</div> 
-
-      </div> 
-
-      <div class="always-item reveal d1"> 
-
-        <span class="always-icon">📡</span> 
-
-        <div class="always-name">High-Speed Wi-Fi</div> 
-
-        <div class="always-detail">For offline map downloads, messaging and light use throughout</div> 
-
-      </div> 
-
-      <div class="always-item reveal d2"> 
-
-        <span class="always-icon">🌿</span> 
-
-        <div class="always-name">Garden &amp; Pool</div> 
-
-        <div class="always-detail">The Private Pool and estate garden — accessible all day</div> 
-
-      </div> 
-
-      <div class="always-item reveal d3"> 
-
-        <span class="always-icon">🧳</span> 
-
-        <div class="always-name">Luggage Storage</div> 
-
-        <div class="always-detail">Secure storage between stages or for day excursions</div> 
-
-      </div> 
-
-    </div> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- ════ BOOKING CONDITIONS ════ --> 
-
-<section id="conditions" class="conditions-section"> 
-
-  <div class="section-header reveal" style="margin-bottom: 48px;"> 
-
-    <div class="s-eyebrow">Booking Information</div> 
-
-    <h2 class="s-title">Terms &amp; Conditions</h2> 
-
-  </div> 
-
-  <div class="conditions-inner"> 
-
-    <div class="conditions-block reveal"> 
-
-      <div class="cond-title">Payment &amp; Rates</div> 
-
-      <div class="cond-list"> 
-
-        <div class="cond-item"><span class="cond-icon">💳</span>30% deposit required to confirm all bookings</div> 
-
-        <div class="cond-item"><span class="cond-icon">📅</span>Balance due 14 days prior to arrival</div> 
-
-        <div class="cond-item"><span class="cond-icon">🌿</span>Current rates available on request</div> 
-
-        <div class="cond-item"><span class="cond-icon">💱</span>All rates quoted in Sri Lankan Rupees (LKR) including tax</div> 
-
-        <div class="cond-item"><span class="cond-icon">👤</span>Solo traveller rates available on request — slightly different to couple rate</div> 
-
-        <div class="cond-item"><span class="cond-icon">🗓️</span>High season surcharge applies December–March (ask when enquiring)</div> 
-
-      </div> 
-
-    </div> 
-
-    <div class="conditions-block reveal d1"> 
-
-      <div class="cond-title">Cancellation Policy</div> 
-
-      <div class="cond-list"> 
-
-        <div class="cond-item"><span class="cond-icon">✓</span>Free cancellation up to 72 hours before arrival (individual rooms)</div> 
-
-        <div class="cond-item"><span class="cond-icon">✓</span>Free cancellation up to 7 days before arrival (packages &amp; buyouts)</div> 
-
-        <div class="cond-item"><span class="cond-icon">⚠️</span>Cancellations within 72 hours: 50% of deposit retained</div> 
-
-        <div class="cond-item"><span class="cond-icon">🌧️</span>Trail cancellations due to severe weather: full flexibility — no penalty</div> 
-
-        <div class="cond-item"><span class="cond-icon">🔄</span>Date changes: free of charge with 48 hours' notice, subject to availability</div> 
-
-        <div class="cond-item"><span class="cond-icon">📩</span>All cancellations must be confirmed in writing by email or WhatsApp</div> 
-
-      </div> 
-
-    </div> 
-
-    <div class="conditions-block reveal"> 
-
-      <div class="cond-title">Check-In &amp; Check-Out</div> 
-
-      <div class="cond-list"> 
-
-        <div class="cond-item"><span class="cond-icon">🕒</span>Standard check-in: 2:00 PM · Check-out: 11:00 AM</div> 
-
-        <div class="cond-item"><span class="cond-icon">🥾</span>Hiker early check-in: 12:00 PM on request (after Stage 1)</div> 
-
-        <div class="cond-item"><span class="cond-icon">🥾</span>Hiker late check-out: 2:00 PM on request (before Stage 2)</div> 
-
-        <div class="cond-item"><span class="cond-icon">📞</span>Arrivals by train: WhatsApp us from Peradeniya station — transfer meets you</div> 
-
-      </div> 
-
-    </div> 
-
-    <div class="conditions-block reveal d1"> 
-
-      <div class="cond-title">Children &amp; Accessibility</div> 
-
-      <div class="cond-list"> 
-
-        <div class="cond-item"><span class="cond-icon">👶</span>Children welcome — cot available at no charge (request on booking)</div> 
-
-        <div class="cond-item"><span class="cond-icon">🍽️</span>Children's menu available with advance notice</div> 
-
-        <div class="cond-item"><span class="cond-icon">♿</span>Founder's Suite, Highlands Suite, and Cottage fully step-free</div> 
-
-        <div class="cond-item"><span class="cond-icon">📋</span>Please mention any specific accessibility requirements when booking</div> 
-
-      </div> 
-
-    </div> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- ════ CUSTOM CTA ════ --> 
-
-<section id="enquire" class="custom-section"> 
-
-  <div class="custom-inner"> 
-
-    <div class="custom-eyebrow reveal">Build Your Stay</div> 
-
-    <h2 class="custom-title reveal">Nothing Here Quite Right? <em>Ask Us.</em></h2> 
-
-    <p class="custom-body reveal">Every guest is different. If none of the packages above fits your itinerary, dates, or group — tell us what you need and we'll put together a bespoke proposal within 24 hours.</p> 
-
-    <div class="custom-points reveal"> 
-
-      <span class="custom-point">Group of 2 to 12</span> 
-
-      <span class="custom-point">Any combination of stages</span> 
-
-      <span class="custom-point">Mixed hiker &amp; leisure groups</span> 
-
-      <span class="custom-point">Custom celebrations</span> 
-
-      <span class="custom-point">Long-stay rates</span> 
-
-      <span class="custom-point">Corporate retreats</span> 
-
-    </div> 
-
-    <div class="custom-btns reveal"> 
-
-      <a href="mailto:stay@theteabungalow.com" class="btn-large-gold">Enquire by Email</a> 
-
-      <a href="https://wa.me/94777874555" class="btn-large-outline" target="_blank" rel="noopener noreferrer">WhatsApp Direct</a> 
-
-    </div> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- FOOTER --> 
-
-<?php include 'layout/footer.php'; ?> 
-
- 
-
-<script> 
-
-const nav = document.getElementById('nav'); 
-
-window.addEventListener('scroll', () => { 
-
-  nav.classList.toggle('scrolled', window.scrollY > 60); 
-
-}); 
-
- 
-
-const reveals = document.querySelectorAll('.reveal'); 
-
-const obs = new IntersectionObserver(entries => { 
-
-  entries.forEach(e => { 
-
-    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } 
-
-  }); 
-
-}, { threshold: 0.07 }); 
-
-reveals.forEach(el => obs.observe(el)); 
-
- 
-
-// Section nav active 
-
-const sections = document.querySelectorAll('section[id]'); 
-
-const snItems = document.querySelectorAll('.sn-item'); 
-
-window.addEventListener('scroll', () => { 
-
-  let current = ''; 
-
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 160) current = s.id; }); 
-
-  snItems.forEach(i => { 
-
-    i.classList.remove('active'); 
-
-    if (i.getAttribute('href') === '#' + current) i.classList.add('active'); 
-
-  }); 
-
-}); 
-
-</script> 
-
- 
-
-</body> 
-
-</html> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+  <!-- tb:sinhala-font -->
+  <link rel="stylesheet" href="/ve/ve.css">
+  <link rel="stylesheet" href="/ve/packages.css">
+</head>
+
+<body class="ve ve-pk">
+
+  <!-- Shared: consent banner, reservation drawer, analytics hooks (legacy header stripped by the build on vE pages) -->
+  <?php include 'layout/navbar.php'; ?>
+  <?php include 'layout/ve/header.html'; ?>
+
+  <!-- Line icons used on this page -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="x-cup" viewBox="0 0 32 32"><path d="M6 12h16v5a8 8 0 0 1-16 0zM22 13.5h2.5a3 3 0 0 1 0 6H21.3M4 28h20M11 4.5c0 2 2 2 2 4M16 4.5c0 2 2 2 2 4"/></symbol>
+    <symbol id="x-fire" viewBox="0 0 32 32"><path d="M16 28c-5 0-8-3.4-8-7.6 0-4.6 4-6.6 4.4-11.4 2.8 1.8 4.2 4.4 4.2 6.6 1.2-1 1.9-2.6 1.9-4.4 3.2 2.4 5.5 5.6 5.5 9.2 0 4.2-3 7.6-8 7.6zM13 28c-1.4-1-2-2.3-2-3.8 0-2.3 2-3.4 2.6-5.6 2.4 1.6 3.4 3.3 3.4 5 .8-.4 1.3-1.2 1.4-2.1 1.3 1.1 2.1 2.4 2.1 3.6"/></symbol>
+    <symbol id="x-book" viewBox="0 0 32 32"><path d="M16 8.5c-3-2-7.5-2.5-11-1.5v17c3.5-1 8-.5 11 1.5 3-2 7.5-2.5 11-1.5V7c-3.5-1-8-.5-11 1.5zM16 8.5v17"/></symbol>
+    <symbol id="x-cue" viewBox="0 0 32 32"><path d="M4 28 24 8M26.5 5.5l-2.5 2.5"/><circle cx="12" cy="11" r="3.2"/><circle cx="21.5" cy="21.5" r="3.2"/><circle cx="16" cy="25.5" r="2.2"/></symbol>
+    <symbol id="x-drop" viewBox="0 0 32 32"><path d="M16 4.5c4 5.2 7.5 9.4 7.5 14a7.5 7.5 0 0 1-15 0c0-4.6 3.5-8.8 7.5-14zM12.5 19.5a3.5 3.5 0 0 0 3.5 3.5"/></symbol>
+    <symbol id="x-wifi" viewBox="0 0 32 32"><path d="M4 12.5a17 17 0 0 1 24 0M8 16.8a11.5 11.5 0 0 1 16 0M12 21a6 6 0 0 1 8 0"/><circle cx="16" cy="25" r="1.4"/></symbol>
+    <symbol id="x-lotus" viewBox="0 0 32 32"><path d="M16 25c-3-3-4.5-7-4.5-11 0 0 2.5 1.5 4.5 5 2-3.5 4.5-5 4.5-5 0 4-1.5 8-4.5 11zM16 25c-4 0-9-2.5-11-7 3 0 6 1 8 3M16 25c4 0 9-2.5 11-7-3 0-6 1-8 3M16 19V6.5c1.7 2 2.5 4.5 2.5 7"/></symbol>
+    <symbol id="x-bag" viewBox="0 0 32 32"><path d="M6 11h20v15H6zM12 11V7.5h8V11M11 11v15M21 11v15M9 26v2M23 26v2"/></symbol>
+  </svg>
+
+  <main id="main">
+
+    <!-- ═══ 1. THREE WAYS TO STAY: the offer on the left; three stays on the right, each opening to show its packages ═══ -->
+    <section class="pk-hero" data-theme="dark" aria-labelledby="pkTitle">
+      <div class="pk-hero__side">
+        <nav class="ve-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Packages &amp; Offers</span></nav>
+        <p class="ve-label ve-kicker">Stay packages &middot; direct rates</p>
+        <h1 class="pk-hero__title" id="pkTitle"><span class="pk-hero__line"><span>Packages</span></span><span class="pk-hero__line"><em>&amp; Offers.</em></span></h1>
+        <p class="pk-hero__sub">Your stay and everything around it, priced as one: trail nights with transfers and packed lunches, heritage escapes with dinners and the fire, or the whole estate for your party.</p>
+        <aside class="pk-deal" aria-label="Introductory offer">
+          <p class="ve-label">Introductory offer</p>
+          <p class="pk-deal__deal">Double BB from $75</p>
+          <p class="pk-deal__note">Enquire for availability, packages and direct booking inclusions.</p>
+          <button type="button" class="ve-btn ve-btn--gold ve-btn--sm tb-reserve-trigger" data-source="packages_intro_offer"><span>Enquire</span></button>
+        </aside>
+        <ul class="pk-hero__facts" aria-label="At a glance">
+          <li><b><!-- tb:pk-count:all --></b> packages, plus the whole estate</li>
+          <li><b>Direct</b> rates on request</li>
+          <li><b>Free</b> cancellation up to 7 days before arrival on packages</li>
+        </ul>
+      </div>
+      <div class="pk-hero__panels">
+        <a class="pk-panel" href="#trail" data-panel="trail">
+          <span class="pk-panel__media" aria-hidden="true"><img src="/media/trail-forest-1600.webp" srcset="/media/trail-forest-900.webp 900w, /media/trail-forest-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="" decoding="async" fetchpriority="high"></span>
+          <span class="pk-panel__body">
+            <span class="pk-panel__no">01</span>
+            <span class="pk-panel__title">Walking the <em>Pekoe Trail</em></span>
+            <span class="pk-panel__count"><!-- tb:pk-count:trail --> packages &middot; transfers, luggage and trail lunches</span>
+            <span class="pk-panel__more"><span class="pk-panel__list"><!-- tb:pk-names:trail --></span><span class="pk-panel__go">See the trail packages <span aria-hidden="true">&rarr;</span></span></span>
+          </span>
+        </a>
+        <a class="pk-panel" href="#heritage" data-panel="heritage">
+          <span class="pk-panel__media" aria-hidden="true"><img src="/media/lounge-arches-1600.webp" srcset="/media/lounge-arches-900.webp 900w, /media/lounge-arches-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="" decoding="async"></span>
+          <span class="pk-panel__body">
+            <span class="pk-panel__no">02</span>
+            <span class="pk-panel__title">Heritage <em>stays</em></span>
+            <span class="pk-panel__count"><!-- tb:pk-count:heritage --> packages &middot; dinners, tea, the fire and estate walks</span>
+            <span class="pk-panel__more"><span class="pk-panel__list"><!-- tb:pk-names:heritage --></span><span class="pk-panel__go">See the heritage stays <span aria-hidden="true">&rarr;</span></span></span>
+          </span>
+        </a>
+        <a class="pk-panel" href="#estate" data-panel="estate">
+          <span class="pk-panel__media" aria-hidden="true"><img src="/media/estate-house-1600.webp" srcset="/media/estate-house-900.webp 900w, /media/estate-house-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="" decoding="async"></span>
+          <span class="pk-panel__body">
+            <span class="pk-panel__no">03</span>
+            <span class="pk-panel__title">The whole <em>estate</em></span>
+            <span class="pk-panel__count">Exclusive use &middot; up to 12 guests</span>
+            <span class="pk-panel__more"><span class="pk-panel__list"><span class="pk-panel__item"><span>Midweek buyout</span><em>Sunday to Thursday</em></span><span class="pk-panel__item"><span>The full estate, one complete week</span><em>7 nights</em></span></span><span class="pk-panel__go">See the whole estate <span aria-hidden="true">&rarr;</span></span></span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Where you are on a long page: shown after the hero, tucked under the header when it's out -->
+    <nav class="pk-nav" aria-label="Packages sections">
+      <div class="ve-wrap pk-nav__inner">
+        <a href="#trail" data-nav="trail">Pekoe Trail</a><a href="#heritage" data-nav="heritage">Heritage stays</a><a href="#estate" data-nav="estate">The whole estate</a><a href="#build" data-nav="build">Build your own</a><a href="#terms" data-nav="terms">Good to know</a>
+        <button type="button" class="pk-nav__cta tb-reserve-trigger" data-source="packages_nav">Enquire</button>
+      </div>
+    </nav>
+
+    <!-- ═══ 2. THE PEKOE TRAIL: you walk, your bag rides ahead ═══ -->
+    <section class="pk-trail" id="trail" data-theme="light" aria-labelledby="trailTitle">
+      <div class="ve-wrap">
+        <div class="pk-head">
+          <p class="ve-label ve-kicker">01 &middot; Pekoe Trail packages <span class="ve-si" lang="si">මාවත</span></p>
+          <h2 class="ve-h2" id="trailTitle" data-split>You walk. <em>We carry the rest.</em></h2>
+          <p class="ve-lede" data-reveal="up">The bungalow sits where Stage 1 ends and Stage 2 begins. Depending on the package we meet you at the stage ends, send your luggage ahead by road, pack your lunch and brief you on the morning&rsquo;s weather.</p>
+        </div>
+
+        <figure class="pk-journey" aria-labelledby="journeyCap">
+          <svg class="pk-journey__map" viewBox="0 0 1200 270" role="img" aria-label="The Pekoe Trail from Hanthana to Galaha, Loolecondera and on to Stage 3, with the road below carrying luggage ahead" focusable="false">
+            <path class="pk-journey__road" d="M60 212 H1140"/>
+            <path class="pk-journey__ties" d="M60 124 V212 M440 122 V212 M800 120 V212 M1140 120 V212"/>
+            <path class="pk-journey__trail-bg" d="M60 124 C150 70 250 150 340 100 C380 80 410 108 440 122 C520 152 600 70 680 108 C730 132 770 100 800 120 C880 150 960 80 1040 108 C1090 126 1120 116 1140 120"/>
+            <path class="pk-journey__trail" id="pkTrail" pathLength="1" d="M60 124 C150 70 250 150 340 100 C380 80 410 108 440 122 C520 152 600 70 680 108 C730 132 770 100 800 120 C880 150 960 80 1040 108 C1090 126 1120 116 1140 120"/>
+            <g class="pk-journey__stages">
+              <text x="250" y="64">Stage 1 &middot; 12.8 km</text><text x="620" y="62">Stage 2 &middot; 14.7 km</text><text x="970" y="62">Stage 3 &middot; 15 km</text>
+            </g>
+            <g class="pk-journey__nodes">
+              <circle cx="60" cy="124" r="7"/><circle cx="800" cy="120" r="7"/><circle cx="1140" cy="120" r="7"/>
+              <path class="pk-journey__home" d="M426 124 V110 L440 98 L454 110 V124 Z M435 124 V116 H445 V124"/>
+            </g>
+            <g class="pk-journey__places">
+              <text x="60" y="246">Hanthana &middot; Kandy</text><text x="440" y="246" class="is-home">Galaha &middot; The Tea Bungalow</text><text x="800" y="246">Loolecondera</text><text x="1140" y="246">Onward</text>
+            </g>
+            <text class="pk-journey__lane" x="92" y="203">By road</text>
+            <text class="pk-journey__lane pk-journey__lane--trail" x="92" y="100">On foot</text>
+            <g class="pk-journey__bag" transform="translate(440 212)"><rect x="-11" y="-9" width="22" height="16" rx="3"/><path d="M-5 -9 V-13 H5 V-9"/></g>
+            <g class="pk-journey__walker" transform="translate(440 122)"><circle r="8"/><circle r="16" class="pk-journey__halo"/></g>
+          </svg>
+          <ol class="pk-journey__list">
+            <li><b>Hanthana &middot; Kandy</b><span>Stage 1 begins. Your bag can go ahead by road.</span></li>
+            <li><b>Galaha &middot; The Tea Bungalow</b><span>Stage 1 ends here, 12.8 km on, with your bag waiting in your room.</span></li>
+            <li><b>Loolecondera</b><span>Stage 2, 14.7 km from our door; we collect you at the end.</span></li>
+            <li><b>Onward</b><span>Stage 3, 15 km, with a drop-off the next morning.</span></li>
+          </ol>
+          <figcaption id="journeyCap"><b>Your bag <em>rides ahead.</em></b> Transfers to and from every stage end, luggage moved by car, and one bed to come back to.</figcaption>
+        </figure>
+
+        <!-- tb:pk-featured -->
+
+        <div class="pk-grid">
+          <!-- tb:pk-cards:trail -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. HERITAGE STAYS ═══ -->
+    <section class="pk-heritage" id="heritage" data-theme="light" aria-labelledby="heritageTitle">
+      <div class="ve-wrap">
+        <div class="pk-head">
+          <p class="ve-label ve-kicker">02 &middot; Heritage stay packages <span class="ve-si" lang="si">නිවස</span></p>
+          <h2 class="ve-h2" id="heritageTitle" data-split>Stay a while, <em>everything arranged.</em></h2>
+          <p class="ve-lede" data-reveal="up">For couples, families and anyone staying for the house itself: tea and the fire, estate walks, long dinners, and as much or as little as you like in between.</p>
+        </div>
+        <div class="pk-grid">
+          <!-- tb:pk-cards:heritage -->
+        </div>
+      </div>
+    </section>
+
+    <!-- The page turns to night: the whole house -->
+    <div class="pk-dusk" aria-hidden="true"><p>Or take <em>the whole house.</em></p></div>
+
+    <div class="pk-night">
+
+      <!-- ═══ 4. THE WHOLE ESTATE ═══ -->
+      <section class="pk-estate" id="estate" data-theme="dark" aria-labelledby="estateTitle">
+        <div class="pk-estate__bg" aria-hidden="true"><img src="/media/estate-house-1600.webp" srcset="/media/estate-house-900.webp 900w, /media/estate-house-1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="ve-wrap">
+          <div class="pk-head pk-head--light">
+            <p class="ve-label ve-kicker">03 &middot; Exclusive use <span class="ve-si" lang="si">වත්ත</span></p>
+            <h2 class="ve-h2" id="estateTitle" data-split>The whole estate, <em>yours.</em></h2>
+            <p class="ve-lede" data-reveal="up">The bungalow and the Carriage House Cottage for your party alone: no other guests, your own schedule and the full estate team, for up to 12 guests.</p>
+          </div>
+          <div class="pk-offers">
+            <article class="pk-offer" data-reveal="up">
+              <p class="pk-card__top"><span class="pk-card__no">Exclusive use</span><span class="pk-card__dur">Sunday to Thursday</span></p>
+              <h3 class="pk-offer__name">Midweek buyout</h3>
+              <p class="pk-offer__tag">Exclusive use of all seven bedrooms, every shared room, the pool and the garden. Minimum two nights midweek.</p>
+              <ul class="pk-offer__list"><li>All six bungalow chambers and the Carriage House Cottage</li><li>Morning Room, Evening Salon, Long Table and verandah</li><li>Tea Pavilion, Planter&rsquo;s Lounge and Billiards Room</li><li>Private pool and gardens</li><li>Daily breakfast for all guests</li><li>A dedicated estate team throughout</li></ul>
+              <p class="pk-offer__rate"><span>From</span> <b>Price on request</b> <em>/ night (up to 12 guests)</em></p>
+              <a class="ve-btn ve-btn--gold" href="/the-entire-estate" data-magnetic><span>See the whole estate</span></a>
+            </article>
+            <article class="pk-offer pk-offer--week" data-reveal="up" data-delay=".12">
+              <p class="pk-card__top"><span class="pk-card__no">&#9733; Full week rate</span><span class="pk-card__dur">7 nights</span></p>
+              <h3 class="pk-offer__name">The full estate, one complete week</h3>
+              <p class="pk-offer__tag">The most immersive way to know the estate: a full week, a private chef, no other guests, the house entirely yours from arrival to departure.</p>
+              <ul class="pk-offer__list"><li>Everything in the standard buyout</li><li>Private chef for all meals (breakfast daily and five dinners)</li><li>Five experience add-ons included, your choice</li><li>A dedicated estate manager for the week</li><li>All transfers from Kandy or the airport</li><li>A preferential weekly rate, a saving on the nightly</li></ul>
+              <p class="pk-offer__rate"><span>From</span> <b>Price on request</b> <em>/ week (up to 12 guests)</em></p>
+              <button type="button" class="ve-btn ve-btn--gold tb-reserve-trigger" data-room="The Entire Estate (Full Buyout)" data-source="packages_estate_week" data-magnetic><span>Enquire about a week</span></button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ 5. BUILD YOUR OWN: add-ons, gathered into your stay ═══ -->
+      <section class="pk-build" id="build" data-theme="dark" aria-labelledby="buildTitle">
+        <div class="ve-wrap pk-build__grid">
+          <div class="pk-build__main">
+            <div class="pk-head pk-head--light">
+              <p class="ve-label ve-kicker">Bookable add-ons</p>
+              <h2 class="ve-h2" id="buildTitle" data-split>Build <em>your own.</em></h2>
+              <p class="ve-lede" data-reveal="up">Any package can be shaped with experiences, transfers and trail services. Add what you&rsquo;d like and it travels with your enquiry; everything is added to your bill at checkout.</p>
+            </div>
+            <ul class="pk-addons">
+              <li class="pk-addon"><div class="pk-addon__what"><h3>The Planter&rsquo;s Afternoon Tea</h3><p>Three-tier service on the verandah: savouries, scones, sweets and a tea flight.</p></div><p class="pk-addon__when">24 hours</p><p class="pk-addon__price">Price on request / pp</p><button type="button" class="pk-add" data-add="The Planter's Afternoon Tea" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Private Fireside Dinner</h3><p>The Planter&rsquo;s Lounge to yourselves: three courses for two by firelight, one seating each evening.</p></div><p class="pk-addon__when">48 hours</p><p class="pk-addon__price">Price on request / two</p><button type="button" class="pk-add" data-add="Private Fireside Dinner" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Guided Tea Estate Walk</h3><p>A guided hour through Galaha Estate, with the history of the tea as you go.</p></div><p class="pk-addon__when">24 hours</p><p class="pk-addon__price">Price on request / pp</p><button type="button" class="pk-add" data-add="Guided Tea Estate Walk" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Sunset Sundowner</h3><p>Garden drinks (arrack, gin or toddy) with cashews as the mist settles.</p></div><p class="pk-addon__when">Walk-in fine</p><p class="pk-addon__price">Price on request / pp</p><button type="button" class="pk-add" data-add="Sunset Sundowner" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Verandah Long Lunch</h3><p>A slow Sri Lankan rice and curry lunch on the estate verandah.</p></div><p class="pk-addon__when">24 hours</p><p class="pk-addon__price">Price on request / pp</p><button type="button" class="pk-add" data-add="Verandah Long Lunch" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Ayurvedic Massage</h3><p>A local practitioner, 60 or 90 minutes, in your chamber or on the verandah.</p></div><p class="pk-addon__when">48 hours</p><p class="pk-addon__price">Price on request / session</p><button type="button" class="pk-add" data-add="Ayurvedic Massage" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Packed Trail Lunch</h3><p>Sandwich, fruit, an energy snack, water and a flask of estate tea.</p></div><p class="pk-addon__when">Night before</p><p class="pk-addon__price">Price on request / pp</p><button type="button" class="pk-add" data-add="Packed Trail Lunch" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Packed Trail Lunch (Premium)</h3><p>As the standard, with an upgraded wrap, local sweets and better fruit.</p></div><p class="pk-addon__when">Night before</p><p class="pk-addon__price">Price on request / pp</p><button type="button" class="pk-add" data-add="Packed Trail Lunch (Premium)" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Transfer: Kandy or Peradeniya station</h3><p>A private car to or from the station, one way.</p></div><p class="pk-addon__when">24 hours</p><p class="pk-addon__price">Price on request</p><button type="button" class="pk-add" data-add="Transfer: Kandy or Peradeniya station" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Stage start or end transfer</h3><p>Drop-off at any Pekoe Trail stage start, or pick-up at any stage end.</p></div><p class="pk-addon__when">24 hours</p><p class="pk-addon__price">Price on request</p><button type="button" class="pk-add" data-add="Stage start or end transfer" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Luggage transfer, stage to stage</h3><p>Your main bag moved between the bungalow and your next accommodation.</p></div><p class="pk-addon__when">24 hours</p><p class="pk-addon__price">Price on request</p><button type="button" class="pk-add" data-add="Luggage transfer, stage to stage" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Pekoe Trail pass</h3><p>The mandatory digital trail pass, arranged on your behalf.</p></div><p class="pk-addon__when">48 hours</p><p class="pk-addon__price">Official rate</p><button type="button" class="pk-add" data-add="Pekoe Trail pass" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Local trail guide</h3><p>A knowledgeable local guide for any stage, with the history and the terrain.</p></div><p class="pk-addon__when">48 hours</p><p class="pk-addon__price">Price on request / stage</p><button type="button" class="pk-add" data-add="Local trail guide" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+              <li class="pk-addon"><div class="pk-addon__what"><h3>Leech socks</h3><p>Essential for Stage 2&rsquo;s forest sections; bought at the estate.</p></div><p class="pk-addon__when">On arrival</p><p class="pk-addon__price">Price on request / pair</p><button type="button" class="pk-add" data-add="Leech socks" data-label-off="Add" data-label-on="Added" aria-pressed="false"><span class="pk-add__icon" aria-hidden="true"></span><span data-add-label>Add</span></button></li>
+            </ul>
+          </div>
+          <aside class="pk-stay" data-stay aria-labelledby="stayTitle">
+            <p class="ve-label">Your stay, so far</p>
+            <p class="pk-stay__title" id="stayTitle"><span class="pk-stay__count" data-stay-count>No</span> <span data-stay-noun data-one="add-on" data-many="add-ons">add-ons</span> chosen</p>
+            <ul class="pk-stay__list" data-stay-list aria-live="polite"></ul>
+            <p class="pk-stay__empty">Nothing added yet. Choose from the list, or from the experiences page; everything you add is kept here.</p>
+            <div class="pk-stay__cta">
+              <button type="button" class="ve-btn ve-btn--gold tb-reserve-trigger" data-stay-enquire data-empty-label="Send an enquiry" data-package="Your Package" data-experiences="" data-source="packages_build_cta"><span>Send an enquiry</span></button>
+              <a class="ve-link" data-stay-wa href="https://wa.me/94777874555" target="_blank" rel="noopener">WhatsApp us <span aria-hidden="true">&nearr;</span></a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ═══ 6. ALWAYS INCLUDED ═══ -->
+      <section class="pk-always" id="included" data-theme="dark" aria-labelledby="alwaysTitle">
+        <div class="ve-wrap">
+          <div class="pk-head pk-head--light pk-head--center">
+            <p class="ve-label ve-kicker">In every stay</p>
+            <h2 class="ve-h2" id="alwaysTitle" data-split>Always included, <em>no extras.</em></h2>
+          </div>
+          <ul class="pk-always__grid">
+            <li><svg class="ve-ico"><use href="#x-cup"/></svg><h3>Morning tea</h3><p>Estate-fresh Ceylon tea from 6:00 AM in the Morning Room.</p></li>
+            <li><svg class="ve-ico"><use href="#x-fire"/></svg><h3>Fireside evenings</h3><p>The Planter&rsquo;s Lounge fire, lit nightly at 6:30 PM. No booking needed.</p></li>
+            <li><svg class="ve-ico"><use href="#x-book"/></svg><h3>The heritage talk</h3><p>A fifteen-minute evening story of the house and Ceylon tea&rsquo;s beginnings.</p></li>
+            <li><svg class="ve-ico"><use href="#x-cue"/></svg><h3>The billiards room</h3><p>Open to every guest at any time: snooker, rain, conversation.</p></li>
+            <li><svg class="ve-ico"><use href="#x-drop"/></svg><h3>Filtered water</h3><p>Refill stations throughout the house. Bring your own bottle.</p></li>
+            <li><svg class="ve-ico"><use href="#x-wifi"/></svg><h3>High-speed Wi-Fi</h3><p>For offline maps, messages and light use, throughout the estate.</p></li>
+            <li><svg class="ve-ico"><use href="#x-lotus"/></svg><h3>Garden &amp; pool</h3><p>The private pool and the estate garden, open all day.</p></li>
+            <li><svg class="ve-ico"><use href="#x-bag"/></svg><h3>Luggage storage</h3><p>Secure storage between trail stages or for day trips.</p></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ═══ 7. GOOD TO KNOW ═══ -->
+      <section class="pk-terms" id="terms" data-theme="dark" aria-labelledby="termsTitle">
+        <div class="ve-wrap pk-terms__grid">
+          <div class="pk-head pk-head--light">
+            <p class="ve-label ve-kicker">Booking information</p>
+            <h2 class="ve-h2" id="termsTitle" data-split>Good <em>to know.</em></h2>
+            <p class="ve-lede" data-reveal="up">Deposits, cancellations, check-in times, children and accessibility, in one place.</p>
+          </div>
+          <div class="ve-faq pk-faq">
+            <details><summary>Payment &amp; rates</summary><div><ul><li>A 30% deposit confirms every booking.</li><li>The balance is due 14 days before arrival.</li><li>Current rates are available on request.</li><li>All rates are quoted in Sri Lankan Rupees (LKR), including tax.</li><li>Solo traveller rates are available on request and differ slightly from the couple rate.</li><li>A high-season surcharge applies from December to March; ask when enquiring.</li></ul></div></details>
+            <details><summary>Cancellation</summary><div><ul><li>Free cancellation up to 72 hours before arrival (individual rooms).</li><li>Free cancellation up to 7 days before arrival (packages and buyouts).</li><li>Cancellations within 72 hours: 50% of the deposit is retained.</li><li>Trail cancellations due to severe weather: full flexibility, no penalty.</li><li>Date changes are free with 48 hours&rsquo; notice, subject to availability.</li><li>All cancellations must be confirmed in writing, by email or WhatsApp.</li></ul></div></details>
+            <details><summary>Check-in &amp; check-out</summary><div><ul><li>Standard check-in 2:00 PM, check-out 11:00 AM.</li><li>Hikers: early check-in from 12:00 PM on request (after Stage 1).</li><li>Hikers: late check-out until 2:00 PM on request (before Stage 2).</li><li>Arriving by train? WhatsApp us from Peradeniya station and your transfer will meet you.</li></ul></div></details>
+            <details><summary>Children &amp; accessibility</summary><div><ul><li>Children are welcome; a cot is available at no charge (request it when booking).</li><li>A children&rsquo;s menu is available with advance notice.</li><li>The Founder&rsquo;s Suite, the Highlands Suite and the Cottage are fully step-free.</li><li>Please mention any accessibility needs when you book.</li></ul></div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ 8. ASK US ═══ -->
+      <section class="pk-close" id="enquire" data-theme="dark" aria-labelledby="closeTitle">
+        <div class="ve-wrap pk-close__inner">
+          <p class="ve-label ve-kicker">Build your stay</p>
+          <h2 class="pk-close__title" id="closeTitle" data-split>Nothing here quite right? <em>Ask us.</em></h2>
+          <p class="ve-lede" data-reveal="up">Every party is different. Tell us your dates, your group and what you&rsquo;d like to do, and we&rsquo;ll send a bespoke proposal within 24 hours.</p>
+          <ul class="pk-close__chips" data-reveal="up"><li>Groups of 2 to 12</li><li>Any combination of stages</li><li>Mixed hikers &amp; non-hikers</li><li>Celebrations</li><li>Long stays</li><li>Retreats</li></ul>
+          <div class="pk-close__cta">
+            <button type="button" class="ve-btn ve-btn--gold tb-reserve-trigger" data-stay-enquire data-empty-label="Ask for a proposal" data-package="A Bespoke Stay" data-experiences="" data-source="packages_bespoke_cta" data-magnetic><span>Ask for a proposal</span></button>
+            <a class="ve-link" data-stay-wa href="https://wa.me/94777874555" target="_blank" rel="noopener">WhatsApp us <span aria-hidden="true">&nearr;</span></a>
+            <a class="ve-link" href="mailto:stay@theteabungalow.com">stay@theteabungalow.com</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══ NEXT CHAPTER ═════════════════════════════════════════════════ -->
+    <a class="ve-next" href="/the-bungalow" data-theme="dark" data-cursor="Enter">
+      <span class="ve-next__bg" aria-hidden="true"><img src="/media/lounge-main-1600.webp" srcset="/media/lounge-main-900.webp 900w, /media/lounge-main-1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async"></span>
+      <span class="ve-next__label ve-label">Next chapter <span class="ve-si" lang="si">නිවස</span></span>
+      <span class="ve-next__title">The Bungalow</span>
+      <span class="ve-next__sub">The house itself: its rooms, its history and the people who keep it.</span>
+      <span class="ve-next__go" aria-hidden="true">&rarr;</span>
+    </a>
+
+  </main>
+
+  <!-- Your stay, one tap away (shown between the hero and the close) -->
+  <button type="button" class="pk-sticky" data-stay-pill aria-controls="build"><span class="pk-sticky__dot" aria-hidden="true"></span><span data-stay-pill-text data-empty-text="Build your own package">Build your own package</span><em data-stay-pill-count hidden></em></button>
+
+  <?php include 'layout/ve/footer.html'; ?>
+
+  <script src="/js/vendor/gsap.min.js" defer></script>
+  <script src="/js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/js/vendor/lenis.min.js" defer></script>
+  <script src="/ve/ve.js" defer></script>
+  <script src="/ve/packages.js" defer></script>
+</body>
+
+</html>

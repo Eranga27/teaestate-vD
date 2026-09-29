@@ -1,11 +1,11 @@
 {
-  "image": "/images/swimming-pool-resort.jpg",
-  "caption": "The Stone Pool",
-  "subcaption": "Secluded garden setting",
-  "alt": "Private stone swimming pool framed by white jasmine and tea bushes",
+  "image": "/images/garden.webp",
+  "caption": "The Garden",
+  "subcaption": "Lawns, jasmine and the tree line",
+  "alt": "The estate garden and its tree line",
   "category": "garden",
-  "featured": true,
-  "span": "span-6",
-  "height": "h-md",
-  "sort_order": 7
+  "featured": false,
+  "span": "span-4",
+  "height": "h-sm",
+  "sort_order": 20
 }

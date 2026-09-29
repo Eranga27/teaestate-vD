@@ -1,11 +1,11 @@
 {
   "image": "/images/IMG_7674.jpeg",
-  "caption": "The Car Porch",
-  "subcaption": "Arrival · Galaha Estate",
-  "alt": "The historic stone car porch entrance at The Tea Bungalow",
-  "category": "estate",
+  "caption": "Lamplight",
+  "subcaption": "Evening in the salon",
+  "alt": "The salon by lamplight, a deer head above the mirror",
+  "category": "fire",
   "featured": false,
   "span": "span-4",
-  "height": "h-sm",
-  "sort_order": 2
+  "height": "h-md",
+  "sort_order": 16
 }

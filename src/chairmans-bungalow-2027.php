@@ -1,1166 +1,255 @@
-<?php
-session_start();
-if (empty($_SESSION['csrf_token_wl'])) {
-    $_SESSION['csrf_token_wl'] = bin2hex(random_bytes(32));
-}
-$csrf_token_wl = $_SESSION['csrf_token_wl'];
-$page = basename($_SERVER['PHP_SELF'], '.php');
-?>
+<!DOCTYPE html>
+<html lang="en" class="ve-page">
 
-<!DOCTYPE html> 
-
-<html lang="en"> 
-
-<head> 
-
-<meta charset="UTF-8"> 
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-
-<title>The Chairman's Bungalow · Opening 2027 · Old Ceylon Heritage Collection</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Chairman's Bungalow · Opening 2027 · Old Ceylon Heritage Collection</title>
+  <meta name="description" content="The Chairman's Bungalow: a colonial-era plantation bungalow on Hantana Estate, Kandy, where the Pekoe Trail begins, being restored to open in 2027. Join the waitlist for first access and preview rates.">
 
 <link rel="icon" type="image/png" href="images/favicon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Chairman's Bungalow 2027 · Exclusive New Estate · The Tea Bungalow">
-<meta property="og:description" content="The Chairman's Bungalow — a second heritage estate opening 2027. Join the priority waitlist for exclusive early access.">
+<meta property="og:title" content="The Chairman's Bungalow · Opening 2027">
+<meta property="og:description" content="The Chairman's Bungalow, a second heritage estate opening 2027. Join the priority waitlist for exclusive early access.">
 <meta property="og:url" content="https://www.theteabungalow.com/chairmans-bungalow-2027">
-<meta property="og:image" content="https://www.theteabungalow.com/images/heroimg-1.jpeg">
+<meta property="og:image" content="https://www.theteabungalow.com/media/trail-highlands-920.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Chairman's Bungalow 2027 · Exclusive New Estate · The Tea Bungalow">
-<meta name="twitter:description" content="The Chairman's Bungalow — a second heritage estate opening 2027. Join the priority waitlist for exclusive early access.">
+<meta name="twitter:title" content="The Chairman's Bungalow · Opening 2027">
+<meta name="twitter:description" content="The Chairman's Bungalow, a second heritage estate opening 2027. Join the priority waitlist for exclusive early access.">
 <link rel="canonical" href="https://www.theteabungalow.com/chairmans-bungalow-2027">
- 
 
-<meta name="description" content="The Chairman's Bungalow on Hantana Estate — a colonial plantation bungalow being restored for guests in 2027. Join the early access waitlist."> 
-
-<link rel="preconnect" href="https://fonts.googleapis.com"> 
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"> 
-
-<style> 
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;} 
-
-html{scroll-behavior:smooth;} 
-
-:root{ 
-
-  --green:#1E4D2B; --green-mid:#2a6638; --green-deep:#0f2e16; 
-
-  --green-pale:#c8dece; --green-ghost:#eaf2ec; 
-
-  --gold:#C7A85E; --gold-light:#dfc080; --gold-pale:#f5edd4; --gold-deep:#8a6a30; 
-
-  --cream:#F5F1E9; --cream-dark:#ede7db; 
-
-  --ink:#1a1510; --ink-mid:#3d3428; --ink-light:#7a6e60; 
-
-  --mist:#8a9e8f; --white:#ffffff; --shadow:rgba(30,77,43,0.15); 
-
-} 
-
-body{background:var(--ink);font-family:'EB Garamond',Georgia,serif;color:var(--white);overflow-x:hidden;} 
-
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;} 
-
- 
-
-/* NAV */ 
-
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:72px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s,box-shadow 0.4s;} 
-
-nav.scrolled{background:rgba(26,21,16,0.96);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(199,168,94,0.15);} 
-
-.nav-logo{font-family:'Cinzel',serif;font-size:15px;font-weight:600;letter-spacing:0.12em;color:var(--white);text-decoration:none;} 
-
-.nav-collection{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;} 
-
-.nav-back{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;border:1px solid rgba(255,255,255,0.2);padding:9px 20px;transition:border-color 0.25s,color 0.25s;} 
-
-.nav-back:hover{border-color:var(--gold);color:var(--gold);} 
-
- 
-
-/* HERO */ 
-
-.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center; 
-
-  background:radial-gradient(ellipse 120% 90% at 50% 40%,#1a4028 0%,#0d2415 40%,#050f08 100%);} 
-
-.hero-texture{position:absolute;inset:0;background-image:repeating-linear-gradient(170deg,transparent 0,transparent 32px,rgba(255,255,255,0.018) 32px,rgba(255,255,255,0.018) 33px);pointer-events:none;} 
-
- 
-
-/* Animated countdown glow */ 
-
-.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(199,168,94,0.06) 0%,transparent 65%);animation:breathe 6s ease-in-out infinite;pointer-events:none;} 
-
- 
-
-.hero-inner{position:relative;z-index:2;text-align:center;max-width:840px;padding:100px 10vw 80px;} 
-
-.hero-collection{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.5em;color:var(--gold);text-transform:uppercase;margin-bottom:40px;display:flex;align-items:center;justify-content:center;gap:14px;opacity:0;animation:fadeUp 0.8s 0.2s ease forwards;} 
-
-.hero-collection::before,.hero-collection::after{content:'';width:40px;height:1px;background:rgba(199,168,94,0.5);} 
-
-.hero-status-pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:rgba(199,168,94,0.1);border:1px solid rgba(199,168,94,0.3);margin-bottom:32px;opacity:0;animation:fadeUp 0.8s 0.35s ease forwards;} 
-
-.status-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:statusPulse 2s ease-in-out infinite;} 
-
-.status-text{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;} 
-
- 
-
-.hero-title{font-family:'Cinzel',serif;font-size:clamp(42px,7.5vw,96px);font-weight:700;color:var(--white);line-height:0.95;letter-spacing:0.01em;margin-bottom:16px;opacity:0;animation:fadeUp 0.9s 0.5s ease forwards;} 
-
-.hero-title em{font-style:italic;color:var(--gold-light);font-weight:400;display:block;} 
-
-.hero-subtitle{font-family:'Cinzel',serif;font-size:clamp(13px,1.4vw,18px);letter-spacing:0.25em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:40px;opacity:0;animation:fadeUp 0.9s 0.65s ease forwards;} 
-
- 
-
-.hero-rule{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 40px;opacity:0;animation:fadeUp 0.8s 0.8s ease forwards;} 
-
- 
-
-.hero-tagline{font-size:clamp(20px,2.4vw,28px);font-style:italic;color:rgba(255,255,255,0.72);line-height:1.5;max-width:680px;margin:0 auto 56px;opacity:0;animation:fadeUp 0.9s 0.9s ease forwards;} 
-
- 
-
-/* Countdown */ 
-
-.hero-countdown{display:flex;gap:0;justify-content:center;margin-bottom:56px;opacity:0;animation:fadeUp 0.9s 1s ease forwards;} 
-
-.cd-unit{text-align:center;padding:24px 32px;position:relative;} 
-
-.cd-unit::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:rgba(199,168,94,0.2);} 
-
-.cd-unit:last-child::after{display:none;} 
-
-.cd-num{font-family:'Cinzel',serif;font-size:clamp(36px,5vw,60px);font-weight:700;color:var(--gold);line-height:1;display:block;} 
-
-.cd-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:8px;} 
-
- 
-
-.hero-cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 0.9s 1.1s ease forwards;} 
-
-.btn-gold{font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:18px 40px;text-decoration:none;border:1px solid var(--gold);transition:background 0.25s,color 0.25s,transform 0.2s;display:inline-block;} 
-
-.btn-gold:hover{background:var(--white);color:var(--green);transform:translateY(-2px);} 
-
-.btn-ghost{font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;background:transparent;color:var(--white);padding:18px 32px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:border-color 0.25s,color 0.25s,transform 0.2s;display:inline-block;} 
-
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);} 
-
- 
-
-/* Scroll cue */ 
-
-.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 0.8s 1.4s ease forwards;} 
-
-.hero-scroll span{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.35em;color:rgba(255,255,255,0.35);text-transform:uppercase;} 
-
-.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),transparent);animation:scrollPulse 2s 2s ease-in-out infinite;} 
-
- 
-
-/* TEASER STRIP */ 
-
-.teaser-strip{background:rgba(255,255,255,0.03);border-top:1px solid rgba(199,168,94,0.15);border-bottom:1px solid rgba(199,168,94,0.15);padding:40px 10vw;display:flex;justify-content:center;gap:64px;flex-wrap:wrap;} 
-
-.teaser-item{text-align:center;} 
-
-.teaser-icon{font-size:22px;margin-bottom:10px;display:block;} 
-
-.teaser-val{font-family:'Cinzel',serif;font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px;} 
-
-.teaser-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.25em;color:rgba(255,255,255,0.4);text-transform:uppercase;} 
-
- 
-
-/* ABOUT SECTION */ 
-
-.about-section{padding:120px 10vw;background:var(--ink);position:relative;overflow:hidden;} 
-
-.about-section::before{content:'CHAIRMAN';position:absolute;right:-2vw;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:clamp(100px,15vw,230px);font-weight:700;color:rgba(199,168,94,0.025);letter-spacing:0.1em;white-space:nowrap;pointer-events:none;line-height:0.8;} 
-
-.about-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1;} 
-
-.about-visual{position:relative;aspect-ratio:3/4;overflow:hidden;} 
-
-.about-visual-bg{position:absolute;inset:0;background:linear-gradient(155deg,rgba(13,42,20,0.6) 0%,rgba(30,80,40,0.4) 35%,rgba(26,61,32,0.8) 100%), url('images/house.jpeg') center/cover no-repeat;} 
-
-.about-visual-ph{display:none !important;} 
-
-.about-ph-icon{font-size:64px;opacity:0.2;} 
-
-.about-ph-text{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.2);text-transform:uppercase;text-align:center;} 
-
-.about-visual-label{position:absolute;bottom:24px;left:24px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.3em;color:rgba(255,255,255,0.5);text-transform:uppercase;} 
-
-.about-content{} 
-
-.about-eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.5em;color:var(--gold);text-transform:uppercase;margin-bottom:20px;} 
-
-.about-title{font-family:'Cinzel',serif;font-size:clamp(28px,3.5vw,46px);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:28px;} 
-
-.about-body p{font-size:17px;line-height:1.8;color:rgba(255,255,255,0.65);margin-bottom:20px;font-style:italic;} 
-
-.about-body p strong{color:var(--gold-light);font-style:normal;} 
-
-.about-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;} 
-
-.about-pill{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(199,168,94,0.3);color:rgba(199,168,94,0.8);} 
-
- 
-
-/* WHAT TO EXPECT */ 
-
-.expect-section{padding:120px 10vw;background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.05);} 
-
-.expect-header{text-align:center;margin-bottom:72px;} 
-
-.expect-eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.5em;color:var(--gold);text-transform:uppercase;margin-bottom:18px;} 
-
-.expect-title{font-family:'Cinzel',serif;font-size:clamp(28px,3.5vw,44px);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:18px;} 
-
-.expect-sub{font-size:18px;font-style:italic;color:rgba(255,255,255,0.5);line-height:1.65;max-width:580px;margin:0 auto;} 
-
-.expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1100px;margin:0 auto;} 
-
-.expect-card{padding:40px 32px;background:rgba(255,255,255,0.025);border-top:2px solid rgba(199,168,94,0.2);transition:background 0.25s,border-color 0.25s;} 
-
-.expect-card:hover{background:rgba(255,255,255,0.04);border-top-color:var(--gold);} 
-
-.expect-icon{font-size:28px;margin-bottom:18px;display:block;} 
-
-.expect-name{font-family:'Cinzel',serif;font-size:15px;color:var(--white);letter-spacing:0.04em;margin-bottom:10px;font-weight:600;} 
-
-.expect-text{font-size:14px;font-style:italic;color:rgba(255,255,255,0.55);line-height:1.65;} 
-
-.expect-note{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-top:12px;opacity:0.7;} 
-
- 
-
-/* COMPARISON */ 
-
-.compare-section{padding:96px 10vw;border-top:1px solid rgba(255,255,255,0.05);} 
-
-.compare-inner{max-width:1000px;margin:0 auto;} 
-
-.compare-header{text-align:center;margin-bottom:48px;} 
-
-.comp-eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.5em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;} 
-
-.comp-title{font-family:'Cinzel',serif;font-size:clamp(24px,3vw,36px);font-weight:600;color:var(--white);line-height:1.1;} 
-
-.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;} 
-
-.comp-card{padding:48px 40px;position:relative;overflow:hidden;} 
-
-.comp-card-a{background:rgba(255,255,255,0.04);border:1px solid rgba(199,168,94,0.25);} 
-
-.comp-card-b{background:rgba(199,168,94,0.06);border:1px solid var(--gold);} 
-
-.comp-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;} 
-
-.comp-name{font-family:'Cinzel',serif;font-size:22px;font-weight:600;color:var(--white);margin-bottom:8px;} 
-
-.comp-location{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:20px;} 
-
-.comp-features{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;} 
-
-.comp-feat{font-size:13.5px;color:rgba(255,255,255,0.65);display:flex;gap:10px;align-items:flex-start;line-height:1.5;} 
-
-.comp-feat::before{content:'—';color:var(--gold);flex-shrink:0;} 
-
-.comp-cta{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(199,168,94,0.3);padding-bottom:2px;transition:border-color 0.2s;} 
-
-.comp-cta:hover{border-color:var(--gold);} 
-
-.comp-status-badge{position:absolute;top:24px;right:24px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;padding:5px 12px;} 
-
-.badge-open{background:rgba(30,132,73,0.25);color:#5dd58c;} 
-
-.badge-coming{background:rgba(199,168,94,0.2);color:var(--gold);} 
-
- 
-
-/* WAITLIST FORM */ 
-
-.waitlist-section{padding:120px 10vw;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(30,77,43,0.15),transparent 70%),var(--ink);border-top:1px solid rgba(199,168,94,0.15);} 
-
-.waitlist-inner{max-width:680px;margin:0 auto;text-align:center;} 
-
-.wl-eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.5em;color:var(--gold);text-transform:uppercase;margin-bottom:20px;display:inline-flex;align-items:center;gap:14px;} 
-
-.wl-eyebrow::before,.wl-eyebrow::after{content:'';width:32px;height:1px;background:rgba(199,168,94,0.5);} 
-
-.wl-title{font-family:'Cinzel',serif;font-size:clamp(32px,5vw,60px);font-weight:700;color:var(--white);line-height:0.95;margin-bottom:24px;} 
-
-.wl-title em{font-style:italic;color:var(--gold-light);font-weight:400;display:block;} 
-
-.wl-body{font-size:18px;font-style:italic;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:48px;} 
-
-.wl-perks{display:flex;flex-direction:column;gap:10px;margin-bottom:48px;text-align:left;max-width:480px;margin-left:auto;margin-right:auto;} 
-
-.wl-perk{display:flex;align-items:center;gap:14px;font-size:15px;color:rgba(255,255,255,0.75);} 
-
-.wl-perk::before{content:'✦';color:var(--gold);font-size:11px;flex-shrink:0;} 
-
- 
-
-/* Form */ 
-
-.waitlist-form{display:flex;flex-direction:column;gap:16px;text-align:left;} 
-
-.wf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;} 
-
-.wf-group{display:flex;flex-direction:column;gap:6px;} 
-
-.wf-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.25em;color:rgba(255,255,255,0.5);text-transform:uppercase;} 
-
-.wf-label span{color:var(--gold);} 
-
-.wf-input,.wf-select,.wf-textarea{font-family:'EB Garamond',Georgia,serif;font-size:16px;color:var(--white);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:14px 18px;outline:none;width:100%;transition:border-color 0.25s,background 0.25s;appearance:none;} 
-
-.wf-input:focus,.wf-select:focus,.wf-textarea:focus{border-color:var(--gold);background:rgba(199,168,94,0.05);} 
-
-.wf-input::placeholder{color:rgba(255,255,255,0.25);} 
-
-.wf-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C7A85E' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer;background-color:rgba(255,255,255,0.05);} 
-
-.wf-select option{background:#1a1510;color:var(--white);} 
-
-.wf-textarea{min-height:100px;resize:vertical;line-height:1.6;} 
-
-.wf-note{font-size:13px;font-style:italic;color:rgba(255,255,255,0.35);text-align:center;} 
-
-.wf-submit{font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.25em;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:20px;border:none;cursor:pointer;width:100%;transition:background 0.25s,transform 0.2s;margin-top:4px;} 
-
-.wf-submit:hover{background:var(--white);color:var(--green);transform:translateY(-2px);} 
-
- 
-
-/* Success */ 
-
-.wl-success{display:none;padding:40px 32px;background:rgba(30,77,43,0.2);border:1px solid rgba(30,77,43,0.4);text-align:center;margin-top:20px;} 
-
-.wls-icon{font-size:36px;margin-bottom:16px;} 
-
-.wls-title{font-family:'Cinzel',serif;font-size:20px;color:var(--gold);margin-bottom:12px;} 
-
-.wls-body{font-size:16px;font-style:italic;color:rgba(255,255,255,0.65);line-height:1.65;} 
-
-.wl-position-note{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.2em;color:rgba(199,168,94,0.6);text-transform:uppercase;text-align:center;margin-top:24px;} 
-
-.wl-count{font-size:24px;font-weight:700;color:var(--gold);} 
-
- 
-
-/* FOOTER */ 
-
-footer{background:#050806;padding:72px 10vw 40px;border-top:1px solid rgba(199,168,94,0.1);} 
-
-.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.05);margin-bottom:32px;} 
-
-.footer-logo{font-family:'Cinzel',serif;font-size:18px;font-weight:600;color:var(--white);letter-spacing:0.08em;margin-bottom:4px;} 
-
-.footer-collection-name{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;} 
-
-.footer-tagline{font-size:14px;font-style:italic;color:rgba(255,255,255,0.3);line-height:1.5;margin-bottom:18px;} 
-
-.footer-contact{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:6px;} 
-
-.footer-contact a{color:var(--gold);text-decoration:none;} 
-
-.footer-col-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:20px;} 
-
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;} 
-
-.footer-links a{font-size:14px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;} 
-
-.footer-links a:hover{color:var(--white);} 
-
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;} 
-
-.footer-copy{font-size:12px;color:rgba(255,255,255,0.15);font-style:italic;} 
-
-.footer-coll-tag{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.3em;color:var(--gold);opacity:0.5;text-transform:uppercase;} 
-
- 
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}} 
-
-@keyframes breathe{0%,100%{opacity:0.5;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.05);}} 
-
-@keyframes statusPulse{0%,100%{box-shadow:0 0 0 3px rgba(199,168,94,0.2);}50%{box-shadow:0 0 0 8px rgba(199,168,94,0.05);}} 
-
-@keyframes scrollPulse{0%,100%{opacity:0.4;}50%{opacity:0.9;}} 
-
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;} 
-
-.reveal.visible{opacity:1;transform:translateY(0);} 
-
-.d1{transition-delay:0.1s;} .d2{transition-delay:0.2s;} .d3{transition-delay:0.3s;} 
-
- 
-
-@media(max-width:1100px){ 
-
-  .about-inner,.compare-grid{grid-template-columns:1fr;} 
-
-  .expect-grid{grid-template-columns:1fr 1fr;} 
-
-  .footer-top{grid-template-columns:1fr 1fr;} 
-
-} 
-
-@media(max-width:768px){ 
-
-  nav{padding:0 24px;} 
-
-  .hero-countdown{gap:0;} 
-
-  .cd-unit{padding:16px 20px;} 
-
-  .wf-row{grid-template-columns:1fr;} 
-
-  .expect-grid{grid-template-columns:1fr;} 
-
-  .footer-top{grid-template-columns:1fr;} 
-
-} 
-
-</style> 
-
-</head> 
-
-<body> 
-
- 
-
-<nav id="nav"> 
-<?php $page = basename($_SERVER['PHP_SELF'], '.php'); ?>
-  <div> 
-
-    <div class="nav-logo">The Chairman's Bungalow</div> 
-
-    <div class="nav-collection">Old Ceylon Heritage Collection</div> 
-
-  </div> 
-
-  <a href="/vD/the-bungalow.php" class="nav-back">← The Tea Bungalow</a> 
-
-</nav> 
-
- 
-
-<!-- HERO --> 
-
-<section class="hero"> 
-
-  <div class="hero-texture"></div> 
-
-  <div class="hero-glow"></div> 
-
- 
-
-  <div class="hero-inner"> 
-
-    <div class="hero-collection">Old Ceylon Heritage Collection</div> 
-
- 
-
-    <div class="hero-status-pill"> 
-
-      <div class="status-dot"></div> 
-
-      <div class="status-text">Currently Being Restored · Opening 2027</div> 
-
-    </div> 
-
- 
-
-    <h1 class="hero-title"> 
-
-      The Chairman's<br><em>Bungalow</em> 
-
-    </h1> 
-
-    <div class="hero-subtitle">Hantana Estate · Kandy · Sri Lanka</div> 
-
- 
-
-    <div class="hero-rule"></div> 
-
- 
-
-    <p class="hero-tagline"> 
-
-      The second property in the Old Ceylon Heritage Collection — a colonial-era plantation bungalow on Hantana Estate, being lovingly restored to receive its first guests in 2027. 
-
-    </p> 
-
- 
-
-    <div class="hero-countdown" id="countdown"> 
-
-      <div class="cd-unit"><span class="cd-num" id="cd-days">—</span><div class="cd-label">Days</div></div> 
-
-      <div class="cd-unit"><span class="cd-num" id="cd-hours">—</span><div class="cd-label">Hours</div></div> 
-
-      <div class="cd-unit"><span class="cd-num" id="cd-mins">—</span><div class="cd-label">Minutes</div></div> 
-
-      <div class="cd-unit"><span class="cd-num">2027</span><div class="cd-label">Opening Year</div></div> 
-
-    </div> 
-
- 
-
-    <div class="hero-cta-row"> 
-
-      <a href="#waitlist" class="btn-gold">Join the Waitlist</a> 
-
-      <a href="#about" class="btn-ghost">About the Property</a> 
-
-    </div> 
-
-  </div> 
-
- 
-
-  <div class="hero-scroll"> 
-
-    <div class="scroll-line"></div> 
-
-    <span>Discover</span> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- TEASER STRIP --> 
-
-<div class="teaser-strip reveal"> 
-
-  <div class="teaser-item"> 
-
-    <span class="teaser-icon">🏛️</span> 
-
-    <div class="teaser-val">Colonial Era</div> 
-
-    <div class="teaser-label">Heritage Property</div> 
-
-  </div> 
-
-  <div class="teaser-item"> 
-
-    <span class="teaser-icon">📍</span> 
-
-    <div class="teaser-val">Hantana Estate</div> 
-
-    <div class="teaser-label">Kandy District</div> 
-
-  </div> 
-
-  <div class="teaser-item"> 
-
-    <span class="teaser-icon">🥾</span> 
-
-    <div class="teaser-val">Stage 1 Start</div> 
-
-    <div class="teaser-label">Pekoe Trail Access</div> 
-
-  </div> 
-
-  <div class="teaser-item"> 
-
-    <span class="teaser-icon">🗓️</span> 
-
-    <div class="teaser-val">2027</div> 
-
-    <div class="teaser-label">Opening Year</div> 
-
-  </div> 
-
-  <div class="teaser-item"> 
-
-    <span class="teaser-icon">⭐</span> 
-
-    <div class="teaser-val">Early Access</div> 
-
-    <div class="teaser-label">Waitlist Members</div> 
-
-  </div> 
-
-</div> 
-
- 
-
-<!-- ABOUT --> 
-
-<section id="about" class="about-section"> 
-
-  <div class="about-inner"> 
-
-    <div class="about-visual reveal"> 
-
-      <div class="about-visual-bg"></div> 
-
-      <div class="about-visual-ph"> 
-
-        <div class="about-ph-icon">🏛️</div> 
-
-        <div class="about-ph-text">The Chairman's Bungalow<br>Hantana Estate<br>Photography coming soon property photograph</div> 
-
-      </div> 
-
-      <div class="about-visual-label">Hantana Estate · Kandy</div> 
-
-    </div> 
-
-    <div class="about-content reveal d1"> 
-
-      <div class="about-eyebrow">The Second Property</div> 
-
-      <h2 class="about-title">A Plantation Bungalow on Hantana Estate</h2> 
-
-      <div class="about-body"> 
-
-        <p>The Chairman's Bungalow stands on <strong>Hantana Estate</strong> — the same working tea plantation where the Pekoe Trail's Stage 1 begins at the Ceylon Tea Museum. It is a colonial-era residence of considerably greater scale than the Tea Bungalow in Galaha, and carries the weight of a more senior position in the estate hierarchy.</p> 
-
-        <p>We are currently <strong>restoring the bungalow</strong> to receive guests — attending to its original fabric with the same care taken at Galaha: preserving the proportions, the materials, and the character of a house that has stood through over a century of Ceylon Tea history.</p> 
-
-        <p>The Chairman's Bungalow will open in <strong>2027</strong>. It will be available as an exclusive whole-house experience, part of a growing network of heritage stays under the Old Ceylon Heritage Collection. Waitlist members will receive first access and preview rates.</p> 
-
-      </div> 
-
-      <div class="about-pills"> 
-
-        <span class="about-pill">Hantana Estate</span> 
-
-        <span class="about-pill">Pekoe Trail Stage 1</span> 
-
-        <span class="about-pill">Colonial Heritage</span> 
-
-        <span class="about-pill">Estate Buyout</span> 
-
-        <span class="about-pill">Opening 2027</span> 
-
-      </div> 
-
-    </div> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- WHAT TO EXPECT --> 
-
-<section class="expect-section"> 
-
-  <div class="expect-header reveal"> 
-
-    <div class="expect-eyebrow">What to Expect</div> 
-
-    <h2 class="expect-title">When the Bungalow Opens</h2> 
-
-    <p class="expect-sub">Based on what we know about the property and our approach at The Tea Bungalow — details will be confirmed as restoration progresses.</p> 
-
-  </div> 
-
-  <div class="expect-grid"> 
-
-    <div class="expect-card reveal"> 
-
-      <span class="expect-icon">🏛️</span> 
-
-      <div class="expect-name">Whole-Estate Experience</div> 
-
-      <p class="expect-text">The Chairman's Bungalow will be available for exclusive whole-house reservations — a more spacious property than Galaha, with the same private-residence philosophy.</p> 
-
-      <div class="expect-note">Exclusive Use · Est. 2027</div> 
-
-    </div> 
-
-    <div class="expect-card reveal d1"> 
-
-      <span class="expect-icon">🥾</span> 
-
-      <div class="expect-name">Pekoe Trail — Stage 1 Start</div> 
-
-      <p class="expect-text">Hantana Estate is where Stage 1 of the Pekoe Trail begins. Guests will be able to walk directly from the bungalow onto the trail — with the Tea Bungalow in Galaha as the natural overnight stop.</p> 
-
-      <div class="expect-note">Stages 1, 2 &amp; 3 Connected</div> 
-
-    </div> 
-
-    <div class="expect-card reveal d2"> 
-
-      <span class="expect-icon">🌿</span> 
-
-      <div class="expect-name">Working Tea Estate Setting</div> 
-
-      <p class="expect-text">Hantana is a working plantation — the same atmospheric context that defines the experience at Galaha. Tea fields, estate staff, and the rhythm of a producing estate.</p> 
-
-      <div class="expect-note">Hantana Estate</div> 
-
-    </div> 
-
-    <div class="expect-card reveal"> 
-
-      <span class="expect-icon">🔥</span> 
-
-      <div class="expect-name">Heritage Interiors</div> 
-
-      <p class="expect-text">Our approach at the Chairman's Bungalow mirrors Galaha — original features preserved, original proportions respected. The house will not be renovated out of character.</p> 
-
-      <div class="expect-note">Authentic Restoration</div> 
-
-    </div> 
-
-    <div class="expect-card reveal d1"> 
-
-      <span class="expect-icon">👥</span> 
-
-      <div class="expect-name">Kandy Connection</div> 
-
-      <p class="expect-text">Hantana is within reach of Kandy city — close enough for day trips, far enough to feel removed. The bungalow will form a natural pre- or post-Pekoe Trail stopping point from Kandy.</p> 
-
-      <div class="expect-note">Near Kandy</div> 
-
-    </div> 
-
-    <div class="expect-card reveal d2"> 
-
-      <span class="expect-icon">⭐</span> 
-
-      <div class="expect-name">Waitlist Priority</div> 
-
-      <p class="expect-text">Waitlist members will receive the first access to booking, soft-opening rates (25–30% off initial stays), and personal updates as restoration milestones are reached.</p> 
-
-      <div class="expect-note">Join the List Below</div> 
-
-    </div> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- COMPARISON --> 
-
-<section class="compare-section"> 
-
-  <div class="compare-inner"> 
-
-    <div class="compare-header reveal"> 
-
-      <div class="comp-eyebrow">The Collection</div> 
-
-      <h2 class="comp-title">Two Properties, One Experience</h2> 
-
-    </div> 
-
-    <div class="compare-grid reveal"> 
-
-      <div class="comp-card comp-card-a"> 
-
-        <span class="comp-status-badge badge-open">Now Open</span> 
-
-        <div class="comp-tag">Founding Property</div> 
-
-        <div class="comp-name">The Tea Bungalow</div> 
-
-        <div class="comp-location">Galaha Estate · Kandy District</div> 
-
-        <div class="comp-features"> 
-
-          <div class="comp-feat">Stage 1 End &amp; Stage 2 Start — walking distance</div> 
-
-          <div class="comp-feat">6 individually named chambers + Carriage House Cottage</div> 
-
-          <div class="comp-feat">Original 1890s stone fireplace</div> 
-
-          <div class="comp-feat">Intimate — 12 guests maximum</div> 
-
-          <div class="comp-feat">Individual rooms or full estate buyout</div> 
-
-        </div> 
-
-        <a href="/vD/home.php" class="comp-cta">Visit The Tea Bungalow →</a> 
-
-      </div> 
-
-      <div class="comp-card comp-card-b"> 
-
-        <span class="comp-status-badge badge-coming">Opening 2027</span> 
-
-        <div class="comp-tag">Second Property</div> 
-
-        <div class="comp-name">The Chairman's Bungalow</div> 
-
-        <div class="comp-location">Hantana Estate · Kandy District</div> 
-
-        <div class="comp-features"> 
-
-          <div class="comp-feat">Stage 1 Start — walk out from the bungalow</div> 
-
-          <div class="comp-feat">More spacious colonial residence</div> 
-
-          <div class="comp-feat">Exclusive whole-estate experience</div> 
-
-          <div class="comp-feat">Hantana Estate working plantation setting</div> 
-
-          <div class="comp-feat">Kandy city connection — accessible pre/post trip</div> 
-
-        </div> 
-
-        <a href="#waitlist" class="comp-cta">Join the Waitlist →</a> 
-
-      </div> 
-
-    </div> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- WAITLIST FORM --> 
-
-<section id="waitlist" class="waitlist-section"> 
-
-  <div class="waitlist-inner"> 
-
-    <div class="wl-eyebrow reveal">Early Access</div> 
-
-    <h2 class="wl-title reveal">Join the<br><em>Waitlist</em></h2> 
-
-    <p class="wl-body reveal">Be the first to know when The Chairman's Bungalow opens for reservations. Waitlist members receive preview rates and first access to booking.</p> 
-
- 
-
-    <div class="wl-perks reveal"> 
-
-      <div class="wl-perk">Priority access to opening dates before public launch</div> 
-
-      <div class="wl-perk">Soft opening rates — 25–30% off first stays</div> 
-
-      <div class="wl-perk">Personal updates as restoration milestones are reached</div> 
-
-      <div class="wl-perk">First look at the property photography</div> 
-
-      <div class="wl-perk">No commitment — leave the list at any time</div> 
-
-    </div> 
-
- 
-
-    <form class="waitlist-form reveal" id="waitlist-form" novalidate> 
-
-      <!-- CSRF & honeypot --> 
-      <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token_wl, ENT_QUOTES, 'UTF-8'); ?>"> 
-      <div style="display:none" aria-hidden="true"><label>Leave blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div> 
-
-      <div class="wf-row"> 
-
-        <div class="wf-group"> 
-
-          <label class="wf-label" for="wl-first">First Name <span>*</span></label> 
-
-          <input class="wf-input" type="text" id="wl-first" name="wl-first" placeholder="Your first name" required> 
-
-        </div> 
-
-        <div class="wf-group"> 
-
-          <label class="wf-label" for="wl-last">Last Name <span>*</span></label> 
-
-          <input class="wf-input" type="text" id="wl-last" name="wl-last" placeholder="Your last name" required> 
-
-        </div> 
-
-      </div> 
-
- 
-
-      <div class="wf-group"> 
-
-        <label class="wf-label" for="wl-email">Email Address <span>*</span></label> 
-
-        <input class="wf-input" type="email" id="wl-email" name="wl-email" placeholder="your.email@example.com" required> 
-
-      </div> 
-
- 
-
-      <div class="wf-row"> 
-
-        <div class="wf-group"> 
-
-          <label class="wf-label" for="wl-interest">Interest Type</label> 
-
-          <select class="wf-select" id="wl-interest" name="wl-interest"> 
-
-            <option value="" disabled selected>Tell us more</option> 
-
-            <option>Leisure / Heritage stay</option> 
-
-            <option>Pekoe Trail base</option> 
-
-            <option>Private celebration</option> 
-
-            <option>Family group stay</option> 
-
-            <option>Corporate retreat</option> 
-
-            <option>Combination (Galaha + Chairman's)</option> 
-
-            <option>Just curious — notify me when open</option> 
-
-          </select> 
-
-        </div> 
-
-        <div class="wf-group"> 
-
-          <label class="wf-label" for="wl-party">Likely Party Size</label> 
-
-          <select class="wf-select" id="wl-party" name="wl-party"> 
-
-            <option value="" disabled selected>Approx. guests</option> 
-
-            <option>2 (couple)</option> 
-
-            <option>3–4</option> 
-
-            <option>5–8</option> 
-
-            <option>9–12</option> 
-
-            <option>12+ (full estate)</option> 
-
-          </select> 
-
-        </div> 
-
-      </div> 
-
- 
-
-      <div class="wf-group"> 
-
-        <label class="wf-label" for="wl-notes">Anything Else? (optional)</label> 
-
-        <textarea class="wf-textarea" id="wl-notes" name="wl-notes" placeholder="Preferred time of year, any specific requirements, or just a note..."></textarea> 
-
-      </div> 
-
- 
-
-      <div class="wf-note">We will not share your details. One email per milestone — no newsletters.</div> 
-
-      <button type="submit" class="wf-submit">Join the Waitlist →</button> 
-
-    </form> 
-
- 
-
-    <div class="wl-success" id="wl-success"> 
-
-      <div class="wls-icon">🍃</div> 
-
-      <div class="wls-title">You're on the List</div> 
-
-      <p class="wls-body">Thank you — you'll be among the first to know when The Chairman's Bungalow opens for reservations. We'll be in touch with updates as restoration progresses and the opening date is confirmed.</p> 
-
-    </div> 
-
- 
-
-    <div class="wl-position-note reveal">In the meantime — <a href="/vD/home.php" style="color:var(--gold);text-decoration:none;">stay at The Tea Bungalow, Galaha →</a></div> 
-
-  </div> 
-
-</section> 
-
- 
-
-<!-- FOOTER --> 
-
-<footer> 
-
-  <div class="footer-top"> 
-
-    <div> 
-
-      <div class="footer-logo">The Chairman's Bungalow</div> 
-
-      <div class="footer-collection-name">Old Ceylon Heritage Collection</div> 
-
-      <p class="footer-tagline">A colonial-era plantation bungalow on Hantana Estate — being lovingly restored for guests in 2027.</p> 
-
-      <div class="footer-contact">✉️ <a href="mailto:stay@theteabungalow.com">stay@theteabungalow.com</a></div> 
-
-      <div class="footer-contact">📞 <a href="tel:+94777874555">+94 (0)777 874 555</a></div> 
-
-    </div> 
-
-    <div> 
-
-      <div class="footer-col-title">The Collection</div> 
-
-      <ul class="footer-links"> 
-
-        <li><a href="/vD/the-bungalow.php">The Tea Bungalow, Galaha</a></li> 
-
-        <li><a href="/vD/contact.php#enquiry-form">Hantana Cottage (Available Now)</a></li> 
-
-        <li><a href="/vD/chairmans-bungalow-2027.php#waitlist">Chairman's Bungalow (2027)</a></li> 
-
-      </ul> 
-
-    </div> 
-
-    <div> 
-
-      <div class="footer-col-title">Stay at Galaha Now</div> 
-
-      <ul class="footer-links"> 
-
-        <li><a href="/vD/our-chambers.php">Our Chambers</a></li> 
-
-        <li><a href="/vD/packages.php">Pekoe Trail Packages</a></li> 
-
-        <li><a href="/vD/the-entire-estate.php#enquire">Estate Buyout</a></li> 
-
-        <li><a href="/vD/contact.php">Contact &amp; Enquire</a></li> 
-
-      </ul> 
-
-    </div> 
-
-  </div> 
-
-  <div class="footer-bottom"> 
-
-    <div class="footer-copy">© 2026 The Tea Bungalow · Old Ceylon Heritage Collection</div> 
-
-    <div class="footer-coll-tag">Galaha · Hantana · Sri Lanka</div> 
-
-  </div> 
-
-</footer> 
-
- 
-
-<script> 
-
-nav.classList.add('scrolled'); 
-
- 
-
-// Countdown to 1 Jan 2027 
-
-function updateCountdown() { 
-
-  const target = new Date('2027-01-01T00:00:00'); 
-
-  const now = new Date(); 
-
-  const diff = target - now; 
-
-  if (diff <= 0) { 
-
-    document.getElementById('cd-days').textContent = '0'; 
-
-    document.getElementById('cd-hours').textContent = '0'; 
-
-    document.getElementById('cd-mins').textContent = '0'; 
-
-    return; 
-
-  } 
-
-  document.getElementById('cd-days').textContent = Math.floor(diff / 86400000); 
-
-  document.getElementById('cd-hours').textContent = Math.floor((diff % 86400000) / 3600000); 
-
-  document.getElementById('cd-mins').textContent = Math.floor((diff % 3600000) / 60000); 
-
-} 
-
-updateCountdown(); 
-
-setInterval(updateCountdown, 60000); 
-
- 
-
-// Scroll reveal 
-
-const reveals = document.querySelectorAll('.reveal'); 
-
-const obs = new IntersectionObserver(entries => { 
-
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); 
-
-}, { threshold: 0.08 }); 
-
-reveals.forEach(el => obs.observe(el)); 
-
- 
-
-// Waitlist form — server-side submission via fetch() 
-
-document.getElementById('waitlist-form').addEventListener('submit', async function(e) { 
-
-  e.preventDefault(); 
-
-  const req = this.querySelectorAll('[required]'); 
-  let valid = true; 
-  req.forEach(f => { f.style.borderColor = ''; if (!f.value.trim()) { f.style.borderColor = '#c0392b'; valid = false; } }); 
-  if (!valid) return; 
-
-  const btn = this.querySelector('.wf-submit'); 
-  const origText = btn.textContent; 
-  btn.disabled = true; 
-  btn.textContent = 'Sending…'; 
-
-  try { 
-    const res  = await fetch('submit_waitlist.php', { 
-      method: 'POST', 
-      body:   new URLSearchParams(new FormData(this)), // URL-encoded: Vercel functions do not parse multipart 
-    }); 
-    const data = await res.json(); 
-    if (data.ok) { 
-      this.style.display = 'none'; 
-      document.getElementById('wl-success').style.display = 'block'; 
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'waitlist_signup' });
-    } else { 
-      alert('There was an issue: ' + data.message); 
-      btn.disabled = false; 
-      btn.textContent = origText; 
-    } 
-  } catch (err) { 
-    alert('Network error. Please try again or contact us via WhatsApp.'); 
-    btn.disabled = false; 
-    btn.textContent = origText; 
-  } 
-
-}); 
-
-</script> 
-
-</body> 
-
-</html> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+  <!-- tb:sinhala-font -->
+  <link rel="stylesheet" href="/ve/ve.css">
+  <link rel="stylesheet" href="/ve/chairmans.css">
+</head>
+
+<body class="ve ve-ch">
+
+  <!-- Shared: consent banner, reservation drawer, analytics hooks (legacy header stripped by the build on vE pages) -->
+  <?php include 'layout/navbar.php'; ?>
+  <?php include 'layout/ve/header.html'; ?>
+
+  <!-- Line icons used on this page -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="x-house" viewBox="0 0 32 32"><path d="M4 14 16 5l12 9M7 12v14h18V12M13 26v-7h6v7"/></symbol>
+    <symbol id="x-boot" viewBox="0 0 32 32"><path d="M9 4.5h7.5v10.5l7.4 2.8A3.4 3.4 0 0 1 26 21v3.5H6.5V16z"/><path d="M6.5 24.5h19.5M9.5 8.5h7M9.5 12h7"/></symbol>
+    <symbol id="x-leaf" viewBox="0 0 32 32"><path d="M6 26C6 13 14 6 27 5c-1 13-8 21-21 21zM6 26l10-10"/></symbol>
+    <symbol id="x-fire" viewBox="0 0 32 32"><path d="M16 28c-5 0-8-3.4-8-7.6 0-4.6 4-6.6 4.4-11.4 2.8 1.8 4.2 4.4 4.2 6.6 1.2-1 1.9-2.6 1.9-4.4 3.2 2.4 5.5 5.6 5.5 9.2 0 4.2-3 7.6-8 7.6z"/></symbol>
+    <symbol id="x-city" viewBox="0 0 32 32"><path d="M4 27V14l6-4v17M10 27V8l8-4v23M18 27V12h10v15M3 27h26M13 11h2M13 15h2M13 19h2M21 16h4M21 20h4"/></symbol>
+    <symbol id="x-star" viewBox="0 0 32 32"><path d="M16 4l3.6 7.6 8.2 1-6 5.8 1.5 8.2L16 22.6 8.7 26.6l1.5-8.2-6-5.8 8.2-1z"/></symbol>
+    <symbol id="ch-elev-mini" viewBox="0 0 1200 500"><g class="ch-elev__draw"><path d="M30 460 H1170 M110 428 H1090 V460 H110 Z M140 262 H1060 V428 H140 Z M112 262 L268 132 H932 L1088 262 Z M300 132 V92 H334 V132 M866 132 V92 H900 V132 M165 276 H175 V428 H165 Z M227 276 H237 V428 H227 Z M289 276 H299 V428 H289 Z M351 276 H361 V428 H351 Z M413 276 H423 V428 H413 Z M723 276 H733 V428 H723 Z M785 276 H795 V428 H785 Z M847 276 H857 V428 H847 Z M909 276 H919 V428 H909 Z M971 276 H981 V428 H971 Z M140 276 H1060 M183 400 V318 A18 18 0 0 1 219 318 V400 Z M245 400 V318 A18 18 0 0 1 281 318 V400 Z M307 400 V318 A18 18 0 0 1 343 318 V400 Z M369 400 V318 A18 18 0 0 1 405 318 V400 Z M431 400 V318 A18 18 0 0 1 467 318 V400 Z M733 400 V318 A18 18 0 0 1 769 318 V400 Z M795 400 V318 A18 18 0 0 1 831 318 V400 Z M857 400 V318 A18 18 0 0 1 893 318 V400 Z M919 400 V318 A18 18 0 0 1 955 318 V400 Z M981 400 V318 A18 18 0 0 1 1017 318 V400 Z M513 290 H527 V428 H513 Z M555 290 H569 V428 H555 Z M631 290 H645 V428 H631 Z M673 290 H687 V428 H673 Z M500 276 H700 V292 H500 Z M492 276 L600 206 L708 276 Z M578 428 V356 A22 22 0 0 1 622 356 V428 Z M540 428 H660 M530 438 H670 M520 448 H680"/></g><g class="ch-elev__detail"><path d="M246.4 150 H953.6 M227.2 166 H972.8 M208.0 182 H992.0 M188.8 198 H1011.2 M169.6 214 H1030.4 M150.4 230 H1049.6 M131.2 246 H1068.8 M296 92 H338 M862 92 H904 M140 398 H480 M720 398 H1060 M140 408 H480 M720 408 H1060 M201 300 V400 M183 350 H219 M171 318 V400 M231 318 V400 M263 300 V400 M245 350 H281 M233 318 V400 M293 318 V400 M325 300 V400 M307 350 H343 M295 318 V400 M355 318 V400 M387 300 V400 M369 350 H405 M357 318 V400 M417 318 V400 M449 300 V400 M431 350 H467 M419 318 V400 M479 318 V400 M751 300 V400 M733 350 H769 M721 318 V400 M781 318 V400 M813 300 V400 M795 350 H831 M783 318 V400 M843 318 V400 M875 300 V400 M857 350 H893 M845 318 V400 M905 318 V400 M937 300 V400 M919 350 H955 M907 318 V400 M967 318 V400 M999 300 V400 M981 350 H1017 M969 318 V400 M1029 318 V400 M600 262 c-6-5-8-12-8-19 0 0 5 2 8 9 3-7 8-9 8-9 0 7-2 14-8 19z M600 262 c-8 0-15-4-19-11 5 0 10 1.5 14 5 M600 262 c8 0 15-4 19-11-5 0-10 1.5-14 5 M578 356 H622 M600 334 V428 M36 366 a34 34 0 1 0 68 0 a34 34 0 1 0 -68 0 M70 400 V460 M1106 372 a28 28 0 1 0 56 0 a28 28 0 1 0 -56 0 M1134 400 V460 M150 460 q20-12 40 0 q20-12 40 0 q20-12 40 0 M960 460 q20-12 40 0 q20-12 40 0 q20-12 40 0"/></g><g class="ch-elev__scaffold"><path d="M760 460 V104 M800 460 V104 M840 460 V104 M880 460 V104 M920 460 V104 M960 460 V104 M1000 460 V104 M1040 460 V104 M1080 460 V104 M750 420 H1090 M750 368 H1090 M750 316 H1090 M750 264 H1090 M750 212 H1090 M750 160 H1090 M760 316 L800 420 M840 420 L880 316 M920 316 L960 420 M1000 420 L1040 316 M752 362 H1088 M752 365 H1088 M752 258 H1088 M752 261 H1088 M752 154 H1088 M752 157 H1088"/></g></symbol>
+  </svg>
+
+  <main id="main">
+
+    <!-- ═══ 1. BEING RESTORED: the house as its drawing, scaffolding still up ═══ -->
+    <section class="ch-hero" data-theme="dark" aria-labelledby="chTitle">
+      <div class="ve-wrap ch-hero__head">
+        <div>
+          <nav class="ve-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>The Chairman&rsquo;s Bungalow</span></nav>
+          <p class="ve-label ve-kicker">Old Ceylon Heritage Collection &middot; Opening 2027</p>
+          <h1 class="ch-hero__title" id="chTitle"><span class="ch-hero__line"><span>The Chairman&rsquo;s</span></span><span class="ch-hero__line"><em>Bungalow.</em></span></h1>
+        </div>
+        <div class="ch-hero__side">
+          <p class="ch-hero__sub">A colonial-era plantation bungalow on Hantana Estate, above Kandy, where the Pekoe Trail begins. It is being restored to receive its first guests in 2027.</p>
+          <a class="ve-btn ve-btn--gold" href="#waitlist" data-magnetic><span>Join the waitlist</span></a>
+        </div>
+      </div>
+      <figure class="ch-elev" aria-labelledby="elevCap">
+        <svg class="ch-elev__svg" viewBox="0 0 1200 500" role="img" aria-label="A drawing of the bungalow's front: a hipped roof, a columned portico and a long verandah, with scaffolding over one wing" focusable="false">
+          <g class="ch-elev__draw"><path pathLength="1" d="M30 460 H1170 M110 428 H1090 V460 H110 Z M140 262 H1060 V428 H140 Z M112 262 L268 132 H932 L1088 262 Z M300 132 V92 H334 V132 M866 132 V92 H900 V132 M165 276 H175 V428 H165 Z M227 276 H237 V428 H227 Z M289 276 H299 V428 H289 Z M351 276 H361 V428 H351 Z M413 276 H423 V428 H413 Z M723 276 H733 V428 H723 Z M785 276 H795 V428 H785 Z M847 276 H857 V428 H847 Z M909 276 H919 V428 H909 Z M971 276 H981 V428 H971 Z M140 276 H1060 M183 400 V318 A18 18 0 0 1 219 318 V400 Z M245 400 V318 A18 18 0 0 1 281 318 V400 Z M307 400 V318 A18 18 0 0 1 343 318 V400 Z M369 400 V318 A18 18 0 0 1 405 318 V400 Z M431 400 V318 A18 18 0 0 1 467 318 V400 Z M733 400 V318 A18 18 0 0 1 769 318 V400 Z M795 400 V318 A18 18 0 0 1 831 318 V400 Z M857 400 V318 A18 18 0 0 1 893 318 V400 Z M919 400 V318 A18 18 0 0 1 955 318 V400 Z M981 400 V318 A18 18 0 0 1 1017 318 V400 Z M513 290 H527 V428 H513 Z M555 290 H569 V428 H555 Z M631 290 H645 V428 H631 Z M673 290 H687 V428 H673 Z M500 276 H700 V292 H500 Z M492 276 L600 206 L708 276 Z M578 428 V356 A22 22 0 0 1 622 356 V428 Z M540 428 H660 M530 438 H670 M520 448 H680"/></g>
+          <g class="ch-elev__detail"><path pathLength="1" d="M246.4 150 H953.6 M227.2 166 H972.8 M208.0 182 H992.0 M188.8 198 H1011.2 M169.6 214 H1030.4 M150.4 230 H1049.6 M131.2 246 H1068.8 M296 92 H338 M862 92 H904 M140 398 H480 M720 398 H1060 M140 408 H480 M720 408 H1060 M201 300 V400 M183 350 H219 M171 318 V400 M231 318 V400 M263 300 V400 M245 350 H281 M233 318 V400 M293 318 V400 M325 300 V400 M307 350 H343 M295 318 V400 M355 318 V400 M387 300 V400 M369 350 H405 M357 318 V400 M417 318 V400 M449 300 V400 M431 350 H467 M419 318 V400 M479 318 V400 M751 300 V400 M733 350 H769 M721 318 V400 M781 318 V400 M813 300 V400 M795 350 H831 M783 318 V400 M843 318 V400 M875 300 V400 M857 350 H893 M845 318 V400 M905 318 V400 M937 300 V400 M919 350 H955 M907 318 V400 M967 318 V400 M999 300 V400 M981 350 H1017 M969 318 V400 M1029 318 V400 M600 262 c-6-5-8-12-8-19 0 0 5 2 8 9 3-7 8-9 8-9 0 7-2 14-8 19z M600 262 c-8 0-15-4-19-11 5 0 10 1.5 14 5 M600 262 c8 0 15-4 19-11-5 0-10 1.5-14 5 M578 356 H622 M600 334 V428 M36 366 a34 34 0 1 0 68 0 a34 34 0 1 0 -68 0 M70 400 V460 M1106 372 a28 28 0 1 0 56 0 a28 28 0 1 0 -56 0 M1134 400 V460 M150 460 q20-12 40 0 q20-12 40 0 q20-12 40 0 M960 460 q20-12 40 0 q20-12 40 0 q20-12 40 0"/></g>
+          <g class="ch-elev__scaffold"><path d="M760 460 V104 M800 460 V104 M840 460 V104 M880 460 V104 M920 460 V104 M960 460 V104 M1000 460 V104 M1040 460 V104 M1080 460 V104 M750 420 H1090 M750 368 H1090 M750 316 H1090 M750 264 H1090 M750 212 H1090 M750 160 H1090 M760 316 L800 420 M840 420 L880 316 M920 316 L960 420 M1000 420 L1040 316 M752 362 H1088 M752 365 H1088 M752 258 H1088 M752 261 H1088 M752 154 H1088 M752 157 H1088"/></g>
+        </svg>
+        <figcaption id="elevCap" class="ve-wrap"><span>Front elevation &middot; illustrative</span><span>Hantana Estate &middot; Kandy</span><span class="ch-elev__state">Restoration under way</span></figcaption>
+      </figure>
+      <ul class="ve-wrap ch-hero__facts">
+        <li><b>Colonial era</b><span>A heritage plantation residence</span></li>
+        <li><b>Hantana Estate</b><span>Kandy District</span></li>
+        <li><b>Stage 1 start</b><span>The Pekoe Trail from the door</span></li>
+        <li><b>2027</b><span>Opening year; early access for the waitlist</span></li>
+      </ul>
+    </section>
+
+    <!-- ═══ 2. THE SECOND HOUSE ═══ -->
+    <section class="ch-about" id="about" data-theme="light" aria-labelledby="aboutTitle">
+      <div class="ve-wrap ch-about__grid">
+        <div class="ch-about__head">
+          <p class="ve-label ve-kicker">The second house</p>
+          <h2 class="ve-h2" id="aboutTitle" data-split>A plantation bungalow <em>on Hantana Estate.</em></h2>
+        </div>
+        <div class="ch-about__read">
+          <p>The Chairman&rsquo;s Bungalow stands on Hantana Estate, the working tea plantation where Stage 1 of the Pekoe Trail begins, at the Ceylon Tea Museum. It is a colonial-era residence on a considerably greater scale than the bungalow in Galaha, and carries the history of an estate that has been growing tea for more than a century.</p>
+          <p>We are restoring it with the same care taken at Galaha: keeping its proportions, its materials and its character, and attending to the original fabric of a house that has stood through Ceylon tea&rsquo;s history.</p>
+          <p>It will open in 2027 as an exclusive whole-house stay, the second house in the Old Ceylon Heritage Collection. Those on the waitlist will hear first, and receive first access and preview rates.</p>
+          <ul class="ch-tags"><li>Hantana Estate</li><li>Pekoe Trail Stage 1</li><li>Colonial heritage</li><li>Whole-house stays</li><li>Opening 2027</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. WHEN THE BUNGALOW OPENS ═══ -->
+    <section class="ch-expect" data-theme="light" aria-labelledby="expectTitle">
+      <div class="ve-wrap">
+        <div class="ch-head">
+          <p class="ve-label ve-kicker">What to expect</p>
+          <h2 class="ve-h2" id="expectTitle" data-split>When the bungalow <em>opens.</em></h2>
+          <p class="ve-lede" data-reveal="up">Based on what we know of the house and how we run The Tea Bungalow; details will be confirmed as the restoration goes on.</p>
+        </div>
+        <ul class="ch-expect__grid">
+          <li><svg class="ve-ico"><use href="#x-house"/></svg><h3>The whole house</h3><p>Reserved exclusively, whole-house: more spacious than Galaha, with the same private-residence spirit.</p><span>Exclusive use &middot; from 2027</span></li>
+          <li><svg class="ve-ico"><use href="#x-boot"/></svg><h3>The Pekoe Trail from the door</h3><p>Stage 1 begins on Hantana Estate. Walk straight onto the trail, with The Tea Bungalow in Galaha as the night&rsquo;s stop.</p><span>Stages 1, 2 &amp; 3 connected</span></li>
+          <li><svg class="ve-ico"><use href="#x-leaf"/></svg><h3>A working tea estate</h3><p>Hantana is a producing plantation, the same setting that makes Galaha: tea fields, estate staff and the rhythm of the harvest.</p><span>Hantana Estate</span></li>
+          <li><svg class="ve-ico"><use href="#x-fire"/></svg><h3>Heritage interiors</h3><p>As at Galaha, original features are kept and proportions respected. The house will not be renovated out of character.</p><span>Authentic restoration</span></li>
+          <li><svg class="ve-ico"><use href="#x-city"/></svg><h3>Close to Kandy</h3><p>Near enough to the city for day trips, far enough to feel removed: a natural first or last night of a Pekoe Trail journey.</p><span>Near Kandy</span></li>
+          <li><svg class="ve-ico"><use href="#x-star"/></svg><h3>Waitlist first</h3><p>The first booking access, soft-opening rates (25&ndash;30% off initial stays) and personal updates as the restoration reaches each milestone.</p><span>Join the list below</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="ch-dusk" aria-hidden="true"></div>
+
+    <div class="ch-night">
+      <!-- ═══ 4. TWO HOUSES, ONE WALK APART ═══ -->
+      <section class="ch-pair" data-theme="dark" aria-labelledby="pairTitle">
+        <div class="ve-wrap">
+          <div class="ch-head ch-head--center">
+            <p class="ve-label ve-kicker">The collection</p>
+            <h2 class="ve-h2" id="pairTitle" data-split>Two houses, <em>one walk apart.</em></h2>
+          </div>
+          <div class="ch-pair__grid">
+            <article class="ch-house">
+              <p class="ch-house__status">Opening 2027</p>
+              <div class="ch-house__media ch-house__media--drawn" aria-hidden="true"><svg viewBox="0 0 1200 500" focusable="false"><use href="#ch-elev-mini"/></svg></div>
+              <h3>The Chairman&rsquo;s Bungalow</h3>
+              <p class="ch-house__where">Hantana Estate &middot; Kandy District</p>
+              <ul><li>Stage 1 start: walk out from the bungalow</li><li>A more spacious colonial residence</li><li>An exclusive whole-house stay</li><li>A working plantation setting</li><li>Close to Kandy, before or after the trail</li></ul>
+              <a class="ve-link" href="#waitlist">Join the waitlist <span aria-hidden="true">&rarr;</span></a>
+            </article>
+            <div class="ch-pair__walk" aria-hidden="true">
+              <span class="ch-pair__km">Stage 1</span>
+              <svg viewBox="0 0 60 300" focusable="false"><path d="M30 0 C 10 50 50 90 30 140 C 12 185 48 230 30 300"/></svg>
+              <span class="ch-pair__km">12.8 km on foot</span>
+            </div>
+            <article class="ch-house ch-house--open">
+              <p class="ch-house__status">Now open</p>
+              <div class="ch-house__media"><img src="/media/estate-house-900.webp" alt="The Tea Bungalow on its hillside at Galaha" loading="lazy" decoding="async"></div>
+              <h3>The Tea Bungalow</h3>
+              <p class="ch-house__where">Galaha Estate &middot; Kandy District</p>
+              <ul><li>Stage 1 end and Stage 2 start, a short walk</li><li>Six chambers and the Carriage House Cottage</li><li>The original 1890s stone fireplace</li><li>Intimate: 12 guests at most</li><li>Single chambers or the whole estate</li></ul>
+              <a class="ve-link" href="/">Visit The Tea Bungalow <span aria-hidden="true">&rarr;</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ 5. THE WAITLIST ═══ -->
+      <section class="ch-list" id="waitlist" data-theme="dark" aria-labelledby="listTitle">
+        <div class="ve-wrap ch-list__grid">
+          <div class="ch-list__why">
+            <p class="ve-label ve-kicker">Early access</p>
+            <h2 class="ve-h2" id="listTitle" data-split>Join the <em>waitlist.</em></h2>
+            <p class="ve-lede">Be the first to know when the Chairman&rsquo;s Bungalow opens for reservations.</p>
+            <ul class="ch-perks">
+              <li>Priority access to opening dates before the public launch</li>
+              <li>Soft-opening rates: 25&ndash;30% off first stays</li>
+              <li>Personal updates as restoration milestones are reached</li>
+              <li>A first look at the property photography</li>
+              <li>No commitment: leave the list at any time</li>
+            </ul>
+          </div>
+          <div class="ch-card">
+            <form class="ch-letter" id="waitlist-form" novalidate>
+              <div class="ch-hp" aria-hidden="true"><label>Leave blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+              <p class="ch-letter__to">Dear Chairman&rsquo;s Bungalow,</p>
+              <p>Please keep a place on the list for
+                <label class="ch-field"><span class="ch-sr">First name (required)</span><input type="text" id="wl-first" name="wl-first" required autocomplete="given-name" placeholder="first name" size="10"></label>
+                <label class="ch-field"><span class="ch-sr">Last name (required)</span><input type="text" id="wl-last" name="wl-last" required autocomplete="family-name" placeholder="last name" size="10"></label>.
+                You can write to me at
+                <label class="ch-field"><span class="ch-sr">Email address (required)</span><input type="email" id="wl-email" name="wl-email" required autocomplete="email" placeholder="email address" size="20"></label>.
+              </p>
+              <p>I&rsquo;m thinking of
+                <label class="ch-field ch-field--select"><span class="ch-sr">Interest</span><select id="wl-interest" name="wl-interest"><option value="">&hellip;</option><option>Leisure / Heritage stay</option><option>Pekoe Trail base</option><option>Private celebration</option><option>Family group stay</option><option>Corporate retreat</option><option>Combination (Galaha + Chairman's)</option><option>Just curious — notify me when open</option></select></label>,
+                probably for
+                <label class="ch-field ch-field--select"><span class="ch-sr">Likely party size</span><select id="wl-party" name="wl-party"><option value="">&hellip;</option><option>2 (couple)</option><option>3–4</option><option>5–8</option><option>9–12</option><option>12+ (full estate)</option></select></label>
+                guests.
+              </p>
+              <label class="ch-field ch-note"><span class="ch-note__label">Anything else (optional)</span><textarea id="wl-notes" name="wl-notes" rows="3" placeholder="A preferred time of year, any particular requirements, or just a note."></textarea></label>
+              <p class="ch-errors" role="alert" hidden></p>
+              <button type="submit" class="ve-btn ve-btn--gold ch-send"><span>Keep me a place</span></button>
+              <p class="ch-letter__small">We won&rsquo;t share your details. One email per milestone, no newsletters.</p>
+            </form>
+            <div class="ch-sent" id="waitlist-success" hidden tabindex="-1">
+              <p class="ch-sent__title">You&rsquo;re on the list.</p>
+              <p>Thank you: you&rsquo;ll be among the first to know when the Chairman&rsquo;s Bungalow opens for reservations, and we&rsquo;ll write as the restoration progresses and the opening date is confirmed.</p>
+              <a class="ve-link" href="/">Meanwhile, stay at The Tea Bungalow, Galaha <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══ NEXT CHAPTER ═════════════════════════════════════════════════ -->
+    <a class="ve-next" href="/" data-theme="dark" data-cursor="Enter">
+      <span class="ve-next__bg" aria-hidden="true"><img src="/media/estate-house-1600.webp" srcset="/media/estate-house-900.webp 900w, /media/estate-house-1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async"></span>
+      <span class="ve-next__label ve-label">Open now <span class="ve-si" lang="si">ගලහ</span></span>
+      <span class="ve-next__title">The Tea Bungalow</span>
+      <span class="ve-next__sub">Stay at Galaha now, at the end of Stage 1.</span>
+      <span class="ve-next__go" aria-hidden="true">&rarr;</span>
+    </a>
+
+  </main>
+
+  <?php include 'layout/ve/footer.html'; ?>
+
+  <script src="/js/vendor/gsap.min.js" defer></script>
+  <script src="/js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/js/vendor/lenis.min.js" defer></script>
+  <script src="/ve/ve.js" defer></script>
+  <script src="/ve/chairmans.js" defer></script>
+  <script>
+    // The waitlist goes to /api/waitlist as URL-encoded data (Vercel functions don't parse multipart)
+    document.getElementById('waitlist-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var form = this, errors = form.querySelector('.ch-errors'), missing = [];
+      form.querySelectorAll('[required]').forEach(function (f) {
+        var bad = !f.value.trim() || (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim()));
+        (f.closest('.ch-field') || f).classList.toggle('is-invalid', bad);
+        f.setAttribute('aria-invalid', bad ? 'true' : 'false');
+        if (bad) missing.push(f);
+      });
+      if (missing.length) {
+        errors.hidden = false;
+        errors.textContent = 'Please add your name and email address.';
+        missing[0].focus();
+        return;
+      }
+      errors.hidden = true;
+      var btn = form.querySelector('.ch-send'), label = btn.querySelector('span'), text = label.textContent;
+      btn.disabled = true; label.textContent = 'Sending…';
+      try {
+        var res = await fetch('/api/waitlist', { method: 'POST', body: new URLSearchParams(new FormData(this)) });
+        var data = await res.json().catch(function () { return {}; });
+        if (res.ok && data.ok) {
+          form.hidden = true;
+          var sent = document.getElementById('waitlist-success');
+          sent.hidden = false; sent.focus();
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'waitlist_joined' });
+        } else {
+          errors.hidden = false;
+          errors.textContent = (data && data.message) || 'We couldn’t add you just now. Please try again, or email stay@theteabungalow.com.';
+          btn.disabled = false; label.textContent = text;
+        }
+      } catch (err) {
+        errors.hidden = false;
+        errors.textContent = 'The connection dropped. Please try again, or email stay@theteabungalow.com.';
+        btn.disabled = false; label.textContent = text;
+      }
+    });
+  </script>
+</body>
+
+</html>
