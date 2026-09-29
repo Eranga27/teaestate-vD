@@ -1,0 +1,37 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   vE · Privacy. A quiet reading page: the policy's own wording, set for
+   reading, with a contents list that follows you down it.
+═══════════════════════════════════════════════════════════════════════════ */
+.ve-pv main { background: var(--ve-cream); color: var(--ve-text); }
+.pv-hero { padding: calc(var(--ve-header-h) + 8vh) 0 clamp(40px, 7vh, 70px); border-bottom: 1px solid var(--ve-line); }
+.pv-hero .ve-kicker { color: var(--ve-gold-deep); }
+.pv-hero__title { margin: 0; max-width: 14em; font-family: var(--ve-display); font-weight: 400; font-size: clamp(38px, 5vw, 76px); line-height: 1.04; color: var(--ve-forest-deep); }
+.pv-hero__title em { font-family: var(--ve-serif); font-style: italic; color: var(--ve-gold-deep); }
+.pv-hero__sub { margin: 24px 0 22px; max-width: 36em; font-size: clamp(17.5px, 1.35vw, 21px); line-height: 1.6; color: var(--ve-muted); }
+.pv-hero__pill { display: inline-block; margin: 0; padding: 8px 16px; border: 1px solid rgba(150, 119, 56, .4); border-radius: 999px; font-family: var(--ve-display); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ve-gold-deep); }
+.pv-body { padding: clamp(50px, 8vh, 90px) 0 clamp(90px, 14vh, 150px); }
+.pv-grid { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: clamp(36px, 6vw, 110px); align-items: start; }
+.pv-toc { position: sticky; top: calc(var(--ve-header-h) + 30px); }
+.pv-toc .ve-label { font-size: 10px; color: var(--ve-gold-deep); margin-bottom: 14px; }
+.pv-toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--ve-line); }
+.pv-toc a { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 6px; padding: 9px 0 9px 16px; margin-left: -1px; border-left: 1px solid transparent; font-size: 15.5px; line-height: 1.4; color: var(--ve-muted); text-decoration: none; transition: color .3s, border-color .3s; }
+.pv-toc a span { font-family: var(--ve-display); font-size: 11px; letter-spacing: .1em; color: var(--ve-gold-deep); padding-top: 3px; }
+.pv-toc a:hover, .pv-toc a.is-on { color: var(--ve-forest-deep); border-left-color: var(--ve-gold-deep); }
+.pv-toc a:focus-visible { outline: 2px solid var(--ve-gold); outline-offset: 2px; }
+.pv-text { max-width: 44em; }
+.pv-section { padding: 0 0 clamp(36px, 6vh, 56px); margin-bottom: clamp(36px, 6vh, 56px); border-bottom: 1px solid var(--ve-line); scroll-margin-top: calc(var(--ve-header-h) + 30px); }
+.pv-section:last-child { border-bottom: 0; }
+.pv-section h2 { display: flex; align-items: baseline; gap: 16px; margin: 0 0 18px; font-family: var(--ve-display); font-weight: 400; font-size: clamp(22px, 2vw, 30px); line-height: 1.2; color: var(--ve-forest-deep); }
+.pv-section h2 .ve-num { flex: none; }
+.pv-section p, .pv-section li { font-size: 18px; line-height: 1.7; color: #3d372e; }
+.pv-section p { margin: 0 0 16px; }
+.pv-section ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 12px; }
+.pv-section li { position: relative; padding-left: 26px; }
+.pv-section li::before { content: ''; position: absolute; left: 0; top: .85em; width: 12px; height: 1px; background: var(--ve-gold-deep); }
+.pv-section strong { font-weight: 500; color: var(--ve-forest-deep); }
+.pv-section a { color: var(--ve-forest); }
+.pv-contact { margin-top: 18px; padding: 22px 26px; border-left: 2px solid var(--ve-gold); background: rgba(199, 168, 94, .08); font-size: 17px; line-height: 1.8; }
+@media (max-width: 900px) {
+  .pv-grid { grid-template-columns: 1fr; }
+  .pv-toc { position: relative; top: auto; }
+}

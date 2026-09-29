@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   vE · The Chairman's Bungalow (motion in /ve/chairmans.js; the waitlist's
+   submit handler is inline in the page, where npm test looks for it).
+   Being restored: the house as its drawing, scaffolding still up → the second
+   house → what to expect → dusk → two houses, one walk apart → the waitlist.
+═══════════════════════════════════════════════════════════════════════════ */
+.ve-ch { --ch-cream: #f3eee4; --ch-night: #08140e; }
+.ch-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+/* ── 1. Being restored ─────────────────────────────────────────────── */
+.ch-hero { position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(90% 60% at 50% 70%, rgba(30, 77, 43, .35), transparent 70%), var(--ch-night); color: var(--ve-cream); padding: calc(var(--ve-header-h) + 6vh) 0 0; }
+.ch-hero__head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(30px, 5vw, 90px); align-items: end; }
+.ch-hero .ve-kicker { color: var(--ve-gold); }
+.ch-hero__title { margin: 0; font-family: var(--ve-display); font-weight: 400; font-size: clamp(46px, 6.8vw, 110px); line-height: .96; }
+.ch-hero__title em { font-family: var(--ve-serif); font-style: italic; color: var(--ve-gold-light); }
+.ch-hero__line { display: block; overflow: hidden; padding-bottom: .08em; }
+.ch-hero__line > * { display: block; }
+.ch-hero__sub { margin: 0 0 26px; max-width: 27em; font-size: clamp(17.5px, 1.35vw, 21px); line-height: 1.6; color: rgba(245, 241, 233, .8); }
+.ch-hero .ve-btn--gold { color: var(--ve-forest-deep); }
+.ch-elev { margin: clamp(30px, 5vh, 60px) 0 0; }
+.ch-elev__svg { display: block; width: min(100%, 1400px); height: auto; margin: 0 auto; overflow: visible; }
+.ch-elev__draw path { fill: none; stroke: var(--ve-gold-light); stroke-width: 2; stroke-linejoin: round; stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+.ch-elev__detail path { fill: none; stroke: rgba(223, 192, 128, .5); stroke-width: 1.1; stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+.ch-elev__scaffold path { fill: none; stroke: rgba(245, 241, 233, .26); stroke-width: 1.2; }
+html.ve-motion .ch-elev__draw path, html.ve-motion .ch-elev__detail path { stroke-dashoffset: 1; }
+html.ve-motion .ch-elev__scaffold { opacity: 0; }
+.ch-elev figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(223, 192, 128, .22); font-family: var(--ve-display); font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase; color: rgba(245, 241, 233, .55); }
+.ch-elev__state { display: inline-flex; align-items: center; gap: 8px; color: var(--ve-gold-light); }
+.ch-elev__state::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--ve-gold); animation: chPulse 2.2s ease-out infinite; box-shadow: 0 0 0 0 rgba(199, 168, 94, .6); }
+@keyframes chPulse { to { box-shadow: 0 0 0 9px rgba(199, 168, 94, 0); } }
+.ch-hero__facts { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 30px; margin: 0 auto; padding-top: 30px; padding-bottom: 40px; }
+.ch-hero__facts li { display: grid; gap: 4px; }
+.ch-hero__facts b { font-family: var(--ve-display); font-weight: 400; font-size: clamp(17px, 1.4vw, 21px); color: var(--ve-gold-light); }
+.ch-hero__facts span { font-size: 15px; color: rgba(245, 241, 233, .62); }
+html.ve-motion .ch-hero__line > * { transform: translateY(110%); }
+html.ve-motion .ch-hero .ve-crumbs, html.ve-motion .ch-hero .ve-kicker, html.ve-motion .ch-hero__side, html.ve-motion .ch-elev figcaption, html.ve-motion .ch-hero__facts li { opacity: 0; }
+
+/* ── 2–3. The second house, what to expect ─────────────────────────── */
+.ch-about, .ch-expect { background: var(--ch-cream); color: var(--ve-forest-deep); }
+.ch-about { padding: clamp(100px, 15vh, 170px) 0 clamp(60px, 9vh, 100px); }
+.ch-about__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(36px, 6vw, 110px); align-items: start; }
+.ch-about__head { position: sticky; top: calc(var(--ve-header-h) + 8vh); }
+.ch-about .ve-kicker, .ch-expect .ve-kicker { color: var(--ve-gold-deep); }
+.ch-about__read p { margin: 0 0 22px; max-width: 34em; font-size: clamp(18px, 1.4vw, 21px); line-height: 1.7; color: #3d372e; }
+.ch-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 30px 0 0; padding: 0; }
+.ch-tags li { padding: 7px 13px; border: 1px solid rgba(150, 119, 56, .45); font-family: var(--ve-display); font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ve-gold-deep); }
+.ch-expect { padding: clamp(40px, 7vh, 80px) 0 clamp(80px, 12vh, 130px); }
+.ch-head { max-width: 760px; margin-bottom: clamp(40px, 7vh, 70px); }
+.ch-head .ve-lede { margin-top: 24px; }
+.ch-head--center { margin-left: auto; margin-right: auto; text-align: center; }
+.ch-head--center .ve-kicker { justify-content: center; }
+.ch-expect__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(24px, 3vw, 50px); }
+.ch-expect__grid li { display: grid; align-content: start; gap: 12px; padding: 30px 0; border-top: 1px solid var(--ve-line); }
+.ch-expect__grid .ve-ico { width: 32px; height: 32px; color: var(--ve-gold-deep); }
+.ch-expect__grid h3 { margin: 0; font-family: var(--ve-display); font-weight: 400; font-size: 19px; }
+.ch-expect__grid p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--ve-muted); }
+.ch-expect__grid span { font-family: var(--ve-display); font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ve-gold-deep); }
+
+/* ── Dusk, then night ──────────────────────────────────────────────── */
+.ch-dusk { height: 36vh; min-height: 240px; background: linear-gradient(180deg, var(--ch-cream) 0%, #c7b493 34%, #56604a 70%, var(--ch-night) 100%); }
+.ch-night { background: var(--ch-night); color: var(--ve-cream); }
+.ch-night .ve-kicker { color: var(--ve-gold); }
+.ch-night .ve-h2 em { color: var(--ve-gold-light); }
+
+/* ── 4. Two houses, one walk apart ─────────────────────────────────── */
+.ch-pair { padding: clamp(30px, 6vh, 70px) 0 clamp(80px, 12vh, 130px); }
+.ch-pair__grid { display: grid; grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1fr); gap: clamp(20px, 3vw, 44px); align-items: stretch; }
+.ch-house { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(24px, 2.6vw, 38px); border: 1px solid rgba(223, 192, 128, .3); background: rgba(255, 255, 255, .02); }
+.ch-house--open { border-color: rgba(223, 192, 128, .55); }
+.ch-house__status { margin: 0 0 18px; padding: 5px 12px; border: 1px solid rgba(223, 192, 128, .45); font-family: var(--ve-display); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--ve-gold-light); }
+.ch-house--open .ch-house__status { background: var(--ve-gold); border-color: var(--ve-gold); color: var(--ve-forest-deep); }
+.ch-house__media { width: 100%; aspect-ratio: 12 / 5; margin: 0 0 22px; overflow: hidden; }
+.ch-house__media img { width: 100%; height: 100%; object-fit: cover; }
+.ch-house__media--drawn { display: grid; place-items: center; background: radial-gradient(80% 80% at 50% 60%, rgba(30, 77, 43, .45), transparent); }
+.ch-house__media--drawn svg { width: 92%; height: auto; }
+.ch-house__media--drawn .ch-elev__draw path { stroke-dasharray: none; }
+.ch-house__media--drawn .ch-elev__detail path { stroke-dasharray: none; }
+.ch-house h3 { margin: 0 0 6px; font-family: var(--ve-display); font-weight: 400; font-size: clamp(22px, 2vw, 30px); }
+.ch-house__where { margin: 0 0 18px; font-style: italic; color: rgba(245, 241, 233, .6); }
+.ch-house ul { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 9px; font-size: 16px; color: rgba(245, 241, 233, .82); }
+.ch-house li { display: flex; gap: 10px; }
+.ch-house li::before { content: ''; flex: none; width: 12px; height: 1px; margin-top: .75em; background: var(--ve-gold); }
+.ch-house .ve-link { margin-top: auto; color: var(--ve-gold-light); }
+.ch-pair__walk { display: grid; justify-items: center; align-content: center; gap: 10px; text-align: center; }
+.ch-pair__walk svg { width: 40px; height: 220px; overflow: visible; }
+.ch-pair__walk path { fill: none; stroke: var(--ve-gold); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+.ch-pair__km { font-family: var(--ve-display); font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ve-gold-light); }
+
+/* ── 5. The waitlist ───────────────────────────────────────────────── */
+.ch-list { padding: clamp(40px, 8vh, 90px) 0 clamp(100px, 15vh, 170px); }
+.ch-list__grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(36px, 6vw, 100px); align-items: start; }
+.ch-list__why .ve-lede { margin: 20px 0 28px; }
+.ch-perks { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ve-line-light); }
+.ch-perks li { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--ve-line-light); font-size: 16.5px; color: rgba(245, 241, 233, .84); }
+.ch-perks li::before { content: '\2726'; color: var(--ve-gold); }
+.ch-card { padding: clamp(30px, 4vw, 56px); background: #fbf8f1; color: #1a1510; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .6);
+  background-image: linear-gradient(transparent calc(100% - 1px), rgba(30, 77, 43, .06) calc(100% - 1px)); background-size: 100% 2.3em; }
+.ch-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.ch-letter { font-family: var(--ve-serif); font-size: clamp(19px, 1.5vw, 22px); line-height: 2.3; }
+.ch-letter p { margin: 0 0 .4em; }
+.ch-letter__to { font-style: italic; color: var(--ve-forest-deep); }
+.ch-field { display: inline-block; vertical-align: baseline; }
+.ch-field input, .ch-field select, .ch-field textarea { font: inherit; color: var(--ve-forest); background: transparent; border: 0; border-bottom: 1.5px solid rgba(150, 119, 56, .5); border-radius: 0; padding: 0 4px 2px; line-height: 1.4; outline: none; transition: border-color .3s, background-color .3s; }
+.ch-field input::placeholder, .ch-field textarea::placeholder { color: rgba(111, 101, 86, .6); font-style: italic; }
+.ch-field select { -webkit-appearance: none; appearance: none; padding-right: 22px; cursor: pointer; max-width: 100%; background-image: linear-gradient(45deg, transparent 50%, var(--ve-gold-deep) 50%), linear-gradient(135deg, var(--ve-gold-deep) 50%, transparent 50%); background-size: 5px 5px; background-position: right 8px center, right 3px center; background-repeat: no-repeat; }
+.ch-field input:focus, .ch-field select:focus, .ch-field textarea:focus { border-color: var(--ve-gold-deep); background-color: rgba(199, 168, 94, .1); }
+.ch-field.is-invalid input { border-color: #b3402f; background: rgba(179, 64, 47, .06); }
+.ch-note { display: block; margin: .4em 0 .8em; }
+.ch-note__label { display: block; font-family: var(--ve-display); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; line-height: 1.4; color: var(--ve-gold-deep); margin-bottom: 6px; }
+.ch-note textarea { display: block; width: 100%; resize: vertical; line-height: 2.3; border: 0; background-image: linear-gradient(transparent calc(100% - 1.5px), rgba(150, 119, 56, .4) calc(100% - 1.5px)); background-size: 100% 2.3em; background-attachment: local; }
+.ch-errors { margin: 10px 0 0 !important; padding: 12px 16px; font-size: 16.5px; line-height: 1.5; color: #8e2f24; background: rgba(179, 64, 47, .07); border-left: 2px solid #b3402f; }
+.ch-send { margin-top: 18px; }
+.ch-send[disabled] { opacity: .7; cursor: progress; }
+.ch-letter__small { margin-top: 14px !important; font-size: 14.5px; line-height: 1.5; color: var(--ve-muted); }
+.ch-sent { outline: none; font-size: 18px; line-height: 1.6; color: var(--ve-muted); }
+.ch-sent__title { margin: 0 0 12px; font-family: var(--ve-display); font-size: clamp(24px, 2.4vw, 34px); color: var(--ve-forest-deep); }
+.ch-sent .ve-link { color: var(--ve-forest); }
+
+/* ── Smaller screens ───────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .ch-hero__head, .ch-about__grid, .ch-list__grid { grid-template-columns: 1fr; }
+  .ch-about__head { position: relative; top: auto; }
+  .ch-expect__grid { grid-template-columns: 1fr 1fr; }
+  .ch-pair__grid { grid-template-columns: 1fr; }
+  .ch-pair__walk { grid-template-columns: auto auto auto; align-items: center; }
+  .ch-pair__walk svg { width: 120px; height: 40px; transform: rotate(90deg); }
+  .ch-hero__facts { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .ch-hero .ve-crumbs { display: none; }
+  .ch-expect__grid { grid-template-columns: 1fr; }
+  .ch-elev figcaption span:nth-child(2) { display: none; }
+  .ch-letter { font-size: 18px; }
+  .ch-field input[type="text"], .ch-field input[type="email"] { max-width: 11em; }
+}
+@media (prefers-reduced-motion: reduce) { .ch-elev__state::before { animation: none; } }
