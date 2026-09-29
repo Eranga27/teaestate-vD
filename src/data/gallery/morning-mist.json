@@ -1,11 +1,11 @@
 {
-  "image": "/images/img6.jpg",
+  "image": "/media/trail-highlands-920.webp",
   "caption": "Morning Mist",
-  "subcaption": "Early morning · Hill country vistas",
-  "alt": "Morning mist hanging over the valley at The Tea Bungalow",
+  "subcaption": "The ridges across the valley",
+  "alt": "Mist on the distant highland ridges seen from the estate",
   "category": "estate",
   "featured": false,
-  "span": "span-4",
-  "height": "h-sm",
-  "sort_order": 4
+  "span": "span-6",
+  "height": "h-md",
+  "sort_order": 18
 }

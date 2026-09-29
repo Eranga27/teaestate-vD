@@ -443,11 +443,13 @@ Started 28 Sept 2026 on branch `ve/homepage`. Goal: an award-level, cinematic sc
 
 **About the Estate (vE):** "Where Ceylon tea began". A cream hero with the Galaha tea slopes opening in an arch and 1867 drawn faintly behind; "Why we opened" lit word by word; the story as an editorial long read (drop cap, pull quote) with the picture beside it changing with the paragraph; then dusk into "Galaha, Ceylon tea & this bungalow", a pinned sequence of figures over the hills that count up one at a time (aged 17 in 1852, 21 acres in 1867, 23 pounds in 1873, 20,000 tons around 1890, 5 km in 1892, the JEDB in 1976, and 6:30 today) along a year rail. After it: the Old Ceylon Heritage Collection (The Tea Bungalow, Hantana Cottage, the Chairman's Bungalow; the two without photos have a drawn bungalow in their arch), six principles, sustainability and "A house is understood by staying in it."
 
+**Gallery (vE):** "The house, in pictures". One photograph of the bungalow fills the screen, and scrolling steps back until it is one tile in a wall of nine. Then the collection: 22 photographs from the CMS in an editorial grid (filters: Inside the house, Chambers, Outdoors), each opening in a full-screen viewer with captions, arrows, Escape and swipe; the estate film plays when it comes on screen; and "Photographs only go so far." The gallery's CMS entries were fixed as part of this: four placeholder stock images (a conical-hat tea picker, a resort pool, an AI-drawn cottage, a picnic on a strawberry farm) were replaced with the estate's own photographs, two mislabelled photos were recaptioned, and the real rooms and all seven chambers were added.
+
 **Stack:** GSAP 3 + ScrollTrigger and Lenis, self-hosted. Photos are optimised to WebP. On reduced motion or Save-Data, the hero shows the poster only.
 
 **QA:** headless Chrome captures at 1440/768/390, reduced motion and the preloader hand-off. Also checked: no horizontal overflow and no console errors. `npm test` passes.
 
-**Next:** roll vE out to Gallery and Contact. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
+**Next:** roll vE out to Contact, then the Chairman's Bungalow and Privacy pages. Replace the remaining stock photos with estate photography: the trail hiker, tea factory, afternoon tea, outdoor dining and snooker.
 
 ---
 
